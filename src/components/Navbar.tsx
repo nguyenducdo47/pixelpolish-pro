@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,16 +76,20 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground relative z-50"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2 relative z-50">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile nav - Full screen overlay */}
