@@ -15,7 +15,7 @@ const TechStackSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="section-title">
-            {t.skills.title} / <span className="text-gradient">{t.skills.titleEn}</span>
+            <span className="text-gradient">{t.skills.title}</span>
           </h2>
           <p className="section-subtitle px-2">
             {t.skills.subtitle}

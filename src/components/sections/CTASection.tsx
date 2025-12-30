@@ -21,7 +21,7 @@ const CTASection = () => {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="section-title">
-            {t.cta.title} / <span className="text-gradient">{t.cta.titleEn}</span>
+            <span className="text-gradient">{t.cta.title}</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 px-2">
             {t.cta.description}
