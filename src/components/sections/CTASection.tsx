@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail } from "lucide-react";
+import { Download, Github, Linkedin, Mail, Facebook, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -54,6 +54,22 @@ const CTASection = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
             >
               <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-[#1877F2] hover:border-[#1877F2]/50 transition-all duration-300"
+            >
+              <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
+            <a
+              href="https://t.me/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-[#0088cc] hover:border-[#0088cc]/50 transition-all duration-300"
+            >
+              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
               href="mailto:your.email@example.com"
