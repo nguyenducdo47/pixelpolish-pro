@@ -1,19 +1,31 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Tech logos using simple SVG icons or styled text
-const techLogos: Record<string, { icon: string; color: string }> = {
-  "PHP 8": { icon: "🐘", color: "#777BB4" },
-  "Laravel": { icon: "⬢", color: "#FF2D20" },
-  "MySQL": { icon: "🗄️", color: "#4479A1" },
-  "Redis": { icon: "◉", color: "#DC382D" },
-  "Blade Template": { icon: "✂️", color: "#F05340" },
-  "TailwindCSS": { icon: "🌊", color: "#06B6D4" },
-  "Vue.js (Basic)": { icon: "💚", color: "#4FC08D" },
-  "React.js (Basic)": { icon: "⚛️", color: "#61DAFB" },
-  "Git": { icon: "⎇", color: "#F05032" },
-  "Docker": { icon: "🐳", color: "#2496ED" },
-  "AWS (Basic)": { icon: "☁️", color: "#FF9900" },
+// Import tech logos
+import phpLogo from "@/assets/tech-logos/php.svg";
+import laravelLogo from "@/assets/tech-logos/laravel.svg";
+import mysqlLogo from "@/assets/tech-logos/mysql.svg";
+import redisLogo from "@/assets/tech-logos/redis.svg";
+import tailwindLogo from "@/assets/tech-logos/tailwindcss.svg";
+import vueLogo from "@/assets/tech-logos/vuejs.svg";
+import reactLogo from "@/assets/tech-logos/react.svg";
+import gitLogo from "@/assets/tech-logos/git.svg";
+import dockerLogo from "@/assets/tech-logos/docker.svg";
+import awsLogo from "@/assets/tech-logos/aws.svg";
+
+// Tech logos mapping
+const techLogos: Record<string, { logo: string; color: string }> = {
+  "PHP 8": { logo: phpLogo, color: "#777BB4" },
+  "Laravel": { logo: laravelLogo, color: "#FF2D20" },
+  "MySQL": { logo: mysqlLogo, color: "#4479A1" },
+  "Redis": { logo: redisLogo, color: "#DC382D" },
+  "Blade Template": { logo: laravelLogo, color: "#FF2D20" },
+  "TailwindCSS": { logo: tailwindLogo, color: "#06B6D4" },
+  "Vue.js (Basic)": { logo: vueLogo, color: "#4FC08D" },
+  "React.js (Basic)": { logo: reactLogo, color: "#61DAFB" },
+  "Git": { logo: gitLogo, color: "#F05032" },
+  "Docker": { logo: dockerLogo, color: "#2496ED" },
+  "AWS (Basic)": { logo: awsLogo, color: "#FF9900" },
 };
 
 interface SkillItem {
@@ -61,7 +73,7 @@ const TechStackSection = () => {
               <h3 className="text-lg sm:text-xl font-semibold text-primary mb-4 sm:mb-6">{category.title}</h3>
               <div className="space-y-4 sm:space-y-5">
                 {category.items.map((item, itemIndex) => {
-                  const tech = techLogos[item.name] || { icon: "•", color: "#888" };
+                  const tech = techLogos[item.name] || { logo: "", color: "#888" };
                   return (
                     <motion.div
                       key={`${language}-${categoryIndex}-${itemIndex}`}
@@ -72,12 +84,25 @@ const TechStackSection = () => {
                       className="group"
                     >
                       <div className="flex items-center gap-3 mb-2">
-                        <span 
-                          className="text-xl sm:text-2xl"
-                          style={{ filter: 'drop-shadow(0 0 4px ' + tech.color + '40)' }}
+                        <div 
+                          className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-background/80 p-1.5"
+                          style={{ boxShadow: `0 0 12px ${tech.color}30` }}
                         >
-                          {tech.icon}
-                        </span>
+                          {tech.logo ? (
+                            <img 
+                              src={tech.logo} 
+                              alt={item.name}
+                              className="w-full h-full object-contain"
+                            />
+                          ) : (
+                            <div 
+                              className="w-full h-full rounded bg-muted flex items-center justify-center text-xs font-bold"
+                              style={{ color: tech.color }}
+                            >
+                              {item.name.charAt(0)}
+                            </div>
+                          )}
+                        </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
                             <h4 className="font-medium text-foreground text-sm sm:text-base truncate">
@@ -91,7 +116,7 @@ const TechStackSection = () => {
                       </div>
                       
                       {/* Progress bar */}
-                      <div className="ml-8 sm:ml-10">
+                      <div className="ml-11 sm:ml-13">
                         <div className="h-2 bg-muted rounded-full overflow-hidden">
                           <motion.div
                             className="h-full rounded-full"
