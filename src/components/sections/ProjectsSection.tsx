@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layers, Shield, ShoppingCart } from "lucide-react";
+import Card3D from "@/components/Card3D";
 
 const ProjectsSection = () => {
   const projects = [
@@ -70,78 +71,92 @@ const ProjectsSection = () => {
 
         <div className="space-y-4 sm:space-y-6 md:space-y-8">
           {projects.map((project, index) => (
-            <motion.article
+            <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300"
             >
-              {/* Mobile: Stack layout */}
-              <div className="flex flex-col gap-4 sm:gap-6">
-                {/* Header */}
-                <div>
-                  <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <project.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <Card3D className="cursor-pointer">
+                <article className="group p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-glow transition-all duration-300">
+                  {/* Mobile: Stack layout */}
+                  <div className="flex flex-col gap-4 sm:gap-6">
+                    {/* Header */}
+                    <div>
+                      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div 
+                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors"
+                          style={{ transform: "translateZ(40px)" }}
+                        >
+                          <project.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 
+                            className="text-base sm:text-lg md:text-xl font-semibold text-foreground leading-tight group-hover:text-primary transition-colors"
+                            style={{ transform: "translateZ(30px)" }}
+                          >
+                            {project.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">{project.subtitle}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
+                        <span 
+                          className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-secondary text-[10px] sm:text-xs font-medium text-secondary-foreground"
+                          style={{ transform: "translateZ(20px)" }}
+                        >
+                          {project.complexity}
+                        </span>
+                      </div>
+                      
+                      {/* Tech stack */}
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2" style={{ transform: "translateZ(15px)" }}>
+                        {project.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-muted text-[10px] sm:text-xs text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-semibold text-foreground leading-tight">{project.title}</h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">{project.subtitle}</p>
+
+                    {/* Details */}
+                    <div className="space-y-3 sm:space-y-4" style={{ transform: "translateZ(10px)" }}>
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1">Vấn đề / Problem</h4>
+                        <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">{project.problem}</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1">Giải pháp / Solution</h4>
+                        <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">{project.solution}</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1.5 sm:mb-2">Trách nhiệm / Responsibilities</h4>
+                        <ul className="space-y-1 sm:space-y-1.5">
+                          {project.responsibilities.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-foreground/80">
+                              <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary mt-1.5 sm:mt-2 flex-shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="pt-2 sm:pt-3 border-t border-border">
+                        <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1">Bài học / What I Learned</h4>
+                        <p className="text-xs sm:text-sm text-muted-foreground italic leading-relaxed">{project.learned}</p>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
-                    <span className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-secondary text-[10px] sm:text-xs font-medium text-secondary-foreground">
-                      {project.complexity}
-                    </span>
-                  </div>
-                  
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-muted text-[10px] sm:text-xs text-muted-foreground"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Details */}
-                <div className="space-y-3 sm:space-y-4">
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1">Vấn đề / Problem</h4>
-                    <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">{project.problem}</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1">Giải pháp / Solution</h4>
-                    <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">{project.solution}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1.5 sm:mb-2">Trách nhiệm / Responsibilities</h4>
-                    <ul className="space-y-1 sm:space-y-1.5">
-                      {project.responsibilities.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-foreground/80">
-                          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary mt-1.5 sm:mt-2 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="pt-2 sm:pt-3 border-t border-border">
-                    <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1">Bài học / What I Learned</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground italic leading-relaxed">{project.learned}</p>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+                </article>
+              </Card3D>
+            </motion.div>
           ))}
         </div>
       </div>
