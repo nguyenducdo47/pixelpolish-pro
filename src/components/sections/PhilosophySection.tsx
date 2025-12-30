@@ -1,29 +1,22 @@
 import { motion } from "framer-motion";
 import { Code, Users, TestTube, Lightbulb } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PhilosophySection = () => {
-  const principles = [
-    {
-      icon: Code,
-      title: "Clean Code",
-      description: "Code sạch, có cấu trúc rõ ràng. Naming conventions tốt, functions ngắn gọn, single responsibility.",
-    },
-    {
-      icon: Lightbulb,
-      title: "SOLID Principles",
-      description: "Áp dụng nguyên tắc SOLID để code dễ mở rộng, bảo trì và test được.",
-    },
-    {
-      icon: Users,
-      title: "Code cho đồng đội",
-      description: "Viết code như thể ngày mai mình phải bảo trì. Dễ đọc hơn thông minh.",
-    },
-    {
-      icon: TestTube,
-      title: "Testing mindset",
-      description: "Dù chưa phải expert, nhưng luôn có ý thức viết code có thể test được.",
-    },
-  ];
+  const { t, language } = useLanguage();
+  const icons = [Code, Lightbulb, Users, TestTube];
+
+  // Parse quote with highlight
+  const renderQuote = (quote: string) => {
+    const parts = quote.split(/<highlight>|<\/highlight>/);
+    return parts.map((part, i) => 
+      i % 2 === 1 ? (
+        <span key={i} className="text-primary font-medium">{part}</span>
+      ) : (
+        <span key={i}>{part}</span>
+      )
+    );
+  };
 
   return (
     <section id="philosophy" className="py-16 sm:py-20 md:py-24 bg-card/50">
@@ -36,10 +29,10 @@ const PhilosophySection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="section-title">
-            Triết lý coding / <span className="text-gradient">My Philosophy</span>
+            {t.philosophy.title} / <span className="text-gradient">{t.philosophy.titleEn}</span>
           </h2>
           <p className="section-subtitle max-w-2xl mx-auto px-2">
-            Những nguyên tắc tôi luôn tuân theo khi viết code
+            {t.philosophy.subtitle}
           </p>
         </motion.div>
 
@@ -51,29 +44,30 @@ const PhilosophySection = () => {
           className="max-w-3xl mx-auto mb-8 sm:mb-12 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-card border border-border"
         >
           <p className="text-base sm:text-lg text-foreground/90 leading-relaxed text-center">
-            "Tôi tin rằng <span className="text-primary font-medium">code tốt</span> không chỉ 
-            là code chạy được. Đó là code mà đồng đội có thể đọc hiểu, code có thể dễ dàng 
-            thay đổi khi requirements thay đổi, và code không gây surprise cho người đến sau."
+            "{renderQuote(t.philosophy.quote)}"
           </p>
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-          {principles.map((principle, index) => (
-            <motion.div
-              key={principle.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border hover:border-primary/30 transition-all duration-300 text-center group"
-            >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:bg-primary/20 transition-colors">
-                <principle.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-xs sm:text-sm md:text-base">{principle.title}</h3>
-              <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
-            </motion.div>
-          ))}
+          {t.philosophy.principles.map((principle, index) => {
+            const Icon = icons[index];
+            return (
+              <motion.div
+                key={`${language}-${index}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-card border border-border hover:border-primary/30 transition-all duration-300 text-center group"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:bg-primary/20 transition-colors">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-xs sm:text-sm md:text-base">{principle.title}</h3>
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +31,11 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { href: "#about", label: "Về tôi" },
-    { href: "#skills", label: "Kỹ năng" },
-    { href: "#projects", label: "Dự án" },
-    { href: "#philosophy", label: "Triết lý" },
-    { href: "#contact", label: "Liên hệ" },
+    { href: "#about", label: t.navbar.about },
+    { href: "#skills", label: t.navbar.skills },
+    { href: "#projects", label: t.navbar.projects },
+    { href: "#philosophy", label: t.navbar.philosophy },
+    { href: "#contact", label: t.navbar.contact },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -65,7 +68,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -76,11 +79,13 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <LanguageToggle />
             <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2 relative z-50">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}

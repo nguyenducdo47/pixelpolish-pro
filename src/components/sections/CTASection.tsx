@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CTASection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden">
       {/* Background glow */}
@@ -18,18 +21,16 @@ const CTASection = () => {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="section-title">
-            Kết nối với tôi / <span className="text-gradient">Let's Connect</span>
+            {t.cta.title} / <span className="text-gradient">{t.cta.titleEn}</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 px-2">
-            Tôi luôn sẵn sàng cho những cơ hội mới và những dự án thú vị. 
-            Nếu bạn đang tìm kiếm một developer có trách nhiệm và ham học hỏi, 
-            hãy liên hệ với tôi!
+            {t.cta.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 sm:px-0">
             <Button variant="hero" size="lg" className="w-full sm:w-auto">
               <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              Tải CV
+              {t.cta.downloadCV}
             </Button>
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto text-sm">
               <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
