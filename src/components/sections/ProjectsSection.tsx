@@ -18,7 +18,7 @@ const ProjectsSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="section-title">
-            {t.projects.title} / <span className="text-gradient">{t.projects.titleEn}</span>
+            <span className="text-gradient">{t.projects.title}</span>
           </h2>
           <p className="section-subtitle px-2">
             {t.projects.subtitle}

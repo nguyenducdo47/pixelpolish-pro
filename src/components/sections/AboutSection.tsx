@@ -18,7 +18,7 @@ const AboutSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="section-title">
-            {t.about.title} / <span className="text-gradient">{t.about.titleEn}</span>
+            <span className="text-gradient">{t.about.title}</span>
           </h2>
           <p className="section-subtitle max-w-3xl mx-auto px-2">
             {t.about.subtitle}

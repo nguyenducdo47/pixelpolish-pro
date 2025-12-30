@@ -29,7 +29,7 @@ const PhilosophySection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="section-title">
-            {t.philosophy.title} / <span className="text-gradient">{t.philosophy.titleEn}</span>
+            <span className="text-gradient">{t.philosophy.title}</span>
           </h2>
           <p className="section-subtitle max-w-2xl mx-auto px-2">
             {t.philosophy.subtitle}
