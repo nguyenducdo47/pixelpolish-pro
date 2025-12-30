@@ -10,7 +10,7 @@ interface LazySectionProps {
 }
 
 const LazySection = ({ children, className, parallaxSpeed = 0.15 }: LazySectionProps) => {
-  const { ref, isVisible } = useLazySection({ rootMargin: "50px" });
+  const { ref, isVisible } = useLazySection({ rootMargin: "200px" });
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -24,13 +24,12 @@ const LazySection = ({ children, className, parallaxSpeed = 0.15 }: LazySectionP
     <div ref={containerRef} className={cn("overflow-hidden", className)}>
       <div ref={ref}>
         <motion.div
-          style={{ y: isVisible ? y : 0 }}
-          className={cn(
-            "transition-opacity duration-700 ease-out",
-            isVisible ? "opacity-100" : "opacity-0"
-          )}
+          style={{ y }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isVisible ? 1 : 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {isVisible ? children : <div className="min-h-[200px]" />}
+          {children}
         </motion.div>
       </div>
     </div>
