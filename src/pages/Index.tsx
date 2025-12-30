@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LazySection from "@/components/LazySection";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import TechStackSection from "@/components/sections/TechStackSection";
@@ -13,11 +14,21 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <AboutSection />
-        <TechStackSection />
-        <ProjectsSection />
-        <PhilosophySection />
-        <CTASection />
+        <LazySection>
+          <AboutSection />
+        </LazySection>
+        <LazySection>
+          <TechStackSection />
+        </LazySection>
+        <LazySection>
+          <ProjectsSection />
+        </LazySection>
+        <LazySection>
+          <PhilosophySection />
+        </LazySection>
+        <LazySection>
+          <CTASection />
+        </LazySection>
       </main>
       <Footer />
     </div>
