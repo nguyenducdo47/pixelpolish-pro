@@ -1,0 +1,168 @@
+{
+  "navbar": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "philosophy": "Philosophy",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Junior Fullstack Developer • Laravel Specialist",
+    "headline1": "Building robust",
+    "headline2": "backend systems",
+    "headline3": "for your business",
+    "description": "Junior Developer with PHP Laravel foundation, specializing in database architecture design and building APIs for complex management systems.",
+    "downloadCV": "Download CV",
+    "contact": "Contact",
+    "scrollMore": "Explore more"
+  },
+  "about": {
+    "title": "About Me",
+    "titleEn": "About Me",
+    "subtitle": "Junior Fullstack Developer with a solid backend development foundation",
+    "intro1": "Hello! I'm a Junior Fullstack Developer recently graduated with about 1 year of practical work experience. I focus on developing expertise in",
+    "laravelHighlight": "PHP Laravel",
+    "intro1End": ", with a passion for database design and building efficient APIs.",
+    "intro2": "In a short time, I've had the opportunity to participate in real projects from e-commerce to school management systems and printing warehouse management. Each project helps me understand more deeply how to design scalable systems.",
+    "intro3": "I believe that good code is not just code that runs, but code that is readable, maintainable, and can grow over time.",
+    "highlights": [
+      {
+        "title": "Responsibility",
+        "description": "Committed to completing work with the highest quality"
+      },
+      {
+        "title": "Fast Learner",
+        "description": "Ability to adopt new technologies and apply them to real projects"
+      },
+      {
+        "title": "System Thinking",
+        "description": "Clear understanding of data flow and architecture design"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "titleEn": "Tech Stack",
+    "subtitle": "Technologies I've worked with in real projects",
+    "categories": [
+      {
+        "title": "Backend",
+        "items": [
+          { "name": "PHP 8", "description": "OOP, typed properties, attributes, performance tuning" },
+          { "name": "Laravel", "description": "Eloquent ORM, Queues, Events, API Resources, Testing" }
+        ]
+      },
+      {
+        "title": "Database",
+        "items": [
+          { "name": "MySQL", "description": "Query optimization, indexing, transaction management" },
+          { "name": "Redis", "description": "Caching, session management, queue driver" }
+        ]
+      },
+      {
+        "title": "Frontend",
+        "items": [
+          { "name": "Blade Template", "description": "Laravel templating, components, layouts" },
+          { "name": "TailwindCSS", "description": "Utility-first CSS, responsive design" },
+          { "name": "Vue.js (Basic)", "description": "Component-based UI, reactivity basics" }
+        ]
+      },
+      {
+        "title": "Tools & DevOps",
+        "items": [
+          { "name": "Git", "description": "Version control, branching strategies, collaboration" },
+          { "name": "Docker", "description": "Containerization basics, local development" },
+          { "name": "AWS (Basic)", "description": "EC2 deployment, S3 storage awareness" }
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "titleEn": "Featured Projects",
+    "subtitle": "Real projects I've participated in developing",
+    "problemLabel": "Problem",
+    "solutionLabel": "Solution",
+    "responsibilitiesLabel": "Responsibilities",
+    "learnedLabel": "What I Learned",
+    "items": [
+      {
+        "title": "Printing Warehouse Order Management System",
+        "subtitle": "Printing Warehouse Order Management System",
+        "complexity": "Complex • Team Project",
+        "problem": "Printing company needs to manage complex order flow from receiving, production to delivery with various statuses and different responsible personnel.",
+        "solution": "Built an order lifecycle tracking system with state machine, department-based permissions, and real-time analytics dashboard.",
+        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
+        "responsibilities": [
+          "Designed database schema for order lifecycle",
+          "Built order status management API",
+          "Optimized queries with Redis caching"
+        ],
+        "learned": "Deep understanding of state management, database transactions and how to design scalable systems."
+      },
+      {
+        "title": "School Management System",
+        "subtitle": "School Management System",
+        "complexity": "Medium • Team Project",
+        "problem": "School needs a system to manage students, teachers, grades with multiple user roles.",
+        "solution": "Developed RBAC system with 3 main roles (Admin, Teacher, Student), optimized CRUD operations and strict validation.",
+        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
+        "responsibilities": [
+          "Designed RBAC permission system",
+          "Built grade and attendance management module",
+          "Implemented form validation and security"
+        ],
+        "learned": "Experience in authorization, security best practices and clean code organization."
+      },
+      {
+        "title": "E-commerce Website",
+        "subtitle": "E-commerce Website",
+        "complexity": "Learning • Personal Project",
+        "problem": "Building an online sales platform with full functionality from product display to checkout.",
+        "solution": "Applied Laravel MVC pattern, authentication system, shopping cart and payment gateway integration.",
+        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
+        "responsibilities": [
+          "Full-stack development from database to UI",
+          "Implemented authentication and authorization",
+          "Built cart system and checkout flow"
+        ],
+        "learned": "Clear understanding of MVC architecture, session management and payment integration concepts."
+      }
+    ]
+  },
+  "philosophy": {
+    "title": "Coding Philosophy",
+    "titleEn": "My Philosophy",
+    "subtitle": "Principles I always follow when writing code",
+    "quote": "I believe that <highlight>good code</highlight> is not just code that runs. It's code that teammates can understand, code that can easily change when requirements change, and code that doesn't surprise those who come after.",
+    "principles": [
+      {
+        "title": "Clean Code",
+        "description": "Clean, well-structured code. Good naming conventions, short functions, single responsibility."
+      },
+      {
+        "title": "SOLID Principles",
+        "description": "Applying SOLID principles to make code extensible, maintainable and testable."
+      },
+      {
+        "title": "Code for Teammates",
+        "description": "Write code as if you'll maintain it tomorrow. Readable over clever."
+      },
+      {
+        "title": "Testing Mindset",
+        "description": "Though not an expert yet, always conscious of writing testable code."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Let's Connect",
+    "titleEn": "Let's Connect",
+    "description": "I'm always open to new opportunities and exciting projects. If you're looking for a responsible and eager-to-learn developer, let's connect!",
+    "downloadCV": "Download CV"
+  },
+  "footer": {
+    "copyright": "© 2024 DevPortfolio. Built with Laravel passion 💙",
+    "designedBy": "Designed & Developed by",
+    "me": "Me"
+  }
+}

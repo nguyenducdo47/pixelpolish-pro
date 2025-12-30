@@ -1,0 +1,168 @@
+{
+  "navbar": {
+    "about": "Về tôi",
+    "skills": "Kỹ năng",
+    "projects": "Dự án",
+    "philosophy": "Triết lý",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "badge": "Junior Fullstack Developer • Laravel Specialist",
+    "headline1": "Xây dựng hệ thống",
+    "headline2": "backend vững chắc",
+    "headline3": "cho doanh nghiệp của bạn",
+    "description": "Junior Developer với nền tảng PHP Laravel, chuyên thiết kế kiến trúc database và xây dựng API cho các hệ thống quản lý phức tạp.",
+    "downloadCV": "Tải CV",
+    "contact": "Liên hệ",
+    "scrollMore": "Khám phá thêm"
+  },
+  "about": {
+    "title": "Về tôi",
+    "titleEn": "About Me",
+    "subtitle": "Junior Fullstack Developer với nền tảng vững chắc về backend development",
+    "intro1": "Xin chào! Tôi là một Junior Fullstack Developer vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
+    "laravelHighlight": "PHP Laravel",
+    "intro1End": ", với đam mê thiết kế cơ sở dữ liệu và xây dựng API hiệu quả.",
+    "intro2": "Trong thời gian ngắn, tôi đã có cơ hội tham gia các dự án thực tế từ e-commerce đến hệ thống quản lý trường học và quản lý kho in ấn. Mỗi dự án giúp tôi hiểu sâu hơn về cách thiết kế hệ thống có thể mở rộng.",
+    "intro3": "Tôi tin rằng code tốt không chỉ là code chạy được, mà còn là code dễ đọc, dễ bảo trì và có thể phát triển lâu dài.",
+    "highlights": [
+      {
+        "title": "Trách nhiệm",
+        "description": "Cam kết hoàn thành công việc với chất lượng cao nhất"
+      },
+      {
+        "title": "Học nhanh",
+        "description": "Khả năng tiếp thu công nghệ mới và áp dụng vào dự án thực tế"
+      },
+      {
+        "title": "Tư duy hệ thống",
+        "description": "Hiểu rõ luồng dữ liệu và thiết kế kiến trúc rõ ràng"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Công nghệ sử dụng",
+    "titleEn": "Tech Stack",
+    "subtitle": "Các công nghệ tôi đã làm việc trong các dự án thực tế",
+    "categories": [
+      {
+        "title": "Backend",
+        "items": [
+          { "name": "PHP 8", "description": "OOP, typed properties, attributes, performance tuning" },
+          { "name": "Laravel", "description": "Eloquent ORM, Queues, Events, API Resources, Testing" }
+        ]
+      },
+      {
+        "title": "Database",
+        "items": [
+          { "name": "MySQL", "description": "Query optimization, indexing, transaction management" },
+          { "name": "Redis", "description": "Caching, session management, queue driver" }
+        ]
+      },
+      {
+        "title": "Frontend",
+        "items": [
+          { "name": "Blade Template", "description": "Laravel templating, components, layouts" },
+          { "name": "TailwindCSS", "description": "Utility-first CSS, responsive design" },
+          { "name": "Vue.js (Basic)", "description": "Component-based UI, reactivity basics" }
+        ]
+      },
+      {
+        "title": "Tools & DevOps",
+        "items": [
+          { "name": "Git", "description": "Version control, branching strategies, collaboration" },
+          { "name": "Docker", "description": "Containerization basics, local development" },
+          { "name": "AWS (Basic)", "description": "EC2 deployment, S3 storage awareness" }
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Dự án tiêu biểu",
+    "titleEn": "Featured Projects",
+    "subtitle": "Các dự án thực tế tôi đã tham gia phát triển",
+    "problemLabel": "Vấn đề / Problem",
+    "solutionLabel": "Giải pháp / Solution",
+    "responsibilitiesLabel": "Trách nhiệm / Responsibilities",
+    "learnedLabel": "Bài học / What I Learned",
+    "items": [
+      {
+        "title": "Hệ thống Quản lý Đơn hàng Kho In",
+        "subtitle": "Printing Warehouse Order Management System",
+        "complexity": "Complex • Team Project",
+        "problem": "Nhà in cần quản lý luồng đơn hàng phức tạp từ tiếp nhận, sản xuất đến giao hàng với nhiều trạng thái và người phụ trách khác nhau.",
+        "solution": "Xây dựng hệ thống theo dõi vòng đời đơn hàng với state machine, phân quyền theo bộ phận, và dashboard thống kê real-time.",
+        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
+        "responsibilities": [
+          "Thiết kế database schema cho order lifecycle",
+          "Xây dựng API quản lý trạng thái đơn hàng",
+          "Tối ưu query với Redis caching"
+        ],
+        "learned": "Hiểu sâu về state management, database transaction và cách thiết kế hệ thống có thể scale."
+      },
+      {
+        "title": "Hệ thống Quản lý Trường học",
+        "subtitle": "School Management System",
+        "complexity": "Medium • Team Project",
+        "problem": "Trường học cần hệ thống quản lý học sinh, giáo viên, điểm số với nhiều vai trò người dùng khác nhau.",
+        "solution": "Phát triển hệ thống RBAC với 3 role chính (Admin, Teacher, Student), tối ưu CRUD operations và validation chặt chẽ.",
+        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
+        "responsibilities": [
+          "Thiết kế hệ thống phân quyền RBAC",
+          "Xây dựng module quản lý điểm và attendance",
+          "Implement form validation và security"
+        ],
+        "learned": "Kinh nghiệm về authorization, security best practices và cách tổ chức code sạch."
+      },
+      {
+        "title": "Website Thương mại Điện tử",
+        "subtitle": "E-commerce Website",
+        "complexity": "Learning • Personal Project",
+        "problem": "Xây dựng nền tảng bán hàng online với đầy đủ chức năng từ hiển thị sản phẩm đến thanh toán.",
+        "solution": "Áp dụng Laravel MVC pattern, authentication system, shopping cart và tích hợp payment gateway.",
+        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
+        "responsibilities": [
+          "Full-stack development từ database đến UI",
+          "Implement authentication và authorization",
+          "Xây dựng cart system và checkout flow"
+        ],
+        "learned": "Hiểu rõ kiến trúc MVC, session management và payment integration concepts."
+      }
+    ]
+  },
+  "philosophy": {
+    "title": "Triết lý coding",
+    "titleEn": "My Philosophy",
+    "subtitle": "Những nguyên tắc tôi luôn tuân theo khi viết code",
+    "quote": "Tôi tin rằng <highlight>code tốt</highlight> không chỉ là code chạy được. Đó là code mà đồng đội có thể đọc hiểu, code có thể dễ dàng thay đổi khi requirements thay đổi, và code không gây surprise cho người đến sau.",
+    "principles": [
+      {
+        "title": "Clean Code",
+        "description": "Code sạch, có cấu trúc rõ ràng. Naming conventions tốt, functions ngắn gọn, single responsibility."
+      },
+      {
+        "title": "SOLID Principles",
+        "description": "Áp dụng nguyên tắc SOLID để code dễ mở rộng, bảo trì và test được."
+      },
+      {
+        "title": "Code cho đồng đội",
+        "description": "Viết code như thể ngày mai mình phải bảo trì. Dễ đọc hơn thông minh."
+      },
+      {
+        "title": "Testing mindset",
+        "description": "Dù chưa phải expert, nhưng luôn có ý thức viết code có thể test được."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Kết nối với tôi",
+    "titleEn": "Let's Connect",
+    "description": "Tôi luôn sẵn sàng cho những cơ hội mới và những dự án thú vị. Nếu bạn đang tìm kiếm một developer có trách nhiệm và ham học hỏi, hãy liên hệ với tôi!",
+    "downloadCV": "Tải CV"
+  },
+  "footer": {
+    "copyright": "© 2024 DevPortfolio. Built with Laravel passion 💙",
+    "designedBy": "Designed & Developed by",
+    "me": "Me"
+  }
+}
