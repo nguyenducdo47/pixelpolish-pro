@@ -12,6 +12,16 @@ import reactLogo from "@/assets/tech-logos/react.svg";
 import gitLogo from "@/assets/tech-logos/git.svg";
 import dockerLogo from "@/assets/tech-logos/docker.svg";
 import awsLogo from "@/assets/tech-logos/aws.svg";
+import bootstrapLogo from "@/assets/tech-logos/bootstrap.svg";
+import javascriptLogo from "@/assets/tech-logos/javascript.svg";
+import html5Logo from "@/assets/tech-logos/html5.svg";
+import css3Logo from "@/assets/tech-logos/css3.svg";
+import npmLogo from "@/assets/tech-logos/npm.svg";
+import composerLogo from "@/assets/tech-logos/composer.svg";
+import postmanLogo from "@/assets/tech-logos/postman.svg";
+import vscodeLogo from "@/assets/tech-logos/vscode.svg";
+import linuxLogo from "@/assets/tech-logos/linux.svg";
+import nginxLogo from "@/assets/tech-logos/nginx.svg";
 
 // Tech logos mapping
 const techLogos: Record<string, { logo: string; color: string }> = {
@@ -26,6 +36,16 @@ const techLogos: Record<string, { logo: string; color: string }> = {
   "Git": { logo: gitLogo, color: "#F05032" },
   "Docker": { logo: dockerLogo, color: "#2496ED" },
   "AWS (Basic)": { logo: awsLogo, color: "#FF9900" },
+  "Bootstrap": { logo: bootstrapLogo, color: "#7952B3" },
+  "JavaScript": { logo: javascriptLogo, color: "#F7DF1E" },
+  "HTML5": { logo: html5Logo, color: "#E34F26" },
+  "CSS3": { logo: css3Logo, color: "#1572B6" },
+  "NPM": { logo: npmLogo, color: "#CB3837" },
+  "Composer": { logo: composerLogo, color: "#885630" },
+  "Postman": { logo: postmanLogo, color: "#FF6C37" },
+  "VS Code": { logo: vscodeLogo, color: "#007ACC" },
+  "Linux": { logo: linuxLogo, color: "#FCC624" },
+  "Nginx": { logo: nginxLogo, color: "#009639" },
 };
 
 interface SkillItem {
