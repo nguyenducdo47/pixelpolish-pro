@@ -18,7 +18,6 @@
   },
   "about": {
     "title": "Về tôi",
-    "titleEn": "About Me",
     "subtitle": "Junior Fullstack Developer với nền tảng vững chắc về backend development",
     "intro1": "Xin chào! Tôi là một Junior Fullstack Developer vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
     "laravelHighlight": "PHP Laravel",
@@ -42,7 +41,6 @@
   },
   "skills": {
     "title": "Công nghệ sử dụng",
-    "titleEn": "Tech Stack",
     "subtitle": "Các công nghệ tôi đã làm việc trong các dự án thực tế",
     "categories": [
       {
@@ -79,12 +77,11 @@
   },
   "projects": {
     "title": "Dự án tiêu biểu",
-    "titleEn": "Featured Projects",
     "subtitle": "Các dự án thực tế tôi đã tham gia phát triển",
-    "problemLabel": "Vấn đề / Problem",
-    "solutionLabel": "Giải pháp / Solution",
-    "responsibilitiesLabel": "Trách nhiệm / Responsibilities",
-    "learnedLabel": "Bài học / What I Learned",
+    "problemLabel": "Vấn đề",
+    "solutionLabel": "Giải pháp",
+    "responsibilitiesLabel": "Trách nhiệm",
+    "learnedLabel": "Bài học",
     "items": [
       {
         "title": "Hệ thống Quản lý Đơn hàng Kho In",
@@ -132,7 +129,6 @@
   },
   "philosophy": {
     "title": "Triết lý coding",
-    "titleEn": "My Philosophy",
     "subtitle": "Những nguyên tắc tôi luôn tuân theo khi viết code",
     "quote": "Tôi tin rằng <highlight>code tốt</highlight> không chỉ là code chạy được. Đó là code mà đồng đội có thể đọc hiểu, code có thể dễ dàng thay đổi khi requirements thay đổi, và code không gây surprise cho người đến sau.",
     "principles": [
@@ -156,7 +152,6 @@
   },
   "cta": {
     "title": "Kết nối với tôi",
-    "titleEn": "Let's Connect",
     "description": "Tôi luôn sẵn sàng cho những cơ hội mới và những dự án thú vị. Nếu bạn đang tìm kiếm một developer có trách nhiệm và ham học hỏi, hãy liên hệ với tôi!",
     "downloadCV": "Tải CV"
   },
