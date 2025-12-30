@@ -16,27 +16,25 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <ScrollProgress />
       <Navbar />
-      <LanguageTransition>
-        <main>
-          <HeroSection />
-          <LazySection>
-            <AboutSection />
-          </LazySection>
-          <LazySection>
-            <TechStackSection />
-          </LazySection>
-          <LazySection>
-            <ProjectsSection />
-          </LazySection>
-          <LazySection>
-            <PhilosophySection />
-          </LazySection>
-          <LazySection>
-            <CTASection />
-          </LazySection>
-        </main>
-        <Footer />
-      </LanguageTransition>
+      <main>
+        <HeroSection />
+        <LazySection>
+          <AboutSection />
+        </LazySection>
+        <LazySection>
+          <TechStackSection />
+        </LazySection>
+        <LazySection>
+          <ProjectsSection />
+        </LazySection>
+        <LazySection>
+          <PhilosophySection />
+        </LazySection>
+        <LazySection>
+          <CTASection />
+        </LazySection>
+      </main>
+      <Footer />
       <ScrollToTop />
     </div>
   );
