@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, Mail, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const HeroSection = () => {
   const headline1 = useTypingEffect("Xây dựng hệ thống", { speed: 60, delay: 300 });
@@ -21,6 +22,9 @@ const HeroSection = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
+      {/* Particle background */}
+      <ParticleBackground />
+      
       {/* Background gradient with parallax */}
       <motion.div 
         className="absolute inset-0 bg-gradient-hero" 
