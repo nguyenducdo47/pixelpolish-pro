@@ -8,7 +8,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const HeroSection = () => {
   const { t, language } = useLanguage();
   const [displayedText, setDisplayedText] = useState({ h1: "", h2: "", h3: "" });
-  const [completedLines, setCompletedLines] = useState({ h1: false, h2: false, h3: false });
+  const [currentLine, setCurrentLine] = useState<0 | 1 | 2 | 3>(1);
+  const [typingDone, setTypingDone] = useState(false);
 
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -23,31 +24,33 @@ const HeroSection = () => {
   // Typing effect
   useEffect(() => {
     setDisplayedText({ h1: "", h2: "", h3: "" });
-    setCompletedLines({ h1: false, h2: false, h3: false });
+    setCurrentLine(1);
+    setTypingDone(false);
 
     const texts = [t.hero.headline1, t.hero.headline2, t.hero.headline3];
-    let currentLine = 0;
-    let currentChar = 0;
+    let lineIndex = 0;
+    let charIndex = 0;
     const speed = 60;
 
     const typeNextChar = () => {
-      if (currentLine >= 3) return;
+      if (lineIndex >= 3) {
+        setTypingDone(true);
+        setCurrentLine(0);
+        return;
+      }
 
-      const currentText = texts[currentLine];
-      if (currentChar < currentText.length) {
+      const currentText = texts[lineIndex];
+      if (charIndex < currentText.length) {
         setDisplayedText(prev => {
-          const key = `h${currentLine + 1}` as "h1" | "h2" | "h3";
-          return { ...prev, [key]: currentText.slice(0, currentChar + 1) };
+          const key = `h${lineIndex + 1}` as "h1" | "h2" | "h3";
+          return { ...prev, [key]: currentText.slice(0, charIndex + 1) };
         });
-        currentChar++;
+        charIndex++;
         setTimeout(typeNextChar, speed);
       } else {
-        setCompletedLines(prev => {
-          const key = `h${currentLine + 1}` as "h1" | "h2" | "h3";
-          return { ...prev, [key]: true };
-        });
-        currentLine++;
-        currentChar = 0;
+        lineIndex++;
+        charIndex = 0;
+        setCurrentLine((lineIndex + 1) as 1 | 2 | 3);
         setTimeout(typeNextChar, 300);
       }
     };
@@ -55,6 +58,10 @@ const HeroSection = () => {
     const startDelay = setTimeout(typeNextChar, 300);
     return () => clearTimeout(startDelay);
   }, [language, t.hero.headline1, t.hero.headline2, t.hero.headline3]);
+
+  const Cursor = () => (
+    <span className="animate-pulse">|</span>
+  );
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
@@ -90,19 +97,24 @@ const HeroSection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 sm:mb-6 min-h-[4.5em] sm:min-h-[3.5em]"
         >
-          <span className="block sm:inline">
-            {displayedText.h1}
-            {!completedLines.h1 && <span className="animate-pulse">|</span>}
-          </span>{" "}
-          <span className="text-gradient block sm:inline">
-            {displayedText.h2}
-            {completedLines.h1 && !completedLines.h2 && <span className="animate-pulse">|</span>}
-          </span>
-          <br className="hidden sm:block" />
-          <span className="block mt-1 sm:mt-0">
-            {displayedText.h3}
-            {completedLines.h2 && !completedLines.h3 && <span className="animate-pulse">|</span>}
-          </span>
+          {displayedText.h1}
+          {currentLine === 1 && <Cursor />}
+          {displayedText.h2 && (
+            <>
+              {" "}
+              <span className="text-gradient">
+                {displayedText.h2}
+                {currentLine === 2 && <Cursor />}
+              </span>
+            </>
+          )}
+          {displayedText.h3 && (
+            <>
+              <br />
+              {displayedText.h3}
+              {currentLine === 3 && <Cursor />}
+            </>
+          )}
         </motion.h1>
 
         <motion.p
