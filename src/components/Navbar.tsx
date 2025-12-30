@@ -100,9 +100,9 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden fixed inset-0 top-14 sm:top-16 bg-background backdrop-blur-lg z-40"
+              className="md:hidden fixed inset-0 top-14 sm:top-16 bg-background/95 backdrop-blur-xl z-40"
             >
-              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] py-8 bg-background">
+              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] py-8">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.href}
