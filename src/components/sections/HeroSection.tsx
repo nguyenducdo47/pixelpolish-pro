@@ -80,7 +80,7 @@ const HeroSection = () => {
         style={{ y: backgroundY }}
       />
       
-      <motion.div className="section-container relative z-10 text-center pt-16 sm:pt-20" style={{ y: textY, opacity }}>
+      <motion.div className="section-container relative z-10 text-center" style={{ y: textY, opacity }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
