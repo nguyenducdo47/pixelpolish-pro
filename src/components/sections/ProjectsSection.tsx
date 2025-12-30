@@ -37,7 +37,7 @@ const ProjectsSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card3D className="cursor-pointer">
-                  <article className="group p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-glow transition-all duration-300">
+                  <article className="group relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:bg-card transition-all duration-500 overflow-hidden">
                     {/* Mobile: Stack layout */}
                     <div className="flex flex-col gap-4 sm:gap-6">
                       {/* Header */}
