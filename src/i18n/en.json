@@ -46,31 +46,32 @@
       {
         "title": "Backend",
         "items": [
-          { "name": "PHP 8", "description": "OOP, typed properties, attributes, performance tuning" },
-          { "name": "Laravel", "description": "Eloquent ORM, Queues, Events, API Resources, Testing" }
+          { "name": "PHP 8", "description": "OOP, typed properties, attributes, performance tuning", "level": 75 },
+          { "name": "Laravel", "description": "Eloquent ORM, Queues, Events, API Resources, Testing", "level": 80 }
         ]
       },
       {
         "title": "Database",
         "items": [
-          { "name": "MySQL", "description": "Query optimization, indexing, transaction management" },
-          { "name": "Redis", "description": "Caching, session management, queue driver" }
+          { "name": "MySQL", "description": "Query optimization, indexing, transaction management", "level": 70 },
+          { "name": "Redis", "description": "Caching, session management, queue driver", "level": 55 }
         ]
       },
       {
         "title": "Frontend",
         "items": [
-          { "name": "Blade Template", "description": "Laravel templating, components, layouts" },
-          { "name": "TailwindCSS", "description": "Utility-first CSS, responsive design" },
-          { "name": "Vue.js (Basic)", "description": "Component-based UI, reactivity basics" }
+          { "name": "Blade Template", "description": "Laravel templating, components, layouts", "level": 75 },
+          { "name": "TailwindCSS", "description": "Utility-first CSS, responsive design", "level": 70 },
+          { "name": "Vue.js (Basic)", "description": "Component-based UI, reactivity basics", "level": 45 },
+          { "name": "React.js (Basic)", "description": "Hooks, components, state management basics", "level": 40 }
         ]
       },
       {
         "title": "Tools & DevOps",
         "items": [
-          { "name": "Git", "description": "Version control, branching strategies, collaboration" },
-          { "name": "Docker", "description": "Containerization basics, local development" },
-          { "name": "AWS (Basic)", "description": "EC2 deployment, S3 storage awareness" }
+          { "name": "Git", "description": "Version control, branching strategies, collaboration", "level": 75 },
+          { "name": "Docker", "description": "Containerization basics, local development", "level": 50 },
+          { "name": "AWS (Basic)", "description": "EC2 deployment, S3 storage awareness", "level": 35 }
         ]
       }
     ]
