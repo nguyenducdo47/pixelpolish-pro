@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LazySection from "@/components/LazySection";
+import ScrollToTop from "@/components/ScrollToTop";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import TechStackSection from "@/components/sections/TechStackSection";
@@ -31,6 +32,7 @@ const Index = () => {
         </LazySection>
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
