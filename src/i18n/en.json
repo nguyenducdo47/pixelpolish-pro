@@ -18,7 +18,6 @@
   },
   "about": {
     "title": "About Me",
-    "titleEn": "About Me",
     "subtitle": "Junior Fullstack Developer with a solid backend development foundation",
     "intro1": "Hello! I'm a Junior Fullstack Developer recently graduated with about 1 year of practical work experience. I focus on developing expertise in",
     "laravelHighlight": "PHP Laravel",
@@ -42,7 +41,6 @@
   },
   "skills": {
     "title": "Tech Stack",
-    "titleEn": "Tech Stack",
     "subtitle": "Technologies I've worked with in real projects",
     "categories": [
       {
@@ -79,7 +77,6 @@
   },
   "projects": {
     "title": "Featured Projects",
-    "titleEn": "Featured Projects",
     "subtitle": "Real projects I've participated in developing",
     "problemLabel": "Problem",
     "solutionLabel": "Solution",
@@ -132,7 +129,6 @@
   },
   "philosophy": {
     "title": "Coding Philosophy",
-    "titleEn": "My Philosophy",
     "subtitle": "Principles I always follow when writing code",
     "quote": "I believe that <highlight>good code</highlight> is not just code that runs. It's code that teammates can understand, code that can easily change when requirements change, and code that doesn't surprise those who come after.",
     "principles": [
@@ -156,7 +152,6 @@
   },
   "cta": {
     "title": "Let's Connect",
-    "titleEn": "Let's Connect",
     "description": "I'm always open to new opportunities and exciting projects. If you're looking for a responsible and eager-to-learn developer, let's connect!",
     "downloadCV": "Download CV"
   },
