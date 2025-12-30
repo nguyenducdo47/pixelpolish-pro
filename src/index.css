@@ -12,6 +12,58 @@
 
 @layer base {
   :root {
+    --background: 0 0% 98%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 185 70% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 10% 92%;
+    --secondary-foreground: 220 20% 20%;
+
+    --muted: 220 10% 94%;
+    --muted-foreground: 220 10% 40%;
+
+    --accent: 185 60% 35%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 10% 88%;
+    --input: 220 10% 88%;
+    --ring: 185 70% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(185 70% 40%) 0%, hsl(200 80% 35%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 10% 96%) 100%);
+    --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(185 70% 40% / 0.1), transparent);
+    
+    --shadow-glow: 0 0 60px hsl(185 70% 40% / 0.1);
+    --shadow-card: 0 4px 24px hsl(220 10% 50% / 0.1);
+    
+    --font-heading: "Sora", sans-serif;
+    --font-body: "Inter", sans-serif;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 10%;
+    --sidebar-primary: 185 70% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 94%;
+    --sidebar-accent-foreground: 220 20% 10%;
+    --sidebar-border: 220 10% 88%;
+    --sidebar-ring: 185 70% 40%;
+  }
+
+  .dark {
     --background: 220 20% 6%;
     --foreground: 210 20% 95%;
 
@@ -40,8 +92,6 @@
     --input: 220 15% 20%;
     --ring: 185 70% 50%;
 
-    --radius: 0.75rem;
-
     /* Custom tokens */
     --gradient-primary: linear-gradient(135deg, hsl(185 70% 50%) 0%, hsl(200 80% 45%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(220 18% 12%) 0%, hsl(220 18% 8%) 100%);
@@ -49,9 +99,6 @@
     
     --shadow-glow: 0 0 60px hsl(185 70% 50% / 0.15);
     --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.3);
-    
-    --font-heading: "Sora", sans-serif;
-    --font-body: "Inter", sans-serif;
 
     --sidebar-background: 220 18% 10%;
     --sidebar-foreground: 210 20% 95%;
