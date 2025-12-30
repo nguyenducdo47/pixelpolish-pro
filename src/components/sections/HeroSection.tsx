@@ -136,10 +136,12 @@ const HeroSection = () => {
             <Download className="w-4 h-4 sm:w-5 sm:h-5" />
             {t.hero.downloadCV}
           </Button>
-          <Button variant="heroOutline" size="lg" className="w-full sm:w-auto">
-            <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-            {t.hero.contact}
-          </Button>
+          <a href="#contact">
+            <Button variant="heroOutline" size="lg" className="w-full sm:w-auto">
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+              {t.hero.contact}
+            </Button>
+          </a>
         </motion.div>
       </motion.div>
 

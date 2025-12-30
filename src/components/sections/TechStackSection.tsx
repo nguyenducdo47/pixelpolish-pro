@@ -36,7 +36,7 @@ const techLogos: Record<string, { logo: string; color: string }> = {
   "Git": { logo: gitLogo, color: "#F05032" },
   "Docker": { logo: dockerLogo, color: "#2496ED" },
   "AWS (Basic)": { logo: awsLogo, color: "#FF9900" },
-  "Bootstrap": { logo: bootstrapLogo, color: "#7952B3" },
+  "BootstrapCSS": { logo: bootstrapLogo, color: "#7952B3" },
   "JavaScript": { logo: javascriptLogo, color: "#F7DF1E" },
   "HTML5": { logo: html5Logo, color: "#E34F26" },
   "CSS3": { logo: css3Logo, color: "#1572B6" },

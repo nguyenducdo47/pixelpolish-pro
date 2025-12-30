@@ -34,13 +34,14 @@ const CTASection = () => {
             </Button>
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto text-sm">
               <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-              <span className="truncate">your.email@example.com</span>
+              <span className="truncate">{t.cta.yourEmail}</span>
             </Button>
           </div>
 
           <div className="flex justify-center gap-3 sm:gap-4">
             <a
-              href="https://github.com"
+              href={t.cta.socialLinks.gitHub.url}
+              title={t.cta.socialLinks.gitHub.title}
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
@@ -48,7 +49,8 @@ const CTASection = () => {
               <Github className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href={t.cta.socialLinks.linkedIn.url}
+              title={t.cta.socialLinks.linkedIn.title}
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
@@ -56,7 +58,8 @@ const CTASection = () => {
               <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
-              href="https://facebook.com"
+              href={t.cta.socialLinks.facebook.url}
+              title={t.cta.socialLinks.facebook.title}
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-[#1877F2] hover:border-[#1877F2]/50 transition-all duration-300"
@@ -64,7 +67,8 @@ const CTASection = () => {
               <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
-              href="https://t.me/yourusername"
+              href={t.cta.socialLinks.telegram.url}
+              title={t.cta.socialLinks.telegram.title}
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-[#0088cc] hover:border-[#0088cc]/50 transition-all duration-300"
@@ -72,7 +76,7 @@ const CTASection = () => {
               <Send className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href={`mailto:${t.cta.yourEmail}`}
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
             >
               <Mail className="w-4 h-4 sm:w-5 sm:h-5" />

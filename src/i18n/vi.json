@@ -7,10 +7,10 @@
     "contact": "Liên hệ"
   },
   "hero": {
-    "badge": "Junior Fullstack Developer • Laravel Specialist",
-    "headline1": "Xây dựng hệ thống",
-    "headline2": "backend vững chắc",
-    "headline3": "cho doanh nghiệp của bạn",
+    "badge": "Web Developer (Junior Level)",
+    "headline1": "Xin chào, tôi là",
+    "headline2": "Nguyễn Đức Độ",
+    "headline3": "một Web Developer",
     "description": "Junior Developer với nền tảng PHP Laravel, chuyên thiết kế kiến trúc database và xây dựng API cho các hệ thống quản lý phức tạp.",
     "downloadCV": "Tải CV",
     "contact": "Liên hệ",
@@ -18,8 +18,8 @@
   },
   "about": {
     "title": "Về tôi",
-    "subtitle": "Junior Fullstack Developer với nền tảng vững chắc về backend development",
-    "intro1": "Xin chào! Tôi là một Junior Fullstack Developer vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
+    "subtitle": "Web Developer (Junior Level) với nền tảng vững chắc về backend development",
+    "intro1": "Xin chào! Tôi là một Web Developer (Junior Level) vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
     "laravelHighlight": "PHP Laravel",
     "intro1End": ", với đam mê thiết kế cơ sở dữ liệu và xây dựng API hiệu quả.",
     "intro2": "Trong thời gian ngắn, tôi đã có cơ hội tham gia các dự án thực tế từ e-commerce đến hệ thống quản lý trường học và quản lý kho in ấn. Mỗi dự án giúp tôi hiểu sâu hơn về cách thiết kế hệ thống có thể mở rộng.",
@@ -46,32 +46,86 @@
       {
         "title": "Backend",
         "items": [
-          { "name": "PHP 8", "description": "OOP, typed properties, attributes, performance tuning", "level": 75 },
-          { "name": "Laravel", "description": "Eloquent ORM, Queues, Events, API Resources, Testing", "level": 80 }
+          {
+            "name": "PHP 8",
+            "description": "OOP, typed properties, attributes, performance tuning",
+            "level": 75
+          },
+          {
+            "name": "Laravel",
+            "description": "Eloquent ORM, Queues, Events, API Resources, Testing",
+            "level": 80
+          }
         ]
       },
       {
         "title": "Database",
         "items": [
-          { "name": "MySQL", "description": "Query optimization, indexing, transaction management", "level": 70 },
-          { "name": "Redis", "description": "Caching, session management, queue driver", "level": 55 }
+          {
+            "name": "MySQL",
+            "description": "Query optimization, indexing, transaction management",
+            "level": 70
+          },
+          {
+            "name": "Redis",
+            "description": "Caching, session management, queue driver",
+            "level": 55
+          }
         ]
       },
       {
         "title": "Frontend",
         "items": [
-          { "name": "Blade Template", "description": "Laravel templating, components, layouts", "level": 75 },
-          { "name": "TailwindCSS", "description": "Utility-first CSS, responsive design", "level": 70 },
-          { "name": "Vue.js (Basic)", "description": "Component-based UI, reactivity basics", "level": 45 },
-          { "name": "React.js (Basic)", "description": "Hooks, components, state management basics", "level": 40 }
+          {
+            "name": "Blade Template",
+            "description": "Laravel templating, components, layouts",
+            "level": 75
+          },
+          {
+            "name": "TailwindCSS",
+            "description": "Utility-first CSS, responsive design",
+            "level": 70
+          },
+          {
+            "name": "BootstrapCSS",
+            "description": "Utility-first CSS, responsive design",
+            "level": 70
+          },
+          {
+            "name": "Vue.js (Basic)",
+            "description": "Component-based UI, reactivity basics",
+            "level": 45
+          },
+          {
+            "name": "React.js (Basic)",
+            "description": "Hooks, components, state management basics",
+            "level": 40
+          }
         ]
       },
       {
         "title": "Tools & DevOps",
         "items": [
-          { "name": "Git", "description": "Version control, branching strategies, collaboration", "level": 75 },
-          { "name": "Docker", "description": "Containerization basics, local development", "level": 50 },
-          { "name": "AWS (Basic)", "description": "EC2 deployment, S3 storage awareness", "level": 35 }
+          {
+            "name": "Git",
+            "description": "Version control, branching strategies, collaboration",
+            "level": 75
+          },
+          {
+            "name": "Docker",
+            "description": "Containerization basics, local development",
+            "level": 50
+          },
+          {
+            "name": "AWS (Basic)",
+            "description": "EC2 deployment, S3 storage awareness",
+            "level": 35
+          },
+          {
+            "name": "Postman",
+            "description": "API testing",
+            "level": 75
+          }
         ]
       }
     ]
@@ -90,7 +144,13 @@
         "complexity": "Complex • Team Project",
         "problem": "Nhà in cần quản lý luồng đơn hàng phức tạp từ tiếp nhận, sản xuất đến giao hàng với nhiều trạng thái và người phụ trách khác nhau.",
         "solution": "Xây dựng hệ thống theo dõi vòng đời đơn hàng với state machine, phân quyền theo bộ phận, và dashboard thống kê real-time.",
-        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
+        "techStack": [
+          "Laravel",
+          "MySQL",
+          "Redis",
+          "Blade",
+          "TailwindCSS"
+        ],
         "responsibilities": [
           "Thiết kế database schema cho order lifecycle",
           "Xây dựng API quản lý trạng thái đơn hàng",
@@ -104,7 +164,12 @@
         "complexity": "Medium • Team Project",
         "problem": "Trường học cần hệ thống quản lý học sinh, giáo viên, điểm số với nhiều vai trò người dùng khác nhau.",
         "solution": "Phát triển hệ thống RBAC với 3 role chính (Admin, Teacher, Student), tối ưu CRUD operations và validation chặt chẽ.",
-        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
+        "techStack": [
+          "Laravel",
+          "MySQL",
+          "Blade",
+          "Bootstrap"
+        ],
         "responsibilities": [
           "Thiết kế hệ thống phân quyền RBAC",
           "Xây dựng module quản lý điểm và attendance",
@@ -118,7 +183,12 @@
         "complexity": "Learning • Personal Project",
         "problem": "Xây dựng nền tảng bán hàng online với đầy đủ chức năng từ hiển thị sản phẩm đến thanh toán.",
         "solution": "Áp dụng Laravel MVC pattern, authentication system, shopping cart và tích hợp payment gateway.",
-        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
+        "techStack": [
+          "Laravel",
+          "MySQL",
+          "Blade",
+          "TailwindCSS"
+        ],
         "responsibilities": [
           "Full-stack development từ database đến UI",
           "Implement authentication và authorization",
@@ -129,7 +199,7 @@
     ]
   },
   "philosophy": {
-    "title": "Triết lý coding",
+    "title": "Quan điểm khi viết code",
     "subtitle": "Những nguyên tắc tôi luôn tuân theo khi viết code",
     "quote": "Tôi tin rằng <highlight>code tốt</highlight> không chỉ là code chạy được. Đó là code mà đồng đội có thể đọc hiểu, code có thể dễ dàng thay đổi khi requirements thay đổi, và code không gây surprise cho người đến sau.",
     "principles": [
@@ -154,7 +224,38 @@
   "cta": {
     "title": "Kết nối với tôi",
     "description": "Tôi luôn sẵn sàng cho những cơ hội mới và những dự án thú vị. Nếu bạn đang tìm kiếm một developer có trách nhiệm và ham học hỏi, hãy liên hệ với tôi!",
-    "downloadCV": "Tải CV"
+    "downloadCV": "Tải CV",
+    "yourEmail": "ducdonguyen.dev@gmail.com",
+    "socialLinks": {
+      "gitHub": {
+        "title": "GitHub",
+        "url": "https://github.com/ducdonguyen"
+      },
+      "linkedIn": {
+        "title": "LinkedIn",
+        "url": "https://www.linkedin.com/in/ducdonguyen/"
+      },
+      "twitter": {
+        "title": "Twitter",
+        "url": "https://twitter.com/ducdonguyen"
+      },
+      "facebook": {
+        "title": "Facebook",
+        "url": "https://www.facebook.com/ducdonguyen"
+      },
+      "instagram": {
+        "title": "Instagram",
+        "url": "https://www.instagram.com/ducdonguyen/"
+      },
+      "telegram": {
+        "title": "Telegram",
+        "url": "https://t.me/ducdonguyen"
+      },
+      "zalo": {
+        "title": "Zalo",
+        "url": "https://zalo.me/0879292571"
+      }
+    }
   },
   "footer": {
     "copyright": "© 2025 DevPortfolio. Built with Laravel passion 💙",
