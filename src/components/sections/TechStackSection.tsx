@@ -25,27 +25,27 @@ import nginxLogo from "@/assets/tech-logos/nginx.svg";
 
 // Tech logos mapping
 const techLogos: Record<string, { logo: string; color: string }> = {
-  "PHP 8": { logo: phpLogo, color: "#777BB4" },
-  "Laravel": { logo: laravelLogo, color: "#FF2D20" },
-  "MySQL": { logo: mysqlLogo, color: "#4479A1" },
-  "Redis": { logo: redisLogo, color: "#DC382D" },
+  PHP: { logo: phpLogo, color: "#777BB4" },
+  Laravel: { logo: laravelLogo, color: "#FF2D20" },
+  MySQL: { logo: mysqlLogo, color: "#4479A1" },
+  Redis: { logo: redisLogo, color: "#DC382D" },
   "Blade Template": { logo: laravelLogo, color: "#FF2D20" },
-  "TailwindCSS": { logo: tailwindLogo, color: "#06B6D4" },
+  TailwindCSS: { logo: tailwindLogo, color: "#06B6D4" },
   "Vue.js (Basic)": { logo: vueLogo, color: "#4FC08D" },
   "React.js (Basic)": { logo: reactLogo, color: "#61DAFB" },
-  "Git": { logo: gitLogo, color: "#F05032" },
-  "Docker": { logo: dockerLogo, color: "#2496ED" },
+  Git: { logo: gitLogo, color: "#F05032" },
+  Docker: { logo: dockerLogo, color: "#2496ED" },
   "AWS (Basic)": { logo: awsLogo, color: "#FF9900" },
-  "BootstrapCSS": { logo: bootstrapLogo, color: "#7952B3" },
-  "JavaScript": { logo: javascriptLogo, color: "#F7DF1E" },
-  "HTML5": { logo: html5Logo, color: "#E34F26" },
-  "CSS3": { logo: css3Logo, color: "#1572B6" },
-  "NPM": { logo: npmLogo, color: "#CB3837" },
-  "Composer": { logo: composerLogo, color: "#885630" },
-  "Postman": { logo: postmanLogo, color: "#FF6C37" },
+  BootstrapCSS: { logo: bootstrapLogo, color: "#7952B3" },
+  JavaScript: { logo: javascriptLogo, color: "#F7DF1E" },
+  HTML5: { logo: html5Logo, color: "#E34F26" },
+  CSS3: { logo: css3Logo, color: "#1572B6" },
+  NPM: { logo: npmLogo, color: "#CB3837" },
+  Composer: { logo: composerLogo, color: "#885630" },
+  Postman: { logo: postmanLogo, color: "#FF6C37" },
   "VS Code": { logo: vscodeLogo, color: "#007ACC" },
-  "Linux": { logo: linuxLogo, color: "#FCC624" },
-  "Nginx": { logo: nginxLogo, color: "#009639" },
+  Linux: { logo: linuxLogo, color: "#FCC624" },
+  Nginx: { logo: nginxLogo, color: "#009639" },
 };
 
 interface SkillItem {
@@ -75,9 +75,7 @@ const TechStackSection = () => {
           <h2 className="section-title">
             <span className="text-gradient">{t.skills.title}</span>
           </h2>
-          <p className="section-subtitle px-2">
-            {t.skills.subtitle}
-          </p>
+          <p className="section-subtitle px-2">{t.skills.subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -100,22 +98,18 @@ const TechStackSection = () => {
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: (categoryIndex * 0.1) + (itemIndex * 0.05) }}
+                      transition={{ duration: 0.3, delay: categoryIndex * 0.1 + itemIndex * 0.05 }}
                       className="group"
                     >
                       <div className="flex items-center gap-3 mb-2">
-                        <div 
+                        <div
                           className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-background/80 p-1.5"
                           style={{ boxShadow: `0 0 12px ${tech.color}30` }}
                         >
                           {tech.logo ? (
-                            <img 
-                              src={tech.logo} 
-                              alt={item.name}
-                              className="w-full h-full object-contain"
-                            />
+                            <img src={tech.logo} alt={item.name} className="w-full h-full object-contain" />
                           ) : (
-                            <div 
+                            <div
                               className="w-full h-full rounded bg-muted flex items-center justify-center text-xs font-bold"
                               style={{ color: tech.color }}
                             >
@@ -125,34 +119,30 @@ const TechStackSection = () => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
-                            <h4 className="font-medium text-foreground text-sm sm:text-base truncate">
-                              {item.name}
-                            </h4>
+                            <h4 className="font-medium text-foreground text-sm sm:text-base truncate">{item.name}</h4>
                             <span className="text-xs sm:text-sm font-semibold text-primary flex-shrink-0">
                               {item.level}%
                             </span>
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Progress bar */}
                       <div className="ml-11 sm:ml-13">
                         <div className="h-2 bg-muted rounded-full overflow-hidden">
                           <motion.div
                             className="h-full rounded-full"
-                            style={{ 
+                            style={{
                               background: `linear-gradient(90deg, ${tech.color}, ${tech.color}99)`,
-                              boxShadow: `0 0 10px ${tech.color}60`
+                              boxShadow: `0 0 10px ${tech.color}60`,
                             }}
                             initial={{ width: 0 }}
                             whileInView={{ width: `${item.level}%` }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1, delay: (categoryIndex * 0.1) + (itemIndex * 0.1), ease: "easeOut" }}
+                            transition={{ duration: 1, delay: categoryIndex * 0.1 + itemIndex * 0.1, ease: "easeOut" }}
                           />
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">
-                          {item.description}
-                        </p>
+                        <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">{item.description}</p>
                       </div>
                     </motion.div>
                   );
