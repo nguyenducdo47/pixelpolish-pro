@@ -47,7 +47,7 @@
         "title": "Backend",
         "items": [
           {
-            "name": "PHP 8",
+            "name": "PHP",
             "description": "OOP, typed properties, attributes, performance tuning",
             "level": 75
           },
@@ -144,13 +144,7 @@
         "complexity": "Complex • Team Project",
         "problem": "Printing company needs to manage complex order flow from receiving, production to delivery with various statuses and different responsible personnel.",
         "solution": "Built an order lifecycle tracking system with state machine, department-based permissions, and real-time analytics dashboard.",
-        "techStack": [
-          "Laravel",
-          "MySQL",
-          "Redis",
-          "Blade",
-          "TailwindCSS"
-        ],
+        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
         "responsibilities": [
           "Designed database schema for order lifecycle",
           "Built order status management API",
@@ -164,12 +158,7 @@
         "complexity": "Medium • Team Project",
         "problem": "School needs a system to manage students, teachers, grades with multiple user roles.",
         "solution": "Developed RBAC system with 3 main roles (Admin, Teacher, Student), optimized CRUD operations and strict validation.",
-        "techStack": [
-          "Laravel",
-          "MySQL",
-          "Blade",
-          "Bootstrap"
-        ],
+        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
         "responsibilities": [
           "Designed RBAC permission system",
           "Built grade and attendance management module",
@@ -183,12 +172,7 @@
         "complexity": "Learning • Personal Project",
         "problem": "Building an online sales platform with full functionality from product display to checkout.",
         "solution": "Applied Laravel MVC pattern, authentication system, shopping cart and payment gateway integration.",
-        "techStack": [
-          "Laravel",
-          "MySQL",
-          "Blade",
-          "TailwindCSS"
-        ],
+        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
         "responsibilities": [
           "Full-stack development from database to UI",
           "Implemented authentication and authorization",

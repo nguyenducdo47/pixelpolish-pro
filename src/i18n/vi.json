@@ -47,7 +47,7 @@
         "title": "Backend",
         "items": [
           {
-            "name": "PHP 8",
+            "name": "PHP",
             "description": "OOP, typed properties, attributes, performance tuning",
             "level": 75
           },
@@ -144,13 +144,7 @@
         "complexity": "Complex • Team Project",
         "problem": "Nhà in cần quản lý luồng đơn hàng phức tạp từ tiếp nhận, sản xuất đến giao hàng với nhiều trạng thái và người phụ trách khác nhau.",
         "solution": "Xây dựng hệ thống theo dõi vòng đời đơn hàng với state machine, phân quyền theo bộ phận, và dashboard thống kê real-time.",
-        "techStack": [
-          "Laravel",
-          "MySQL",
-          "Redis",
-          "Blade",
-          "TailwindCSS"
-        ],
+        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
         "responsibilities": [
           "Thiết kế database schema cho order lifecycle",
           "Xây dựng API quản lý trạng thái đơn hàng",
@@ -164,12 +158,7 @@
         "complexity": "Medium • Team Project",
         "problem": "Trường học cần hệ thống quản lý học sinh, giáo viên, điểm số với nhiều vai trò người dùng khác nhau.",
         "solution": "Phát triển hệ thống RBAC với 3 role chính (Admin, Teacher, Student), tối ưu CRUD operations và validation chặt chẽ.",
-        "techStack": [
-          "Laravel",
-          "MySQL",
-          "Blade",
-          "Bootstrap"
-        ],
+        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
         "responsibilities": [
           "Thiết kế hệ thống phân quyền RBAC",
           "Xây dựng module quản lý điểm và attendance",
@@ -183,12 +172,7 @@
         "complexity": "Learning • Personal Project",
         "problem": "Xây dựng nền tảng bán hàng online với đầy đủ chức năng từ hiển thị sản phẩm đến thanh toán.",
         "solution": "Áp dụng Laravel MVC pattern, authentication system, shopping cart và tích hợp payment gateway.",
-        "techStack": [
-          "Laravel",
-          "MySQL",
-          "Blade",
-          "TailwindCSS"
-        ],
+        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
         "responsibilities": [
           "Full-stack development từ database đến UI",
           "Implement authentication và authorization",
