@@ -7,7 +7,7 @@
     "contact": "Liên hệ"
   },
   "hero": {
-    "badge": "Web Developer (Junior Level)",
+    "badge": "PHP Laravel Developer",
     "headline1": "Xin chào, tôi là",
     "headline2": "Nguyễn Đức Độ",
     "headline3": "một Web Developer",
@@ -16,13 +16,98 @@
     "contact": "Liên hệ",
     "scrollMore": "Khám phá thêm"
   },
+  "resume": {
+    "summary": "PHP Laravel Developer với hơn 1 năm kinh nghiệm thực tế xây dựng hệ thống quản lý đơn hàng, nền tảng giáo dục và giải pháp thương mại điện tử cho khách hàng quốc tế bao gồm các công ty Nhật Bản. Thành thạo thiết kế kiến trúc database, phát triển RESTful API và tích hợp hệ thống đa nền tảng. Có kinh nghiệm cộng tác xuyên văn hóa với đối tác Nhật Bản.",
+    "sections": {
+      "summary": "Tóm tắt chuyên môn",
+      "skills": "Kỹ năng kỹ thuật",
+      "experience": "Kinh nghiệm làm việc",
+      "education": "Học vấn",
+      "certifications": "Chứng chỉ",
+      "languages": "Ngôn ngữ",
+      "strengths": "Thế mạnh cốt lõi"
+    },
+    "experience": {
+      "position": "PHP Laravel Developer",
+      "company": "Freelance / Dự án",
+      "period": "2024 - Hiện tại",
+      "projects": [
+        {
+          "name": "Hệ thống Quản lý Đơn hàng - Công ty Quảng cáo 3M",
+          "period": "2024",
+          "description": "Xây dựng và nâng cấp hệ thống quản lý đơn hàng cho công ty Quảng cáo 3M, xử lý toàn bộ vòng đời đơn hàng từ tiếp nhận đến giao hàng.",
+          "achievements": [
+            "Thiết kế và triển khai database schema cho theo dõi vòng đời đơn hàng",
+            "Phát triển RESTful API quản lý trạng thái đơn hàng với phân quyền theo bộ phận",
+            "Xây dựng dashboard thống kê để giám sát và báo cáo đơn hàng real-time"
+          ],
+          "techStack": ["Laravel", "MySQL"]
+        },
+        {
+          "name": "Hệ thống Quản lý Trường Mầm non Nhật Bản",
+          "period": "2024",
+          "description": "Phát triển nền tảng quản lý toàn diện cho trường mầm non Nhật Bản gồm 3 ứng dụng web riêng biệt.",
+          "achievements": [
+            "Xây dựng portal quản lý hiệp hội với Laravel xử lý dữ liệu thành viên và liên lạc",
+            "Phát triển hệ thống quản lý khóa học theo dõi chương trình và đăng ký",
+            "Triển khai nền tảng tuyển dụng sử dụng Job Cube cho quy trình tuyển nhân sự",
+            "Cộng tác trực tiếp với đối tác Nhật Bản về yêu cầu và phản hồi"
+          ],
+          "techStack": ["Laravel", "MySQL", "Job Cube"]
+        },
+        {
+          "name": "Nền tảng TMĐT & Affiliate - Công ty Liên Hoa",
+          "period": "2024",
+          "description": "Phát triển nền tảng thương mại điện tử đầy đủ tính năng tích hợp hệ thống affiliate marketing cho công ty Liên Hoa.",
+          "achievements": [
+            "Xây dựng giao diện frontend responsive với Vue.js cho duyệt sản phẩm và thanh toán",
+            "Thiết kế và triển khai hệ thống affiliate marketing với theo dõi hoa hồng",
+            "Tích hợp catalog sản phẩm, quản lý kho và xử lý đơn hàng"
+          ],
+          "techStack": ["Laravel", "Vue.js", "MySQL"]
+        }
+      ]
+    },
+    "education": {
+      "items": [
+        {
+          "degree": "Cử nhân Công nghệ Thông tin",
+          "school": "Đại học",
+          "period": "2020 - 2024",
+          "details": "Chuyên ngành Kỹ thuật phần mềm và Phát triển web"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "name": "Tiếng Việt",
+        "level": "Bản ngữ"
+      },
+      {
+        "name": "Tiếng Anh",
+        "level": "Đọc & Viết (Tài liệu kỹ thuật)"
+      },
+      {
+        "name": "Tiếng Nhật",
+        "level": "Giao tiếp cơ bản (Kinh nghiệm làm việc)"
+      }
+    ],
+    "skillKeywords": {
+      "Languages": "PHP, JavaScript, HTML5, CSS3, SQL",
+      "Frameworks": "Laravel, Vue.js, Bootstrap, TailwindCSS",
+      "Databases": "MySQL, Redis",
+      "Tools": "Git, Docker, Postman, Nginx, Composer, VS Code",
+      "Platforms": "AWS (EC2, S3), Linux",
+      "Methodologies": "RESTful API, MVC, OOP, SOLID Principles"
+    }
+  },
   "about": {
     "title": "Về tôi",
-    "subtitle": "Web Developer (Junior Level) với nền tảng vững chắc về backend development",
-    "intro1": "Xin chào! Tôi là một Web Developer (Junior Level) vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
+    "subtitle": "PHP Laravel Developer với nền tảng vững chắc về backend development",
+    "intro1": "Xin chào! Tôi là một PHP Laravel Developer vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
     "laravelHighlight": "PHP Laravel",
     "intro1End": ", với đam mê thiết kế cơ sở dữ liệu và xây dựng API hiệu quả.",
-    "intro2": "Trong thời gian ngắn, tôi đã có cơ hội tham gia các dự án thực tế từ e-commerce đến hệ thống quản lý trường học và quản lý kho in ấn. Mỗi dự án giúp tôi hiểu sâu hơn về cách thiết kế hệ thống có thể mở rộng.",
+    "intro2": "Trong thời gian ngắn, tôi đã có cơ hội tham gia các dự án thực tế từ e-commerce đến hệ thống quản lý trường học và quản lý đơn hàng. Tôi cũng có kinh nghiệm làm việc trực tiếp với khách hàng Nhật Bản.",
     "intro3": "Tôi tin rằng code tốt không chỉ là code chạy được, mà còn là code dễ đọc, dễ bảo trì và có thể phát triển lâu dài.",
     "highlights": [
       {
@@ -34,8 +119,8 @@
         "description": "Khả năng tiếp thu công nghệ mới và áp dụng vào dự án thực tế"
       },
       {
-        "title": "Tư duy hệ thống",
-        "description": "Hiểu rõ luồng dữ liệu và thiết kế kiến trúc rõ ràng"
+        "title": "Làm việc đa văn hóa",
+        "description": "Kinh nghiệm cộng tác với đối tác Nhật Bản và team quốc tế"
       }
     ]
   },
