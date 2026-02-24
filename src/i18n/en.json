@@ -71,10 +71,10 @@
     "education": {
       "items": [
         {
-          "degree": "Bachelor's Degree in Information Technology",
-          "school": "University",
+          "degree": "Engineer's Degree in Information Technology",
+          "school": "Saigon University of Technology (STU)",
           "period": "2020 - 2024",
-          "details": "Focused on software engineering and web development"
+          "details": "Major in Information Technology"
         }
       ]
     },
