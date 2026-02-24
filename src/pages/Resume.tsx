@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Github, Linkedin, Phone, MapPin, Printer } from "lucide-react";
+import { Mail, Github, Linkedin, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -70,6 +70,23 @@ const Resume = () => {
               </p>
             </section>
 
+            {/* ===== EDUCATION (đặt trước vì Junior < 2 năm kinh nghiệm) ===== */}
+            <section>
+              <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
+                {resume.sections.education}
+              </h2>
+              {resume.education.items.map((edu: any, idx: number) => (
+                <div key={idx}>
+                  <div className="flex justify-between items-baseline">
+                    <h3 className="text-sm font-semibold">{edu.degree}</h3>
+                    <span className="text-xs text-muted-foreground print:text-gray-500">{edu.period}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground print:text-gray-600">{edu.school}</p>
+                  <p className="text-xs text-muted-foreground print:text-gray-600 mt-0.5">{edu.details}</p>
+                </div>
+              ))}
+            </section>
+
             {/* ===== TECHNICAL SKILLS (keyword list for ATS) ===== */}
             <section>
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
@@ -90,7 +107,6 @@ const Resume = () => {
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-3">
                 {resume.sections.experience}
               </h2>
-
               <div className="mb-2">
                 <div className="flex justify-between items-baseline">
                   <h3 className="text-sm font-bold">{resume.experience.position}</h3>
@@ -98,7 +114,6 @@ const Resume = () => {
                 </div>
                 <p className="text-xs text-muted-foreground print:text-gray-600 italic">{resume.experience.company}</p>
               </div>
-
               <div className="space-y-4 print:space-y-3">
                 {resume.experience.projects.map((project: any, idx: number) => (
                   <div key={idx}>
@@ -130,23 +145,6 @@ const Resume = () => {
                   </div>
                 ))}
               </div>
-            </section>
-
-            {/* ===== EDUCATION ===== */}
-            <section>
-              <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
-                {resume.sections.education}
-              </h2>
-              {resume.education.items.map((edu: any, idx: number) => (
-                <div key={idx}>
-                  <div className="flex justify-between items-baseline">
-                    <h3 className="text-sm font-semibold">{edu.degree}</h3>
-                    <span className="text-xs text-muted-foreground print:text-gray-500">{edu.period}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground print:text-gray-600">{edu.school}</p>
-                  <p className="text-xs text-muted-foreground print:text-gray-600 mt-0.5">{edu.details}</p>
-                </div>
-              ))}
             </section>
 
             {/* ===== LANGUAGES ===== */}
