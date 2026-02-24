@@ -139,46 +139,46 @@
     "learnedLabel": "Bài học",
     "items": [
       {
-        "title": "Hệ thống Quản lý Đơn hàng Kho In",
-        "subtitle": "Printing Warehouse Order Management System",
+        "title": "Hệ thống Quản lý Đơn hàng - Công ty Quảng cáo 3M",
+        "subtitle": "Order Management System - 3M Advertising Company",
         "complexity": "Complex • Team Project",
-        "problem": "Nhà in cần quản lý luồng đơn hàng phức tạp từ tiếp nhận, sản xuất đến giao hàng với nhiều trạng thái và người phụ trách khác nhau.",
-        "solution": "Xây dựng hệ thống theo dõi vòng đời đơn hàng với state machine, phân quyền theo bộ phận, và dashboard thống kê real-time.",
-        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
+        "problem": "Công ty quảng cáo 3M cần hệ thống quản lý đơn hàng chuyên nghiệp để theo dõi quy trình từ tiếp nhận, sản xuất đến giao hàng.",
+        "solution": "Xây dựng và nâng cấp mở rộng hệ thống quản lý đơn hàng với quản lý trạng thái, phân quyền theo bộ phận và dashboard thống kê.",
+        "techStack": ["Laravel", "MySQL"],
         "responsibilities": [
+          "Xây dựng và nâng cấp hệ thống quản lý đơn hàng",
           "Thiết kế database schema cho order lifecycle",
-          "Xây dựng API quản lý trạng thái đơn hàng",
-          "Tối ưu query với Redis caching"
+          "Phát triển API quản lý trạng thái đơn hàng"
         ],
-        "learned": "Hiểu sâu về state management, database transaction và cách thiết kế hệ thống có thể scale."
+        "learned": "Hiểu sâu về quy trình quản lý đơn hàng thực tế, database transaction và cách mở rộng hệ thống có sẵn."
       },
       {
-        "title": "Hệ thống Quản lý Trường học",
-        "subtitle": "School Management System",
-        "complexity": "Medium • Team Project",
-        "problem": "Trường học cần hệ thống quản lý học sinh, giáo viên, điểm số với nhiều vai trò người dùng khác nhau.",
-        "solution": "Phát triển hệ thống RBAC với 3 role chính (Admin, Teacher, Student), tối ưu CRUD operations và validation chặt chẽ.",
-        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
+        "title": "Hệ thống Quản lý Trường Mầm non Nhật Bản",
+        "subtitle": "Japanese Kindergarten Management System",
+        "complexity": "Complex • Team Project",
+        "problem": "Trường mầm non Nhật Bản cần hệ thống quản lý toàn diện bao gồm quản lý hiệp hội, khóa học và tuyển dụng.",
+        "solution": "Phát triển 3 source riêng biệt: Web hiệp hội (Laravel + MySQL), Web khóa học (Laravel + MySQL), và Web tuyển dụng (Job Cube).",
+        "techStack": ["Laravel", "MySQL", "Job Cube"],
         "responsibilities": [
-          "Thiết kế hệ thống phân quyền RBAC",
-          "Xây dựng module quản lý điểm và attendance",
-          "Implement form validation và security"
+          "Phát triển web quản lý hiệp hội với Laravel",
+          "Xây dựng hệ thống quản lý khóa học",
+          "Build web tuyển dụng trên nền tảng Job Cube"
         ],
-        "learned": "Kinh nghiệm về authorization, security best practices và cách tổ chức code sạch."
+        "learned": "Kinh nghiệm làm việc với nhiều source code song song, hiểu về hệ thống giáo dục Nhật Bản và tích hợp nền tảng bên thứ ba."
       },
       {
-        "title": "Website Thương mại Điện tử",
-        "subtitle": "E-commerce Website",
-        "complexity": "Learning • Personal Project",
-        "problem": "Xây dựng nền tảng bán hàng online với đầy đủ chức năng từ hiển thị sản phẩm đến thanh toán.",
-        "solution": "Áp dụng Laravel MVC pattern, authentication system, shopping cart và tích hợp payment gateway.",
-        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
+        "title": "Website Thương mại Điện tử & Affiliate - Liên Hoa",
+        "subtitle": "E-commerce & Affiliate Platform - Lien Hoa Company",
+        "complexity": "Complex • Team Project",
+        "problem": "Công ty Liên Hoa cần nền tảng bán hàng online kết hợp hệ thống affiliate để mở rộng kênh phân phối.",
+        "solution": "Xây dựng website thương mại điện tử tích hợp hệ thống affiliate marketing, quản lý sản phẩm và đơn hàng.",
+        "techStack": ["Laravel", "Vue.js", "MySQL"],
         "responsibilities": [
-          "Full-stack development từ database đến UI",
-          "Implement authentication và authorization",
-          "Xây dựng cart system và checkout flow"
+          "Phát triển frontend với Vue.js",
+          "Xây dựng hệ thống affiliate marketing",
+          "Tích hợp quản lý sản phẩm và đơn hàng"
         ],
-        "learned": "Hiểu rõ kiến trúc MVC, session management và payment integration concepts."
+        "learned": "Hiểu rõ mô hình affiliate marketing, kinh nghiệm làm việc với Vue.js và xây dựng hệ thống e-commerce thực tế."
       }
     ]
   },

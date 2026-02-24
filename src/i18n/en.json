@@ -139,46 +139,46 @@
     "learnedLabel": "What I Learned",
     "items": [
       {
-        "title": "Printing Warehouse Order Management System",
-        "subtitle": "Printing Warehouse Order Management System",
+        "title": "Order Management System - 3M Advertising Company",
+        "subtitle": "Order Management System - 3M Advertising Company",
         "complexity": "Complex • Team Project",
-        "problem": "Printing company needs to manage complex order flow from receiving, production to delivery with various statuses and different responsible personnel.",
-        "solution": "Built an order lifecycle tracking system with state machine, department-based permissions, and real-time analytics dashboard.",
-        "techStack": ["Laravel", "MySQL", "Redis", "Blade", "TailwindCSS"],
+        "problem": "3M Advertising company needed a professional order management system to track the workflow from receiving, production to delivery.",
+        "solution": "Built and expanded the order management system with status tracking, department-based permissions, and analytics dashboard.",
+        "techStack": ["Laravel", "MySQL"],
         "responsibilities": [
+          "Built and upgraded the order management system",
           "Designed database schema for order lifecycle",
-          "Built order status management API",
-          "Optimized queries with Redis caching"
+          "Developed order status management API"
         ],
-        "learned": "Deep understanding of state management, database transactions and how to design scalable systems."
+        "learned": "Deep understanding of real-world order management processes, database transactions and how to extend existing systems."
       },
       {
-        "title": "School Management System",
-        "subtitle": "School Management System",
-        "complexity": "Medium • Team Project",
-        "problem": "School needs a system to manage students, teachers, grades with multiple user roles.",
-        "solution": "Developed RBAC system with 3 main roles (Admin, Teacher, Student), optimized CRUD operations and strict validation.",
-        "techStack": ["Laravel", "MySQL", "Blade", "Bootstrap"],
+        "title": "Japanese Kindergarten Management System",
+        "subtitle": "Japanese Kindergarten Management System",
+        "complexity": "Complex • Team Project",
+        "problem": "Japanese kindergarten needed a comprehensive management system including association management, courses, and recruitment.",
+        "solution": "Developed 3 separate sources: Association web (Laravel + MySQL), Course web (Laravel + MySQL), and Recruitment web (Job Cube).",
+        "techStack": ["Laravel", "MySQL", "Job Cube"],
         "responsibilities": [
-          "Designed RBAC permission system",
-          "Built grade and attendance management module",
-          "Implemented form validation and security"
+          "Developed association management web with Laravel",
+          "Built course management system",
+          "Built recruitment web on Job Cube platform"
         ],
-        "learned": "Experience in authorization, security best practices and clean code organization."
+        "learned": "Experience working with multiple codebases in parallel, understanding Japanese education systems and third-party platform integration."
       },
       {
-        "title": "E-commerce Website",
-        "subtitle": "E-commerce Website",
-        "complexity": "Learning • Personal Project",
-        "problem": "Building an online sales platform with full functionality from product display to checkout.",
-        "solution": "Applied Laravel MVC pattern, authentication system, shopping cart and payment gateway integration.",
-        "techStack": ["Laravel", "MySQL", "Blade", "TailwindCSS"],
+        "title": "E-commerce & Affiliate Platform - Lien Hoa Company",
+        "subtitle": "E-commerce & Affiliate Platform - Lien Hoa Company",
+        "complexity": "Complex • Team Project",
+        "problem": "Lien Hoa company needed an online sales platform combined with an affiliate system to expand distribution channels.",
+        "solution": "Built an e-commerce website integrated with affiliate marketing system, product and order management.",
+        "techStack": ["Laravel", "Vue.js", "MySQL"],
         "responsibilities": [
-          "Full-stack development from database to UI",
-          "Implemented authentication and authorization",
-          "Built cart system and checkout flow"
+          "Developed frontend with Vue.js",
+          "Built affiliate marketing system",
+          "Integrated product and order management"
         ],
-        "learned": "Clear understanding of MVC architecture, session management and payment integration concepts."
+        "learned": "Clear understanding of affiliate marketing model, experience with Vue.js and building real-world e-commerce systems."
       }
     ]
   },
