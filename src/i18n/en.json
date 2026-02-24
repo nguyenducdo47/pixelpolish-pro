@@ -7,7 +7,7 @@
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Web Developer (Junior Level)",
+    "badge": "PHP Laravel Developer",
     "headline1": "Hello, I'm",
     "headline2": "Duc Do Nguyen",
     "headline3": "a Web Developer",
@@ -16,13 +16,98 @@
     "contact": "Contact",
     "scrollMore": "Explore more"
   },
+  "resume": {
+    "summary": "PHP Laravel Developer with 1+ year of hands-on experience building order management systems, education platforms, and e-commerce solutions for international clients including Japanese companies. Proficient in database architecture design, RESTful API development, and multi-platform system integration. Experienced in cross-cultural team collaboration with Japanese stakeholders.",
+    "sections": {
+      "summary": "Professional Summary",
+      "skills": "Technical Skills",
+      "experience": "Work Experience",
+      "education": "Education",
+      "certifications": "Certifications",
+      "languages": "Languages",
+      "strengths": "Core Strengths"
+    },
+    "experience": {
+      "position": "PHP Laravel Developer",
+      "company": "Freelance / Project-based",
+      "period": "2024 - Present",
+      "projects": [
+        {
+          "name": "Order Management System - 3M Advertising Company",
+          "period": "2024",
+          "description": "Built and upgraded order management system for 3M Advertising company, handling full order lifecycle from receiving to delivery.",
+          "achievements": [
+            "Designed and implemented database schema for complete order lifecycle tracking",
+            "Developed RESTful API for order status management with department-based permissions",
+            "Built analytics dashboard for real-time order monitoring and reporting"
+          ],
+          "techStack": ["Laravel", "MySQL"]
+        },
+        {
+          "name": "Japanese Kindergarten Management System",
+          "period": "2024",
+          "description": "Developed comprehensive management platform for Japanese kindergarten consisting of 3 separate web applications.",
+          "achievements": [
+            "Built association management portal with Laravel handling member data and communications",
+            "Developed course management system for curriculum tracking and enrollment",
+            "Implemented recruitment platform using Job Cube for staff hiring workflow",
+            "Collaborated directly with Japanese stakeholders for requirements and feedback"
+          ],
+          "techStack": ["Laravel", "MySQL", "Job Cube"]
+        },
+        {
+          "name": "E-commerce & Affiliate Platform - Lien Hoa Company",
+          "period": "2024",
+          "description": "Developed full-featured e-commerce platform with integrated affiliate marketing system for Lien Hoa company.",
+          "achievements": [
+            "Built responsive frontend interface with Vue.js for product browsing and checkout",
+            "Designed and implemented affiliate marketing system with commission tracking",
+            "Integrated product catalog, inventory management and order processing"
+          ],
+          "techStack": ["Laravel", "Vue.js", "MySQL"]
+        }
+      ]
+    },
+    "education": {
+      "items": [
+        {
+          "degree": "Bachelor's Degree in Information Technology",
+          "school": "University",
+          "period": "2020 - 2024",
+          "details": "Focused on software engineering and web development"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "name": "Vietnamese",
+        "level": "Native"
+      },
+      {
+        "name": "English",
+        "level": "Reading & Writing (Technical Documentation)"
+      },
+      {
+        "name": "Japanese",
+        "level": "Basic Communication (Work Experience)"
+      }
+    ],
+    "skillKeywords": {
+      "Languages": "PHP, JavaScript, HTML5, CSS3, SQL",
+      "Frameworks": "Laravel, Vue.js, Bootstrap, TailwindCSS",
+      "Databases": "MySQL, Redis",
+      "Tools": "Git, Docker, Postman, Nginx, Composer, VS Code",
+      "Platforms": "AWS (EC2, S3), Linux",
+      "Methodologies": "RESTful API, MVC, OOP, SOLID Principles"
+    }
+  },
   "about": {
     "title": "About Me",
-    "subtitle": "Web Developer (Junior Level) with a solid backend development foundation",
-    "intro1": "Hello! I'm a Web Developer (Junior Level) recently graduated with about 1 year of practical work experience. I focus on developing expertise in",
+    "subtitle": "PHP Laravel Developer with a solid backend development foundation",
+    "intro1": "Hello! I'm a PHP Laravel Developer recently graduated with about 1 year of practical work experience. I focus on developing expertise in",
     "laravelHighlight": "PHP Laravel",
     "intro1End": ", with a passion for database design and building efficient APIs.",
-    "intro2": "In a short time, I've had the opportunity to participate in real projects from e-commerce to school management systems and printing warehouse management. Each project helps me understand more deeply how to design scalable systems.",
+    "intro2": "In a short time, I've had the opportunity to participate in real projects from e-commerce to school management systems and order management. Each project helps me understand more deeply how to design scalable systems. I've also gained valuable experience working with Japanese clients.",
     "intro3": "I believe that good code is not just code that runs, but code that is readable, maintainable, and can grow over time.",
     "highlights": [
       {
@@ -34,8 +119,8 @@
         "description": "Ability to adopt new technologies and apply them to real projects"
       },
       {
-        "title": "System Thinking",
-        "description": "Clear understanding of data flow and architecture design"
+        "title": "Cross-cultural Teamwork",
+        "description": "Experience collaborating with Japanese stakeholders and international teams"
       }
     ]
   },
