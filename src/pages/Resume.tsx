@@ -54,9 +54,12 @@ const Resume = () => {
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
-            <Button variant="outline" size="sm" onClick={handlePrint}>
+            <Button variant="outline" size="sm" onClick={handlePrint} className="hidden sm:inline-flex">
               <Printer className="w-4 h-4 mr-1" />
               Print / PDF
+            </Button>
+            <Button variant="outline" size="icon" onClick={handlePrint} className="sm:hidden h-8 w-8">
+              <Printer className="w-4 h-4" />
             </Button>
           </div>
         </div>
@@ -65,34 +68,34 @@ const Resume = () => {
       {/* A4 Resume */}
       <div className="min-h-screen bg-muted/30 print:bg-white pt-16 print:pt-0 pb-8 print:pb-0">
         <div className="w-full max-w-[210mm] mx-auto bg-background print:shadow-none shadow-xl">
-          <div className="p-8 sm:p-12 print:p-[15mm] space-y-7 print:space-y-4 text-foreground print:text-black">
+          <div className="p-4 sm:p-8 md:p-12 print:p-[15mm] space-y-5 sm:space-y-7 print:space-y-4 text-foreground print:text-black">
 
             {/* ===== HEADER ===== */}
-            <header className="border-b-2 border-primary print:border-black pb-4 print:pb-3 flex justify-between items-start">
+            <header className="border-b-2 border-primary print:border-black pb-4 print:pb-3 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-0">
               <div>
-                <h1 className="text-3xl print:text-2xl font-bold tracking-tight">
+                <h1 className="text-2xl sm:text-3xl print:text-2xl font-bold tracking-tight">
                   {t.hero.headline2}
                 </h1>
-                <p className="text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
+                <p className="text-base sm:text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
                   {t.hero.badge} ({resume.positionPeriod})
                 </p>
               </div>
-              <div className="flex flex-col gap-1 text-sm text-muted-foreground print:text-gray-600">
+              <div className="flex flex-wrap sm:flex-col gap-x-4 gap-y-1 text-xs sm:text-sm text-muted-foreground print:text-gray-600">
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5" />
+                  <Calendar className="w-3.5 h-3.5 shrink-0" />
                   {resume.dob}
                 </span>
                 <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground transition-colors">
-                  <Mail className="w-3.5 h-3.5" />
-                  {t.cta.yourEmail}
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">{t.cta.yourEmail}</span>
                 </a>
                 <a href="tel:0899068281" className="flex items-center gap-1 hover:text-foreground transition-colors">
-                  <Phone className="w-3.5 h-3.5" />
+                  <Phone className="w-3.5 h-3.5 shrink-0" />
                   0899068281
                 </a>
                 <a href={t.cta.socialLinks.gitHub.url} className="flex items-center gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-3.5 h-3.5" />
-                  github.com/nguyenducdo47
+                  <Github className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">github.com/nguyenducdo47</span>
                 </a>
               </div>
             </header>
@@ -133,8 +136,8 @@ const Resume = () => {
               </h2>
               <div className="space-y-1.5">
                 {Object.entries(generatedSkillKeywords).map(([category, keywords]) => (
-                  <div key={category} className="flex text-sm print:text-xs">
-                    <span className="font-semibold w-52 print:w-44 shrink-0">{category}:</span>
+                  <div key={category} className="flex flex-col sm:flex-row text-sm print:text-xs">
+                    <span className="font-semibold sm:w-52 print:w-44 shrink-0">{category}:</span>
                     <span className="text-muted-foreground print:text-gray-700">{keywords}</span>
                   </div>
                 ))}
