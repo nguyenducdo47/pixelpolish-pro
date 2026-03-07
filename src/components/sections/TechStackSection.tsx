@@ -5,6 +5,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import phpLogo from "@/assets/tech-logos/php.svg";
 import laravelLogo from "@/assets/tech-logos/laravel.svg";
 import mysqlLogo from "@/assets/tech-logos/mysql.svg";
+import mariadbLogo from "@/assets/tech-logos/mariadb.svg";
+import mongodbLogo from "@/assets/tech-logos/mongodb.svg";
 import redisLogo from "@/assets/tech-logos/redis.svg";
 import tailwindLogo from "@/assets/tech-logos/tailwindcss.svg";
 import vueLogo from "@/assets/tech-logos/vuejs.svg";
@@ -32,6 +34,8 @@ const techLogos: Record<string, { logo: string; color: string }> = {
   TypeScript: { logo: typescriptLogo, color: "#3178C6" },
   GraphQL: { logo: graphqlLogo, color: "#E10098" },
   MySQL: { logo: mysqlLogo, color: "#4479A1" },
+  MariaDB: { logo: mariadbLogo, color: "#003545" },
+  MongoDB: { logo: mongodbLogo, color: "#47A248" },
   Redis: { logo: redisLogo, color: "#DC382D" },
   "Blade Template": { logo: laravelLogo, color: "#FF2D20" },
   TailwindCSS: { logo: tailwindLogo, color: "#06B6D4" },

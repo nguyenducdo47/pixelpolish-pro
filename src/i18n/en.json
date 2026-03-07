@@ -108,7 +108,7 @@
       "Languages": "PHP, TypeScript, JavaScript, HTML5, CSS3, SQL",
       "Frameworks": "Laravel, Vue.js, Bootstrap, TailwindCSS",
       "APIs": "RESTful API, GraphQL",
-      "Databases": "MySQL, Redis",
+      "Databases": "MySQL, MariaDB, MongoDB, Redis",
       "Tools": "Git, Docker, Postman, Nginx, Composer, VS Code",
       "Platforms": "AWS (EC2, S3), Linux",
       "Methodologies": "MVC, OOP, SOLID Principles"
@@ -178,6 +178,16 @@
             "name": "Redis",
             "description": "Caching, session management, queue driver",
             "level": 55
+          },
+          {
+            "name": "MariaDB",
+            "description": "MySQL-compatible, replication, performance tuning",
+            "level": 60
+          },
+          {
+            "name": "MongoDB",
+            "description": "NoSQL, document-based, aggregation pipeline",
+            "level": 45
           }
         ]
       },
