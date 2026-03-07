@@ -132,10 +132,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 4.2, ease: "easeOut" }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
         >
-          <Button variant="hero" size="lg" className="w-full sm:w-auto">
-            <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-            {t.hero.downloadCV}
-          </Button>
+          <CVDownloadDialog variant="hero" size="lg" className="w-full sm:w-auto" />
           <a href="#contact">
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto">
               <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
