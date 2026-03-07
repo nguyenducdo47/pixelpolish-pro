@@ -17,7 +17,9 @@
     "scrollMore": "Khám phá thêm"
   },
   "resume": {
-    "summary": "Lập trình viên Backend với kinh nghiệm phát triển và bảo trì các hệ thống web sử dụng PHP và Laravel. Có kinh nghiệm xây dựng RESTful API và GraphQL API phục vụ cho các hệ thống quản trị và ứng dụng Mobile. Đã tham gia phát triển nhiều dự án thực tế như hệ thống quản lý hiệp hội giáo dục, nền tảng thương mại điện tử và hệ thống thanh toán cho ứng dụng gọi xe.\n\nCó kinh nghiệm làm việc với MySQL, Redis và tối ưu truy vấn dữ liệu, đồng thời áp dụng các nguyên tắc thiết kế phần mềm như MVC, Service Repository Pattern, OOP và SOLID trong quá trình phát triển hệ thống.",
+    "dob": "21/05/2001",
+    "positionPeriod": "2024 – Nay",
+    "summary": "Lập trình viên Backend với kinh nghiệm phát triển và bảo trì các hệ thống web sử dụng PHP và Laravel. Có kinh nghiệm xây dựng RESTful API và GraphQL API phục vụ cho các hệ thống quản trị và ứng dụng Mobile. Đã tham gia phát triển nhiều dự án thực tế bao gồm outsource cho khách hàng Nhật Bản (hệ thống quản lý hiệp hội giáo dục, hệ thống quản lý kho) và khách hàng trong nước (nền tảng thương mại điện tử, hệ thống thanh toán, quản lý đơn hàng).\n\nCó kinh nghiệm làm việc với MySQL, Redis và tối ưu truy vấn dữ liệu, đồng thời áp dụng các nguyên tắc thiết kế phần mềm như MVC, Service Repository Pattern, OOP và SOLID trong quá trình phát triển hệ thống.",
     "sections": {
       "summary": "Tóm tắt chuyên môn",
       "skills": "Kỹ năng kỹ thuật",
@@ -25,7 +27,8 @@
       "education": "Học vấn",
       "certifications": "Chứng chỉ",
       "languages": "Ngôn ngữ",
-      "strengths": "Thế mạnh cốt lõi"
+      "strengths": "Thế mạnh cốt lõi",
+      "hobbies": "Sở thích & Tính cách"
     },
     "experience": {
       "position": "PHP Laravel Developer",
@@ -87,6 +90,19 @@
             "Xử lý business logic cho chức năng thanh toán và đồng bộ dữ liệu"
           ],
           "techStack": ["TypeScript", "MySQL", "GraphQL"]
+        },
+        {
+          "name": "Hệ thống Quản lý Kho Xuất/Nhập Hàng hóa – TOLINEN (Nhật Bản)",
+          "period": "10/2025 – 04/2026",
+          "teamSize": "3 người (1 PM, 2 Developers)",
+          "description": "Hệ thống quản lý kho hỗ trợ doanh nghiệp theo dõi và quản lý quá trình nhập kho, xuất kho và tồn kho hàng hóa. Hệ thống giúp quản lý dữ liệu hàng hóa, lịch sử giao dịch kho và hỗ trợ kiểm soát hoạt động xuất nhập hàng trong doanh nghiệp.",
+          "achievements": [
+            "Bảo trì và nâng cấp hệ thống theo yêu cầu từ khách hàng",
+            "Phát triển và cải tiến các chức năng liên quan đến quản lý nhập kho, xuất kho và tồn kho",
+            "Tối ưu truy vấn dữ liệu và logic xử lý nghiệp vụ",
+            "Sửa lỗi và cải thiện hiệu năng hệ thống"
+          ],
+          "techStack": ["CodeIgniter", "MySQL", "JavaScript"]
         }
       ]
     },
@@ -102,18 +118,14 @@
     },
     "languages": [
       {
-        "name": "Tiếng Việt",
-        "level": "Bản ngữ"
-      },
-      {
         "name": "Tiếng Anh",
-        "level": "Đọc & Viết (Tài liệu kỹ thuật)"
-      },
-      {
-        "name": "Tiếng Nhật",
-        "level": "Giao tiếp cơ bản (Kinh nghiệm làm việc)"
+        "level": "Đọc - hiểu & Viết (Tài liệu kỹ thuật)"
       }
     ],
+    "hobbies": {
+      "sports": "Cầu lông, Đá banh, Street Workout",
+      "personality": "Hòa đồng, vui vẻ, thân thiện"
+    },
     "skillKeywords": {
       "Programming Languages": "PHP, TypeScript, JavaScript",
       "Backend Frameworks": "Laravel, CodeIgniter",
@@ -166,6 +178,11 @@
             "name": "Laravel",
             "description": "Eloquent ORM, Queues, Events, API Resources, Testing",
             "level": 80
+          },
+          {
+            "name": "CodeIgniter",
+            "description": "MVC framework, legacy system maintenance",
+            "level": 55
           },
           {
             "name": "TypeScript",
@@ -285,7 +302,7 @@
           "Hỗ trợ tổ chức sự kiện tuyển dụng quy mô lớn (Tokyo Hoikuen Fair)",
           "Xây dựng nền tảng tuyển dụng trực tuyến cho trường và ứng viên"
         ],
-        "learned": "Kinh nghiệm làm việc với nhiều source code song song, hiểu hệ thống giáo dục Nhật Bản, cộng tác trực tiếp với đối tác Nhật Bản."
+        "learned": "Kinh nghiệm làm việc outsource với khách hàng Nhật Bản, quản lý nhiều source code song song và hiểu hệ thống giáo dục Nhật Bản."
       },
       {
         "title": "Hệ thống Quản lý Đơn hàng – Công ty Quảng cáo 3M",
@@ -335,6 +352,22 @@
           "Xử lý business logic cho chức năng thanh toán và đồng bộ dữ liệu"
         ],
         "learned": "Kinh nghiệm với TypeScript trong production, thiết kế GraphQL API patterns, và hiểu quy trình xử lý thanh toán cùng yêu cầu bảo mật."
+      },
+      {
+        "title": "Hệ thống Quản lý Kho – TOLINEN (Nhật Bản)",
+        "subtitle": "Warehouse Management System – TOLINEN (Japan)",
+        "complexity": "Medium • 3 người (1 PM, 2 Devs)",
+        "period": "10/2025 – 04/2026",
+        "problem": "Doanh nghiệp Nhật Bản cần hệ thống quản lý kho để theo dõi quá trình nhập kho, xuất kho và kiểm soát tồn kho hàng hóa.",
+        "solution": "Bảo trì và nâng cấp hệ thống quản lý kho hiện có, cải tiến chức năng quản lý nhập/xuất kho và tối ưu hiệu năng hệ thống.",
+        "techStack": ["CodeIgniter", "MySQL", "JavaScript"],
+        "responsibilities": [
+          "Bảo trì và nâng cấp hệ thống theo yêu cầu khách hàng Nhật Bản",
+          "Phát triển chức năng quản lý nhập kho, xuất kho và tồn kho",
+          "Tối ưu truy vấn dữ liệu và logic xử lý nghiệp vụ",
+          "Sửa lỗi và cải thiện hiệu năng hệ thống"
+        ],
+        "learned": "Kinh nghiệm làm việc outsource với khách hàng Nhật Bản, bảo trì hệ thống legacy và tối ưu hiệu năng cho hệ thống quản lý kho."
       }
     ]
   },

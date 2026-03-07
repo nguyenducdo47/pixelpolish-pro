@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Layers, Shield, ShoppingCart, CreditCard, ExternalLink, Calendar } from "lucide-react";
+import { Layers, Shield, ShoppingCart, CreditCard, Warehouse, ExternalLink, Calendar } from "lucide-react";
 import Card3D from "@/components/Card3D";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProjectsSection = () => {
   const { t, language } = useLanguage();
-  const icons = [Layers, Shield, ShoppingCart, CreditCard];
+  const icons = [Layers, Shield, ShoppingCart, CreditCard, Warehouse];
 
   return (
     <section id="projects" className="py-16 sm:py-20 md:py-24">
