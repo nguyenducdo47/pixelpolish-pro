@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, Facebook, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Facebook, Send } from "lucide-react";
+import CVDownloadDialog from "@/components/CVDownloadDialog";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -28,10 +29,7 @@ const CTASection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 sm:px-0">
-            <Button variant="hero" size="lg" className="w-full sm:w-auto">
-              <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              {t.cta.downloadCV}
-            </Button>
+            <CVDownloadDialog variant="hero" size="lg" className="w-full sm:w-auto" />
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto text-sm">
               <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
               <span className="truncate">{t.cta.yourEmail}</span>
