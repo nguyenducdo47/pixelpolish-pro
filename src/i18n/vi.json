@@ -105,15 +105,15 @@
       }
     ],
     "skillKeywords": {
-      "Programming": "PHP, TypeScript, JavaScript",
-      "Markup & Styling": "HTML5, CSS3",
-      "Query": "SQL, GraphQL",
-      "Frameworks": "Laravel, Vue.js, Bootstrap, TailwindCSS",
-      "APIs": "RESTful API",
+      "Languages": "PHP, TypeScript, JavaScript",
+      "Frameworks": "Laravel, Codeigniter, Vue.js",
       "Databases": "MySQL, MariaDB, MongoDB, Redis",
+      "Query": "SQL, GraphQL",
+      "APIs": "RESTful API",
+      "Markup & Styling": "HTML5, CSS, SCSS, Bootstrap, TailwindCSS",
       "Tools": "Git, Docker, Postman, Nginx, Composer, VS Code",
       "Platforms": "AWS (EC2, S3), Linux",
-      "Methodologies": "MVC, OOP, SOLID Principles"
+      "Methodologies": "MVC, MVC-service-repository, OOP, SOLID Principles"
     }
   },
   "about": {
