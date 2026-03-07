@@ -36,7 +36,7 @@ const techLogos: Record<string, { logo: string; color: string }> = {
   GraphQL: { logo: graphqlLogo, color: "#E10098" },
   CodeIgniter: { logo: codeigniterLogo, color: "#EE4623" },
   MySQL: { logo: mysqlLogo, color: "#4479A1" },
-  MariaDB: { logo: mariadbLogo, color: "#003545" },
+  MariaDB: { logo: mariadbLogo, color: "#4E9BCD" },
   MongoDB: { logo: mongodbLogo, color: "#47A248" },
   Redis: { logo: redisLogo, color: "#DC382D" },
   "Blade Template": { logo: laravelLogo, color: "#FF2D20" },
