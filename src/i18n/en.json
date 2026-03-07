@@ -17,7 +17,7 @@
     "scrollMore": "Explore more"
   },
   "resume": {
-    "summary": "Web Developer specializing in building order management systems, education platforms, and e-commerce solutions for international clients including Japanese companies. Proficient in database architecture design, RESTful API development, and multi-platform system integration. Experienced in cross-cultural team collaboration with Japanese stakeholders.",
+    "summary": "Backend Developer with experience in developing and maintaining web systems using PHP and Laravel. Experienced in building RESTful APIs and GraphQL APIs for admin systems and Mobile applications. Participated in multiple real-world projects including education association management systems, e-commerce platforms and payment systems for ride-hailing applications.\n\nExperienced with MySQL, Redis and data query optimization, while applying software design principles such as MVC, Service Repository Pattern, OOP and SOLID in system development.",
     "sections": {
       "summary": "Professional Summary",
       "skills": "Technical Skills",

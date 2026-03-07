@@ -17,7 +17,7 @@
     "scrollMore": "Khám phá thêm"
   },
   "resume": {
-    "summary": "Web Developer chuyên xây dựng hệ thống quản lý đơn hàng, nền tảng giáo dục và giải pháp thương mại điện tử cho khách hàng quốc tế bao gồm các công ty Nhật Bản. Thành thạo thiết kế kiến trúc database, phát triển RESTful API và tích hợp hệ thống đa nền tảng. Có kinh nghiệm cộng tác xuyên văn hóa với đối tác Nhật Bản.",
+    "summary": "Lập trình viên Backend với kinh nghiệm phát triển và bảo trì các hệ thống web sử dụng PHP và Laravel. Có kinh nghiệm xây dựng RESTful API và GraphQL API phục vụ cho các hệ thống quản trị và ứng dụng Mobile. Đã tham gia phát triển nhiều dự án thực tế như hệ thống quản lý hiệp hội giáo dục, nền tảng thương mại điện tử và hệ thống thanh toán cho ứng dụng gọi xe.\n\nCó kinh nghiệm làm việc với MySQL, Redis và tối ưu truy vấn dữ liệu, đồng thời áp dụng các nguyên tắc thiết kế phần mềm như MVC, Service Repository Pattern, OOP và SOLID trong quá trình phát triển hệ thống.",
     "sections": {
       "summary": "Tóm tắt chuyên môn",
       "skills": "Kỹ năng kỹ thuật",

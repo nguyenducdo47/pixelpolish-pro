@@ -90,9 +90,11 @@ const Resume = () => {
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
                 {resume.sections.summary}
               </h2>
-              <p className="text-sm print:text-xs leading-loose text-muted-foreground print:text-gray-700">
-                {resume.summary}
-              </p>
+              <div className="text-sm print:text-xs leading-loose text-muted-foreground print:text-gray-700 space-y-2">
+                {(resume.summary as string).split('\n\n').map((paragraph: string, idx: number) => (
+                  <p key={idx}>{paragraph}</p>
+                ))}
+              </div>
             </section>
 
             {/* ===== EDUCATION (đặt trước vì Junior < 2 năm kinh nghiệm) ===== */}
