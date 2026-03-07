@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, Github, Linkedin, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,28 @@ import ThemeToggle from "@/components/ThemeToggle";
 const Resume = () => {
   const { t } = useLanguage();
   const resume = t.resume as any;
+
+  // Auto-generate skill keywords from portfolio skills categories
+  const generatedSkillKeywords = useMemo(() => {
+    const categories = t.skills.categories as any[];
+    const categoryMap: Record<string, string> = {};
+    categories.forEach((cat: any) => {
+      categoryMap[cat.title] = cat.items.map((item: any) => item.name).join(", ");
+    });
+    // Merge: use generated for matching categories, keep manual ones for the rest
+    const base = resume.skillKeywords as Record<string, string>;
+    const merged: Record<string, string> = {};
+    for (const [key, value] of Object.entries(base)) {
+      // If a matching skills category exists, use auto-generated names
+      const match = categories.find((c: any) => c.title === key);
+      if (match) {
+        merged[key] = match.items.map((item: any) => item.name).join(", ");
+      } else {
+        merged[key] = value as string;
+      }
+    }
+    return merged;
+  }, [t, resume]);
 
   const handlePrint = () => {
     window.print();
@@ -93,7 +116,7 @@ const Resume = () => {
                 {resume.sections.skills}
               </h2>
               <div className="space-y-1">
-                {Object.entries(resume.skillKeywords as Record<string, string>).map(([category, keywords]) => (
+                {Object.entries(generatedSkillKeywords).map(([category, keywords]) => (
                   <div key={category} className="flex text-sm print:text-xs">
                     <span className="font-semibold w-28 print:w-24 shrink-0">{category}:</span>
                     <span className="text-muted-foreground print:text-gray-700">{keywords}</span>
