@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Github, Phone, Printer, ExternalLink, Users, Heart, Smile } from "lucide-react";
+import { Mail, Github, Phone, Printer, ExternalLink, Users, Heart, Smile, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -63,14 +63,12 @@ const Resume = () => {
                 <h1 className="text-3xl print:text-2xl font-bold tracking-tight">
                   {t.hero.headline2}
                 </h1>
-                <p className="text-xs text-muted-foreground print:text-gray-500 mt-0.5">
+                <p className="text-xs text-muted-foreground print:text-gray-500 mt-0.5 flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
                   {resume.dob}
                 </p>
                 <p className="text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
-                  {t.hero.badge}
-                </p>
-                <p className="text-xs text-muted-foreground print:text-gray-500">
-                  {resume.positionPeriod}
+                  {t.hero.badge} ({resume.positionPeriod})
                 </p>
               </div>
               <div className="flex flex-col gap-1 text-sm text-muted-foreground print:text-gray-600">
