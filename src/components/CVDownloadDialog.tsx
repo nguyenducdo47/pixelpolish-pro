@@ -21,10 +21,10 @@ const CVDownloadDialog = ({ variant = "hero", size = "lg", className }: CVDownlo
   const [open, setOpen] = useState(false);
 
   const handleDownload = (lang: "vi" | "en") => {
-    const url = lang === "vi" ? "/cv/cv-vi.pdf" : "/cv/cv-en.pdf";
+    const url = lang === "vi" ? "/cv/Duc-Do-Nguyen_Web-Developer(Vi).pdf" : "/cv/Duc-Do-Nguyen_Web-Developer(En).pdf";
     const link = document.createElement("a");
     link.href = url;
-    link.download = lang === "vi" ? "NguyenDucDo_CV_VI.pdf" : "NguyenDucDo_CV_EN.pdf";
+    link.download = lang === "vi" ? "Duc-Do-Nguyen_Web-Developer(Vi).pdf" : "Duc-Do-Nguyen_Web-Developer(En).pdf";
     link.click();
     setOpen(false);
   };
@@ -61,7 +61,7 @@ const CVDownloadDialog = ({ variant = "hero", size = "lg", className }: CVDownlo
             className="w-full justify-start gap-3 h-14"
             onClick={() => handleDownload("en")}
           >
-            <span className="text-xl">🇬🇧</span>
+            <span className="text-xl">🇺🇸</span>
             <span className="font-medium">{labels.en}</span>
           </Button>
         </div>
