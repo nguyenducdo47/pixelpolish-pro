@@ -69,16 +69,16 @@ const Resume = () => {
                   {t.hero.badge}
                 </p>
               </div>
-              <div className="flex flex-col gap-1 text-sm text-muted-foreground print:text-gray-600 text-right">
-                <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-end gap-1 hover:text-foreground transition-colors">
+              <div className="flex flex-col gap-1 text-sm text-muted-foreground print:text-gray-600">
+                <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground transition-colors">
                   <Mail className="w-3.5 h-3.5" />
                   {t.cta.yourEmail}
                 </a>
-                <a href="tel:0899068281" className="flex items-center justify-end gap-1 hover:text-foreground transition-colors">
+                <a href="tel:0899068281" className="flex items-center gap-1 hover:text-foreground transition-colors">
                   <Phone className="w-3.5 h-3.5" />
                   0899068281
                 </a>
-                <a href={t.cta.socialLinks.gitHub.url} className="flex items-center justify-end gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href={t.cta.socialLinks.gitHub.url} className="flex items-center gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
                   <Github className="w-3.5 h-3.5" />
                   github.com/nguyenducdo47
                 </a>
