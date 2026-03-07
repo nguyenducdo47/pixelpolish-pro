@@ -15,8 +15,8 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 const translations: Record<Language, Translations> = {
-  vi: viTranslations,
-  en: enTranslations,
+  vi: viTranslations as Translations,
+  en: enTranslations as unknown as Translations,
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
