@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 import viTranslations from "@/i18n/vi.json";
 import enTranslations from "@/i18n/en.json";
 
+
 type Language = "vi" | "en";
 
 type Translations = typeof viTranslations;
