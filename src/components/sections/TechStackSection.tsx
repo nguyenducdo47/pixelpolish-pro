@@ -26,6 +26,7 @@ import linuxLogo from "@/assets/tech-logos/linux.svg";
 import nginxLogo from "@/assets/tech-logos/nginx.svg";
 import typescriptLogo from "@/assets/tech-logos/typescript.svg";
 import graphqlLogo from "@/assets/tech-logos/graphql.svg";
+import codeigniterLogo from "@/assets/tech-logos/codeigniter.svg";
 
 // Tech logos mapping
 const techLogos: Record<string, { logo: string; color: string }> = {
@@ -33,6 +34,7 @@ const techLogos: Record<string, { logo: string; color: string }> = {
   Laravel: { logo: laravelLogo, color: "#FF2D20" },
   TypeScript: { logo: typescriptLogo, color: "#3178C6" },
   GraphQL: { logo: graphqlLogo, color: "#E10098" },
+  CodeIgniter: { logo: codeigniterLogo, color: "#EE4623" },
   MySQL: { logo: mysqlLogo, color: "#4479A1" },
   MariaDB: { logo: mariadbLogo, color: "#003545" },
   MongoDB: { logo: mongodbLogo, color: "#47A248" },

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Github, Phone, Printer, ExternalLink, Users } from "lucide-react";
+import { Mail, Github, Phone, Printer, ExternalLink, Users, Heart, Smile } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -16,11 +16,9 @@ const Resume = () => {
     categories.forEach((cat: any) => {
       categoryMap[cat.title] = cat.items.map((item: any) => item.name).join(", ");
     });
-    // Merge: use generated for matching categories, keep manual ones for the rest
     const base = resume.skillKeywords as Record<string, string>;
     const merged: Record<string, string> = {};
     for (const [key, value] of Object.entries(base)) {
-      // If a matching skills category exists, use auto-generated names
       const match = categories.find((c: any) => c.title === key);
       if (match) {
         merged[key] = match.items.map((item: any) => item.name).join(", ");
@@ -65,8 +63,14 @@ const Resume = () => {
                 <h1 className="text-3xl print:text-2xl font-bold tracking-tight">
                   {t.hero.headline2}
                 </h1>
+                <p className="text-xs text-muted-foreground print:text-gray-500 mt-0.5">
+                  {resume.dob}
+                </p>
                 <p className="text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
                   {t.hero.badge}
+                </p>
+                <p className="text-xs text-muted-foreground print:text-gray-500">
+                  {resume.positionPeriod}
                 </p>
               </div>
               <div className="flex flex-col gap-1 text-sm text-muted-foreground print:text-gray-600">
@@ -97,7 +101,7 @@ const Resume = () => {
               </div>
             </section>
 
-            {/* ===== EDUCATION (đặt trước vì Junior < 2 năm kinh nghiệm) ===== */}
+            {/* ===== EDUCATION ===== */}
             <section>
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
                 {resume.sections.education}
@@ -114,7 +118,7 @@ const Resume = () => {
               ))}
             </section>
 
-            {/* ===== TECHNICAL SKILLS (keyword list for ATS) ===== */}
+            {/* ===== TECHNICAL SKILLS ===== */}
             <section>
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
                 {resume.sections.skills}
@@ -204,6 +208,23 @@ const Resume = () => {
                     <span className="text-muted-foreground print:text-gray-600"> — {lang.level}</span>
                   </div>
                 ))}
+              </div>
+            </section>
+
+            {/* ===== HOBBIES & PERSONALITY ===== */}
+            <section>
+              <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
+                {resume.sections.hobbies}
+              </h2>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-sm print:text-xs">
+                  <Heart className="w-3.5 h-3.5 text-primary print:text-gray-600" />
+                  <span className="text-muted-foreground print:text-gray-700">{resume.hobbies.sports}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm print:text-xs">
+                  <Smile className="w-3.5 h-3.5 text-primary print:text-gray-600" />
+                  <span className="text-muted-foreground print:text-gray-700">{resume.hobbies.personality}</span>
+                </div>
               </div>
             </section>
 

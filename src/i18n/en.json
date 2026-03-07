@@ -17,7 +17,9 @@
     "scrollMore": "Explore more"
   },
   "resume": {
-    "summary": "Backend Developer with experience in developing and maintaining web systems using PHP and Laravel. Experienced in building RESTful APIs and GraphQL APIs for admin systems and Mobile applications. Participated in multiple real-world projects including education association management systems, e-commerce platforms and payment systems for ride-hailing applications.\n\nExperienced with MySQL, Redis and data query optimization, while applying software design principles such as MVC, Service Repository Pattern, OOP and SOLID in system development.",
+    "dob": "21/05/2001",
+    "positionPeriod": "2024 – Present",
+    "summary": "Backend Developer with experience in developing and maintaining web systems using PHP and Laravel. Experienced in building RESTful APIs and GraphQL APIs for admin systems and Mobile applications. Participated in multiple real-world projects including outsourcing for Japanese clients (education association management, warehouse management) and domestic clients (e-commerce platforms, payment systems, order management).\n\nExperienced with MySQL, Redis and data query optimization, while applying software design principles such as MVC, Service Repository Pattern, OOP and SOLID in system development.",
     "sections": {
       "summary": "Professional Summary",
       "skills": "Technical Skills",
@@ -25,7 +27,8 @@
       "education": "Education",
       "certifications": "Certifications",
       "languages": "Languages",
-      "strengths": "Core Strengths"
+      "strengths": "Core Strengths",
+      "hobbies": "Hobbies & Personality"
     },
     "experience": {
       "position": "PHP Laravel Developer",
@@ -87,6 +90,19 @@
             "Handled business logic for payment features and data synchronization"
           ],
           "techStack": ["TypeScript", "MySQL", "GraphQL"]
+        },
+        {
+          "name": "Warehouse Management System – TOLINEN (Japan)",
+          "period": "10/2025 – 04/2026",
+          "teamSize": "3 members (1 PM, 2 Developers)",
+          "description": "Warehouse management system supporting businesses in tracking and managing import, export and inventory processes. The system helps manage product data, warehouse transaction history and supports controlling import/export operations.",
+          "achievements": [
+            "Maintained and upgraded system based on client requirements",
+            "Developed and improved inventory management features for import, export and stock",
+            "Optimized data queries and business logic processing",
+            "Fixed bugs and improved system performance"
+          ],
+          "techStack": ["CodeIgniter", "MySQL", "JavaScript"]
         }
       ]
     },
@@ -102,18 +118,14 @@
     },
     "languages": [
       {
-        "name": "Vietnamese",
-        "level": "Native"
-      },
-      {
         "name": "English",
-        "level": "Reading & Writing (Technical Documentation)"
-      },
-      {
-        "name": "Japanese",
-        "level": "Basic Communication (Work Experience)"
+        "level": "Reading - comprehension & Writing (Technical Documentation)"
       }
     ],
+    "hobbies": {
+      "sports": "Badminton, Football, Street Workout",
+      "personality": "Friendly, cheerful, approachable"
+    },
     "skillKeywords": {
       "Programming Languages": "PHP, TypeScript, JavaScript",
       "Backend Frameworks": "Laravel, CodeIgniter",
@@ -166,6 +178,11 @@
             "name": "Laravel",
             "description": "Eloquent ORM, Queues, Events, API Resources, Testing",
             "level": 80
+          },
+          {
+            "name": "CodeIgniter",
+            "description": "MVC framework, legacy system maintenance",
+            "level": 55
           },
           {
             "name": "TypeScript",
@@ -285,7 +302,7 @@
           "Supported large-scale recruitment events (Tokyo Hoikuen Fair)",
           "Built online recruitment platform for schools and candidates"
         ],
-        "learned": "Experience working with multiple codebases in parallel, understanding Japanese education systems and direct collaboration with Japanese stakeholders."
+        "learned": "Experience working as outsource with Japanese clients, managing multiple codebases in parallel and understanding Japanese education systems."
       },
       {
         "title": "Order Management System – 3M Advertising Company",
@@ -335,6 +352,22 @@
           "Handled business logic for payment features and data synchronization"
         ],
         "learned": "Experience with TypeScript in production, GraphQL API design patterns, and understanding payment processing workflows and security requirements."
+      },
+      {
+        "title": "Warehouse Management System – TOLINEN (Japan)",
+        "subtitle": "Inventory Import/Export Management System",
+        "complexity": "Medium • 3 members (1 PM, 2 Devs)",
+        "period": "10/2025 – 04/2026",
+        "problem": "Japanese enterprise needed a warehouse system to track import, export and inventory control for goods management.",
+        "solution": "Maintained and upgraded existing warehouse management system, improved inventory features and optimized system performance.",
+        "techStack": ["CodeIgniter", "MySQL", "JavaScript"],
+        "responsibilities": [
+          "Maintained and upgraded system based on Japanese client requirements",
+          "Developed inventory management features for import, export and stock",
+          "Optimized data queries and business logic processing",
+          "Fixed bugs and improved system performance"
+        ],
+        "learned": "Experience working as outsource with Japanese clients, maintaining legacy systems and optimizing warehouse management system performance."
       }
     ]
   },
