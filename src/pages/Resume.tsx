@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Github, Linkedin, Printer } from "lucide-react";
+import { Mail, Github, Phone, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -68,17 +68,17 @@ const Resume = () => {
                 {t.hero.badge}
               </p>
               <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-sm text-muted-foreground print:text-gray-600">
-                <a href={`mailto:${t.cta.yourEmail}`} className="flex items-center gap-1 hover:text-foreground transition-colors">
+                <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground transition-colors">
                   <Mail className="w-3.5 h-3.5" />
                   {t.cta.yourEmail}
                 </a>
+                <a href="tel:0899068281" className="flex items-center gap-1 hover:text-foreground transition-colors">
+                  <Phone className="w-3.5 h-3.5" />
+                  0899068281
+                </a>
                 <a href={t.cta.socialLinks.gitHub.url} className="flex items-center gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
                   <Github className="w-3.5 h-3.5" />
-                  GitHub
-                </a>
-                <a href={t.cta.socialLinks.linkedIn.url} className="flex items-center gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-3.5 h-3.5" />
-                  LinkedIn
+                  github.com/nguyenducdo47
                 </a>
               </div>
             </header>
