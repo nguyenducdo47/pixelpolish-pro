@@ -65,6 +65,18 @@
             "Tích hợp catalog sản phẩm, quản lý kho và xử lý đơn hàng"
           ],
           "techStack": ["Laravel", "Vue.js", "MySQL"]
+        },
+        {
+          "name": "API Thanh toán - Uni-Taxi (Công ty Unipower)",
+          "period": "2024",
+          "description": "Xây dựng hệ thống API thanh toán cho nền tảng gọi xe công nghệ Uni-Taxi của công ty Unipower.",
+          "achievements": [
+            "Thiết kế và triển khai API thanh toán với TypeScript đảm bảo xử lý giao dịch an toàn",
+            "Xây dựng GraphQL API endpoints linh hoạt cho truy vấn và xử lý thanh toán",
+            "Tích hợp cổng thanh toán với theo dõi trạng thái giao dịch real-time",
+            "Tối ưu database MySQL schema cho lượng lớn bản ghi thanh toán"
+          ],
+          "techStack": ["TypeScript", "GraphQL", "MySQL"]
         }
       ]
     },
@@ -264,6 +276,21 @@
           "Tích hợp quản lý sản phẩm và đơn hàng"
         ],
         "learned": "Hiểu rõ mô hình affiliate marketing, kinh nghiệm làm việc với Vue.js và xây dựng hệ thống e-commerce thực tế."
+      },
+      {
+        "title": "API Thanh toán - Uni-Taxi (Công ty Unipower)",
+        "subtitle": "Payment API for Ride-hailing Platform",
+        "complexity": "Complex • Team Project",
+        "problem": "Công ty Unipower cần API thanh toán mạnh mẽ cho nền tảng gọi xe Uni-Taxi để xử lý giao dịch an toàn với quy mô lớn.",
+        "solution": "Xây dựng hệ thống API thanh toán sử dụng TypeScript và GraphQL với MySQL để xử lý giao dịch đáng tin cậy và theo dõi trạng thái real-time.",
+        "techStack": ["TypeScript", "GraphQL", "MySQL"],
+        "responsibilities": [
+          "Thiết kế và triển khai API thanh toán với TypeScript",
+          "Xây dựng GraphQL endpoints cho xử lý thanh toán",
+          "Tích hợp cổng thanh toán với theo dõi giao dịch",
+          "Tối ưu database cho lượng thanh toán lớn"
+        ],
+        "learned": "Kinh nghiệm với TypeScript trong production, thiết kế GraphQL API patterns, và hiểu quy trình xử lý thanh toán cùng yêu cầu bảo mật."
       }
     ]
   },

@@ -65,6 +65,18 @@
             "Integrated product catalog, inventory management and order processing"
           ],
           "techStack": ["Laravel", "Vue.js", "MySQL"]
+        },
+        {
+          "name": "Payment API - Uni-Taxi (Unipower Company)",
+          "period": "2024",
+          "description": "Built payment API system for Uni-Taxi ride-hailing platform developed by Unipower company.",
+          "achievements": [
+            "Designed and implemented payment API with TypeScript for secure transaction processing",
+            "Built GraphQL API endpoints for flexible payment queries and mutations",
+            "Integrated payment gateway with real-time transaction status tracking",
+            "Optimized MySQL database schema for high-volume payment records"
+          ],
+          "techStack": ["TypeScript", "GraphQL", "MySQL"]
         }
       ]
     },
@@ -264,6 +276,21 @@
           "Integrated product and order management"
         ],
         "learned": "Clear understanding of affiliate marketing model, experience with Vue.js and building real-world e-commerce systems."
+      },
+      {
+        "title": "Payment API - Uni-Taxi (Unipower Company)",
+        "subtitle": "Payment API for Ride-hailing Platform",
+        "complexity": "Complex • Team Project",
+        "problem": "Unipower company needed a robust payment API for their Uni-Taxi ride-hailing platform to handle secure transactions at scale.",
+        "solution": "Built a payment API system using TypeScript and GraphQL with MySQL for reliable transaction processing and real-time status tracking.",
+        "techStack": ["TypeScript", "GraphQL", "MySQL"],
+        "responsibilities": [
+          "Designed and implemented payment API with TypeScript",
+          "Built GraphQL endpoints for payment processing",
+          "Integrated payment gateway with transaction tracking",
+          "Optimized database for high-volume payments"
+        ],
+        "learned": "Experience with TypeScript in production, GraphQL API design patterns, and understanding payment processing workflows and security requirements."
       }
     ]
   },
