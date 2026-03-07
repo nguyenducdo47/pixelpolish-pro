@@ -58,7 +58,7 @@
             "Xây dựng hệ thống phân quyền cho các phòng ban",
             "Tối ưu truy vấn dữ liệu và logic xử lý nghiệp vụ"
           ],
-          "techStack": ["Laravel", "MySQL"]
+          "techStack": ["Laravel", "MySQL", "JavaScript"]
         },
         {
           "name": "Nền tảng TMĐT & Affiliate – Công ty Liên Hoa",
