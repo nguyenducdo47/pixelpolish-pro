@@ -118,7 +118,7 @@ const Resume = () => {
               <div className="space-y-1">
                 {Object.entries(generatedSkillKeywords).map(([category, keywords]) => (
                   <div key={category} className="flex text-sm print:text-xs">
-                    <span className="font-semibold w-28 print:w-24 shrink-0">{category}:</span>
+                    <span className="font-semibold w-52 print:w-44 shrink-0">{category}:</span>
                     <span className="text-muted-foreground print:text-gray-700">{keywords}</span>
                   </div>
                 ))}
