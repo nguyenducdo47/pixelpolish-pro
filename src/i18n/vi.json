@@ -7,7 +7,7 @@
     "contact": "Liên hệ"
   },
   "hero": {
-    "badge": "PHP Laravel Developer",
+    "badge": "Web Developer",
     "headline1": "Xin chào, tôi là",
     "headline2": "Nguyễn Đức Độ",
     "headline3": "một Web Developer",
@@ -119,8 +119,8 @@
   },
   "about": {
     "title": "Về tôi",
-    "subtitle": "PHP Laravel Developer với nền tảng vững chắc về backend development",
-    "intro1": "Xin chào! Tôi là một PHP Laravel Developer vừa tốt nghiệp với khoảng 1 năm kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
+    "subtitle": "Web Developer với nền tảng vững chắc về backend development",
+    "intro1": "Xin chào! Tôi là một Web Developer với kinh nghiệm làm việc thực tế. Tôi tập trung phát triển chuyên môn về",
     "laravelHighlight": "PHP Laravel",
     "intro1End": ", với đam mê thiết kế cơ sở dữ liệu và xây dựng API hiệu quả.",
     "intro2": "Trong thời gian ngắn, tôi đã có cơ hội tham gia các dự án thực tế từ e-commerce đến hệ thống quản lý trường học và quản lý đơn hàng. Tôi cũng có kinh nghiệm làm việc trực tiếp với khách hàng Nhật Bản.",
