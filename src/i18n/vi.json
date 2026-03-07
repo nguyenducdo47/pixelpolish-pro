@@ -153,6 +153,16 @@
             "name": "Laravel",
             "description": "Eloquent ORM, Queues, Events, API Resources, Testing",
             "level": 80
+          },
+          {
+            "name": "TypeScript",
+            "description": "Phát triển type-safe, interfaces, generics",
+            "level": 55
+          },
+          {
+            "name": "GraphQL",
+            "description": "API queries, mutations, thiết kế schema",
+            "level": 50
           }
         ]
       },
