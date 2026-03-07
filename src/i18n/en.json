@@ -153,6 +153,16 @@
             "name": "Laravel",
             "description": "Eloquent ORM, Queues, Events, API Resources, Testing",
             "level": 80
+          },
+          {
+            "name": "TypeScript",
+            "description": "Type-safe development, interfaces, generics",
+            "level": 55
+          },
+          {
+            "name": "GraphQL",
+            "description": "API queries, mutations, schema design",
+            "level": 50
           }
         ]
       },
