@@ -22,11 +22,15 @@ import postmanLogo from "@/assets/tech-logos/postman.svg";
 import vscodeLogo from "@/assets/tech-logos/vscode.svg";
 import linuxLogo from "@/assets/tech-logos/linux.svg";
 import nginxLogo from "@/assets/tech-logos/nginx.svg";
+import typescriptLogo from "@/assets/tech-logos/typescript.svg";
+import graphqlLogo from "@/assets/tech-logos/graphql.svg";
 
 // Tech logos mapping
 const techLogos: Record<string, { logo: string; color: string }> = {
   PHP: { logo: phpLogo, color: "#777BB4" },
   Laravel: { logo: laravelLogo, color: "#FF2D20" },
+  TypeScript: { logo: typescriptLogo, color: "#3178C6" },
+  GraphQL: { logo: graphqlLogo, color: "#E10098" },
   MySQL: { logo: mysqlLogo, color: "#4479A1" },
   Redis: { logo: redisLogo, color: "#DC382D" },
   "Blade Template": { logo: laravelLogo, color: "#FF2D20" },
