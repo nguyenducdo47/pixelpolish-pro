@@ -7,7 +7,7 @@
     "contact": "Contact"
   },
   "hero": {
-    "badge": "PHP Laravel Developer",
+    "badge": "Web Developer",
     "headline1": "Hello, I'm",
     "headline2": "Duc Do Nguyen",
     "headline3": "a Web Developer",
@@ -119,8 +119,8 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "PHP Laravel Developer with a solid backend development foundation",
-    "intro1": "Hello! I'm a PHP Laravel Developer recently graduated with about 1 year of practical work experience. I focus on developing expertise in",
+    "subtitle": "Web Developer with a solid backend development foundation",
+    "intro1": "Hello! I'm a Web Developer with practical work experience. I focus on developing expertise in",
     "laravelHighlight": "PHP Laravel",
     "intro1End": ", with a passion for database design and building efficient APIs.",
     "intro2": "In a short time, I've had the opportunity to participate in real projects from e-commerce to school management systems and order management. Each project helps me understand more deeply how to design scalable systems. I've also gained valuable experience working with Japanese clients.",
