@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Github, Phone, Printer } from "lucide-react";
+import { Mail, Github, Phone, Printer, ExternalLink, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -146,9 +146,33 @@ const Resume = () => {
                       <h4 className="text-sm font-semibold">{project.name}</h4>
                       <span className="text-[10px] text-muted-foreground print:text-gray-500">{project.period}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground print:text-gray-600 mt-0.5">
+                    <div className="flex flex-wrap items-center gap-3 mt-0.5 text-[11px] text-muted-foreground print:text-gray-500">
+                      {project.teamSize && (
+                        <span className="flex items-center gap-1">
+                          <Users className="w-3 h-3" />
+                          {project.teamSize}
+                        </span>
+                      )}
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-primary hover:underline print:text-blue-600"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          {project.demoLabel || project.demoUrl}
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground print:text-gray-600 mt-1">
                       {project.description}
                     </p>
+                    {project.modules && (
+                      <p className="text-xs text-muted-foreground print:text-gray-600 mt-0.5 italic">
+                        {project.modules}
+                      </p>
+                    )}
                     <ul className="mt-1.5 space-y-1">
                       {project.achievements.map((achievement: string, i: number) => (
                         <li key={i} className="text-xs text-muted-foreground print:text-gray-700 flex items-start gap-1.5">
@@ -157,7 +181,7 @@ const Resume = () => {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex flex-wrap gap-1 mt-1">
+                    <div className="flex flex-wrap gap-1 mt-1.5">
                       {project.techStack.map((tech: string, i: number) => (
                         <span
                           key={i}

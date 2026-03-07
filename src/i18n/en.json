@@ -33,50 +33,60 @@
       "period": "2024 - Present",
       "projects": [
         {
-          "name": "Order Management System - 3M Advertising Company",
-          "period": "2024",
-          "description": "Built and upgraded order management system for 3M Advertising company, handling full order lifecycle from receiving to delivery.",
+          "name": "Japanese Kindergarten Management System (Minpokyo)",
+          "period": "11/2024 – 05/2026",
+          "teamSize": "10 members (1 PM, 9 Developers – 3 sources)",
+          "demoUrl": "https://minpo.or.jp",
+          "demoLabel": "minpo.or.jp",
+          "description": "Comprehensive management system for Japanese kindergarten association, supporting member school management, training organization, career events and recruitment platform for students and kindergarten teachers.",
+          "modules": "3 main modules: Association & member school management (Laravel), Training & events system (Laravel), Job recruitment platform (Jobcube – PHP custom).",
           "achievements": [
-            "Designed and implemented database schema for complete order lifecycle tracking",
-            "Developed RESTful API for order status management with department-based permissions",
-            "Built analytics dashboard for real-time order monitoring and reporting"
+            "Centralized management of legal entities, member schools, staff and operational data",
+            "Digitized seminar/training workflows (registration, approval, QR Code attendance, materials, surveys)",
+            "Supported large-scale recruitment events (Tokyo Hoikuen Fair) – booth management, candidates, interview scheduling",
+            "Built recruitment platform for schools to post jobs and candidates to apply online"
+          ],
+          "techStack": ["PHP", "Laravel", "MySQL", "JavaScript"]
+        },
+        {
+          "name": "Order Management System – 3M Advertising Company",
+          "period": "09/2025 – 11/2025",
+          "teamSize": "2 members (1 PM, 1 Developer)",
+          "description": "Upgraded invoice management system into company and branch management system, enabling invoice management with department-based permission mechanisms.",
+          "achievements": [
+            "Developed and upgraded invoice management features",
+            "Built department-based permission system",
+            "Optimized data queries and business logic processing"
           ],
           "techStack": ["Laravel", "MySQL"]
         },
         {
-          "name": "Japanese Kindergarten Management System",
-          "period": "2024",
-          "description": "Developed comprehensive management platform for Japanese kindergarten consisting of 3 separate web applications.",
+          "name": "E-commerce & Affiliate Platform – Lien Hoa Company",
+          "period": "11/2025 – 05/2026",
+          "teamSize": "4 members (1 PM, 3 Developers)",
+          "demoUrl": "https://aloa.asia",
+          "demoLabel": "aloa.asia",
+          "description": "E-commerce platform built on Bagisto open-source core, extended with Affiliate Marketing system per client requirements.",
           "achievements": [
-            "Built association management portal with Laravel handling member data and communications",
-            "Developed course management system for curriculum tracking and enrollment",
-            "Implemented recruitment platform using Job Cube for staff hiring workflow",
-            "Collaborated directly with Japanese stakeholders for requirements and feedback"
-          ],
-          "techStack": ["Laravel", "MySQL", "Job Cube"]
-        },
-        {
-          "name": "E-commerce & Affiliate Platform - Lien Hoa Company",
-          "period": "2024",
-          "description": "Developed full-featured e-commerce platform with integrated affiliate marketing system for Lien Hoa company.",
-          "achievements": [
-            "Built responsive frontend interface with Vue.js for product browsing and checkout",
-            "Designed and implemented affiliate marketing system with commission tracking",
-            "Integrated product catalog, inventory management and order processing"
+            "Developed Affiliate Marketing features",
+            "Built commission calculation logic and affiliate campaign management",
+            "Developed APIs and extension modules for the system",
+            "Optimized data processing and system performance"
           ],
           "techStack": ["Laravel", "Vue.js", "MySQL"]
         },
         {
-          "name": "Payment API - Uni-Taxi (Unipower Company)",
-          "period": "2024",
-          "description": "Built payment API system for Uni-Taxi ride-hailing platform developed by Unipower company.",
+          "name": "Payment API – Uni-Taxi (Unipower Company)",
+          "period": "01/2026 – 03/2026",
+          "teamSize": "4 members (1 PM, 3 Developers)",
+          "description": "Payment system for ride-hailing application, supporting transaction processing and real-time data synchronization between Admin system and Mobile apps (User & Driver).",
           "achievements": [
-            "Designed and implemented payment API with TypeScript for secure transaction processing",
-            "Built GraphQL API endpoints for flexible payment queries and mutations",
-            "Integrated payment gateway with real-time transaction status tracking",
-            "Optimized MySQL database schema for high-volume payment records"
+            "Developed GraphQL API for Admin system managing users, drivers and system data",
+            "Built backend service for Mobile applications (User and Driver)",
+            "Designed GraphQL schema and resolvers",
+            "Handled business logic for payment features and data synchronization"
           ],
-          "techStack": ["TypeScript", "GraphQL", "MySQL"]
+          "techStack": ["TypeScript", "MySQL", "GraphQL"]
         }
       ]
     },
