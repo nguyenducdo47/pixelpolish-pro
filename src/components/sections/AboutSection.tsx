@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { User, Zap, BookOpen } from "lucide-react";
+import { User, Zap, BookOpen, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const AboutSection = () => {
   const { t, language } = useLanguage();
   
-  const icons = [User, Zap, BookOpen];
+  const icons = [User, Zap, BookOpen, Globe];
 
   return (
     <section id="about" className="py-16 sm:py-20 md:py-24 relative">
