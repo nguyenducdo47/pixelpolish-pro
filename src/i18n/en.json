@@ -270,59 +270,69 @@
     "learnedLabel": "What I Learned",
     "items": [
       {
-        "title": "Order Management System - 3M Advertising Company",
-        "subtitle": "Order Management System - 3M Advertising Company",
-        "complexity": "Complex • Team Project",
-        "problem": "3M Advertising company needed a professional order management system to track the workflow from receiving, production to delivery.",
-        "solution": "Built and expanded the order management system with status tracking, department-based permissions, and analytics dashboard.",
-        "techStack": ["Laravel", "MySQL"],
+        "title": "Japanese Kindergarten Management System (Minpokyo)",
+        "subtitle": "Kindergarten Association Management Platform",
+        "complexity": "Complex • 10 members (1 PM, 9 Devs)",
+        "period": "11/2024 – 05/2026",
+        "demoUrl": "https://minpo.or.jp",
+        "demoLabel": "minpo.or.jp",
+        "problem": "Japanese kindergarten association needed a comprehensive management system for member schools, training, career events and recruitment.",
+        "solution": "Developed 3 modules: Association & member school management (Laravel), Training & events system (Laravel), Job recruitment platform (Jobcube – PHP custom).",
+        "techStack": ["PHP", "Laravel", "MySQL", "JavaScript"],
         "responsibilities": [
-          "Built and upgraded the order management system",
-          "Designed database schema for order lifecycle",
-          "Developed order status management API"
+          "Centralized management of legal entities, member schools and staff data",
+          "Digitized training workflows (registration, approval, QR Code attendance, materials, surveys)",
+          "Supported large-scale recruitment events (Tokyo Hoikuen Fair)",
+          "Built online recruitment platform for schools and candidates"
         ],
-        "learned": "Deep understanding of real-world order management processes, database transactions and how to extend existing systems."
+        "learned": "Experience working with multiple codebases in parallel, understanding Japanese education systems and direct collaboration with Japanese stakeholders."
       },
       {
-        "title": "Japanese Kindergarten Management System",
-        "subtitle": "Japanese Kindergarten Management System",
-        "complexity": "Complex • Team Project",
-        "problem": "Japanese kindergarten needed a comprehensive management system including association management, courses, and recruitment.",
-        "solution": "Developed 3 separate sources: Association web (Laravel + MySQL), Course web (Laravel + MySQL), and Recruitment web (Job Cube).",
-        "techStack": ["Laravel", "MySQL", "Job Cube"],
+        "title": "Order Management System – 3M Advertising Company",
+        "subtitle": "Invoice & Branch Management System",
+        "complexity": "Medium • 2 members (1 PM, 1 Dev)",
+        "period": "09/2025 – 11/2025",
+        "problem": "3M Advertising needed to upgrade their invoice system into a company and branch management system with department-based permissions.",
+        "solution": "Upgraded invoice management system with department-based permission mechanisms, optimized queries and business logic.",
+        "techStack": ["Laravel", "MySQL", "JavaScript"],
         "responsibilities": [
-          "Developed association management web with Laravel",
-          "Built course management system",
-          "Built recruitment web on Job Cube platform"
+          "Developed and upgraded invoice management features",
+          "Built department-based permission system",
+          "Optimized data queries and business logic processing"
         ],
-        "learned": "Experience working with multiple codebases in parallel, understanding Japanese education systems and third-party platform integration."
+        "learned": "Deep understanding of real-world order management processes, database transactions and extending existing systems."
       },
       {
-        "title": "E-commerce & Affiliate Platform - Lien Hoa Company",
-        "subtitle": "E-commerce & Affiliate Platform - Lien Hoa Company",
-        "complexity": "Complex • Team Project",
+        "title": "E-commerce & Affiliate Platform – Lien Hoa Company",
+        "subtitle": "E-commerce with Affiliate Marketing System",
+        "complexity": "Complex • 4 members (1 PM, 3 Devs)",
+        "period": "11/2025 – 05/2026",
+        "demoUrl": "https://aloa.asia",
+        "demoLabel": "aloa.asia",
         "problem": "Lien Hoa company needed an online sales platform combined with an affiliate system to expand distribution channels.",
-        "solution": "Built an e-commerce website integrated with affiliate marketing system, product and order management.",
+        "solution": "Built e-commerce platform on Bagisto open-source core, extended with Affiliate Marketing system per client requirements.",
         "techStack": ["Laravel", "Vue.js", "MySQL"],
         "responsibilities": [
-          "Developed frontend with Vue.js",
-          "Built affiliate marketing system",
-          "Integrated product and order management"
+          "Developed Affiliate Marketing features",
+          "Built commission calculation logic and affiliate campaign management",
+          "Developed APIs and extension modules for the system",
+          "Optimized data processing and system performance"
         ],
         "learned": "Clear understanding of affiliate marketing model, experience with Vue.js and building real-world e-commerce systems."
       },
       {
-        "title": "Payment API - Uni-Taxi (Unipower Company)",
-        "subtitle": "Payment API for Ride-hailing Platform",
-        "complexity": "Complex • Team Project",
-        "problem": "Unipower company needed a robust payment API for their Uni-Taxi ride-hailing platform to handle secure transactions at scale.",
-        "solution": "Built a payment API system using TypeScript and GraphQL with MySQL for reliable transaction processing and real-time status tracking.",
-        "techStack": ["TypeScript", "GraphQL", "MySQL"],
+        "title": "Payment API – Uni-Taxi (Unipower Company)",
+        "subtitle": "Payment System for Ride-hailing App",
+        "complexity": "Complex • 4 members (1 PM, 3 Devs)",
+        "period": "01/2026 – 03/2026",
+        "problem": "Unipower needed a payment system for ride-hailing app with real-time transaction processing and data sync between Admin and Mobile apps.",
+        "solution": "Built payment API system using TypeScript and GraphQL with MySQL, real-time data sync between Admin and Mobile apps (User & Driver).",
+        "techStack": ["TypeScript", "MySQL", "GraphQL"],
         "responsibilities": [
-          "Designed and implemented payment API with TypeScript",
-          "Built GraphQL endpoints for payment processing",
-          "Integrated payment gateway with transaction tracking",
-          "Optimized database for high-volume payments"
+          "Developed GraphQL API for Admin managing users, drivers and system data",
+          "Built backend service for Mobile applications (User and Driver)",
+          "Designed GraphQL schema and resolvers",
+          "Handled business logic for payment features and data synchronization"
         ],
         "learned": "Experience with TypeScript in production, GraphQL API design patterns, and understanding payment processing workflows and security requirements."
       }
