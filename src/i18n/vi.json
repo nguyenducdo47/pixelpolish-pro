@@ -27,7 +27,7 @@
       "education": "Học vấn",
       "certifications": "Chứng chỉ",
       "languages": "Ngôn ngữ",
-      "strengths": "Thế mạnh cốt lõi",
+      "strengths": "Thế mạnh & Ưu điểm",
       "hobbies": "Sở thích & Tính cách"
     },
     "experience": {
@@ -159,6 +159,10 @@
       {
         "title": "Làm việc đa văn hóa",
         "description": "Kinh nghiệm cộng tác với đối tác Nhật Bản và team quốc tế"
+      },
+      {
+        "title": "Kinh nghiệm Outsource",
+        "description": "Có kinh nghiệm làm việc outsource với khách hàng trong nước và Nhật Bản"
       }
     ]
   },

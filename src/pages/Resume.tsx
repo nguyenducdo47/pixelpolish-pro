@@ -231,7 +231,7 @@ const Resume = () => {
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
                 {resume.sections.strengths}
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 print:gap-0.5">
+              <div className="space-y-1">
                 {t.about.highlights.map((highlight, idx) => (
                   <div key={idx} className="text-sm print:text-xs">
                     <span className="font-semibold">{highlight.title}</span>
