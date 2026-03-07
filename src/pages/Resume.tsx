@@ -68,7 +68,7 @@ const Resume = () => {
       {/* A4 Resume */}
       <div className="min-h-screen bg-muted/30 print:bg-white pt-16 print:pt-0 pb-8 print:pb-0">
         <div className="w-full max-w-[210mm] mx-auto bg-background print:shadow-none shadow-xl">
-          <div className="p-4 sm:p-8 md:p-12 print:p-[15mm] space-y-5 sm:space-y-7 print:space-y-4 text-foreground print:text-black">
+          <div className="p-4 sm:p-8 md:p-12 print:p-[15mm] space-y-5 sm:space-y-7 print:space-y-4 text-foreground print:text-black text-justify">
 
             {/* ===== HEADER ===== */}
             <header className="border-b-2 border-primary print:border-black pb-4 print:pb-3 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-0">
