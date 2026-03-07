@@ -121,7 +121,7 @@
       "Databases": "MySQL, MariaDB, MongoDB",
       "Caching": "Redis",
       "API Development": "RESTful APIs, GraphQL",
-      "DevOps & Tools": "Git, Docker, Nginx, Composer, Postman",
+      "DevOps & Tools": "Git, Docker, Nginx, Composer, Postman, SourceTree, WinSCP",
       "Cloud": "AWS (EC2, S3)",
       "Platforms": "Linux",
       "Architecture & Design Patterns": "MVC, Service Repository Pattern, OOP, SOLID Principles"

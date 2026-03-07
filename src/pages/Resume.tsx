@@ -132,18 +132,12 @@ const Resume = () => {
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-3">
                 {resume.sections.experience}
               </h2>
-              <div className="mb-2">
-                <div className="flex justify-between items-baseline">
-                  <h3 className="text-sm font-bold">{resume.experience.position}</h3>
-                  <span className="text-xs text-muted-foreground print:text-gray-500">{resume.experience.period}</span>
-                </div>
-                <p className="text-xs text-muted-foreground print:text-gray-600 italic">{resume.experience.company}</p>
-              </div>
+              
               <div className="space-y-5 print:space-y-4">
                 {resume.experience.projects.map((project: any, idx: number) => (
                   <div key={idx}>
                     <div className="flex flex-wrap items-baseline justify-between gap-1">
-                      <h4 className="text-sm font-semibold">{project.name}</h4>
+                      <h4 className="text-[13px] font-semibold">{project.name}</h4>
                       <span className="text-[10px] text-muted-foreground print:text-gray-500">{project.period}</span>
                     </div>
                     <div className="flex flex-wrap items-center gap-3 mt-0.5 text-[11px] text-muted-foreground print:text-gray-500">
