@@ -18,7 +18,7 @@
   },
   "resume": {
     "dob": "21/05/2001",
-    "positionPeriod": "2024 – Nay",
+    "positionPeriod": "2024 – Hiện tại",
     "summary": "Lập trình viên Backend với kinh nghiệm phát triển và bảo trì các hệ thống web sử dụng PHP và Laravel. Có kinh nghiệm xây dựng RESTful API và GraphQL API phục vụ cho các hệ thống quản trị và ứng dụng Mobile. Đã tham gia phát triển nhiều dự án thực tế bao gồm outsource cho khách hàng Nhật Bản (hệ thống quản lý hiệp hội giáo dục, hệ thống quản lý kho) và khách hàng trong nước (nền tảng thương mại điện tử, hệ thống thanh toán, quản lý đơn hàng).\n\nCó kinh nghiệm làm việc với MySQL, Redis và tối ưu truy vấn dữ liệu, đồng thời áp dụng các nguyên tắc thiết kế phần mềm như MVC, Service Repository Pattern, OOP và SOLID trong quá trình phát triển hệ thống.",
     "sections": {
       "summary": "Tóm tắt chuyên môn",
