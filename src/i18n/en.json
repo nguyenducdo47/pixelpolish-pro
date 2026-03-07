@@ -105,7 +105,9 @@
       }
     ],
     "skillKeywords": {
-      "Languages": "PHP, TypeScript, JavaScript, HTML5, CSS3, SQL",
+      "Programming": "PHP, TypeScript, JavaScript",
+      "Markup & Styling": "HTML5, CSS3",
+      "Query": "SQL, GraphQL",
       "Frameworks": "Laravel, Vue.js, Bootstrap, TailwindCSS",
       "APIs": "RESTful API, GraphQL",
       "Databases": "MySQL, MariaDB, MongoDB, Redis",
