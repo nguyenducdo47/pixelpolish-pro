@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LazySection from "@/components/LazySection";
@@ -10,10 +11,19 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
 import CTASection from "@/components/sections/CTASection";
 import LanguageTransition from "@/components/LanguageTransition";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { language } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <html lang={language} />
+        <title>Nguyễn Đức Độ | Web Developer Laravel – Portfolio</title>
+        <meta name="description" content="Portfolio của Nguyễn Đức Độ – Backend Developer chuyên PHP Laravel, RESTful API, GraphQL. Kinh nghiệm outsource Nhật Bản & dự án thương mại điện tử." />
+        <link rel="canonical" href="https://pixelpolish-pro.lovable.app/portfolio" />
+      </Helmet>
       <ScrollProgress />
       <Navbar />
       <main>

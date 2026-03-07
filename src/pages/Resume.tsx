@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, Github, Phone, Printer, ExternalLink, Users, Heart, Smile, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,7 @@ import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const Resume = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const resume = t.resume as any;
 
   // Auto-generate skill keywords from portfolio skills categories
@@ -35,6 +36,15 @@ const Resume = () => {
 
   return (
     <>
+      <Helmet>
+        <html lang={language} />
+        <title>Nguyễn Đức Độ | Resume – Web Developer Laravel</title>
+        <meta name="description" content="CV / Resume của Nguyễn Đức Độ – Backend Developer PHP Laravel. Kinh nghiệm xây dựng RESTful API, GraphQL, hệ thống quản lý và thương mại điện tử." />
+        <link rel="canonical" href="https://pixelpolish-pro.lovable.app/resume" />
+        <meta property="og:title" content="Nguyễn Đức Độ | Resume – Web Developer Laravel" />
+        <meta property="og:description" content="CV / Resume của Nguyễn Đức Độ – Backend Developer PHP Laravel." />
+        <meta property="og:url" content="https://pixelpolish-pro.lovable.app/resume" />
+      </Helmet>
       {/* Toolbar - hidden when printing */}
       <div className="print:hidden fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-[210mm] mx-auto px-4 py-3 flex items-center justify-between">
