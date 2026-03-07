@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Layers, Shield, ShoppingCart, CreditCard } from "lucide-react";
+import { Layers, Shield, ShoppingCart, CreditCard, ExternalLink, Calendar } from "lucide-react";
 import Card3D from "@/components/Card3D";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -60,13 +60,30 @@ const ProjectsSection = () => {
                           </div>
                         </div>
                         
-                        <div className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                           <span 
                             className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-secondary text-[10px] sm:text-xs font-medium text-secondary-foreground"
                             style={{ transform: "translateZ(20px)" }}
                           >
                             {project.complexity}
                           </span>
+                          {(project as any).period && (
+                            <span className="flex items-center gap-1 text-[10px] sm:text-xs text-muted-foreground">
+                              <Calendar className="w-3 h-3" />
+                              {(project as any).period}
+                            </span>
+                          )}
+                          {(project as any).demoUrl && (
+                            <a
+                              href={(project as any).demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1 text-[10px] sm:text-xs text-primary hover:underline"
+                            >
+                              <ExternalLink className="w-3 h-3" />
+                              {(project as any).demoLabel}
+                            </a>
+                          )}
                         </div>
                         
                         {/* Tech stack */}

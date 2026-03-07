@@ -270,59 +270,69 @@
     "learnedLabel": "Bài học",
     "items": [
       {
-        "title": "Hệ thống Quản lý Đơn hàng - Công ty Quảng cáo 3M",
-        "subtitle": "Order Management System - 3M Advertising Company",
-        "complexity": "Complex • Team Project",
-        "problem": "Công ty quảng cáo 3M cần hệ thống quản lý đơn hàng chuyên nghiệp để theo dõi quy trình từ tiếp nhận, sản xuất đến giao hàng.",
-        "solution": "Xây dựng và nâng cấp mở rộng hệ thống quản lý đơn hàng với quản lý trạng thái, phân quyền theo bộ phận và dashboard thống kê.",
-        "techStack": ["Laravel", "MySQL"],
+        "title": "Hệ thống Quản lý Trường Mầm non Nhật Bản (Minpokyo)",
+        "subtitle": "Japanese Kindergarten Management System",
+        "complexity": "Complex • 10 người (1 PM, 9 Devs)",
+        "period": "11/2024 – 05/2026",
+        "demoUrl": "https://minpo.or.jp",
+        "demoLabel": "minpo.or.jp",
+        "problem": "Hiệp hội các trường mầm non tại Nhật Bản cần hệ thống quản lý tổng thể hỗ trợ quản lý trường thành viên, đào tạo, sự kiện nghề nghiệp và tuyển dụng.",
+        "solution": "Phát triển hệ thống gồm 3 module: Quản lý hiệp hội & trường thành viên (Laravel), Hệ thống đào tạo & sự kiện (Laravel), Nền tảng tuyển dụng việc làm (Jobcube – PHP custom).",
+        "techStack": ["PHP", "Laravel", "MySQL", "JavaScript"],
         "responsibilities": [
-          "Xây dựng và nâng cấp hệ thống quản lý đơn hàng",
-          "Thiết kế database schema cho order lifecycle",
-          "Phát triển API quản lý trạng thái đơn hàng"
+          "Quản lý tập trung thông tin pháp nhân, trường thành viên, đội ngũ nhân sự",
+          "Số hóa quy trình đào tạo (đăng ký, phê duyệt, điểm danh QR Code, tài liệu, khảo sát)",
+          "Hỗ trợ tổ chức sự kiện tuyển dụng quy mô lớn (Tokyo Hoikuen Fair)",
+          "Xây dựng nền tảng tuyển dụng trực tuyến cho trường và ứng viên"
+        ],
+        "learned": "Kinh nghiệm làm việc với nhiều source code song song, hiểu hệ thống giáo dục Nhật Bản, cộng tác trực tiếp với đối tác Nhật Bản."
+      },
+      {
+        "title": "Hệ thống Quản lý Đơn hàng – Công ty Quảng cáo 3M",
+        "subtitle": "Order Management System – 3M Advertising",
+        "complexity": "Medium • 2 người (1 PM, 1 Dev)",
+        "period": "09/2025 – 11/2025",
+        "problem": "Công ty quảng cáo 3M cần nâng cấp hệ thống quản lý hóa đơn thành hệ thống quản lý công ty và chi nhánh với phân quyền theo bộ phận.",
+        "solution": "Nâng cấp hệ thống quản lý hóa đơn với cơ chế phân quyền theo từng bộ phận, tối ưu truy vấn và logic nghiệp vụ.",
+        "techStack": ["Laravel", "MySQL", "JavaScript"],
+        "responsibilities": [
+          "Phát triển và nâng cấp các chức năng quản lý hóa đơn",
+          "Xây dựng hệ thống phân quyền cho các phòng ban",
+          "Tối ưu truy vấn dữ liệu và logic xử lý nghiệp vụ"
         ],
         "learned": "Hiểu sâu về quy trình quản lý đơn hàng thực tế, database transaction và cách mở rộng hệ thống có sẵn."
       },
       {
-        "title": "Hệ thống Quản lý Trường Mầm non Nhật Bản",
-        "subtitle": "Japanese Kindergarten Management System",
-        "complexity": "Complex • Team Project",
-        "problem": "Trường mầm non Nhật Bản cần hệ thống quản lý toàn diện bao gồm quản lý hiệp hội, khóa học và tuyển dụng.",
-        "solution": "Phát triển 3 source riêng biệt: Web hiệp hội (Laravel + MySQL), Web khóa học (Laravel + MySQL), và Web tuyển dụng (Job Cube).",
-        "techStack": ["Laravel", "MySQL", "Job Cube"],
-        "responsibilities": [
-          "Phát triển web quản lý hiệp hội với Laravel",
-          "Xây dựng hệ thống quản lý khóa học",
-          "Build web tuyển dụng trên nền tảng Job Cube"
-        ],
-        "learned": "Kinh nghiệm làm việc với nhiều source code song song, hiểu về hệ thống giáo dục Nhật Bản và tích hợp nền tảng bên thứ ba."
-      },
-      {
-        "title": "Website Thương mại Điện tử & Affiliate - Liên Hoa",
-        "subtitle": "E-commerce & Affiliate Platform - Lien Hoa Company",
-        "complexity": "Complex • Team Project",
+        "title": "Nền tảng TMĐT & Affiliate – Công ty Liên Hoa",
+        "subtitle": "E-commerce & Affiliate Platform – Lien Hoa",
+        "complexity": "Complex • 4 người (1 PM, 3 Devs)",
+        "period": "11/2025 – 05/2026",
+        "demoUrl": "https://aloa.asia",
+        "demoLabel": "aloa.asia",
         "problem": "Công ty Liên Hoa cần nền tảng bán hàng online kết hợp hệ thống affiliate để mở rộng kênh phân phối.",
-        "solution": "Xây dựng website thương mại điện tử tích hợp hệ thống affiliate marketing, quản lý sản phẩm và đơn hàng.",
+        "solution": "Phát triển nền tảng TMĐT dựa trên core open-source Bagisto, mở rộng thêm hệ thống Affiliate Marketing.",
         "techStack": ["Laravel", "Vue.js", "MySQL"],
         "responsibilities": [
-          "Phát triển frontend với Vue.js",
-          "Xây dựng hệ thống affiliate marketing",
-          "Tích hợp quản lý sản phẩm và đơn hàng"
+          "Phát triển các chức năng Affiliate Marketing",
+          "Xây dựng logic tính hoa hồng và quản lý chiến dịch affiliate",
+          "Phát triển API và module mở rộng cho hệ thống",
+          "Tối ưu xử lý dữ liệu và hiệu năng hệ thống"
         ],
-        "learned": "Hiểu rõ mô hình affiliate marketing, kinh nghiệm làm việc với Vue.js và xây dựng hệ thống e-commerce thực tế."
+        "learned": "Hiểu rõ mô hình affiliate marketing, kinh nghiệm với Vue.js và xây dựng hệ thống e-commerce thực tế."
       },
       {
-        "title": "API Thanh toán - Uni-Taxi (Công ty Unipower)",
-        "subtitle": "Payment API for Ride-hailing Platform",
-        "complexity": "Complex • Team Project",
-        "problem": "Công ty Unipower cần API thanh toán mạnh mẽ cho nền tảng gọi xe Uni-Taxi để xử lý giao dịch an toàn với quy mô lớn.",
-        "solution": "Xây dựng hệ thống API thanh toán sử dụng TypeScript và GraphQL với MySQL để xử lý giao dịch đáng tin cậy và theo dõi trạng thái real-time.",
-        "techStack": ["TypeScript", "GraphQL", "MySQL"],
+        "title": "API Thanh toán – Uni-Taxi (Công ty Unipower)",
+        "subtitle": "Payment API – Uni-Taxi (Unipower)",
+        "complexity": "Complex • 4 người (1 PM, 3 Devs)",
+        "period": "01/2026 – 03/2026",
+        "problem": "Công ty Unipower cần hệ thống thanh toán cho ứng dụng gọi xe, hỗ trợ xử lý giao dịch và đồng bộ dữ liệu real-time giữa Admin và Mobile.",
+        "solution": "Xây dựng hệ thống API thanh toán sử dụng TypeScript và GraphQL với MySQL, đồng bộ dữ liệu real-time giữa Admin và ứng dụng Mobile (User & Driver).",
+        "techStack": ["TypeScript", "MySQL", "GraphQL"],
         "responsibilities": [
-          "Thiết kế và triển khai API thanh toán với TypeScript",
-          "Xây dựng GraphQL endpoints cho xử lý thanh toán",
-          "Tích hợp cổng thanh toán với theo dõi giao dịch",
-          "Tối ưu database cho lượng thanh toán lớn"
+          "Phát triển GraphQL API cho Admin quản lý người dùng, tài xế và dữ liệu hệ thống",
+          "Xây dựng backend service phục vụ ứng dụng Mobile (User và Driver)",
+          "Thiết kế GraphQL schema và resolver",
+          "Xử lý business logic cho chức năng thanh toán và đồng bộ dữ liệu"
         ],
         "learned": "Kinh nghiệm với TypeScript trong production, thiết kế GraphQL API patterns, và hiểu quy trình xử lý thanh toán cùng yêu cầu bảo mật."
       }
