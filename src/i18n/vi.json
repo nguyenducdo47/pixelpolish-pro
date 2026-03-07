@@ -33,50 +33,60 @@
       "period": "2024 - Hiện tại",
       "projects": [
         {
-          "name": "Hệ thống Quản lý Đơn hàng - Công ty Quảng cáo 3M",
-          "period": "2024",
-          "description": "Xây dựng và nâng cấp hệ thống quản lý đơn hàng cho công ty Quảng cáo 3M, xử lý toàn bộ vòng đời đơn hàng từ tiếp nhận đến giao hàng.",
+          "name": "Hệ thống Quản lý Trường Mầm non Nhật Bản (Minpokyo)",
+          "period": "11/2024 – 05/2026",
+          "teamSize": "10 người (1 PM, 9 Developers – chia 3 source)",
+          "demoUrl": "https://minpo.or.jp",
+          "demoLabel": "minpo.or.jp",
+          "description": "Hệ thống quản lý tổng thể cho hiệp hội các trường mầm non tại Nhật Bản, hỗ trợ quản lý trường thành viên, tổ chức đào tạo, sự kiện nghề nghiệp và nền tảng tuyển dụng cho sinh viên và giáo viên mầm non.",
+          "modules": "Gồm 3 module: Quản lý hiệp hội & trường thành viên (Laravel), Hệ thống đào tạo & sự kiện (Laravel), Nền tảng tuyển dụng việc làm (Jobcube – PHP custom).",
           "achievements": [
-            "Thiết kế và triển khai database schema cho theo dõi vòng đời đơn hàng",
-            "Phát triển RESTful API quản lý trạng thái đơn hàng với phân quyền theo bộ phận",
-            "Xây dựng dashboard thống kê để giám sát và báo cáo đơn hàng real-time"
+            "Quản lý tập trung thông tin pháp nhân, trường thành viên, đội ngũ nhân sự và dữ liệu hoạt động",
+            "Số hóa quy trình tổ chức hội thảo/đào tạo (đăng ký, phê duyệt, điểm danh QR Code, tài liệu, khảo sát)",
+            "Hỗ trợ tổ chức sự kiện tuyển dụng quy mô lớn (Tokyo Hoikuen Fair) – quản lý gian hàng, ứng viên, lịch phỏng vấn",
+            "Xây dựng nền tảng tuyển dụng cho trường đăng tin và ứng viên nộp hồ sơ trực tuyến"
+          ],
+          "techStack": ["PHP", "Laravel", "MySQL", "JavaScript"]
+        },
+        {
+          "name": "Hệ thống Quản lý Đơn hàng – Công ty Quảng cáo 3M",
+          "period": "09/2025 – 11/2025",
+          "teamSize": "2 người (1 PM, 1 Developer)",
+          "description": "Nâng cấp hệ thống quản lý hóa đơn thành hệ thống quản lý công ty và chi nhánh, cho phép quản lý hóa đơn với cơ chế phân quyền theo từng bộ phận.",
+          "achievements": [
+            "Phát triển và nâng cấp các chức năng quản lý hóa đơn",
+            "Xây dựng hệ thống phân quyền cho các phòng ban",
+            "Tối ưu truy vấn dữ liệu và logic xử lý nghiệp vụ"
           ],
           "techStack": ["Laravel", "MySQL"]
         },
         {
-          "name": "Hệ thống Quản lý Trường Mầm non Nhật Bản",
-          "period": "2024",
-          "description": "Phát triển nền tảng quản lý toàn diện cho trường mầm non Nhật Bản gồm 3 ứng dụng web riêng biệt.",
+          "name": "Nền tảng TMĐT & Affiliate – Công ty Liên Hoa",
+          "period": "11/2025 – 05/2026",
+          "teamSize": "4 người (1 PM, 3 Developers)",
+          "demoUrl": "https://aloa.asia",
+          "demoLabel": "aloa.asia",
+          "description": "Nền tảng thương mại điện tử phát triển dựa trên core open-source Bagisto và mở rộng thêm hệ thống Affiliate Marketing theo yêu cầu khách hàng.",
           "achievements": [
-            "Xây dựng portal quản lý hiệp hội với Laravel xử lý dữ liệu thành viên và liên lạc",
-            "Phát triển hệ thống quản lý khóa học theo dõi chương trình và đăng ký",
-            "Triển khai nền tảng tuyển dụng sử dụng Job Cube cho quy trình tuyển nhân sự",
-            "Cộng tác trực tiếp với đối tác Nhật Bản về yêu cầu và phản hồi"
-          ],
-          "techStack": ["Laravel", "MySQL", "Job Cube"]
-        },
-        {
-          "name": "Nền tảng TMĐT & Affiliate - Công ty Liên Hoa",
-          "period": "2024",
-          "description": "Phát triển nền tảng thương mại điện tử đầy đủ tính năng tích hợp hệ thống affiliate marketing cho công ty Liên Hoa.",
-          "achievements": [
-            "Xây dựng giao diện frontend responsive với Vue.js cho duyệt sản phẩm và thanh toán",
-            "Thiết kế và triển khai hệ thống affiliate marketing với theo dõi hoa hồng",
-            "Tích hợp catalog sản phẩm, quản lý kho và xử lý đơn hàng"
+            "Phát triển các chức năng Affiliate Marketing",
+            "Xây dựng logic tính hoa hồng và quản lý chiến dịch affiliate",
+            "Phát triển các API và module mở rộng cho hệ thống",
+            "Tối ưu xử lý dữ liệu và hiệu năng hệ thống"
           ],
           "techStack": ["Laravel", "Vue.js", "MySQL"]
         },
         {
-          "name": "API Thanh toán - Uni-Taxi (Công ty Unipower)",
-          "period": "2024",
-          "description": "Xây dựng hệ thống API thanh toán cho nền tảng gọi xe công nghệ Uni-Taxi của công ty Unipower.",
+          "name": "API Thanh toán – Uni-Taxi (Công ty Unipower)",
+          "period": "01/2026 – 03/2026",
+          "teamSize": "4 người (1 PM, 3 Developers)",
+          "description": "Hệ thống thanh toán cho ứng dụng gọi xe, hỗ trợ xử lý giao dịch và đồng bộ dữ liệu theo thời gian thực giữa hệ thống Admin và ứng dụng Mobile (User & Driver).",
           "achievements": [
-            "Thiết kế và triển khai API thanh toán với TypeScript đảm bảo xử lý giao dịch an toàn",
-            "Xây dựng GraphQL API endpoints linh hoạt cho truy vấn và xử lý thanh toán",
-            "Tích hợp cổng thanh toán với theo dõi trạng thái giao dịch real-time",
-            "Tối ưu database MySQL schema cho lượng lớn bản ghi thanh toán"
+            "Phát triển GraphQL API cho hệ thống Admin quản lý người dùng, tài xế và dữ liệu hệ thống",
+            "Xây dựng backend service phục vụ ứng dụng Mobile (User và Driver)",
+            "Thiết kế GraphQL schema và resolver",
+            "Xử lý business logic cho chức năng thanh toán và đồng bộ dữ liệu"
           ],
-          "techStack": ["TypeScript", "GraphQL", "MySQL"]
+          "techStack": ["TypeScript", "MySQL", "GraphQL"]
         }
       ]
     },
