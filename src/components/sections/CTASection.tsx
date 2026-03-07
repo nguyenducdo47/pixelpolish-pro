@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, Facebook, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Facebook, Send } from "lucide-react";
+import CVDownloadDialog from "@/components/CVDownloadDialog";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 

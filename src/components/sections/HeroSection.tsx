@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, Mail, ChevronDown } from "lucide-react";
+import { Mail, ChevronDown } from "lucide-react";
+import CVDownloadDialog from "@/components/CVDownloadDialog";
 import { Button } from "@/components/ui/button";
 import ParticleBackground from "@/components/ParticleBackground";
 import { useLanguage } from "@/contexts/LanguageContext";
