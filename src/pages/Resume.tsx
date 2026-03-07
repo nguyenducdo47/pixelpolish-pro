@@ -67,7 +67,7 @@ const Resume = () => {
               <p className="text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
                 {t.hero.badge}
               </p>
-              <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-sm text-muted-foreground print:text-gray-600">
+              <div className="flex flex-col gap-1 mt-3 text-sm text-muted-foreground print:text-gray-600">
                 <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground transition-colors">
                   <Mail className="w-3.5 h-3.5" />
                   {t.cta.yourEmail}
