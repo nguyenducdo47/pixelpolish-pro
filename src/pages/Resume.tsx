@@ -60,23 +60,25 @@ const Resume = () => {
           <div className="p-8 sm:p-12 print:p-[15mm] space-y-7 print:space-y-4 text-foreground print:text-black">
 
             {/* ===== HEADER ===== */}
-            <header className="border-b-2 border-primary print:border-black pb-4 print:pb-3">
-              <h1 className="text-3xl print:text-2xl font-bold tracking-tight">
-                {t.hero.headline2}
-              </h1>
-              <p className="text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
-                {t.hero.badge}
-              </p>
-              <div className="flex flex-col gap-1 mt-3 text-sm text-muted-foreground print:text-gray-600">
-                <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground transition-colors">
+            <header className="border-b-2 border-primary print:border-black pb-4 print:pb-3 flex justify-between items-start">
+              <div>
+                <h1 className="text-3xl print:text-2xl font-bold tracking-tight">
+                  {t.hero.headline2}
+                </h1>
+                <p className="text-lg print:text-base text-primary print:text-gray-700 font-semibold mt-1">
+                  {t.hero.badge}
+                </p>
+              </div>
+              <div className="flex flex-col gap-1 text-sm text-muted-foreground print:text-gray-600 text-right">
+                <a href={`mailto:${t.cta.yourEmail}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-end gap-1 hover:text-foreground transition-colors">
                   <Mail className="w-3.5 h-3.5" />
                   {t.cta.yourEmail}
                 </a>
-                <a href="tel:0899068281" className="flex items-center gap-1 hover:text-foreground transition-colors">
+                <a href="tel:0899068281" className="flex items-center justify-end gap-1 hover:text-foreground transition-colors">
                   <Phone className="w-3.5 h-3.5" />
                   0899068281
                 </a>
-                <a href={t.cta.socialLinks.gitHub.url} className="flex items-center gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href={t.cta.socialLinks.gitHub.url} className="flex items-center justify-end gap-1 hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
                   <Github className="w-3.5 h-3.5" />
                   github.com/nguyenducdo47
                 </a>
