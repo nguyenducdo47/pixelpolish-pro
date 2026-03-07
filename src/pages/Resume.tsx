@@ -57,7 +57,7 @@ const Resume = () => {
       {/* A4 Resume */}
       <div className="min-h-screen bg-muted/30 print:bg-white pt-16 print:pt-0 pb-8 print:pb-0">
         <div className="w-full max-w-[210mm] mx-auto bg-background print:shadow-none shadow-xl">
-          <div className="p-8 sm:p-12 print:p-[15mm] space-y-5 print:space-y-3 text-foreground print:text-black">
+          <div className="p-8 sm:p-12 print:p-[15mm] space-y-7 print:space-y-4 text-foreground print:text-black">
 
             {/* ===== HEADER ===== */}
             <header className="border-b-2 border-primary print:border-black pb-4 print:pb-3">
@@ -88,7 +88,7 @@ const Resume = () => {
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
                 {resume.sections.summary}
               </h2>
-              <p className="text-sm print:text-xs leading-relaxed text-muted-foreground print:text-gray-700">
+              <p className="text-sm print:text-xs leading-loose text-muted-foreground print:text-gray-700">
                 {resume.summary}
               </p>
             </section>
@@ -115,7 +115,7 @@ const Resume = () => {
               <h2 className="text-base print:text-sm font-bold uppercase tracking-widest border-b border-border print:border-gray-300 pb-1 mb-2">
                 {resume.sections.skills}
               </h2>
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 {Object.entries(generatedSkillKeywords).map(([category, keywords]) => (
                   <div key={category} className="flex text-sm print:text-xs">
                     <span className="font-semibold w-52 print:w-44 shrink-0">{category}:</span>
@@ -137,7 +137,7 @@ const Resume = () => {
                 </div>
                 <p className="text-xs text-muted-foreground print:text-gray-600 italic">{resume.experience.company}</p>
               </div>
-              <div className="space-y-4 print:space-y-3">
+              <div className="space-y-5 print:space-y-4">
                 {resume.experience.projects.map((project: any, idx: number) => (
                   <div key={idx}>
                     <div className="flex flex-wrap items-baseline justify-between gap-1">
@@ -147,7 +147,7 @@ const Resume = () => {
                     <p className="text-xs text-muted-foreground print:text-gray-600 mt-0.5">
                       {project.description}
                     </p>
-                    <ul className="mt-1 space-y-0.5">
+                    <ul className="mt-1.5 space-y-1">
                       {project.achievements.map((achievement: string, i: number) => (
                         <li key={i} className="text-xs text-muted-foreground print:text-gray-700 flex items-start gap-1.5">
                           <span className="mt-0.5 shrink-0">•</span>
