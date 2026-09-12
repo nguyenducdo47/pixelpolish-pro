@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Skills;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Skills\Pages\ManageSkills;
+use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\Skill;
 use App\Models\SkillCategory;
 use BackedEnum;
@@ -54,9 +55,7 @@ class SkillResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('category.name')->label(__('panel.fields.category'))->formatStateUsing(
-                    fn (Skill $record) => $record->category?->localeText('name')
-                ),
+                LocaleTextColumn::make('category.name')->label(__('panel.fields.category')),
                 TextColumn::make('name')->label(__('panel.fields.name'))->searchable(),
                 TextColumn::make('level')->label(__('panel.fields.level')),
             ])

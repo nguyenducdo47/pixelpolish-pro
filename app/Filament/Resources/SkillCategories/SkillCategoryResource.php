@@ -6,6 +6,7 @@ use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\SkillCategories\Pages\ManageSkillCategories;
 use App\Filament\Resources\SkillCategories\RelationManagers\SkillsRelationManager;
+use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\SkillCategory;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -45,7 +46,7 @@ class SkillCategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label(__('panel.fields.name'))->formatStateUsing(fn (SkillCategory $record) => $record->localeText('name')),
+                LocaleTextColumn::make('name')->label(__('panel.fields.name')),
                 TextColumn::make('skills_count')->counts('skills')->label(__('panel.fields.skills')),
                 TextColumn::make('sort_order')->label(__('panel.fields.sort_order')),
             ])

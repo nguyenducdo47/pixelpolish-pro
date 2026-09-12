@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Projects;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Projects\Pages\ManageProjects;
+use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\Project;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -63,7 +64,7 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->label(__('panel.fields.title'))->formatStateUsing(fn (Project $record) => $record->localeText('title')),
+                LocaleTextColumn::make('title')->label(__('panel.fields.title')),
                 TextColumn::make('period')->label(__('panel.fields.period')),
                 IconColumn::make('is_featured')->label(__('panel.fields.featured'))->boolean(),
                 TextColumn::make('sort_order')->label(__('panel.fields.sort_order')),

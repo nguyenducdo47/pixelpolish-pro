@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Education;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Education\Pages\ManageEducation;
+use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\Education;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -47,8 +48,8 @@ class EducationResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('degree')->label(__('panel.fields.degree'))->formatStateUsing(fn (Education $record) => $record->localeText('degree')),
-                TextColumn::make('school')->label(__('panel.fields.school'))->formatStateUsing(fn (Education $record) => $record->localeText('school')),
+                LocaleTextColumn::make('degree')->label(__('panel.fields.degree')),
+                LocaleTextColumn::make('school')->label(__('panel.fields.school')),
                 TextColumn::make('period')->label(__('panel.fields.period')),
             ])
             ->defaultSort('sort_order')

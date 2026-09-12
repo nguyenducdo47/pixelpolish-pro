@@ -5,6 +5,7 @@ namespace App\Filament\Resources\SpokenLanguages;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\SpokenLanguages\Pages\ManageSpokenLanguages;
+use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\SpokenLanguage;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -45,8 +46,8 @@ class SpokenLanguageResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label(__('panel.fields.language'))->formatStateUsing(fn (SpokenLanguage $record) => $record->localeText('name')),
-                TextColumn::make('level')->label(__('panel.fields.level'))->formatStateUsing(fn (SpokenLanguage $record) => $record->localeText('level')),
+                LocaleTextColumn::make('name')->label(__('panel.fields.language')),
+                LocaleTextColumn::make('level')->label(__('panel.fields.level')),
             ])
             ->defaultSort('sort_order')
             ->recordActions([

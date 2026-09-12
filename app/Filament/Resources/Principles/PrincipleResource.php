@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Principles;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Principles\Pages\ManagePrinciples;
+use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\Principle;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -45,8 +46,8 @@ class PrincipleResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->label(__('panel.fields.title'))->formatStateUsing(fn (Principle $record) => $record->localeText('title')),
-                TextColumn::make('description')->label(__('panel.fields.description'))->formatStateUsing(fn (Principle $record) => str($record->localeText('description'))->stripTags()->limit(60))->limit(60),
+                LocaleTextColumn::make('title')->label(__('panel.fields.title')),
+                LocaleTextColumn::make('description')->label(__('panel.fields.description'))->formatStateUsing(fn (?string $state) => str($state)->stripTags()->limit(60))->limit(60),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
