@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ClearCacheController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\WizardAvatarController;
@@ -28,6 +29,7 @@ Route::post('/logout', [LoginController::class, 'destroy'])
     ->name('logout');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/cache/clear', ClearCacheController::class)->name('cache.clear');
     Route::get('/impersonation/enter/{user}', [ImpersonationController::class, 'enter'])
         ->name('impersonation.enter');
     Route::get('/impersonation/leave', [ImpersonationController::class, 'leave'])

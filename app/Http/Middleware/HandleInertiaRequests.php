@@ -45,23 +45,25 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $locale = app()->getLocale();
-        $uiLocale = is_file(lang_path($locale.'/ui.php'))
-            ? $locale
-            : LocaleCatalog::defaultCode();
-
         return [
             ...parent::share($request),
-            'locale' => $locale,
-            'locales' => LocaleCatalog::enabled()->map(fn ($item) => [
+            'locale' => fn (): string => app()->getLocale(),
+            'locales' => fn () => LocaleCatalog::enabled()->map(fn ($item) => [
                 'code' => $item->code,
                 'name' => $item->name,
                 'native_name' => $item->native_name,
             ])->values(),
-            'ui' => trans('ui', [], $uiLocale),
+            'ui' => function (): array {
+                $locale = app()->getLocale();
+                $uiLocale = is_file(lang_path($locale.'/ui.php'))
+                    ? $locale
+                    : LocaleCatalog::defaultCode();
+
+                return trans('ui', [], $uiLocale);
+            },
             'theme' => 'system',
             'status' => $request->session()->get('status'),
-            'auth' => [
+            'auth' => fn (): array => [
                 'user' => $request->user() ? [
                     'name' => $request->user()->name,
                     'username' => $request->user()->username,

@@ -74,7 +74,7 @@ class MailSettingTest extends TestCase
             ->assertSet('data.from_name', 'Portfotilo');
     }
 
-    public function test_admin_dashboard_shows_mail_settings(): void
+    public function test_admin_dashboard_does_not_show_mail_settings_help(): void
     {
         $admin = User::factory()->create([
             'is_admin' => true,
@@ -84,8 +84,8 @@ class MailSettingTest extends TestCase
         $this->actingAs($admin)
             ->get('/admin?locale=vi')
             ->assertOk()
-            ->assertSeeText('Cấu hình mail')
-            ->assertSee('manage-mail', false);
+            ->assertDontSeeText('Log chỉ ghi vào storage/logs')
+            ->assertDontSeeText('SMTP thì gửi email thật');
     }
 
     public function test_mail_settings_are_hidden_from_studio(): void

@@ -219,6 +219,7 @@ return [
         'import_theme' => 'Nhập',
         'export_theme' => 'Xuất',
         'reset_theme' => 'Xóa chỉnh sửa của tôi',
+        'clear_cache' => 'Xóa cache',
     ],
     'notify' => [
         'saved' => 'Đã lưu',
@@ -242,6 +243,66 @@ return [
         'themes_restored' => 'Đã khôi phục theme mặc định',
         'themes_restored_count' => 'Đã thêm :count theme mặc định.',
         'themes_already_present' => 'Các theme mặc định đã có trong danh sách.',
+        'cache_cleared' => 'Đã xóa cache',
+    ],
+    'guide' => [
+        'title' => 'Quy trình tạo portfolio và CV',
+        'description' => 'Bấm từng bước để xem mục cần làm. Mục chưa xong có link đi thẳng tới trang đó.',
+        'start_wizard' => 'Mở trình hướng dẫn',
+        'open' => 'Mở bước này',
+        'go_to' => 'Đi tới',
+        'go_to_step' => 'Mở bước này',
+        'done' => 'Xong',
+        'todo' => 'Chưa làm',
+        'summary' => ':steps_done/:steps_total bước đã hoàn thành, :items_pending/:items_total mục chưa hoàn thành',
+        'step_items' => ':done/:total mục',
+        'preview_site' => 'Xem trang',
+        'preview_cv' => 'Xem CV',
+        'steps' => [
+            'profile' => [
+                'title' => 'Hồ sơ',
+            ],
+            'skills' => [
+                'title' => 'Kỹ năng',
+            ],
+            'projects' => [
+                'title' => 'Dự án',
+            ],
+            'education' => [
+                'title' => 'Học vấn',
+            ],
+            'language' => [
+                'title' => 'Ngoại ngữ',
+            ],
+            'presence' => [
+                'title' => 'Kết nối',
+            ],
+            'appearance' => [
+                'title' => 'Giao diện',
+            ],
+            'cv' => [
+                'title' => 'CV',
+            ],
+            'publish' => [
+                'title' => 'Xem trước',
+            ],
+        ],
+        'items' => [
+            'full_name' => 'Họ tên',
+            'headline' => 'Chức danh',
+            'about' => 'Giới thiệu',
+            'avatar' => 'Ảnh đại diện',
+            'skill_category' => 'Danh mục kỹ năng',
+            'skill' => 'Ít nhất một kỹ năng',
+            'project' => 'Ít nhất một dự án',
+            'education' => 'Học vấn',
+            'language' => 'Ngoại ngữ',
+            'social' => 'Mạng xã hội',
+            'principle' => 'Triết lý',
+            'theme' => 'Chọn theme đang bật',
+            'cv_content' => 'Có nội dung để hiện trên CV',
+            'publish' => 'Xuất bản trang',
+        ],
     ],
     'wizard' => [
         'profile' => 'Hồ sơ',

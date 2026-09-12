@@ -4,7 +4,6 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\ManageMail;
-use App\Filament\Widgets\MailSettingsWidget;
 use App\Http\Middleware\ApplyUiLocale;
 use App\Http\Middleware\AuthenticateAdmin;
 use Filament\Actions\Action;
@@ -46,7 +45,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 AccountWidget::class,
-                MailSettingsWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -69,6 +67,10 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::HEAD_END,
                 fn () => view('partials.ui-locale-script')
+            )
+            ->renderHook(
+                PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
+                fn () => view('filament.clear-cache')
             )
             ->renderHook(
                 PanelsRenderHook::USER_MENU_BEFORE,

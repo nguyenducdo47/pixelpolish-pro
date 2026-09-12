@@ -219,6 +219,7 @@ return [
         'import_theme' => 'Import',
         'export_theme' => 'Export',
         'reset_theme' => 'Reset my changes',
+        'clear_cache' => 'Clear cache',
     ],
     'notify' => [
         'saved' => 'Saved',
@@ -242,6 +243,66 @@ return [
         'themes_restored' => 'Default themes restored',
         'themes_restored_count' => 'Added :count default theme(s).',
         'themes_already_present' => 'The default themes are already in the list.',
+        'cache_cleared' => 'Cache cleared',
+    ],
+    'guide' => [
+        'title' => 'How to create a portfolio and CV',
+        'description' => 'Click a step to see what is left. Unfinished items link straight to the page.',
+        'start_wizard' => 'Open the wizard',
+        'open' => 'Open this step',
+        'go_to' => 'Go',
+        'go_to_step' => 'Open this step',
+        'done' => 'Done',
+        'todo' => 'To do',
+        'summary' => ':steps_done/:steps_total steps completed, :items_pending/:items_total items still open',
+        'step_items' => ':done/:total items',
+        'preview_site' => 'View site',
+        'preview_cv' => 'View CV',
+        'steps' => [
+            'profile' => [
+                'title' => 'Profile',
+            ],
+            'skills' => [
+                'title' => 'Skills',
+            ],
+            'projects' => [
+                'title' => 'Projects',
+            ],
+            'education' => [
+                'title' => 'Education',
+            ],
+            'language' => [
+                'title' => 'Languages',
+            ],
+            'presence' => [
+                'title' => 'Connect',
+            ],
+            'appearance' => [
+                'title' => 'Theme',
+            ],
+            'cv' => [
+                'title' => 'CV',
+            ],
+            'publish' => [
+                'title' => 'Preview',
+            ],
+        ],
+        'items' => [
+            'full_name' => 'Full name',
+            'headline' => 'Headline',
+            'about' => 'About',
+            'avatar' => 'Avatar',
+            'skill_category' => 'Skill category',
+            'skill' => 'At least one skill',
+            'project' => 'At least one project',
+            'education' => 'Education',
+            'language' => 'Spoken language',
+            'social' => 'Social link',
+            'principle' => 'Philosophy',
+            'theme' => 'Choose an enabled theme',
+            'cv_content' => 'Content ready to show on the CV',
+            'publish' => 'Publish the site',
+        ],
     ],
     'wizard' => [
         'profile' => 'Profile',

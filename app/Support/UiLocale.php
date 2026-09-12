@@ -13,6 +13,7 @@ class UiLocale
     public static function applyFromRequest(Request $request): string
     {
         $candidates = [
+            self::pathLocale($request),
             $request->query('locale'),
             $request->session()->get(self::SESSION_KEY),
             'vi',
@@ -65,5 +66,12 @@ class UiLocale
         }
 
         return LocaleCatalog::defaultCode();
+    }
+
+    public static function pathLocale(Request $request): ?string
+    {
+        $segment = strtolower((string) $request->segment(1));
+
+        return LocaleCatalog::isEnabled($segment) ? $segment : null;
     }
 }

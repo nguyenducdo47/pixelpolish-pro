@@ -66,6 +66,10 @@ class StudioPanelProvider extends PanelProvider
                 fn () => view('partials.ui-locale-script')
             )
             ->renderHook(
+                PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
+                fn () => view('filament.clear-cache')
+            )
+            ->renderHook(
                 PanelsRenderHook::USER_MENU_BEFORE,
                 fn () => view('filament.locale-switcher')
             )
