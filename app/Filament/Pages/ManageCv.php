@@ -53,6 +53,7 @@ class ManageCv extends Page
                 Select::make('template')
                     ->label(__('panel.fields.template'))
                     ->options(fn (): array => AppearanceTheme::cvLayoutOptions())
+                    ->native(false)
                     ->required(),
                 Toggle::make('show_avatar')
                     ->label(__('panel.fields.show_avatar'))

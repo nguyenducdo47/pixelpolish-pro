@@ -18,26 +18,32 @@ class ThemeAppearanceFields
             Select::make('layout')
                 ->label(__('panel.fields.theme_layout'))
                 ->options(fn (): array => AppearanceTheme::layoutOptions())
+                ->native(false)
                 ->required(),
             Select::make('hero')
                 ->label(__('panel.fields.theme_hero'))
                 ->options(fn (): array => AppearanceTheme::heroOptions())
+                ->native(false)
                 ->required(),
             Select::make('radius')
                 ->label(__('panel.fields.theme_radius'))
                 ->options(fn (): array => AppearanceTheme::radiusOptions())
+                ->native(false)
                 ->required(),
             Select::make('font')
                 ->label(__('panel.fields.theme_font'))
                 ->options(fn (): array => AppearanceTheme::fontOptions())
+                ->native(false)
                 ->required(),
             Select::make('density')
                 ->label(__('panel.fields.theme_density'))
                 ->options(fn (): array => AppearanceTheme::densityOptions())
+                ->native(false)
                 ->required(),
             Select::make('cv_layout')
                 ->label(__('panel.fields.theme_cv_layout'))
                 ->options(fn (): array => AppearanceTheme::cvLayoutOptions())
+                ->native(false)
                 ->required(),
             Toggle::make('show_particles')
                 ->label(__('panel.fields.theme_particles')),

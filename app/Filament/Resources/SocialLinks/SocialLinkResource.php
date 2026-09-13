@@ -46,6 +46,7 @@ class SocialLinkResource extends Resource
                     'website' => 'Website',
                     'other' => __('panel.fields.other'),
                 ])
+                ->native(false)
                 ->required(),
             TextInput::make('url')->label(__('panel.fields.url'))->url()->required(),
             TextInput::make('sort_order')->label(__('panel.fields.sort_order'))->numeric()->default(0),

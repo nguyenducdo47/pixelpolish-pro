@@ -69,6 +69,7 @@ class ManageMail extends Page
                         'log' => __('panel.fields.mail_mailer_log'),
                         'smtp' => 'SMTP',
                     ])
+                    ->native(false)
                     ->required()
                     ->live()
                     ->helperText(__('panel.fields.mail_mailer_helper')),
@@ -78,6 +79,7 @@ class ManageMail extends Page
                         '' => __('panel.fields.mail_scheme_none'),
                         'smtps' => 'SMTPS (465)',
                     ])
+                    ->native(false)
                     ->helperText(__('panel.fields.mail_scheme_helper')),
                 TextInput::make('host')
                     ->label(__('panel.fields.mail_host'))

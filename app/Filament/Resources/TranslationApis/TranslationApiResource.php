@@ -48,6 +48,7 @@ class TranslationApiResource extends Resource
             Select::make('driver')
                 ->label(__('panel.fields.api_driver'))
                 ->options(fn (): array => TranslationApi::driverOptions())
+                ->native(false)
                 ->required()
                 ->helperText(__('panel.fields.api_driver_helper')),
             Select::make('method')
@@ -56,6 +57,7 @@ class TranslationApiResource extends Resource
                     'GET' => 'GET',
                     'POST' => 'POST',
                 ])
+                ->native(false)
                 ->required()
                 ->default('GET'),
             TextInput::make('url')

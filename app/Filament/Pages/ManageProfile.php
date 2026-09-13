@@ -92,6 +92,7 @@ class ManageProfile extends Page
                     Select::make('default_locale')
                         ->label(__('panel.fields.default_locale'))
                         ->options(fn () => LocaleCatalog::options())
+                        ->native(false)
                         ->required(),
                     Select::make('default_theme')
                         ->label(__('panel.fields.default_theme'))
@@ -99,7 +100,9 @@ class ManageProfile extends Page
                             'system' => __('panel.fields.theme_system'),
                             'light' => __('panel.fields.theme_light'),
                             'dark' => __('panel.fields.theme_dark'),
-                        ])->required(),
+                        ])
+                        ->native(false)
+                        ->required(),
                     TextInput::make('seo_title')->label(__('panel.fields.seo_title')),
                     Textarea::make('seo_description')->label(__('panel.fields.seo_description'))->rows(2),
                 ])->columns(2),

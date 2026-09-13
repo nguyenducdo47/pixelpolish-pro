@@ -172,10 +172,12 @@ class FullEditorPlugin implements RichContentPlugin
                             'auto' => __('panel.fields.translate_auto'),
                             ...LocaleCatalog::options(),
                         ])
+                        ->native(false)
                         ->required(),
                     Select::make('target')
                         ->label(__('panel.fields.translate_target'))
                         ->options(fn (): array => LocaleCatalog::options())
+                        ->native(false)
                         ->required(),
                 ])
                 ->action(function (Action $action, array $arguments, array $data, RichEditor $component, TextTranslator $translator): void {

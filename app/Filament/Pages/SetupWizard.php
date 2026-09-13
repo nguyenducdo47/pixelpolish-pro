@@ -164,6 +164,7 @@ class SetupWizard extends Page
                 Select::make('default_locale')
                     ->label(__('panel.fields.default_locale'))
                     ->options(fn () => LocaleCatalog::options())
+                    ->native(false)
                     ->required(),
                 Select::make('default_theme')
                     ->label(__('panel.fields.default_theme'))
@@ -171,7 +172,9 @@ class SetupWizard extends Page
                         'system' => __('panel.fields.theme_system'),
                         'light' => __('panel.fields.theme_light'),
                         'dark' => __('panel.fields.theme_dark'),
-                    ])->required(),
+                    ])
+                    ->native(false)
+                    ->required(),
                 TextInput::make('seo_title')->label(__('panel.fields.seo_title')),
                 Textarea::make('seo_description')->label(__('panel.fields.seo_description'))->rows(2),
                 TextInput::make('full_name')->label(__('panel.fields.full_name'))->required(),
@@ -341,6 +344,7 @@ class SetupWizard extends Page
                                 'website' => 'Website',
                                 'other' => __('panel.fields.other'),
                             ])
+                            ->native(false)
                             ->required(),
                         TextInput::make('url')->label(__('panel.fields.url'))->url()->required(),
                     ])
@@ -371,6 +375,7 @@ class SetupWizard extends Page
                 Select::make('cv_template')
                     ->label(__('panel.fields.template'))
                     ->options(fn (): array => AppearanceTheme::cvLayoutOptions())
+                    ->native(false)
                     ->required(),
                 Toggle::make('show_avatar')
                     ->label(__('panel.fields.show_avatar'))

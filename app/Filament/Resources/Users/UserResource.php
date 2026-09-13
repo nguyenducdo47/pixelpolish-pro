@@ -76,6 +76,7 @@ class UserResource extends Resource
                 Select::make('default_locale')
                     ->label(__('panel.fields.default_locale'))
                     ->options(fn () => LocaleCatalog::options())
+                    ->native(false)
                     ->default(fn () => LocaleCatalog::defaultCode())
                     ->required()
                     ->dehydrated(),

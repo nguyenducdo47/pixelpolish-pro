@@ -63,6 +63,9 @@ class ManageAppearance extends Page
                     Select::make('theme_id')
                         ->label(__('panel.fields.theme_preset'))
                         ->options(fn (): array => Theme::enabledOptions())
+                        ->searchable()
+                        ->native(false)
+                        ->preload()     
                         ->live()
                         ->afterStateUpdated(function (mixed $state, Set $set): void {
                             if (! is_numeric($state)) {

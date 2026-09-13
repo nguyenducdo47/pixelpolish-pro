@@ -41,6 +41,7 @@ class SkillResource extends Resource
                 ->options(fn () => SkillCategory::query()->get()->mapWithKeys(
                     fn (SkillCategory $category) => [$category->id => $category->localeText('name')]
                 ))
+                ->native(false)
                 ->required(),
             TextInput::make('name')->label(__('panel.fields.name'))->required(),
             TextInput::make('level')->label(__('panel.fields.level'))->numeric()->minValue(0)->maxValue(100)->default(50),
