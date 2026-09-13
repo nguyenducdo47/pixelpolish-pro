@@ -26,6 +26,7 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
+        cors: true,
         host: process.env.VITE_HMR_HOST ? '0.0.0.0' : undefined,
         port: 5173,
         strictPort: true,
