@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use App\Services\PortfolioPresenter;
 use App\Support\LocaleCatalog;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -45,6 +46,15 @@ class PortfolioController extends Controller
     public function cvPdf(string $locale, string $username): SymfonyResponse
     {
         $data = $this->payload($username, $locale);
+
+        if (! empty($data['profile']['avatar'])) {
+            $base64 = $this->avatarToBase64($data['profile']['avatar']);
+
+            if ($base64) {
+                $data['profile']['avatar'] = $base64;
+            }
+        }
+
         $name = $data['profile']['full_name'] ?? $username;
         $filename = Str::slug($name).'-cv-'.$locale.'.pdf';
 
@@ -69,5 +79,26 @@ class PortfolioController extends Controller
         $user = auth()->user();
 
         return $user !== null && ($user->isAdmin() || $user->id === $portfolio->user_id);
+    }
+
+    private function avatarToBase64(string $url): ?string
+    {
+        $path = parse_url($url, PHP_URL_PATH);
+
+        if (! $path || ! str_contains($path, '/storage/')) {
+            return null;
+        }
+
+        $relative = Str::after($path, '/storage/');
+        $disk = Storage::disk('public');
+
+        if (! $disk->exists($relative)) {
+            return null;
+        }
+
+        $contents = $disk->get($relative);
+        $mime = $disk->mimeType($relative) ?? 'image/jpeg';
+
+        return 'data:'.$mime.';base64,'.base64_encode($contents);
     }
 }

@@ -13,7 +13,7 @@ class ManageUsers extends ManageRecords
 
     public function getSubheading(): ?string
     {
-        return 'Tạo tài khoản luôn kèm portfolio trống. User đăng nhập tại /login rồi vào /studio. Chỉ Admin mới vào /admin. Sửa hộ: “Chỉnh portfolio”.';
+        return 'Tạo tài khoản luôn kèm portfolio trống. User đăng nhập tại /login rồi vào /studio. Chỉ Admin mới vào /admin. Sửa hộ: “Chỉnh sửa portfolio”.';
     }
 
     protected function getHeaderActions(): array
