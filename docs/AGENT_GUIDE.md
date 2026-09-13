@@ -2,11 +2,12 @@
 
 ## 1. Read first (every new task)
 
-1. **`docs/README.md`** — index + source-of-truth table  
-2. **`docs/AGENT_GUIDE.md`** (this file)  
-3. **`docs/architecture/overview.md`** — if task touches routing, auth, or panels  
+1. **`docs/AGENT_MAP.md`** — domain + task routing, source of truth pointers, what to skip  
+2. **`docs/AGENT_GUIDE.md`** (this file) — process and constraints  
+3. **`docs/README.md`** — domain index + **Source of Truth** table when you need a canonical file path  
+4. **`docs/architecture/overview.md`** — if task touches routing, auth, or panels  
 
-Then open **one business doc** for the feature area (see §2).
+Then open **one business doc** for the feature area (see §2; full task tables in **AGENT_MAP §3–§4**).
 
 ## 2. Map task → domain
 

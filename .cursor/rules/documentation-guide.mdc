@@ -16,4 +16,4 @@ Rules:
 - Update `docs/README.md` index and Source of Truth table when adding domains.
 - Keep `.cursor/rules/*.mdc` short — link to `docs/`, do not duplicate business docs.
 
-Agent workflow: `docs/AGENT_GUIDE.md`.
+Agent workflow: `docs/AGENT_MAP.md` → `docs/AGENT_GUIDE.md`.

@@ -1,6 +1,6 @@
 # Project Knowledge Base
 
-Portfotilo — Laravel + Inertia/Vue portfolio SaaS. Start here before scanning source.
+Portfotilo — Laravel + Inertia/Vue portfolio SaaS. Human index below; **agents** start with [AGENT_MAP.md](AGENT_MAP.md) then [AGENT_GUIDE.md](AGENT_GUIDE.md).
 
 ## Architecture
 
@@ -48,7 +48,9 @@ Tracked in git under `.cursor/rules/` (folder may look hidden in Explorer; still
 
 ## Agent onboarding
 
-- [AGENT_GUIDE.md](AGENT_GUIDE.md) — read order, domain routing, when to open code
+1. [AGENT_MAP.md](AGENT_MAP.md) — task/domain routing, what to read and skip  
+2. [AGENT_GUIDE.md](AGENT_GUIDE.md) — process, safety, when to open code  
+3. This README — domain index and **Source of Truth** table
 
 ## Source of Truth
 
