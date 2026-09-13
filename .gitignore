@@ -6,7 +6,10 @@
 .phpactor.json
 .phpunit.result.cache
 /.codex
-/.cursor/
+# Cursor local state — except project rules (shared via git)
+/.cursor/*
+!/.cursor/rules/
+!/.cursor/rules/**
 /.idea
 /.nova
 /.phpunit.cache

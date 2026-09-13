@@ -1,0 +1,17 @@
+---
+description: Where to find business rules for app logic
+globs: app/**/*.php
+alwaysApply: false
+---
+
+# Business rules lookup
+
+When changing `app/` PHP:
+
+1. Identify domain via `docs/AGENT_GUIDE.md` §2.
+2. Read that `docs/business/<domain>.md` for rules, edge cases, and **Source of Truth**.
+3. If touching public output, check `app/Services/PortfolioPresenter.php` (single public serializer).
+4. If touching wizard repeaters, check `app/Services/PortfolioWizardSync.php`.
+5. Mark doc gaps `[NEEDS_VERIFICATION]`; propose `docs/` updates when you confirm behavior.
+
+Key constraints: 1 user = 1 portfolio; slug = username; unpublished = 404 except owner/admin; URL locale must be enabled in `locales`.

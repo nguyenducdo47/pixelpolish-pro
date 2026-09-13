@@ -1,0 +1,22 @@
+---
+description: Do not run tests, migrations, or DB commands unless the user asks
+alwaysApply: true
+---
+
+# User-run operational commands
+
+The user runs environment and verification commands themselves so they can follow along.
+
+**Do not execute** (unless the user explicitly asks in the current task):
+
+- Tests: `php artisan test`, `composer test`, PHPUnit/Pest, `npm test`, etc.
+- Database schema/data: `migrate`, `migrate:*`, `db:seed`, `db:wipe`, `schema:dump`, refresh/fresh flows
+- Raw SQL or DB clients: `mysql`, `sqlite3`, `tinker`/`artisan tinker` when used to mutate data or run ad-hoc SQL
+- Other state-changing ops the user did not request: `queue:work` long runs, destructive `docker compose` flags, mass `artisan` that alters DB or deployed state
+
+**Instead:**
+
+- Propose exact commands in the reply (copy-paste ready) and what outcome to expect.
+- Use read-only inspection when needed: read migrations/models, `git diff`, grep, static analysis — without applying DB changes.
+
+If a task truly requires running a command, **ask first** or wait for explicit permission in the user message.

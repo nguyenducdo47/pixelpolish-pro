@@ -1,0 +1,16 @@
+---
+description: Portfotilo knowledge base entry point for agents
+alwaysApply: true
+---
+
+# Project context
+
+This repo is **Portfotilo** (Laravel + Inertia/Vue + Filament portfolio builder).
+
+Before exploring source:
+
+1. Read `docs/README.md` and `docs/AGENT_GUIDE.md`.
+2. Open the matching `docs/business/*.md` for the task domain.
+3. Use the **Source of Truth** table in `docs/README.md` to find canonical PHP files.
+
+Do not assume booking/payment domains — they are not part of this project.

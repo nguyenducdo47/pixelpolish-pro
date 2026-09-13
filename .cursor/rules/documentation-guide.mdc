@@ -1,0 +1,19 @@
+---
+description: How to maintain docs/ knowledge base
+globs: docs/**
+alwaysApply: false
+---
+
+# Documentation guide
+
+Format for new `docs/business/*.md` files: Purpose → Business Rules → Workflow → Data → Source of Truth → Edge Cases → Related Files → Common Mistakes → Verification.
+
+Rules:
+
+- Document **behavior and constraints**, not code dumps.
+- Record **source of truth** when logic exists in multiple places (wizard vs Filament resource vs presenter).
+- Use `[NEEDS_VERIFICATION]` when not confirmed in code/tests.
+- Update `docs/README.md` index and Source of Truth table when adding domains.
+- Keep `.cursor/rules/*.mdc` short — link to `docs/`, do not duplicate business docs.
+
+Agent workflow: `docs/AGENT_GUIDE.md`.
