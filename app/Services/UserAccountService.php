@@ -67,7 +67,7 @@ class UserAccountService
         $user->delete();
     }
 
-    public function restore(User $user, ?User $actor): User
+    public function restore(User $user, ?User $actor, ?string $note = null): User
     {
         $user->restore();
 
@@ -77,7 +77,9 @@ class UserAccountService
             'disabled_at' => null,
         ])->save();
 
-        AccountAuditLogger::log($user, AccountAuditAction::Restored, null, $actor);
+        $note = filled($note) ? trim($note) : null;
+
+        AccountAuditLogger::log($user, AccountAuditAction::Restored, $note, $actor);
 
         return $user->refresh();
     }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Users;
 
 use App\Enums\AccountAuditAction;
+use App\Filament\Concerns\ConfiguresAdminTables;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
@@ -13,7 +14,8 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\RestoreAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -26,6 +28,8 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -34,6 +38,7 @@ use UnitEnum;
 
 class UserResource extends Resource
 {
+    use ConfiguresAdminTables;
     use TranslatesNavigation;
 
     protected static ?string $model = User::class;
@@ -104,24 +109,77 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
+        return static::configureAdminListingTable($table)
             ->modifyQueryUsing(fn ($query) => $query->with('portfolio'))
+            ->defaultSort('name')
             ->columns([
-                TextColumn::make('name')->label(__('panel.fields.full_name'))->searchable(),
-                TextColumn::make('username')->label(__('panel.fields.username'))->searchable()->copyable(),
-                TextColumn::make('email')->label(__('panel.fields.email'))->searchable(),
-                IconColumn::make('is_admin')->boolean()->label(__('panel.fields.admin')),
-                IconColumn::make('is_disabled')->boolean()->label(__('panel.fields.account_disabled')),
+                TextColumn::make('name')->label(__('panel.fields.full_name'))->searchable()->sortable(),
+                TextColumn::make('username')->label(__('panel.fields.username'))->searchable()->copyable()->toggleable(),
+                TextColumn::make('email')->label(__('panel.fields.email'))->searchable()->toggleable(),
+                IconColumn::make('is_admin')->boolean()->label(__('panel.fields.admin'))->toggleable(),
+                IconColumn::make('is_disabled')->boolean()->label(__('panel.fields.account_disabled'))->toggleable(),
                 TextColumn::make('lock_reason')
                     ->label(__('panel.fields.lock_reason'))
                     ->limit(30)
                     ->toggleable(isToggledHiddenByDefault: true),
-                IconColumn::make('portfolio.is_published')->boolean()->label(__('panel.fields.published')),
-                TextColumn::make('portfolio.default_locale')->label(__('panel.fields.locale'))->badge(),
-                TextColumn::make('deleted_at')->label(__('panel.fields.deleted_at'))->dateTime()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('disabled_at')
+                    ->label(__('panel.fields.disabled_at'))
+                    ->dateTime()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('portfolio.is_published')->boolean()->label(__('panel.fields.published'))->toggleable(),
+                TextColumn::make('portfolio.default_locale')->label(__('panel.fields.locale'))->badge()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->label(__('panel.fields.created_at'))->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('deleted_at')->label(__('panel.fields.deleted_at'))->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TrashedFilter::make(),
+                TernaryFilter::make('is_disabled')
+                    ->label(__('panel.fields.account_disabled'))
+                    ->nullable(),
+                TernaryFilter::make('is_admin')
+                    ->label(__('panel.fields.admin'))
+                    ->nullable(),
+                Filter::make('portfolio_published')
+                    ->label(__('panel.fields.portfolio_published'))
+                    ->form([
+                        Select::make('value')
+                            ->label(__('panel.fields.published'))
+                            ->options([
+                                '1' => __('panel.filters.yes'),
+                                '0' => __('panel.filters.no'),
+                            ])
+                            ->native(false),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        $value = $data['value'] ?? null;
+
+                        if ($value === '1') {
+                            return $query->whereHas('portfolio', fn (Builder $portfolio): Builder => $portfolio->where('is_published', true));
+                        }
+
+                        if ($value === '0') {
+                            return $query->where(function (Builder $inner): void {
+                                $inner->whereDoesntHave('portfolio')
+                                    ->orWhereHas('portfolio', fn (Builder $portfolio): Builder => $portfolio->where('is_published', false));
+                            });
+                        }
+
+                        return $query;
+                    }),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    RestoreBulkAction::make()
+                        ->label(__('panel.actions.restore_account'))
+                        ->using(function (\Illuminate\Support\Collection $records, UserAccountService $service): void {
+                            foreach ($records as $record) {
+                                if ($record instanceof User && $record->trashed()) {
+                                    $service->restore($record, auth()->user());
+                                }
+                            }
+                        })
+                        ->successNotificationTitle(__('panel.notify.account_restored')),
+                ]),
             ])
             ->recordActions([
                 Action::make('impersonate')
@@ -192,10 +250,20 @@ class UserResource extends Resource
                         $service->softDelete($record, (string) $data['reason'], auth()->user());
                         Notification::make()->title(__('panel.notify.account_deleted'))->success()->send();
                     }),
-                RestoreAction::make()
+                Action::make('restoreAccount')
+                    ->label(__('panel.actions.restore_account'))
+                    ->icon(Heroicon::OutlinedArrowPath)
+                    ->color('success')
                     ->visible(fn (User $record): bool => $record->trashed())
-                    ->action(function (User $record, UserAccountService $service): void {
-                        $service->restore($record, auth()->user());
+                    ->requiresConfirmation()
+                    ->form([
+                        Textarea::make('note')
+                            ->label(__('panel.fields.restore_note'))
+                            ->maxLength(2000)
+                            ->rows(3),
+                    ])
+                    ->action(function (User $record, array $data, UserAccountService $service): void {
+                        $service->restore($record, auth()->user(), $data['note'] ?? null);
                         Notification::make()->title(__('panel.notify.account_restored'))->success()->send();
                     }),
             ]);

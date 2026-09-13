@@ -212,6 +212,16 @@ return [
         'account_actor' => 'Thực hiện bởi',
         'audit_meta' => 'Dữ liệu bổ sung',
         'ip_address' => 'IP',
+        'restore_note' => 'Ghi chú khôi phục (tuỳ chọn)',
+        'portfolio_published' => 'Portfolio đã xuất bản',
+        'created_at' => 'Ngày tạo',
+        'disabled_at' => 'Vô hiệu hóa lúc',
+    ],
+    'filters' => [
+        'yes' => 'Có',
+        'no' => 'Không',
+        'from' => 'Từ ngày',
+        'until' => 'Đến ngày',
     ],
     'actions' => [
         'save' => 'Lưu',
@@ -234,6 +244,7 @@ return [
         'disable_account' => 'Vô hiệu hóa',
         'enable_account' => 'Kích hoạt lại',
         'soft_delete_account' => 'Xóa tài khoản',
+        'restore_account' => 'Khôi phục tài khoản',
     ],
     'notify' => [
         'saved' => 'Đã lưu',

@@ -212,6 +212,16 @@ return [
         'account_actor' => 'Performed by',
         'audit_meta' => 'Extra data',
         'ip_address' => 'IP',
+        'restore_note' => 'Restore note (optional)',
+        'portfolio_published' => 'Portfolio published',
+        'created_at' => 'Created',
+        'disabled_at' => 'Disabled at',
+    ],
+    'filters' => [
+        'yes' => 'Yes',
+        'no' => 'No',
+        'from' => 'From',
+        'until' => 'Until',
     ],
     'actions' => [
         'save' => 'Save',
@@ -234,6 +244,7 @@ return [
         'disable_account' => 'Disable',
         'enable_account' => 'Re-enable',
         'soft_delete_account' => 'Delete account',
+        'restore_account' => 'Restore account',
     ],
     'notify' => [
         'saved' => 'Saved',

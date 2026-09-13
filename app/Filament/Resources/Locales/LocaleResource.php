@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Locales;
 
+use App\Filament\Concerns\ConfiguresAdminTables;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Resources\Locales\Pages\ManageLocales;
 use App\Models\Locale;
@@ -18,11 +19,13 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use UnitEnum;
 
 class LocaleResource extends Resource
 {
+    use ConfiguresAdminTables;
     use TranslatesNavigation;
 
     protected static ?string $model = Locale::class;
@@ -58,14 +61,18 @@ class LocaleResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
+        return static::configureAdminListingTable($table)
             ->columns([
-                TextColumn::make('code')->label(__('panel.fields.code'))->badge()->searchable(),
-                TextColumn::make('native_name')->label(__('panel.fields.native')),
-                TextColumn::make('name')->label(__('panel.fields.english_name')),
-                IconColumn::make('is_enabled')->label(__('panel.fields.is_enabled'))->boolean(),
-                IconColumn::make('is_default')->label(__('panel.fields.is_default'))->boolean(),
-                TextColumn::make('sort_order')->label(__('panel.fields.sort_order')),
+                TextColumn::make('code')->label(__('panel.fields.code'))->badge()->searchable()->sortable(),
+                TextColumn::make('native_name')->label(__('panel.fields.native'))->searchable()->toggleable(),
+                TextColumn::make('name')->label(__('panel.fields.english_name'))->searchable()->toggleable(),
+                IconColumn::make('is_enabled')->label(__('panel.fields.is_enabled'))->boolean()->toggleable(),
+                IconColumn::make('is_default')->label(__('panel.fields.is_default'))->boolean()->toggleable(),
+                TextColumn::make('sort_order')->label(__('panel.fields.sort_order'))->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                TernaryFilter::make('is_enabled')->label(__('panel.fields.is_enabled'))->nullable(),
+                TernaryFilter::make('is_default')->label(__('panel.fields.is_default'))->nullable(),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')

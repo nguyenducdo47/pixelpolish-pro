@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\TranslationApis;
 
+use App\Filament\Concerns\ConfiguresAdminTables;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Resources\TranslationApis\Pages\ManageTranslationApis;
 use App\Models\TranslationApi;
@@ -19,11 +20,14 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use UnitEnum;
 
 class TranslationApiResource extends Resource
 {
+    use ConfiguresAdminTables;
     use TranslatesNavigation;
 
     protected static ?string $model = TranslationApi::class;
@@ -81,17 +85,24 @@ class TranslationApiResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
+        return static::configureAdminListingTable($table)
             ->columns([
-                TextColumn::make('name')->label(__('panel.fields.api_name'))->searchable(),
+                TextColumn::make('name')->label(__('panel.fields.api_name'))->searchable()->sortable(),
                 TextColumn::make('driver')
                     ->label(__('panel.fields.api_driver'))
                     ->formatStateUsing(fn (string $state): string => TranslationApi::driverOptions()[$state] ?? $state)
-                    ->badge(),
-                TextColumn::make('method')->label(__('panel.fields.api_method')),
-                TextColumn::make('url')->label(__('panel.fields.api_url'))->limit(48),
-                IconColumn::make('is_enabled')->label(__('panel.fields.is_enabled'))->boolean(),
-                TextColumn::make('sort_order')->label(__('panel.fields.sort_order')),
+                    ->badge()
+                    ->toggleable(),
+                TextColumn::make('method')->label(__('panel.fields.api_method'))->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('url')->label(__('panel.fields.api_url'))->limit(48)->toggleable(),
+                IconColumn::make('is_enabled')->label(__('panel.fields.is_enabled'))->boolean()->toggleable(),
+                TextColumn::make('sort_order')->label(__('panel.fields.sort_order'))->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                TernaryFilter::make('is_enabled')->label(__('panel.fields.is_enabled'))->nullable(),
+                SelectFilter::make('driver')
+                    ->label(__('panel.fields.api_driver'))
+                    ->options(TranslationApi::driverOptions()),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')

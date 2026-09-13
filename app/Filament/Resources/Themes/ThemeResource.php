@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Themes;
 
+use App\Filament\Concerns\ConfiguresAdminTables;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\ThemeAppearanceFields;
 use App\Filament\Resources\Themes\Pages\ManageThemes;
@@ -24,12 +25,14 @@ use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use UnitEnum;
 
 class ThemeResource extends Resource
 {
+    use ConfiguresAdminTables;
     use TranslatesNavigation;
 
     protected static ?string $model = Theme::class;
@@ -91,19 +94,23 @@ class ThemeResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
+        return static::configureAdminListingTable($table)
             ->columns([
-                TextColumn::make('name')->label(__('panel.fields.theme_name'))->searchable(),
-                TextColumn::make('slug')->label(__('panel.fields.theme_slug'))->badge(),
-                ColorColumn::make('colors.primary')->label(__('panel.fields.color_primary')),
+                TextColumn::make('name')->label(__('panel.fields.theme_name'))->searchable()->sortable(),
+                TextColumn::make('slug')->label(__('panel.fields.theme_slug'))->badge()->toggleable(),
+                ColorColumn::make('colors.primary')->label(__('panel.fields.color_primary'))->toggleable(isToggledHiddenByDefault: true),
                 ToggleColumn::make('is_enabled')
                     ->label(__('panel.fields.is_enabled'))
                     ->disabled(fn (Theme $record): bool => $record->is_default || ! $record->canBeDisabled())
                     ->tooltip(fn (Theme $record): string => $record->is_default || ! $record->canBeDisabled()
                         ? __('panel.fields.theme_toggle_locked')
                         : __('panel.fields.theme_enabled_helper')),
-                IconColumn::make('is_default')->label(__('panel.fields.is_default'))->boolean(),
-                TextColumn::make('sort_order')->label(__('panel.fields.sort_order')),
+                IconColumn::make('is_default')->label(__('panel.fields.is_default'))->boolean()->toggleable(),
+                TextColumn::make('sort_order')->label(__('panel.fields.sort_order'))->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                TernaryFilter::make('is_enabled')->label(__('panel.fields.is_enabled'))->nullable(),
+                TernaryFilter::make('is_default')->label(__('panel.fields.is_default'))->nullable(),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
