@@ -75,7 +75,7 @@
                 <div class="header-left-inner">
                     @if(!empty($settings['show_avatar']) && !empty($profile['avatar']))
                         <div class="header-avatar">
-                            <img src="{{ $profile['avatar'] }}" width="100" height="100">
+                            <img src="{{ $profile['avatar'] }}" width="100" height="100" loading="lazy">
                         </div>
                     @endif
 

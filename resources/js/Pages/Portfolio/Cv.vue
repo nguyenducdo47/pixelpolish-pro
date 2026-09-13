@@ -65,7 +65,8 @@ function printCv() {
                     <header
                         class="cv-header flex flex-col gap-3 border-b-2 border-primary pb-4 lg:flex-row lg:items-start lg:justify-between print:border-black">
                         <div class="flex min-w-0 items-start gap-4">
-                            <img v-if="settings.show_avatar && profile?.avatar" :src="profile.avatar" alt=""
+                            <img v-if="settings.show_avatar && profile?.avatar" :src="profile.avatar"
+                                :alt="profile.full_name" loading="lazy"
                                 class="h-16 w-16 shrink-0 rounded-full object-cover sm:h-20 sm:w-20 print:h-16 print:w-16" />
                             <div class="min-w-0">
                                 <h1 class="text-2xl font-bold tracking-tight break-words sm:text-3xl print:text-2xl">{{
@@ -178,7 +179,7 @@ function printCv() {
                                 <span class="cv-skill-label font-semibold break-words">{{ category.name }}:</span>
                                 <span class="text-muted-foreground break-words">{{category.skills.map((s) =>
                                     s.name).join(', ')
-                                }}</span>
+                                    }}</span>
                             </div>
                         </div>
                     </section>

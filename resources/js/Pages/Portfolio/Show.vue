@@ -117,6 +117,7 @@ function firstName(name) {
                         <img
                             :src="profile.avatar"
                             :alt="profile.full_name"
+                            loading="lazy"
                             class="h-40 w-40 rounded-2xl border border-border object-cover shadow-card sm:h-48 sm:w-48"
                         />
                     </div>
@@ -166,6 +167,7 @@ function firstName(name) {
                                             v-if="techMeta(skill.name).src"
                                             :src="techMeta(skill.name).src"
                                             :alt="skill.name"
+                                            loading="lazy"
                                             class="h-full w-full object-contain"
                                         />
                                         <span v-else class="text-xs font-bold" :style="{ color: techMeta(skill.name).color }">
