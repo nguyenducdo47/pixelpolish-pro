@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Dashboard;
 use App\Http\Middleware\ApplyUiLocale;
 use App\Http\Middleware\AuthenticateStudio;
+use App\Http\Middleware\EnsureUserIsActive;
 use Filament\Actions\Action;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -56,6 +57,7 @@ class StudioPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
+                EnsureUserIsActive::class,
                 AuthenticateStudio::class,
             ])
             ->userMenuItems([

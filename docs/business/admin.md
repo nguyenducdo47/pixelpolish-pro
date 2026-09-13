@@ -19,6 +19,10 @@ Filament panel at **`/admin`** for platform operators: manage users, locales, th
 - Editing user updates linked portfolio: `slug`, `is_published`, `default_locale`.
 - **Impersonate** action logs admin in as target user, stores `impersonator_id`, redirects Studio home.
 - Nested impersonation blocked (`enter` aborts if already impersonating).
+- **Disable account** (admin): requires `lock_reason`; sets `is_disabled`, unpublishes portfolio; user cannot login / reset password / impersonate.
+- **Soft delete**: delete action requires reason; uses `deleted_at`; restore available via trashed filter.
+- **Audit log**: `account_audit_logs` — actions `registered`, `created`, `disabled`, `enabled`, `soft_deleted`, `restored`; read-only **`AccountAuditLogResource`** at `/admin/account-audit-logs`.
+- Cannot disable/delete self or last admin (same guards as demote admin).
 
 ### Impersonation leave
 

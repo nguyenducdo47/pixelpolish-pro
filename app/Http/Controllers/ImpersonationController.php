@@ -14,6 +14,8 @@ class ImpersonationController extends Controller
         abort_unless(auth()->user()?->isAdmin() === true, 403);
         abort_if(session()->has('impersonator_id'), 403);
 
+        abort_if($user->isDisabled() || $user->trashed(), 403);
+
         if ($user->is(auth()->user())) {
             return redirect(Studio::home());
         }

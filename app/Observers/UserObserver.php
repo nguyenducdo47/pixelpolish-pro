@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Enums\AccountAuditAction;
 use App\Models\User;
+use App\Services\AccountAuditLogger;
 use App\Support\LocaleCatalog;
 use Illuminate\Support\Str;
 
@@ -50,6 +52,8 @@ class UserObserver
         ]);
 
         $portfolio->cvSettings()->create();
+
+        AccountAuditLogger::log($user, AccountAuditAction::Registered);
     }
 
     public function updated(User $user): void

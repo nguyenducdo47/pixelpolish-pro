@@ -1,5 +1,7 @@
 # Agent Guide
 
+Humans writing tasks: see **`docs/PROMPT_GUIDE.md`** (templates for features, bugs, etc.).
+
 ## 1. Read first (every new task)
 
 1. **`docs/AGENT_MAP.md`** — domain + task routing, source of truth pointers, what to skip  

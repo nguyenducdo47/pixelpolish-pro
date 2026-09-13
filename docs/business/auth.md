@@ -10,6 +10,7 @@ Session-based login for Studio/Admin, self-service registration creating a portf
 - **Username** rules: `alpha_dash`, 3–40 chars, unique, reserved slugs blocked, stored lowercase.
 - Password: Laravel `Password::defaults()` + confirmation.
 - On register success: auto-login, session regenerate, redirect **`/studio/setup`** via `Inertia::location(Studio::home())`.
+- **Disabled or soft-deleted** users cannot login (`LoginRequest`), use forgot-password, or stay authenticated (`EnsureUserIsActive` middleware). Message: `auth.account_disabled`.
 - Logout: POST `/logout`, auth middleware.
 - Password reset uses custom `ResetPasswordNotification` with `UiLocale::current()`.
 - Filament admin panel has built-in login route on `/admin`; Studio uses app login at `/login`.

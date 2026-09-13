@@ -6,6 +6,7 @@ use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\ManageMail;
 use App\Http\Middleware\ApplyUiLocale;
 use App\Http\Middleware\AuthenticateAdmin;
+use App\Http\Middleware\EnsureUserIsActive;
 use Filament\Actions\Action;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -59,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
+                EnsureUserIsActive::class,
                 AuthenticateAdmin::class,
             ])
             ->userMenuItems([

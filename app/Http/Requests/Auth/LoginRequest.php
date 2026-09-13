@@ -40,6 +40,16 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        $user = Auth::user();
+
+        if ($user !== null && ($user->isDisabled() || $user->trashed())) {
+            Auth::logout();
+
+            throw ValidationException::withMessages([
+                'email' => __('auth.account_disabled'),
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

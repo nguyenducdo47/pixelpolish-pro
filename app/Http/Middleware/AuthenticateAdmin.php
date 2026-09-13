@@ -23,6 +23,17 @@ class AuthenticateAdmin extends FilamentAuthenticate
         $this->auth->shouldUse(Filament::getAuthGuard());
 
         $user = $guard->user();
+
+        if (method_exists($user, 'isDisabled') && ($user->isDisabled() || $user->trashed())) {
+            $guard->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            throw new HttpResponseException(
+                redirect()->route('login')->with('status', __('auth.account_disabled'))
+            );
+        }
+
         $panel = Filament::getCurrentOrDefaultPanel();
 
         if ($user instanceof FilamentUser && ! $user->canAccessPanel($panel)) {

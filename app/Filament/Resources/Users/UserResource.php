@@ -2,27 +2,34 @@
 
 namespace App\Filament\Resources\Users;
 
+use App\Enums\AccountAuditAction;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
+use App\Services\AccountAuditLogger;
+use App\Services\UserAccountService;
 use App\Support\LocaleCatalog;
 use BackedEnum;
 use Filament\Actions\Action;
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\RestoreAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use UnitEnum;
 
 class UserResource extends Resource
@@ -46,6 +53,13 @@ class UserResource extends Resource
         return auth()->user()?->isAdmin() === true
             && ! session()->has('impersonator_id')
             && Filament::getCurrentPanel()?->getId() === 'admin';
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ]);
     }
 
     public static function form(Schema $schema): Schema
@@ -97,8 +111,17 @@ class UserResource extends Resource
                 TextColumn::make('username')->label(__('panel.fields.username'))->searchable()->copyable(),
                 TextColumn::make('email')->label(__('panel.fields.email'))->searchable(),
                 IconColumn::make('is_admin')->boolean()->label(__('panel.fields.admin')),
+                IconColumn::make('is_disabled')->boolean()->label(__('panel.fields.account_disabled')),
+                TextColumn::make('lock_reason')
+                    ->label(__('panel.fields.lock_reason'))
+                    ->limit(30)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('portfolio.is_published')->boolean()->label(__('panel.fields.published')),
                 TextColumn::make('portfolio.default_locale')->label(__('panel.fields.locale'))->badge(),
+                TextColumn::make('deleted_at')->label(__('panel.fields.deleted_at'))->dateTime()->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                TrashedFilter::make(),
             ])
             ->recordActions([
                 Action::make('impersonate')
@@ -106,7 +129,8 @@ class UserResource extends Resource
                     ->button()
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->color('warning')
-                    ->url(fn (User $record): string => route('impersonation.enter', $record)),
+                    ->url(fn (User $record): string => route('impersonation.enter', $record))
+                    ->visible(fn (User $record): bool => ! $record->trashed() && ! $record->isDisabled()),
                 Action::make('viewPublic')
                     ->label(__('panel.actions.view_site'))
                     ->icon(Heroicon::OutlinedArrowTopRightOnSquare)
@@ -125,14 +149,55 @@ class UserResource extends Resource
 
                         return $data;
                     })
-                    ->using(fn (User $record, array $data): User => static::saveUser($record, $data, isCreate: false)),
+                    ->using(fn (User $record, array $data): User => static::saveUser($record, $data, isCreate: false))
+                    ->visible(fn (User $record): bool => ! $record->trashed()),
+                Action::make('disable')
+                    ->label(__('panel.actions.disable_account'))
+                    ->icon(Heroicon::OutlinedNoSymbol)
+                    ->color('danger')
+                    ->visible(fn (User $record): bool => ! $record->trashed() && ! $record->isDisabled() && ! static::cannotDisableUser($record))
+                    ->form([
+                        Textarea::make('reason')
+                            ->label(__('panel.fields.lock_reason'))
+                            ->required()
+                            ->maxLength(2000)
+                            ->rows(4),
+                    ])
+                    ->action(function (User $record, array $data, UserAccountService $service): void {
+                        $service->disable($record, (string) $data['reason'], auth()->user());
+                        Notification::make()->title(__('panel.notify.account_disabled'))->success()->send();
+                    }),
+                Action::make('enable')
+                    ->label(__('panel.actions.enable_account'))
+                    ->icon(Heroicon::OutlinedCheckCircle)
+                    ->color('success')
+                    ->visible(fn (User $record): bool => ! $record->trashed() && $record->isDisabled() && ! static::cannotDisableUser($record))
+                    ->requiresConfirmation()
+                    ->action(function (User $record, UserAccountService $service): void {
+                        $service->enable($record, auth()->user());
+                        Notification::make()->title(__('panel.notify.account_enabled'))->success()->send();
+                    }),
                 DeleteAction::make()
-                    ->disabled(fn (User $record): bool => static::cannotDeleteUser($record)),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                    ->label(__('panel.actions.soft_delete_account'))
+                    ->visible(fn (User $record): bool => ! $record->trashed())
+                    ->disabled(fn (User $record): bool => static::cannotDeleteUser($record))
+                    ->form([
+                        Textarea::make('reason')
+                            ->label(__('panel.fields.delete_reason'))
+                            ->required()
+                            ->maxLength(2000)
+                            ->rows(4),
+                    ])
+                    ->action(function (User $record, array $data, UserAccountService $service): void {
+                        $service->softDelete($record, (string) $data['reason'], auth()->user());
+                        Notification::make()->title(__('panel.notify.account_deleted'))->success()->send();
+                    }),
+                RestoreAction::make()
+                    ->visible(fn (User $record): bool => $record->trashed())
+                    ->action(function (User $record, UserAccountService $service): void {
+                        $service->restore($record, auth()->user());
+                        Notification::make()->title(__('panel.notify.account_restored'))->success()->send();
+                    }),
             ]);
     }
 
@@ -152,6 +217,7 @@ class UserResource extends Resource
 
         if ($isCreate) {
             $record = User::query()->create($data);
+            AccountAuditLogger::log($record, AccountAuditAction::Created, null, auth()->user());
         } else {
             $record->update($data);
             $record->refresh();
@@ -167,6 +233,11 @@ class UserResource extends Resource
     }
 
     public static function cannotDeleteUser(User $record): bool
+    {
+        return static::cannotDisableUser($record);
+    }
+
+    public static function cannotDisableUser(User $record): bool
     {
         if ($record->getKey() === auth()->id()) {
             return true;

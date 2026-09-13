@@ -48,6 +48,10 @@ Tracked in git under `.cursor/rules/` (folder may look hidden in Explorer; still
 
 ## Agent onboarding
 
+**Người giao việc:** [PROMPT_GUIDE.md](PROMPT_GUIDE.md) — cách viết prompt (feature, bug, …).
+
+**Agent:**
+
 1. [AGENT_MAP.md](AGENT_MAP.md) — task/domain routing, what to read and skip  
 2. [AGENT_GUIDE.md](AGENT_GUIDE.md) — process, safety, when to open code  
 3. This README — domain index and **Source of Truth** table
@@ -67,6 +71,8 @@ Tracked in git under `.cursor/rules/` (folder may look hidden in Explorer; still
 | Machine translation | `app/Services/TextTranslator.php` |
 | HTTP routes | `routes/web.php` |
 | Admin impersonation | `app/Http/Controllers/ImpersonationController.php` |
+| Account disable / soft delete / audit | `app/Services/UserAccountService.php`, `app/Services/AccountAuditLogger.php` |
+| Account audit log (admin UI) | `app/Filament/Resources/AccountAuditLogs/AccountAuditLogResource.php` |
 | Theme catalog DB | `app/Models/Theme.php` + `ThemeResource` |
 | CV section toggles | `app/Models/CvSetting.php` + `ManageCv` / wizard |
 | Mail transport & from address | `app/Models/MailSetting.php` + `ManageMail` |
