@@ -60,6 +60,7 @@ return [
     'auth' => [
         'login_title' => 'Log in',
         'register_title' => 'Create your portfolio',
+        'register_profile_prefix' => 'Industry focus:',
         'name' => 'Full name',
         'username' => 'Username',
         'username_hint' => 'Shown in the page address: /{locale}/{username}',
@@ -76,6 +77,8 @@ return [
         'back_to_login' => 'Back to log in',
         'submit_login' => 'Log in',
         'submit_register' => 'Create account',
+        'marketing_opt_in' => 'Receive product tips and marketing emails',
+        'marketing_opt_in_hint' => 'Optional. Password reset and account emails are always sent when needed.',
         'no_account' => 'No account yet?',
         'has_account' => 'Already have an account?',
         'register' => 'Register',

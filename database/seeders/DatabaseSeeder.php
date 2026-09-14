@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LocaleSeeder::class,
             DemoPortfolioSeeder::class,
+            VerticalDemoSeeder::class,
         ]);
     }
 }

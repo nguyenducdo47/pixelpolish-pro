@@ -2,10 +2,13 @@
 
 namespace App\Filament\Pages;
 
+use App\Enums\ContentProfile;
 use App\Filament\Concerns\TranslatesPage;
+use App\Support\ContentProfileConfig;
 use App\Filament\Forms\LocaleTabs;
 use App\Models\Portfolio;
 use App\Models\Profile;
+use App\Models\UserMailPreference;
 use App\Support\LocaleCatalog;
 use App\Support\UiLocale;
 use App\Support\WizardPendingAvatar;
@@ -47,9 +50,13 @@ class ManageProfile extends Page
         $portfolio = $this->portfolio();
         $profile = $portfolio->profile;
 
+        $user = auth()->user();
+        $pref = UserMailPreference::forUser($user);
+
         $this->form->fill([
             '_locale' => UiLocale::current(),
-            'username' => auth()->user()->username,
+            'username' => $user->username,
+            'marketing_opt_in' => $pref->wantsMarketingEmails(),
             'full_name' => $profile->full_name,
             'email' => $profile->email,
             'phone' => $profile->phone,
@@ -64,6 +71,7 @@ class ManageProfile extends Page
             'is_published' => $portfolio->is_published,
             'default_locale' => $portfolio->default_locale,
             'default_theme' => $portfolio->default_theme,
+            'content_profile' => $portfolio->content_profile?->value ?? ContentProfile::It->value,
             'seo_title' => $portfolio->seo_title,
             'seo_description' => $portfolio->seo_description,
         ]);
@@ -103,9 +111,29 @@ class ManageProfile extends Page
                         ])
                         ->native(false)
                         ->required(),
+                    Select::make('content_profile')
+                        ->label(__('panel.fields.content_profile'))
+                        ->helperText(function (): string {
+                            $slug = ContentProfileConfig::for($this->portfolio())->suggestedThemeSlug();
+                            $base = __('panel.fields.content_profile_helper');
+
+                            if (! $slug) {
+                                return $base;
+                            }
+
+                            return $base.' '.__('panel.fields.content_profile_theme_hint', ['theme' => $slug]);
+                        })
+                        ->options(ContentProfile::options())
+                        ->native(false)
+                        ->required(),
                     TextInput::make('seo_title')->label(__('panel.fields.seo_title')),
                     Textarea::make('seo_description')->label(__('panel.fields.seo_description'))->rows(2),
                 ])->columns(2),
+                Section::make(__('panel.sections.account'))->schema([
+                    Toggle::make('marketing_opt_in')
+                        ->label(__('panel.fields.marketing_opt_in'))
+                        ->helperText(__('panel.fields.marketing_opt_in_helper')),
+                ]),
                 Section::make(__('panel.sections.contact'))->schema([
                     TextInput::make('full_name')->label(__('panel.fields.full_name'))->required(),
                     TextInput::make('email')->label(__('panel.fields.email'))->email(),
@@ -160,11 +188,21 @@ class ManageProfile extends Page
             'name' => $data['full_name'],
         ]);
 
+        $pref = UserMailPreference::forUser($user);
+
+        if ($data['marketing_opt_in'] ?? false) {
+            $pref->optInMarketing();
+        } else {
+            $pref->optOutMarketing();
+        }
+
         $portfolio->update([
             'slug' => $data['username'],
             'is_published' => $data['is_published'],
             'default_locale' => $data['default_locale'],
             'default_theme' => $data['default_theme'],
+            'content_profile' => ContentProfile::tryFrom((string) ($data['content_profile'] ?? ''))
+                ?? ContentProfile::It,
             'seo_title' => $data['seo_title'] ?? null,
             'seo_description' => $data['seo_description'] ?? null,
         ]);
@@ -184,6 +222,11 @@ class ManageProfile extends Page
         ]);
 
         WizardPendingAvatar::forget($portfolio->id, $pendingAvatar);
+
+        $portfolio->refresh();
+        $config = ContentProfileConfig::for($portfolio);
+        $config->applySuggestedThemeIfUnset($portfolio);
+        $config->syncCvSettingsForSections($portfolio);
 
         Notification::make()->title(__('panel.notify.saved'))->success()->send();
     }

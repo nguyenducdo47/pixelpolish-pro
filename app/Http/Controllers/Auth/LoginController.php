@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Support\Studio;
+use App\Enums\ContentProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -15,7 +16,13 @@ class LoginController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render('Auth/Login');
+        $profile = ContentProfile::tryFrom((string) request('profile', ''));
+
+        return Inertia::render('Auth/Login', [
+            'registerUrl' => $profile
+                ? '/register?profile='.$profile->value
+                : '/register',
+        ]);
     }
 
     public function store(LoginRequest $request): SymfonyResponse

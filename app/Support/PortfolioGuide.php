@@ -24,7 +24,9 @@ class PortfolioGuide
      *     items_done: int,
      *     items_pending: int,
      *     items_total: int,
-     *     first_incomplete: string
+     *     first_incomplete: string,
+     *     content_profile: string,
+     *     content_profile_label: string
      * }
      */
     public static function for(Portfolio $portfolio): array
@@ -40,6 +42,7 @@ class PortfolioGuide
             'cvSettings',
         ]);
 
+        $config = ContentProfileConfig::for($portfolio);
         $profile = $portfolio->profile;
         $hasSkill = $portfolio->skillCategories->contains(fn ($category) => $category->skills->isNotEmpty());
         $hasProject = $portfolio->projects->isNotEmpty();
@@ -53,33 +56,60 @@ class PortfolioGuide
                 self::item('about', ManageProfile::getUrl(), $hasAbout),
                 self::item('avatar', ManageProfile::getUrl(), (bool) $profile?->hasAvatar()),
             ]),
-            self::step('skills', SkillCategoryResource::getUrl(), [
-                self::item('skill_category', SkillCategoryResource::getUrl(), $portfolio->skillCategories->isNotEmpty()),
-                self::item('skill', SkillCategoryResource::getUrl(), $hasSkill),
-            ]),
-            self::step('projects', ProjectResource::getUrl(), [
-                self::item('project', ProjectResource::getUrl(), $hasProject),
-            ]),
-            self::step('education', EducationResource::getUrl(), [
-                self::item('education', EducationResource::getUrl(), $hasEducation),
-            ]),
-            self::step('language', SpokenLanguageResource::getUrl(), [
-                self::item('language', SpokenLanguageResource::getUrl(), $portfolio->spokenLanguages->isNotEmpty()),
-            ]),
-            self::step('presence', SocialLinkResource::getUrl(), [
-                self::item('social', SocialLinkResource::getUrl(), $portfolio->socialLinks->isNotEmpty()),
-                self::item('principle', PrincipleResource::getUrl(), $portfolio->principles->isNotEmpty()),
-            ]),
-            self::step('appearance', ManageAppearance::getUrl(), [
-                self::item('theme', ManageAppearance::getUrl(), filled($portfolio->theme_id)),
-            ]),
-            self::step('cv', ManageCv::getUrl(), [
-                self::item('cv_content', ManageCv::getUrl(), $hasAbout || $hasSkill || $hasProject || $hasEducation),
-            ]),
-            self::step('publish', ManageProfile::getUrl(), [
-                self::item('publish', ManageProfile::getUrl(), $portfolio->is_published),
-            ]),
         ];
+
+        if ($config->sectionEnabled('skills')) {
+            $steps[] = self::step(
+                'skills',
+                SkillCategoryResource::getUrl(),
+                [
+                    self::item('skill_category', SkillCategoryResource::getUrl(), $portfolio->skillCategories->isNotEmpty()),
+                    self::item('skill', SkillCategoryResource::getUrl(), $hasSkill),
+                ],
+                $config->panelNavLabel('skills'),
+            );
+        }
+
+        if ($config->sectionEnabled('projects')) {
+            $steps[] = self::step(
+                'projects',
+                ProjectResource::getUrl(),
+                [
+                    self::item('project', ProjectResource::getUrl(), $hasProject),
+                ],
+                $config->panelNavLabel('projects'),
+            );
+        }
+
+        $steps[] = self::step('education', EducationResource::getUrl(), [
+            self::item('education', EducationResource::getUrl(), $hasEducation),
+        ]);
+
+        $steps[] = self::step('language', SpokenLanguageResource::getUrl(), [
+            self::item('language', SpokenLanguageResource::getUrl(), $portfolio->spokenLanguages->isNotEmpty()),
+        ]);
+
+        $presenceItems = [
+            self::item('social', SocialLinkResource::getUrl(), $portfolio->socialLinks->isNotEmpty()),
+        ];
+
+        if ($config->sectionEnabled('philosophy')) {
+            $presenceItems[] = self::item('principle', PrincipleResource::getUrl(), $portfolio->principles->isNotEmpty());
+        }
+
+        $steps[] = self::step('presence', SocialLinkResource::getUrl(), $presenceItems);
+
+        $steps[] = self::step('appearance', ManageAppearance::getUrl(), [
+            self::item('theme', ManageAppearance::getUrl(), filled($portfolio->theme_id)),
+        ]);
+
+        $steps[] = self::step('cv', ManageCv::getUrl(), [
+            self::item('cv_content', ManageCv::getUrl(), $hasAbout || $hasSkill || $hasProject || $hasEducation),
+        ]);
+
+        $steps[] = self::step('publish', ManageProfile::getUrl(), [
+            self::item('publish', ManageProfile::getUrl(), $portfolio->is_published),
+        ]);
 
         $items = collect($steps)->pluck('items')->flatten(1);
         $itemsDone = $items->where('done', true)->count();
@@ -95,6 +125,8 @@ class PortfolioGuide
             'items_pending' => $itemsTotal - $itemsDone,
             'items_total' => $itemsTotal,
             'first_incomplete' => $firstIncomplete,
+            'content_profile' => $portfolio->content_profile?->value ?? 'it',
+            'content_profile_label' => $portfolio->content_profile?->label() ?? '',
         ];
     }
 
@@ -102,11 +134,11 @@ class PortfolioGuide
      * @param  list<array{key: string, label: string, url: string, done: bool}>  $items
      * @return array{key: string, title: string, url: string, done: bool, items: list<array{key: string, label: string, url: string, done: bool}>}
      */
-    protected static function step(string $key, string $url, array $items): array
+    protected static function step(string $key, string $url, array $items, ?string $title = null): array
     {
         return [
             'key' => $key,
-            'title' => __('panel.guide.steps.'.$key.'.title'),
+            'title' => $title ?? __('panel.guide.steps.'.$key.'.title'),
             'url' => $url,
             'done' => $items !== [] && collect($items)->every(fn (array $item): bool => $item['done']),
             'items' => $items,

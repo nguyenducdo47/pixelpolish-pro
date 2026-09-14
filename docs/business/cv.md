@@ -14,13 +14,13 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 - **`show_principles` defaults false** at DB level; wizard defaults match.
 - Presenter sets **`show_avatar` false** when no avatar file exists even if toggle true.
 - PDF filename: `{slug-full-name}-cv-{locale}.pdf`.
-- PDF avatars: HTTP URLs converted to **base64** from `public` disk if under `/storage/` (DomPDF constraint).
+- PDF avatars: HTTP URLs converted to **base64** from `public` disk if under `/storage/` (Dompdf constraint).
 
 ## Workflow
 
 1. `PortfolioController` builds presenter payload (includes `cv.settings`, `cv.url`, `cv.pdf_url`).
 2. **Web CV**: `Portfolio/Cv.vue` picks layout from `appearance.cv_layout` **or** `settings.template`.
-3. **PDF**: Blade `resources/views/cv/pdf.blade.php` uses same `$portfolio` array; layout from `appearance.cv_layout` with fallback to `settings.template`.
+3. **PDF**: `CvPdfExporter` renders `resources/views/cv/pdf.blade.php` via Dompdf (separate HTML/CSS from the Inertia page; tuned for print-like layout).
 
 ## Data
 
@@ -34,7 +34,7 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 - Settings CRUD: `app/Filament/Pages/ManageCv.php`
 - Wizard CV step: `SetupWizard` → `PortfolioWizardSync` (updates `cv_settings` + `AppearanceTheme::syncCvLayout`)
 - Public embedding: `PortfolioPresenter` (`cv` key)
-- PDF generation: `PortfolioController::cvPdf`, `resources/views/cv/pdf.blade.php`
+- PDF generation: `App\Services\CvPdfExporter`, `PortfolioController::cvPdf`, `resources/views/cv/pdf.blade.php`
 
 ## Important Edge Cases
 
@@ -63,7 +63,7 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 |--------|----------------|----------------------------------|
 | Project body | `summary \|\| solution` | `solution ?: summary` |
 | Project extras | subtitle, `tech_stack` chips | no subtitle / tech chips |
-| Layout class | `cv-{layout}` CSS | inline styles; classic centers header |
+| Layout class | `cv-modern`: accent bar, timeline, skill chips · `cv-classic`: serif, centered rules, inline contact · `cv-sidebar`: colored rail |
 | Principles HTML | `HtmlContent` component | raw `{!! !!}` |
 
 Both honor empty sections (toggle on but no content → section hidden).

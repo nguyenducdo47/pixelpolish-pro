@@ -2,6 +2,7 @@
 
 namespace App\Filament\Concerns;
 
+use App\Support\ContentProfileConfig;
 use Filament\Navigation\NavigationItem;
 use UnitEnum;
 
@@ -24,7 +25,7 @@ trait TranslatesNavigation
 
     public static function getNavigationLabel(): string
     {
-        return __(static::$navigationLabel);
+        return ContentProfileConfig::resolvePanelNavLabel(static::$navigationLabel);
     }
 
     public static function getNavigationGroup(): string|UnitEnum|null

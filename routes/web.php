@@ -6,12 +6,17 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ClearCacheController;
 use App\Http\Controllers\ImpersonationController;
+use App\Http\Controllers\MailUnsubscribeController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\WizardAvatarController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PortfolioController::class, 'landing'])->name('home');
+
+Route::get('/mail/unsubscribe/{token}', MailUnsubscribeController::class)
+    ->middleware('signed')
+    ->name('mail.unsubscribe');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

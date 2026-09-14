@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SkillCategories;
 
+use App\Filament\Concerns\RespectsContentProfileSection;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\SkillCategories\Pages\ManageSkillCategories;
@@ -22,7 +23,13 @@ use Filament\Tables\Table;
 
 class SkillCategoryResource extends Resource
 {
+    use RespectsContentProfileSection;
     use TranslatesNavigation;
+
+    protected static function contentProfileSectionKey(): ?string
+    {
+        return 'skills';
+    }
 
     protected static ?string $model = SkillCategory::class;
 

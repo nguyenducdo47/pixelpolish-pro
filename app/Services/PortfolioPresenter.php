@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Portfolio;
+use App\Enums\ContentProfile;
+use App\Support\ContentProfileConfig;
 use App\Support\AppearanceTheme;
 use App\Support\LocaleCatalog;
 use App\Support\WizardPendingAvatar;
@@ -24,10 +26,28 @@ class PortfolioPresenter
 
         $profile = $portfolio->profile;
         $avatar = WizardPendingAvatar::urlFor($portfolio) ?? $profile?->avatarUrl();
+        $contentConfig = ContentProfileConfig::for($portfolio);
+
+        $skillCategories = $contentConfig->sectionEnabled('skills')
+            ? $portfolio->skillCategories
+            : collect();
+
+        $projects = $contentConfig->sectionEnabled('projects')
+            ? $portfolio->projects
+            : collect();
+
+        $principles = $contentConfig->sectionEnabled('philosophy')
+            ? $portfolio->principles
+            : collect();
+
+        $cvSettings = $portfolio->cvSettings;
 
         return [
             'locale' => $locale,
             'username' => $portfolio->slug,
+            'content_profile' => $portfolio->content_profile?->value ?? ContentProfile::It->value,
+            'display' => $contentConfig->toPublicArray(),
+            'ui' => $contentConfig->mergedUi($locale),
             'theme' => $portfolio->default_theme,
             'appearance' => AppearanceTheme::publicFor($portfolio),
             'seo' => [
@@ -51,7 +71,7 @@ class PortfolioPresenter
                 'platform' => $link->platform,
                 'url' => $link->url,
             ])->values(),
-            'skill_categories' => $portfolio->skillCategories->map(fn ($category) => [
+            'skill_categories' => $skillCategories->map(fn ($category) => [
                 'name' => $category->localeText('name', $locale),
                 'skills' => $category->skills->map(fn ($skill) => [
                     'name' => $skill->name,
@@ -59,7 +79,7 @@ class PortfolioPresenter
                     'level' => $skill->level,
                 ])->values(),
             ])->values(),
-            'projects' => $portfolio->projects->map(fn ($project) => [
+            'projects' => $projects->map(fn ($project) => [
                 'title' => $project->localeText('title', $locale),
                 'subtitle' => $project->localeText('subtitle', $locale),
                 'complexity' => $project->localeText('complexity', $locale),
@@ -84,7 +104,7 @@ class PortfolioPresenter
                 'name' => $item->localeText('name', $locale),
                 'level' => $item->localeText('level', $locale),
             ])->values(),
-            'principles' => $portfolio->principles->map(fn ($item) => [
+            'principles' => $principles->map(fn ($item) => [
                 'title' => $item->localeText('title', $locale),
                 'description' => $item->localeHtml('description', $locale),
             ])->values(),
@@ -92,7 +112,7 @@ class PortfolioPresenter
                 'url' => route('portfolio.cv', ['locale' => $locale, 'username' => $portfolio->slug]),
                 'pdf_url' => route('portfolio.cv.pdf', ['locale' => $locale, 'username' => $portfolio->slug]),
                 'settings' => [
-                    ...($portfolio->cvSettings?->only([
+                    ...($cvSettings?->only([
                         'template',
                         'show_about',
                         'show_skills',
@@ -101,7 +121,10 @@ class PortfolioPresenter
                         'show_languages',
                         'show_principles',
                     ]) ?? []),
-                    'show_avatar' => (bool) (($portfolio->cvSettings?->show_avatar ?? true) && $avatar),
+                    'show_skills' => (bool) (($cvSettings?->show_skills ?? true) && $contentConfig->sectionEnabled('skills')),
+                    'show_projects' => (bool) (($cvSettings?->show_projects ?? true) && $contentConfig->sectionEnabled('projects')),
+                    'show_principles' => (bool) (($cvSettings?->show_principles ?? false) && $contentConfig->sectionEnabled('philosophy')),
+                    'show_avatar' => (bool) (($cvSettings?->show_avatar ?? true) && $avatar),
                 ],
             ],
             'available_locales' => LocaleCatalog::enabled()->map(fn ($item) => [

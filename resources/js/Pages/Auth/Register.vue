@@ -3,6 +3,11 @@ import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import PublicLayout from '../../Layouts/PublicLayout.vue';
 import { computed } from 'vue';
 
+const props = defineProps({
+    initialProfile: String,
+    registerProfile: Object,
+});
+
 const page = usePage();
 const ui = computed(() => page.props.ui?.auth || {});
 
@@ -12,6 +17,8 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    content_profile: props.initialProfile || '',
+    marketing_opt_in: false,
 });
 
 function submit() {
@@ -25,6 +32,12 @@ function submit() {
         <section class="container-page flex min-h-[70vh] items-center py-16">
             <form class="mx-auto w-full max-w-md space-y-4" @submit.prevent="submit">
                 <h1 class="text-2xl font-semibold tracking-tight">{{ ui.register_title }}</h1>
+                <p
+                    v-if="registerProfile?.label"
+                    class="rounded-lg border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground"
+                >
+                    {{ ui.register_profile_prefix }} <span class="font-medium text-foreground">{{ registerProfile.label }}</span>
+                </p>
                 <label class="block text-sm">
                     <span class="font-medium">{{ ui.name }}</span>
                     <input
@@ -70,6 +83,17 @@ function submit() {
                     />
                     <p v-if="form.errors.password" class="mt-1 text-sm text-red-600">{{ form.errors.password }}</p>
                 </label>
+                <label class="flex items-start gap-2 text-sm">
+                    <input
+                        v-model="form.marketing_opt_in"
+                        type="checkbox"
+                        class="mt-1 rounded border-border"
+                    />
+                    <span>
+                        <span class="font-medium">{{ ui.marketing_opt_in }}</span>
+                        <span class="mt-1 block text-xs text-muted-foreground">{{ ui.marketing_opt_in_hint }}</span>
+                    </span>
+                </label>
                 <label class="block text-sm">
                     <span class="font-medium">{{ ui.password_confirmation }}</span>
                     <input
@@ -89,7 +113,7 @@ function submit() {
                 </button>
                 <p class="text-sm text-muted-foreground">
                     {{ ui.has_account }}
-                    <Link href="/login" class="form-link">{{ ui.login }}</Link>
+                    <Link :href="initialProfile ? `/login?profile=${initialProfile}` : '/login'" class="form-link">{{ ui.login }}</Link>
                 </p>
             </form>
         </section>

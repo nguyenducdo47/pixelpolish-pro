@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ContentProfile;
 use App\Models\User;
+use App\Support\ContentProfileConfig;
 use Illuminate\Database\Seeder;
 
 class DemoPortfolioSeeder extends Seeder
@@ -29,6 +31,7 @@ class DemoPortfolioSeeder extends Seeder
 
         $portfolio->update([
             'slug' => 'nguyenducdo',
+            'content_profile' => ContentProfile::It,
             'is_published' => true,
             'default_locale' => 'vi',
             'default_theme' => 'system',
@@ -146,5 +149,7 @@ class DemoPortfolioSeeder extends Seeder
                 'sort_order' => $index,
             ]);
         }
+
+        ContentProfileConfig::forProfile(ContentProfile::It)->applySuggestedThemeIfUnset($portfolio->fresh());
     }
 }

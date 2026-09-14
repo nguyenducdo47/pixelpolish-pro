@@ -60,6 +60,7 @@ return [
     'auth' => [
         'login_title' => 'Đăng nhập',
         'register_title' => 'Tạo portfolio của bạn',
+        'register_profile_prefix' => 'Lĩnh vực:',
         'name' => 'Họ tên',
         'username' => 'Tên người dùng',
         'username_hint' => 'Hiện trên địa chỉ trang: /{locale}/{username}',
@@ -76,6 +77,8 @@ return [
         'back_to_login' => 'Quay lại đăng nhập',
         'submit_login' => 'Đăng nhập',
         'submit_register' => 'Tạo tài khoản',
+        'marketing_opt_in' => 'Nhận email giới thiệu sản phẩm và marketing',
+        'marketing_opt_in_hint' => 'Tùy chọn. Email quên mật khẩu và email tài khoản vẫn được gửi khi cần.',
         'no_account' => 'Chưa có tài khoản?',
         'has_account' => 'Đã có tài khoản?',
         'register' => 'Đăng ký',

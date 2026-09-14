@@ -4,8 +4,10 @@ namespace App\Observers;
 
 use App\Enums\AccountAuditAction;
 use App\Models\User;
+use App\Enums\ContentProfile;
 use App\Services\AccountAuditLogger;
 use App\Support\LocaleCatalog;
+use App\Support\ContentProfileConfig;
 use Illuminate\Support\Str;
 
 class UserObserver
@@ -40,6 +42,7 @@ class UserObserver
             'is_published' => false,
             'default_locale' => LocaleCatalog::defaultCode(),
             'default_theme' => 'system',
+            'content_profile' => ContentProfile::General,
         ]);
 
         $portfolio->profile()->create([
@@ -52,6 +55,8 @@ class UserObserver
         ]);
 
         $portfolio->cvSettings()->create();
+
+        ContentProfileConfig::forProfile(ContentProfile::General)->applySuggestedThemeIfUnset($portfolio);
 
         AccountAuditLogger::log($user, AccountAuditAction::Registered);
     }

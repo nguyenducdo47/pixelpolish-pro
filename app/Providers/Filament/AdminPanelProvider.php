@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\ManageMail;
+use App\Filament\Resources\UserInboxMessages\UserInboxMessageResource;
 use App\Http\Middleware\ApplyUiLocale;
 use App\Http\Middleware\AuthenticateAdmin;
 use App\Http\Middleware\EnsureUserIsActive;
@@ -14,6 +15,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -64,6 +66,15 @@ class AdminPanelProvider extends PanelProvider
                 AuthenticateAdmin::class,
             ])
             ->userMenuItems([
+                'inbox' => fn (): Action => Action::make('inbox')
+                    ->label(fn (): string => __('panel.inbox.title'))
+                    ->icon(Heroicon::OutlinedBell)
+                    ->url(fn (): string => UserInboxMessageResource::getUrl('index'))
+                    ->badge(fn (): ?string => ($count = auth()->user()?->unreadInboxCount() ?? 0) > 0
+                        ? (string) ($count > 99 ? '99+' : $count)
+                        : null)
+                    ->badgeColor('danger')
+                    ->sort(-10),
                 'logout' => fn (Action $action): Action => $action->label(fn (): string => __('panel.nav.logout')),
             ])
             ->renderHook(
@@ -77,6 +88,10 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::USER_MENU_BEFORE,
                 fn () => view('filament.locale-switcher')
+            )
+            ->renderHook(
+                PanelsRenderHook::USER_MENU_BEFORE,
+                fn () => view('filament.inbox-bell')
             )
             ->renderHook(
                 PanelsRenderHook::BODY_START,

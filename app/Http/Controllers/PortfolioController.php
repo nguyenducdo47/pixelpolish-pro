@@ -2,34 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ContentProfile;
 use App\Models\Portfolio;
+use App\Services\CvPdfExporter;
 use App\Services\PortfolioPresenter;
+use App\Support\ContentProfileLanding;
 use App\Support\LocaleCatalog;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class PortfolioController extends Controller
 {
-    public function __construct(private PortfolioPresenter $presenter) {}
+    public function __construct(
+        private PortfolioPresenter $presenter,
+        private CvPdfExporter $cvPdfExporter,
+    ) {}
 
     public function landing(): InertiaResponse
     {
-        $demo = Portfolio::query()
-            ->where('slug', 'nguyenducdo')
-            ->where('is_published', true)
-            ->first();
+        $locale = app()->getLocale();
+        $requested = request()->query('profile', ContentProfile::General->value);
+        $active = ContentProfile::tryFrom((string) $requested) ?? ContentProfile::General;
+        $options = ContentProfileLanding::profileOptions($locale);
+        $activeOption = collect($options)->firstWhere('key', $active->value) ?? ($options[0] ?? null);
 
         return Inertia::render('Landing', [
-            'demoUrl' => $demo
-                ? route('portfolio.show', [
-                    'locale' => $demo->default_locale ?: LocaleCatalog::defaultCode(),
-                    'username' => $demo->slug,
-                ])
-                : null,
+            'activeProfile' => $active->value,
+            'profileOptions' => $options,
+            'demoUrl' => $activeOption['demo_url'] ?? null,
         ]);
     }
 
@@ -47,20 +48,7 @@ class PortfolioController extends Controller
     {
         $data = $this->payload($username, $locale);
 
-        if (! empty($data['profile']['avatar'])) {
-            $base64 = $this->avatarToBase64($data['profile']['avatar']);
-
-            if ($base64) {
-                $data['profile']['avatar'] = $base64;
-            }
-        }
-
-        $name = $data['profile']['full_name'] ?? $username;
-        $filename = Str::slug($name).'-cv-'.$locale.'.pdf';
-
-        return Pdf::loadView('cv.pdf', ['portfolio' => $data])
-            ->setPaper('a4')
-            ->download($filename);
+        return $this->cvPdfExporter->download($data, $username, $locale);
     }
 
     private function payload(string $username, string $locale): array
@@ -79,26 +67,5 @@ class PortfolioController extends Controller
         $user = auth()->user();
 
         return $user !== null && ($user->isAdmin() || $user->id === $portfolio->user_id);
-    }
-
-    private function avatarToBase64(string $url): ?string
-    {
-        $path = parse_url($url, PHP_URL_PATH);
-
-        if (! $path || ! str_contains($path, '/storage/')) {
-            return null;
-        }
-
-        $relative = Str::after($path, '/storage/');
-        $disk = Storage::disk('public');
-
-        if (! $disk->exists($relative)) {
-            return null;
-        }
-
-        $contents = $disk->get($relative);
-        $mime = $disk->mimeType($relative) ?? 'image/jpeg';
-
-        return 'data:'.$mime.';base64,'.base64_encode($contents);
     }
 }

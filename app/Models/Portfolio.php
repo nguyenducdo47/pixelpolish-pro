@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ContentProfile;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,7 @@ class Portfolio extends Model
         'is_published',
         'default_locale',
         'default_theme',
+        'content_profile',
         'theme_id',
         'appearance',
         'seo_title',
@@ -42,6 +44,7 @@ class Portfolio extends Model
         return [
             'is_published' => 'boolean',
             'appearance' => 'array',
+            'content_profile' => ContentProfile::class,
         ];
     }
 

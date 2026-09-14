@@ -3,6 +3,13 @@ import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import PublicLayout from '../../Layouts/PublicLayout.vue';
 import { computed } from 'vue';
 
+const props = defineProps({
+    registerUrl: {
+        type: String,
+        default: '/register',
+    },
+});
+
 const page = usePage();
 const ui = computed(() => page.props.ui?.auth || {});
 
@@ -61,7 +68,7 @@ function submit() {
                 </button>
                 <p class="text-sm text-muted-foreground">
                     {{ ui.no_account }}
-                    <Link href="/register" class="form-link">{{ ui.register }}</Link>
+                    <Link :href="registerUrl" class="form-link">{{ ui.register }}</Link>
                 </p>
             </form>
         </section>

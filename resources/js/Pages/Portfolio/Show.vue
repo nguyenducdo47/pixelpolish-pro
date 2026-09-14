@@ -23,10 +23,34 @@ const props = defineProps({
     seo: Object,
     cv: Object,
     available_locales: Array,
+    ui: Object,
+    display: Object,
 });
 
 const page = usePage();
-const ui = computed(() => page.props.ui || {});
+const ui = computed(() => props.ui ?? page.props.ui ?? {});
+const display = computed(() => props.display ?? {});
+const skillDisplay = computed(() => display.value.skill_display ?? 'percent');
+const showTechLogos = computed(() => display.value.show_tech_logos !== false);
+const showTechStack = computed(() => display.value.show_tech_stack !== false);
+
+function showsProjectField(field) {
+    const fields = display.value.project_fields;
+    if (!fields || typeof fields !== 'object') {
+        return true;
+    }
+
+    return fields[field] !== false;
+}
+
+function sectionEnabled(section) {
+    const sections = display.value.sections;
+    if (!sections || typeof sections !== 'object') {
+        return true;
+    }
+
+    return sections[section] !== false;
+}
 const appearance = computed(() => page.props.appearance || {});
 const showParticles = computed(
     () => appearance.value.show_particles !== false && appearance.value.hero !== 'minimal',
@@ -51,9 +75,9 @@ function firstName(name) {
         </template>
         <template #nav>
             <a href="#about" class="hover:text-foreground">{{ ui.nav?.about }}</a>
-            <a href="#skills" class="hover:text-foreground">{{ ui.nav?.skills }}</a>
-            <a href="#projects" class="hover:text-foreground">{{ ui.nav?.projects }}</a>
-            <a href="#philosophy" class="hover:text-foreground">{{ ui.nav?.philosophy }}</a>
+            <a v-if="sectionEnabled('skills')" href="#skills" class="hover:text-foreground">{{ ui.nav?.skills }}</a>
+            <a v-if="sectionEnabled('projects')" href="#projects" class="hover:text-foreground">{{ ui.nav?.projects }}</a>
+            <a v-if="sectionEnabled('philosophy')" href="#philosophy" class="hover:text-foreground">{{ ui.nav?.philosophy }}</a>
             <a href="#contact" class="hover:text-foreground">{{ ui.nav?.contact }}</a>
             <Link :href="cv.url" class="text-primary hover:opacity-80">{{ ui.nav?.cv }}</Link>
         </template>
@@ -144,7 +168,7 @@ function firstName(name) {
             </div>
         </section>
 
-        <section id="skills" class="bg-card/50 py-16 sm:py-20 md:py-24" v-if="skill_categories?.length">
+        <section id="skills" class="bg-card/50 py-16 sm:py-20 md:py-24" v-if="sectionEnabled('skills') && skill_categories?.length">
             <div class="section-container">
                 <div class="mb-12 text-center">
                     <h2 class="section-title"><span class="text-gradient">{{ ui.skills?.title }}</span></h2>
@@ -158,36 +182,50 @@ function firstName(name) {
                         <h3 class="mb-6 text-xl font-semibold text-primary">{{ category.name }}</h3>
                         <div class="space-y-5">
                             <div v-for="skill in category.skills" :key="skill.name">
-                                <div class="mb-2 flex items-center gap-3">
-                                    <div
-                                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-background p-1.5"
-                                        :style="{ boxShadow: `0 0 12px ${techMeta(skill.name).color}30` }"
-                                    >
-                                        <img
-                                            v-if="techMeta(skill.name).src"
-                                            :src="techMeta(skill.name).src"
-                                            :alt="skill.name"
-                                            loading="lazy"
-                                            class="h-full w-full object-contain"
-                                        />
-                                        <span v-else class="text-xs font-bold" :style="{ color: techMeta(skill.name).color }">
-                                            {{ skill.name.charAt(0) }}
-                                        </span>
-                                    </div>
-                                    <div class="min-w-0 flex-1">
-                                        <div class="flex items-center justify-between gap-2">
-                                            <h4 class="truncate font-medium">{{ skill.name }}</h4>
-                                            <span class="shrink-0 text-sm font-semibold text-primary">{{ skill.level }}%</span>
+                                <template v-if="skillDisplay === 'percent'">
+                                    <div class="mb-2 flex items-center gap-3">
+                                        <div
+                                            v-if="showTechLogos"
+                                            class="flex h-10 w-10 items-center justify-center rounded-lg bg-background p-1.5"
+                                            :style="{ boxShadow: `0 0 12px ${techMeta(skill.name).color}30` }"
+                                        >
+                                            <img
+                                                v-if="techMeta(skill.name).src"
+                                                :src="techMeta(skill.name).src"
+                                                :alt="skill.name"
+                                                loading="lazy"
+                                                class="h-full w-full object-contain"
+                                            />
+                                            <span v-else class="text-xs font-bold" :style="{ color: techMeta(skill.name).color }">
+                                                {{ skill.name.charAt(0) }}
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="flex items-center justify-between gap-2">
+                                                <h4 class="truncate font-medium">{{ skill.name }}</h4>
+                                                <span class="shrink-0 text-sm font-semibold text-primary">{{ skill.level }}%</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ml-[3.25rem] h-2 overflow-hidden rounded-full bg-muted">
-                                    <div
-                                        class="h-full rounded-full"
-                                        :style="{
-                                            width: `${skill.level}%`,
-                                            background: `linear-gradient(90deg, ${techMeta(skill.name).color}, ${techMeta(skill.name).color}99)`,
-                                        }"
+                                    <div class="h-2 overflow-hidden rounded-full bg-muted" :class="showTechLogos ? 'ml-[3.25rem]' : ''">
+                                        <div
+                                            class="h-full rounded-full"
+                                            :style="{
+                                                width: `${skill.level}%`,
+                                                background: showTechLogos
+                                                    ? `linear-gradient(90deg, ${techMeta(skill.name).color}, ${techMeta(skill.name).color}99)`
+                                                    : undefined,
+                                            }"
+                                            :class="!showTechLogos ? 'bg-primary' : ''"
+                                        />
+                                    </div>
+                                </template>
+                                <div v-else class="rounded-lg border border-border/60 bg-background/50 px-4 py-3">
+                                    <h4 class="font-medium">{{ skill.name }}</h4>
+                                    <HtmlContent
+                                        v-if="skill.description"
+                                        class="mt-1 text-sm text-muted-foreground"
+                                        :html="skill.description"
                                     />
                                 </div>
                             </div>
@@ -197,7 +235,7 @@ function firstName(name) {
             </div>
         </section>
 
-        <section id="projects" class="py-16 sm:py-20 md:py-24" v-if="projects?.length">
+        <section id="projects" class="py-16 sm:py-20 md:py-24" v-if="sectionEnabled('projects') && projects?.length">
             <div class="section-container">
                 <div class="mb-12 text-center">
                     <h2 class="section-title"><span class="text-gradient">{{ ui.projects?.title }}</span></h2>
@@ -211,7 +249,7 @@ function firstName(name) {
                                     <p class="mt-0.5 text-sm text-muted-foreground">{{ project.subtitle }}</p>
                                 </div>
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <span v-if="project.complexity" class="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
+                                    <span v-if="project.complexity && showsProjectField('complexity')" class="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
                                         {{ project.complexity }}
                                     </span>
                                     <span v-if="project.period" class="text-xs text-muted-foreground">{{ project.period }}</span>
@@ -225,7 +263,7 @@ function firstName(name) {
                                     </a>
                                 </div>
                             </div>
-                            <div class="mb-4 flex flex-wrap gap-2">
+                            <div v-if="showTechStack && project.tech_stack?.length" class="mb-4 flex flex-wrap gap-2">
                                 <span
                                     v-for="tech in project.tech_stack"
                                     :key="tech"
@@ -234,11 +272,11 @@ function firstName(name) {
                                     {{ tech }}
                                 </span>
                             </div>
-                            <div v-if="project.problem" class="mb-3">
+                            <div v-if="project.problem && showsProjectField('problem')" class="mb-3">
                                 <h4 class="mb-1 text-sm font-semibold text-primary">{{ ui.projects?.problem }}</h4>
                                 <HtmlContent class="text-sm text-foreground/80" :html="project.problem" />
                             </div>
-                            <div v-if="project.solution" class="mb-3">
+                            <div v-if="project.solution && showsProjectField('solution')" class="mb-3">
                                 <h4 class="mb-1 text-sm font-semibold text-primary">{{ ui.projects?.solution }}</h4>
                                 <HtmlContent class="text-sm text-foreground/80" :html="project.solution" />
                             </div>
@@ -249,11 +287,11 @@ function firstName(name) {
                                     <span>{{ item }}</span>
                                 </li>
                             </ul>
-                            <div v-if="project.learned" class="border-t border-border pt-3">
+                            <div v-if="project.learned && showsProjectField('learned')" class="border-t border-border pt-3">
                                 <h4 class="mb-1 text-sm font-semibold text-primary">{{ ui.projects?.learned }}</h4>
                                 <HtmlContent class="text-sm italic text-muted-foreground" :html="project.learned" />
                             </div>
-                            <div v-if="project.github_url" class="mt-4 text-sm">
+                            <div v-if="project.github_url && showsProjectField('github_url')" class="mt-4 text-sm">
                                 <a :href="project.github_url" target="_blank" class="text-muted-foreground hover:text-primary">GitHub</a>
                             </div>
                         </article>
@@ -262,7 +300,7 @@ function firstName(name) {
             </div>
         </section>
 
-        <section id="philosophy" class="bg-card/50 py-16 sm:py-20 md:py-24" v-if="principles?.length || profile?.philosophy_quote">
+        <section id="philosophy" class="bg-card/50 py-16 sm:py-20 md:py-24" v-if="sectionEnabled('philosophy') && (principles?.length || profile?.philosophy_quote)">
             <div class="section-container">
                 <div class="mb-12 text-center">
                     <h2 class="section-title"><span class="text-gradient">{{ ui.philosophy?.title }}</span></h2>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasMailPreferences;
 use App\Notifications\ResetPasswordNotification;
 use App\Observers\UserObserver;
 use App\Support\UiLocale;
@@ -24,7 +25,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, HasMailPreferences, Notifiable, SoftDeletes;
 
     protected function casts(): array
     {
@@ -68,6 +69,16 @@ class User extends Authenticatable implements FilamentUser
     public function accountAuditLogsAsSubject(): HasMany
     {
         return $this->hasMany(AccountAuditLog::class, 'subject_user_id');
+    }
+
+    public function inboxMessages(): HasMany
+    {
+        return $this->hasMany(UserInboxMessage::class);
+    }
+
+    public function unreadInboxCount(): int
+    {
+        return app(\App\Services\UserInboxService::class)->unreadCount($this);
     }
 
     public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void

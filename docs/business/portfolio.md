@@ -40,7 +40,7 @@ Legacy column `portfolios.appearance` (JSON) was migration source for `theme_id`
 ## Important Edge Cases
 
 - Querying `Portfolio` inside Filament always filters to current user; admin impersonating sees **target** user's portfolio (same scope, different auth id).
-- Landing demo link hardcodes slug `nguyenducdo` — not configurable via env in code.
+- Landing demo URLs come from `config/content_profiles.php` (`demo_slugs`); IT demo remains `nguyenducdo`, other profiles use `demo-*` slugs when seeded.
 - `Portfolio::publicUrl()` / `cvUrl()` use `default_locale` when locale omitted.
 
 ## Related Files

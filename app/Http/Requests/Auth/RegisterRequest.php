@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Enums\ContentProfile;
 use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -33,6 +34,8 @@ class RegisterRequest extends FormRequest
             ],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
             'password' => ['required', 'confirmed', Password::defaults()],
+            'content_profile' => ['nullable', Rule::enum(ContentProfile::class)],
+            'marketing_opt_in' => ['sometimes', 'boolean'],
         ];
     }
 

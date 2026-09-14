@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Principles;
 
+use App\Filament\Concerns\RespectsContentProfileSection;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Principles\Pages\ManagePrinciples;
@@ -21,7 +22,13 @@ use Filament\Tables\Table;
 
 class PrincipleResource extends Resource
 {
+    use RespectsContentProfileSection;
     use TranslatesNavigation;
+
+    protected static function contentProfileSectionKey(): ?string
+    {
+        return 'philosophy';
+    }
 
     protected static ?string $model = Principle::class;
 

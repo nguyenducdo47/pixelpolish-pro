@@ -242,8 +242,212 @@
 
     body {
         background: white !important;
-        color: black !important;
     }
+
+    .cv-sheet {
+        max-width: none !important;
+        box-shadow: none !important;
+    }
+
+    .cv-sidebar-layout {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        min-height: auto !important;
+    }
+
+    .cv-sidebar-panel {
+        flex: 0 0 36% !important;
+        max-width: 36% !important;
+        width: 36% !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        background: var(--pf-primary, hsl(var(--primary))) !important;
+        color: #fff !important;
+    }
+
+    .cv-sidebar-panel h1,
+    .cv-sidebar-panel h2,
+    .cv-sidebar-panel p,
+    .cv-sidebar-panel li,
+    .cv-sidebar-panel span,
+    .cv-sidebar-panel a {
+        color: inherit;
+    }
+
+    .cv-sidebar-panel h1,
+    .cv-sidebar-panel .cv-sidebar-heading {
+        color: #fff !important;
+    }
+
+    .cv-sidebar-panel .text-white,
+    .cv-sidebar-panel [class*='text-white'] {
+        color: #fff !important;
+    }
+
+    .cv-sidebar-panel .text-white\/85,
+    .cv-sidebar-panel .text-white\/80,
+    .cv-sidebar-panel .text-white\/75,
+    .cv-sidebar-panel .text-white\/70,
+    .cv-sidebar-panel .text-white\/60 {
+        opacity: 1 !important;
+    }
+
+    .cv-main-panel {
+        flex: 1 1 auto !important;
+        padding: 1.25rem 1.5rem !important;
+        overflow: visible !important;
+    }
+
+    .cv-modern-accent {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .cv-modern-timeline-item::before {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .cv-sidebar-rich ul,
+    .cv-sidebar-panel .rich-content ul,
+    .cv-sidebar-panel ul,
+    .cv-main-panel ul,
+    .cv-main-panel ul.list-disc {
+        list-style-type: disc !important;
+        list-style-position: outside !important;
+        padding-left: 1.35rem !important;
+    }
+
+    .cv-main-panel ul li,
+    .cv-main-panel ul.list-disc li,
+    .cv-sidebar-panel ul li,
+    .cv-sidebar-rich ul li {
+        display: list-item !important;
+    }
+
+    .cv-main-panel h3,
+    .cv-experience-item h3,
+    .cv-body-modern h3,
+    .cv-body-classic h3 {
+        color: hsl(var(--foreground)) !important;
+        background: transparent !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* PDF download from CV page — keep in sync with @media print above */
+html.cv-pdf-export .print\:hidden {
+    display: none !important;
+}
+
+html.cv-pdf-export body {
+    background: white !important;
+}
+
+html.cv-pdf-export .cv-page-wrap {
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: white !important;
+}
+
+html.cv-pdf-export .cv-body-modern,
+html.cv-pdf-export .cv-body-classic {
+    padding: 15mm;
+}
+
+html.cv-pdf-export .cv-sheet {
+    max-width: none !important;
+    box-shadow: none !important;
+}
+
+html.cv-pdf-export .cv-sidebar-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    min-height: auto !important;
+}
+
+html.cv-pdf-export .cv-sidebar-panel {
+    flex: 0 0 36% !important;
+    max-width: 36% !important;
+    width: 36% !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background: var(--pf-primary, hsl(var(--primary))) !important;
+    color: #fff !important;
+}
+
+html.cv-pdf-export .cv-sidebar-panel h1,
+html.cv-pdf-export .cv-sidebar-panel h2,
+html.cv-pdf-export .cv-sidebar-panel p,
+html.cv-pdf-export .cv-sidebar-panel li,
+html.cv-pdf-export .cv-sidebar-panel span,
+html.cv-pdf-export .cv-sidebar-panel a {
+    color: inherit;
+}
+
+html.cv-pdf-export .cv-sidebar-panel h1,
+html.cv-pdf-export .cv-sidebar-panel .cv-sidebar-heading {
+    color: #fff !important;
+}
+
+html.cv-pdf-export .cv-sidebar-panel .text-white,
+html.cv-pdf-export .cv-sidebar-panel [class*='text-white'] {
+    color: #fff !important;
+}
+
+html.cv-pdf-export .cv-sidebar-panel .text-white\/85,
+html.cv-pdf-export .cv-sidebar-panel .text-white\/80,
+html.cv-pdf-export .cv-sidebar-panel .text-white\/75,
+html.cv-pdf-export .cv-sidebar-panel .text-white\/70,
+html.cv-pdf-export .cv-sidebar-panel .text-white\/60 {
+    opacity: 1 !important;
+}
+
+html.cv-pdf-export .cv-main-panel {
+    flex: 1 1 auto !important;
+    padding: 1.25rem 1.5rem !important;
+    overflow: visible !important;
+}
+
+html.cv-pdf-export .cv-modern-accent {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+html.cv-pdf-export .cv-modern-timeline-item::before {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+html.cv-pdf-export .cv-sidebar-rich ul,
+html.cv-pdf-export .cv-sidebar-panel .rich-content ul,
+html.cv-pdf-export .cv-sidebar-panel ul,
+html.cv-pdf-export .cv-main-panel ul,
+html.cv-pdf-export .cv-main-panel ul.list-disc {
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+    padding-left: 1.35rem !important;
+}
+
+html.cv-pdf-export .cv-main-panel ul li,
+html.cv-pdf-export .cv-main-panel ul.list-disc li,
+html.cv-pdf-export .cv-sidebar-panel ul li,
+html.cv-pdf-export .cv-sidebar-rich ul li {
+    display: list-item !important;
+}
+
+html.cv-pdf-export .cv-main-panel h3,
+html.cv-pdf-export .cv-experience-item h3,
+html.cv-pdf-export .cv-body-modern h3,
+html.cv-pdf-export .cv-body-classic h3 {
+    color: hsl(var(--foreground)) !important;
+    background: transparent !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
 }
 
 .rich-content {
@@ -488,10 +692,314 @@ html[data-font='mono'] .section-title {
     align-items: center;
 }
 
-.cv-sidebar .cv-body {
+/* —— CV Modern —— */
+.cv-modern-accent {
+    height: 6px;
+    margin: -1rem -1rem 0;
+    background: var(--pf-primary, hsl(var(--primary)));
+}
+
+@media (min-width: 640px) {
+    .cv-modern-accent {
+        margin: -2.5rem -2.5rem 0;
+    }
+}
+
+.cv-modern-header {
+    padding-top: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.cv-modern-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .cv-modern-contact-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.cv-modern-section-title {
+    margin: 0 0 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 4px solid var(--pf-primary, hsl(var(--primary)));
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--pf-primary, hsl(var(--primary)));
+}
+
+.cv-modern-timeline {
+    border-left: 2px solid color-mix(in srgb, var(--pf-primary, hsl(var(--primary))) 25%, transparent);
+    padding-left: 1.25rem;
+}
+
+.cv-modern-timeline-item {
+    position: relative;
+    padding-bottom: 1.25rem;
+}
+
+.cv-modern-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.cv-modern-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.25rem - 5px);
+    top: 0.35rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--pf-primary, hsl(var(--primary)));
+    box-shadow: 0 0 0 3px hsl(var(--background));
+}
+
+/* —— CV Classic —— */
+.cv-classic.cv-sheet {
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+.cv-classic-name,
+.cv-classic-headline,
+.cv-classic-section-title {
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+.cv-classic-header {
+    text-align: center;
+    padding-bottom: 0.25rem;
+}
+
+.cv-classic-rule {
+    border: none;
+    border-top: 1px solid #a1a1aa;
+    margin: 0.65rem 0;
+}
+
+.cv-classic-rule-strong {
+    border-top-width: 2px;
+    border-top-color: #27272a;
+    margin-top: 0.85rem;
+}
+
+.cv-classic-name {
+    margin: 0.5rem 0 0;
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #18181b;
+}
+
+.cv-classic-headline {
+    margin: 0.35rem 0 0;
+    font-size: 1rem;
+    font-style: italic;
+    color: #52525b;
+}
+
+.cv-classic-contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    font-size: 0.8125rem;
+    color: #52525b;
+}
+
+.cv-classic-section-title {
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #71717a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #27272a;
+}
+
+.cv-classic-section + .cv-classic-section {
+    margin-top: 0.25rem;
+}
+
+.cv-classic-entry-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+}
+
+.cv-classic-date {
+    font-size: 0.8125rem;
+    color: #71717a;
+    white-space: nowrap;
+}
+
+.cv-classic-subline {
+    margin: 0.15rem 0 0;
+    font-size: 0.875rem;
+    color: #52525b;
+}
+
+.cv-classic-prose {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: #3f3f46;
+}
+
+.cv-classic-prose-sm {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #52525b;
+}
+
+.cv-classic-skill-line {
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #3f3f46;
+}
+
+.cv-classic-list {
+    margin: 0.35rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.875rem;
+    color: #52525b;
+}
+
+.cv-classic-entry-divider {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px dotted #d4d4d8;
+}
+
+@media print {
+    .cv-modern-accent {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+/* Sidebar CV — two explicit columns (classic résumé pattern) */
+.cv-sidebar.cv-sheet {
+    max-width: 210mm;
+}
+
+.cv-sidebar-layout {
+    display: flex;
+    align-items: stretch;
+    min-height: 280mm;
+}
+
+.cv-sidebar-panel {
+    flex: 0 0 36%;
+    max-width: 36%;
+    background: var(--pf-primary, hsl(var(--primary)));
+    color: #fff;
+    padding: 2rem 1.35rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.cv-sidebar-divider {
+    height: 1px;
+    margin: 1.25rem 0;
+    background: rgb(255 255 255 / 0.22);
+}
+
+.cv-sidebar-block {
+    margin-bottom: 1.35rem;
+}
+
+.cv-sidebar-block:last-child {
+    margin-bottom: 0;
+}
+
+.cv-sidebar-heading {
+    margin: 0 0 0.65rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.28);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.95);
+}
+
+.cv-sidebar-rich :is(p, li) {
+    color: inherit;
+}
+
+.cv-sidebar-rich ul {
+    list-style: disc;
+    padding-inline-start: 1.25rem;
+}
+
+.cv-main-panel {
+    flex: 1;
+    min-width: 0;
+    padding: 2.25rem 2rem 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.75rem;
+    background: hsl(var(--background));
+    overflow: visible;
+}
+
+.cv-main-panel ul.list-disc {
+    list-style: disc;
+    padding-inline-start: 1.35rem;
+}
+
+.cv-main-heading {
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--pf-primary, hsl(var(--primary)));
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pf-primary, hsl(var(--primary)));
+}
+
+.cv-experience-item + .cv-experience-item {
+    padding-top: 1.25rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+@media (max-width: 767px) {
+    .cv-sidebar-layout {
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .cv-sidebar-panel {
+        flex: none;
+        max-width: none;
+        width: 100%;
+    }
+}
+
+@media print {
+    .cv-sidebar-layout {
+        flex-direction: row !important;
+        min-height: auto !important;
+    }
+
+    .cv-sidebar-panel {
+        flex: 0 0 36% !important;
+        max-width: 36% !important;
+        width: 36% !important;
+    }
 }
 
 @media (max-width: 639px) {

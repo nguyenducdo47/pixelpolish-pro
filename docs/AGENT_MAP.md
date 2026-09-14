@@ -35,7 +35,7 @@ Detailed rules live in `docs/business/*`, `docs/workflows/*`, and `docs/AGENT_GU
 | Tests | `tests/Feature/` | Behavior specs (read when validating; user runs them) |
 | Legacy (ignore) | `_legacy-react/` | Old React UI; not wired to Laravel routes |
 
-There is **no** `app/Repositories/` layer. **No** custom `app/Jobs/` or domain events/listeners beyond framework/Filament defaults.
+There is **no** `app/Repositories/` layer. Domain jobs live under `app/Jobs/` (e.g. mail campaigns).
 
 ---
 
@@ -50,9 +50,11 @@ There is **no** `app/Repositories/` layer. **No** custom `app/Jobs/` or domain e
 | Appearance & themes | `docs/business/appearance.md` | `app/Support/AppearanceTheme.php` | `app/Filament/Pages/ManageAppearance.php`, `app/Models/Theme.php`, `app/Filament/Resources/Themes/ThemeResource.php` |
 | Studio (owner Filament) | `docs/business/studio.md` | `app/Filament/Pages/SetupWizard.php`, `app/Services/PortfolioWizardSync.php` | `app/Providers/Filament/StudioPanelProvider.php`, `app/Filament/Pages/ManageProfile.php` |
 | Content sections | `docs/business/content-sections.md` | `app/Services/PortfolioWizardSync.php` | `app/Filament/Resources/*` (Projects, Skills, …), section models under `app/Models/` |
+| Content profiles (multi-industry) | `docs/business/verticals.md` | `app/Support/ContentProfileConfig.php`, `app/Enums/ContentProfile.php` | `PortfolioPresenter`, `SetupWizard`, `ManageProfile`, `ProjectFormSchema`, `lang/*/content_profiles.php` |
 | Auth & accounts | `docs/business/auth.md` | `app/Http/Controllers/Auth/*`, `app/Http/Requests/Auth/*` | `app/Models/User.php`, `resources/js/Pages/Auth/*` |
 | Admin & impersonation | `docs/business/admin.md` | `app/Filament/Resources/Users/UserResource.php`, `app/Http/Controllers/ImpersonationController.php` | `app/Providers/Filament/AdminPanelProvider.php`, `app/Http/Middleware/AuthenticateAdmin.php` |
 | Mail (SMTP/log) | `docs/business/mail.md` | `app/Models/MailSetting.php`, `app/Filament/Pages/ManageMail.php` | `app/Providers/AppServiceProvider.php` (mail.manager hook) |
+| Mail campaigns (bulk) | `docs/business/mail-campaigns.md` | `app/Services/MailCampaigns/MailCampaignService.php` | `MailTemplateResource`, `MailCampaignResource`, `UserInboxMessageResource`, `app/Services/UserInboxService.php`, `app/Jobs/ProcessMailCampaignJob.php`, `ProcessScheduledMailCampaigns` |
 | Translation (editor assist) | `docs/business/translation.md` | `app/Services/TextTranslator.php` | `app/Filament/Forms/RichEditor/FullEditorPlugin.php`, `app/Models/TranslationApi.php` |
 
 **Architecture (cross-cutting):** `docs/architecture/overview.md`, `modules.md`, `data-flow.md`  
@@ -138,6 +140,7 @@ There is **no** `app/Repositories/` layer. **No** custom `app/Jobs/` or domain e
 | Task | Read first | Then inspect |
 |------|------------|--------------|
 | SMTP settings / test email | `mail.md` | `ManageMail.php`, `MailSetting.php` |
+| Bulk mail templates / campaigns | `mail-campaigns.md` | `MailTemplateResource.php`, `MailCampaignResource.php`, `MailCampaignService.php` |
 | Runtime mail config | `mail.md` | `AppServiceProvider.php`, `MailSetting::applyToConfig` |
 
 ## Translation tool

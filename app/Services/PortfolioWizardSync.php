@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Enums\ContentProfile;
 use App\Models\Portfolio;
 use App\Models\Profile;
 use App\Support\AppearanceTheme;
+use App\Support\ContentProfileConfig;
 use App\Support\RichText;
 use App\Support\UiLocale;
 use Illuminate\Support\Arr;
@@ -37,6 +39,7 @@ class PortfolioWizardSync
             'is_published' => $portfolio->is_published,
             'default_locale' => $portfolio->default_locale,
             'default_theme' => $portfolio->default_theme,
+            'content_profile' => $portfolio->content_profile?->value ?? ContentProfile::It->value,
             'seo_title' => $portfolio->seo_title,
             'seo_description' => $portfolio->seo_description,
             'full_name' => $profile?->full_name,
@@ -193,6 +196,9 @@ class PortfolioWizardSync
             'is_published' => (bool) ($data['is_published'] ?? false),
             'default_locale' => $data['default_locale'] ?? $portfolio->default_locale,
             'default_theme' => $data['default_theme'] ?? $portfolio->default_theme,
+            'content_profile' => ContentProfile::tryFrom((string) ($data['content_profile'] ?? ''))
+                ?? $portfolio->content_profile
+                ?? ContentProfile::It,
             'seo_title' => $data['seo_title'] ?? null,
             'seo_description' => $data['seo_description'] ?? null,
         ]);
@@ -215,6 +221,11 @@ class PortfolioWizardSync
         }
 
         $portfolio->profile?->update($profilePayload);
+
+        $portfolio->refresh();
+        $config = ContentProfileConfig::for($portfolio);
+        $config->applySuggestedThemeIfUnset($portfolio);
+        $config->syncCvSettingsForSections($portfolio);
     }
 
     /**

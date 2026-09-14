@@ -4,9 +4,12 @@ namespace App\Filament\Pages;
 
 use App\Filament\Concerns\TranslatesPage;
 use App\Filament\Forms\LocaleTabs;
+use App\Filament\Support\ProjectFormSchema;
+use App\Enums\ContentProfile;
 use App\Models\Portfolio;
 use App\Services\PortfolioWizardSync;
 use App\Support\AppearanceTheme;
+use App\Support\ContentProfileConfig;
 use App\Support\LocaleCatalog;
 use App\Support\UiLocale;
 use App\Support\WizardPendingAvatar;
@@ -26,6 +29,7 @@ use Filament\Schemas\Components\EmbeddedSchema;
 use Filament\Schemas\Components\Form;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Blade;
@@ -53,6 +57,15 @@ class SetupWizard extends Page
     public function mount(PortfolioWizardSync $sync): void
     {
         $this->form->fill($sync->formState($this->portfolio()));
+
+        $welcome = session()->pull('content_profile_welcome');
+
+        if (is_string($welcome) && $welcome !== '') {
+            Notification::make()
+                ->title(__('panel.notify.content_profile_welcome', ['profile' => $welcome]))
+                ->success()
+                ->send();
+        }
     }
 
     public function defaultForm(Schema $schema): Schema
@@ -63,15 +76,7 @@ class SetupWizard extends Page
     public function form(Schema $schema): Schema
     {
         return $schema->components([
-            Wizard::make([
-                $this->profileStep(),
-                $this->skillsStep(),
-                $this->projectsStep(),
-                $this->backgroundStep(),
-                $this->presenceStep(),
-                $this->cvStep(),
-                $this->previewStep(),
-            ])
+            Wizard::make($this->wizardSteps())
                 ->skippable()
                 ->persistStepInQueryString()
                 ->extraAttributes(['class' => 'setup-wizard'])
@@ -147,8 +152,8 @@ class SetupWizard extends Page
 
     protected function profileStep(): Step
     {
-        return Step::make(__('panel.wizard.profile'))
-            ->description(__('panel.wizard.profile_desc'))
+        return Step::make($this->contentConfig()->wizardLabel('profile'))
+            ->description($this->contentConfig()->wizardDescription('profile'))
             ->icon(Heroicon::OutlinedUserCircle)
             ->afterValidation(fn (PortfolioWizardSync $sync) => $this->persistStep($sync))
             ->schema([
@@ -175,6 +180,13 @@ class SetupWizard extends Page
                     ])
                     ->native(false)
                     ->required(),
+                Select::make('content_profile')
+                    ->label(__('panel.fields.content_profile'))
+                    ->helperText(__('panel.fields.content_profile_helper'))
+                    ->options(ContentProfile::options())
+                    ->native(false)
+                    ->required()
+                    ->live(),
                 TextInput::make('seo_title')->label(__('panel.fields.seo_title')),
                 Textarea::make('seo_description')->label(__('panel.fields.seo_description'))->rows(2),
                 TextInput::make('full_name')->label(__('panel.fields.full_name'))->required(),
@@ -202,13 +214,13 @@ class SetupWizard extends Page
 
     protected function skillsStep(): Step
     {
-        return Step::make(__('panel.wizard.skills'))
-            ->description(__('panel.wizard.skills_desc'))
+        return Step::make($this->contentConfig()->wizardLabel('skills'))
+            ->description($this->contentConfig()->wizardDescription('skills'))
             ->icon(Heroicon::OutlinedSparkles)
             ->afterValidation(fn (PortfolioWizardSync $sync) => $this->persistStep($sync))
             ->schema([
                 Repeater::make('skill_categories')
-                    ->label(__('panel.nav.skills'))
+                    ->label(fn (): string => $this->contentConfig()->panelNavLabel('skills'))
                     ->defaultItems(0)
                     ->collapsed()
                     ->cloneable()
@@ -233,7 +245,11 @@ class SetupWizard extends Page
                                     ->numeric()
                                     ->minValue(0)
                                     ->maxValue(100)
-                                    ->default(70),
+                                    ->default(70)
+                                    ->visible(fn (Get $get): bool => ProjectFormSchema::skillLevelVisible(
+                                        $get,
+                                        fn (): mixed => $this->data['content_profile'] ?? $this->portfolio()->content_profile,
+                                    )),
                                 LocaleTabs::make([
                                     ['name' => 'description', 'label' => __('panel.fields.description'), 'type' => 'editor'],
                                 ]),
@@ -245,13 +261,13 @@ class SetupWizard extends Page
 
     protected function projectsStep(): Step
     {
-        return Step::make(__('panel.wizard.projects'))
-            ->description(__('panel.wizard.projects_desc'))
+        return Step::make($this->contentConfig()->wizardLabel('projects'))
+            ->description($this->contentConfig()->wizardDescription('projects'))
             ->icon(Heroicon::OutlinedBriefcase)
             ->afterValidation(fn (PortfolioWizardSync $sync) => $this->persistStep($sync))
             ->schema([
                 Repeater::make('projects')
-                    ->label(__('panel.nav.projects'))
+                    ->label(fn (): string => $this->contentConfig()->panelNavLabel('projects'))
                     ->defaultItems(0)
                     ->collapsed()
                     ->cloneable()
@@ -259,21 +275,12 @@ class SetupWizard extends Page
                     ->addActionLabel(__('panel.wizard.add_project'))
                     ->schema([
                         Hidden::make('id'),
-                        LocaleTabs::make([
-                            ['name' => 'title', 'label' => __('panel.fields.title'), 'required' => true],
-                            ['name' => 'subtitle', 'label' => __('panel.fields.subtitle')],
-                            ['name' => 'complexity', 'label' => __('panel.fields.complexity')],
-                            ['name' => 'summary', 'label' => __('panel.fields.summary'), 'type' => 'editor'],
-                            ['name' => 'problem', 'label' => __('panel.fields.problem'), 'type' => 'editor'],
-                            ['name' => 'solution', 'label' => __('panel.fields.solution'), 'type' => 'editor'],
-                            ['name' => 'learned', 'label' => __('panel.fields.learned'), 'type' => 'editor'],
-                            ['name' => 'highlights', 'label' => __('panel.fields.highlights'), 'type' => 'tags'],
-                        ]),
-                        TextInput::make('period')->label(__('panel.fields.period')),
-                        TextInput::make('demo_url')->label(__('panel.fields.demo_url'))->url(),
-                        TextInput::make('demo_label')->label(__('panel.fields.demo_label')),
-                        TextInput::make('github_url')->label(__('panel.fields.github_url'))->url(),
-                        TagsInput::make('tech_stack')->label(__('panel.fields.tech_stack')),
+                        LocaleTabs::make(ProjectFormSchema::localeTabFieldDefinitions(
+                            fn (): mixed => $this->data['content_profile'] ?? $this->portfolio()->content_profile,
+                        )),
+                        ...ProjectFormSchema::extraFields(
+                            fn (): mixed => $this->data['content_profile'] ?? $this->portfolio()->content_profile,
+                        ),
                         Toggle::make('is_featured')->label(__('panel.fields.featured'))->default(true),
                     ])
                     ->columnSpanFull(),
@@ -355,6 +362,7 @@ class SetupWizard extends Page
                     ->collapsed()
                     ->itemLabel(fn (array $state): ?string => $this->bagLabel($state['title'] ?? null) ?: null)
                     ->addActionLabel(__('panel.wizard.add_principle'))
+                    ->visible(fn (): bool => $this->contentConfig()->sectionEnabled('philosophy'))
                     ->schema([
                         Hidden::make('id'),
                         LocaleTabs::make([
@@ -383,11 +391,17 @@ class SetupWizard extends Page
                         || WizardPendingAvatar::current($this->portfolio()->id) !== null
                         || (bool) $this->portfolio()->profile?->hasAvatar()),
                 Toggle::make('show_about')->label(__('panel.fields.show_about')),
-                Toggle::make('show_skills')->label(__('panel.fields.show_skills')),
-                Toggle::make('show_projects')->label(__('panel.fields.show_projects')),
+                Toggle::make('show_skills')
+                    ->label(fn (): string => $this->contentConfig()->panelNavLabel('skills'))
+                    ->visible(fn (): bool => $this->contentConfig()->sectionEnabled('skills')),
+                Toggle::make('show_projects')
+                    ->label(fn (): string => $this->contentConfig()->panelNavLabel('projects'))
+                    ->visible(fn (): bool => $this->contentConfig()->sectionEnabled('projects')),
                 Toggle::make('show_education')->label(__('panel.fields.show_education')),
                 Toggle::make('show_languages')->label(__('panel.fields.show_languages')),
-                Toggle::make('show_principles')->label(__('panel.fields.show_principles')),
+                Toggle::make('show_principles')
+                    ->label(__('panel.fields.show_principles'))
+                    ->visible(fn (): bool => $this->contentConfig()->sectionEnabled('philosophy')),
             ])->columns(2);
     }
 
@@ -423,5 +437,42 @@ class SetupWizard extends Page
     protected function portfolio(): Portfolio
     {
         return auth()->user()->portfolio;
+    }
+
+    protected function contentConfig(): ContentProfileConfig
+    {
+        return ContentProfileConfig::forValue($this->data['content_profile'] ?? $this->portfolio()->content_profile);
+    }
+
+    /**
+     * @return array<int, Step>
+     */
+    protected function wizardSteps(): array
+    {
+        $order = ContentProfileConfig::for($this->portfolio())->wizardStepOrder();
+
+        if (filled($this->data['content_profile'] ?? null)) {
+            $order = ContentProfileConfig::forValue($this->data['content_profile'])->wizardStepOrder();
+        }
+
+        $builders = [
+            'profile' => fn (): Step => $this->profileStep(),
+            'skills' => fn (): Step => $this->skillsStep(),
+            'projects' => fn (): Step => $this->projectsStep(),
+            'background' => fn (): Step => $this->backgroundStep(),
+            'presence' => fn (): Step => $this->presenceStep(),
+            'cv' => fn (): Step => $this->cvStep(),
+            'preview' => fn (): Step => $this->previewStep(),
+        ];
+
+        $steps = [];
+
+        foreach ($order as $key) {
+            if (isset($builders[$key])) {
+                $steps[] = $builders[$key]();
+            }
+        }
+
+        return $steps !== [] ? $steps : array_map(fn (callable $builder) => $builder(), array_values($builders));
     }
 }

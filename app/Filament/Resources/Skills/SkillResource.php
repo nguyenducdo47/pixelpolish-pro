@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Skills;
 
+use App\Filament\Concerns\RespectsContentProfileSection;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Skills\Pages\ManageSkills;
+use App\Support\ContentProfileConfig;
 use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\Skill;
 use App\Models\SkillCategory;
@@ -23,7 +25,13 @@ use Filament\Tables\Table;
 
 class SkillResource extends Resource
 {
+    use RespectsContentProfileSection;
     use TranslatesNavigation;
+
+    protected static function contentProfileSectionKey(): ?string
+    {
+        return 'skills';
+    }
 
     protected static ?string $model = Skill::class;
 
@@ -44,7 +52,13 @@ class SkillResource extends Resource
                 ->native(false)
                 ->required(),
             TextInput::make('name')->label(__('panel.fields.name'))->required(),
-            TextInput::make('level')->label(__('panel.fields.level'))->numeric()->minValue(0)->maxValue(100)->default(50),
+            TextInput::make('level')
+                ->label(__('panel.fields.level'))
+                ->numeric()
+                ->minValue(0)
+                ->maxValue(100)
+                ->default(50)
+                ->visible(fn (): bool => ContentProfileConfig::for(auth()->user()?->portfolio)->usesSkillPercent()),
             TextInput::make('sort_order')->label(__('panel.fields.sort_order'))->numeric()->default(0),
             LocaleTabs::make([
                 ['name' => 'description', 'label' => __('panel.fields.description'), 'type' => 'editor'],

@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Projects;
 
+use App\Filament\Concerns\RespectsContentProfileSection;
 use App\Filament\Concerns\TranslatesNavigation;
 use App\Filament\Forms\LocaleTabs;
 use App\Filament\Resources\Projects\Pages\ManageProjects;
+use App\Filament\Support\ProjectFormSchema;
 use App\Filament\Tables\Columns\LocaleTextColumn;
 use App\Models\Project;
 use BackedEnum;
@@ -12,7 +14,6 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
@@ -24,7 +25,13 @@ use Filament\Tables\Table;
 
 class ProjectResource extends Resource
 {
+    use RespectsContentProfileSection;
     use TranslatesNavigation;
+
+    protected static function contentProfileSectionKey(): ?string
+    {
+        return 'projects';
+    }
 
     protected static ?string $model = Project::class;
 
@@ -38,23 +45,12 @@ class ProjectResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
+        $profile = fn (): mixed => auth()->user()?->portfolio?->content_profile;
+
         return $schema
             ->components([
-                LocaleTabs::make([
-                    ['name' => 'title', 'label' => __('panel.fields.title'), 'required' => true],
-                    ['name' => 'subtitle', 'label' => __('panel.fields.subtitle')],
-                    ['name' => 'complexity', 'label' => __('panel.fields.complexity')],
-                    ['name' => 'summary', 'label' => __('panel.fields.summary'), 'type' => 'editor'],
-                    ['name' => 'problem', 'label' => __('panel.fields.problem'), 'type' => 'editor'],
-                    ['name' => 'solution', 'label' => __('panel.fields.solution'), 'type' => 'editor'],
-                    ['name' => 'learned', 'label' => __('panel.fields.learned'), 'type' => 'editor'],
-                    ['name' => 'highlights', 'label' => __('panel.fields.highlights'), 'type' => 'tags'],
-                ]),
-                TextInput::make('period')->label(__('panel.fields.period')),
-                TextInput::make('demo_url')->label(__('panel.fields.demo_url'))->url(),
-                TextInput::make('demo_label')->label(__('panel.fields.demo_label')),
-                TextInput::make('github_url')->label(__('panel.fields.github_url'))->url(),
-                TagsInput::make('tech_stack')->label(__('panel.fields.tech_stack')),
+                LocaleTabs::make(ProjectFormSchema::localeTabFieldDefinitions($profile)),
+                ...ProjectFormSchema::extraFields($profile),
                 Toggle::make('is_featured')->label(__('panel.fields.featured'))->default(true),
                 TextInput::make('sort_order')->label(__('panel.fields.sort_order'))->numeric()->default(0),
             ]);

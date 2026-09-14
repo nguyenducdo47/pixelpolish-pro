@@ -113,6 +113,10 @@ class LocaleTabs
                 $visible->required(fn (Get $get) => ($get('_locale') ?: $uiLocale) === $catalogDefault);
             }
 
+            if (isset($field['visible']) && is_callable($field['visible'])) {
+                $visible->visible($field['visible']);
+            }
+
             $components[] = $visible;
         }
 

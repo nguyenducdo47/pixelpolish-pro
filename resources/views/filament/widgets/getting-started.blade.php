@@ -197,6 +197,12 @@
                 ]) }}
             </p>
 
+            @if(filled($content_profile_label ?? null))
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                    {{ __('panel.guide.content_profile', ['profile' => $content_profile_label]) }}
+                </p>
+            @endif
+
             <ol class="fi-sc-wizard-header" role="list">
                 @foreach ($steps as $step)
                     <li

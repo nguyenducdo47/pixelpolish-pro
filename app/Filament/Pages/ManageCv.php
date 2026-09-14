@@ -6,6 +6,7 @@ use App\Filament\Concerns\TranslatesPage;
 use App\Models\CvSetting;
 use App\Models\Portfolio;
 use App\Support\AppearanceTheme;
+use App\Support\ContentProfileConfig;
 use App\Support\LocaleCatalog;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -48,6 +49,8 @@ class ManageCv extends Page
 
     public function form(Schema $schema): Schema
     {
+        $config = fn (): ContentProfileConfig => ContentProfileConfig::for(auth()->user()?->portfolio);
+
         return $schema->components([
             Section::make(__('panel.sections.cv_template'))->schema([
                 Select::make('template')
@@ -59,11 +62,17 @@ class ManageCv extends Page
                     ->label(__('panel.fields.show_avatar'))
                     ->visible(fn (): bool => (bool) auth()->user()?->portfolio?->profile?->hasAvatar()),
                 Toggle::make('show_about')->label(__('panel.fields.show_about')),
-                Toggle::make('show_skills')->label(__('panel.fields.show_skills')),
-                Toggle::make('show_projects')->label(__('panel.fields.show_projects')),
+                Toggle::make('show_skills')
+                    ->label(fn (): string => $config()->panelNavLabel('skills'))
+                    ->visible(fn (): bool => $config()->sectionEnabled('skills')),
+                Toggle::make('show_projects')
+                    ->label(fn (): string => $config()->panelNavLabel('projects'))
+                    ->visible(fn (): bool => $config()->sectionEnabled('projects')),
                 Toggle::make('show_education')->label(__('panel.fields.show_education')),
                 Toggle::make('show_languages')->label(__('panel.fields.show_languages')),
-                Toggle::make('show_principles')->label(__('panel.fields.show_principles')),
+                Toggle::make('show_principles')
+                    ->label(__('panel.fields.show_principles'))
+                    ->visible(fn (): bool => $config()->sectionEnabled('philosophy')),
             ])->columns(2),
         ]);
     }

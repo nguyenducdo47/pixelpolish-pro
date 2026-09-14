@@ -2,10 +2,18 @@
 
 namespace App\Support;
 
+use App\Enums\ContentProfile;
+
 class Studio
 {
-    public static function home(): string
+    public static function home(?ContentProfile $profile = null): string
     {
-        return '/studio/setup';
+        $url = '/studio/setup';
+
+        if ($profile !== null) {
+            return $url.'?profile='.$profile->value;
+        }
+
+        return $url;
     }
 }
