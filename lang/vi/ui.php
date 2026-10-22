@@ -47,6 +47,9 @@ return [
         'skills' => 'Kỹ năng',
         'education' => 'Học vấn',
         'languages' => 'Ngoại ngữ',
+        'certifications' => 'Chứng chỉ & giấy phép',
+        'career_targets' => 'Vị trí định hướng ứng tuyển',
+        'strengths' => 'Điểm mạnh',
     ],
     'landing' => [
         'badge' => 'Tạo portfolio',

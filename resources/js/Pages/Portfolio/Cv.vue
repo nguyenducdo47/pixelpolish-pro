@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import CvBulletListSection from '../../Components/Cv/CvBulletListSection.vue';
 import CvContactLines from '../../Components/Cv/CvContactLines.vue';
 import HtmlContent from '../../Components/HtmlContent.vue';
 import LocaleSelect from '../../Components/LocaleSelect.vue';
@@ -15,6 +16,9 @@ const props = defineProps({
     education: Array,
     languages: Array,
     principles: Array,
+    certifications: Array,
+    career_targets: Array,
+    strengths: Array,
     seo: Object,
     cv: Object,
     available_locales: Array,
@@ -34,7 +38,11 @@ const isClassicLayout = computed(() => cvLayout.value === 'classic');
 const portfolioUrl = computed(
     () => (props.available_locales || []).find((item) => item.code === props.locale)?.portfolio_url || '/',
 );
-const github = computed(() => (props.social_links || []).find((link) => String(link.platform).toLowerCase().includes('git')));
+const showProjectPeriod = computed(() => settings.value.show_project_period !== false);
+const showSocialOnCv = computed(() => settings.value.show_social_links !== false);
+const showCertifications = computed(() => settings.value.show_certifications !== false);
+const showCareerTargets = computed(() => settings.value.show_career_targets !== false);
+const showStrengths = computed(() => settings.value.show_strengths !== false);
 
 function printCv() {
     window.print();
@@ -86,7 +94,8 @@ function printCv() {
                         <div class="cv-sidebar-divider" />
 
                         <div class="cv-sidebar-block">
-                            <CvContactLines :profile="profile" :github="github" inverted />
+                            <CvContactLines :profile="profile" :social-links="social_links"
+                                :show-social-links="showSocialOnCv" inverted />
                         </div>
 
                         <section v-if="settings.show_education && education?.length" class="cv-sidebar-block">
@@ -122,6 +131,13 @@ function printCv() {
                             </ul>
                         </section>
 
+                        <CvBulletListSection v-if="showCertifications" variant="sidebar" :title="ui.cv?.certifications"
+                            :items="certifications" />
+                        <CvBulletListSection v-if="showCareerTargets" variant="sidebar" :title="ui.cv?.career_targets"
+                            :items="career_targets" />
+                        <CvBulletListSection v-if="showStrengths" variant="sidebar" :title="ui.cv?.strengths"
+                            :items="strengths" />
+
                         <section v-if="settings.show_principles && principles?.length" class="cv-sidebar-block">
                             <h2 class="cv-sidebar-heading">{{ ui.philosophy?.title }}</h2>
                             <div v-for="item in principles" :key="item.title" class="mb-2 last:mb-0 text-[13px] text-white/85">
@@ -145,7 +161,8 @@ function printCv() {
                                 <div v-for="project in projects" :key="project.title" class="cv-experience-item">
                                     <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                                         <h3 class="min-w-0 text-[15px] font-semibold text-foreground">{{ project.title }}</h3>
-                                        <span class="shrink-0 text-xs font-medium text-muted-foreground">{{ project.period }}</span>
+                                        <span v-if="showProjectPeriod && project.period"
+                                            class="shrink-0 text-xs font-medium text-muted-foreground">{{ project.period }}</span>
                                     </div>
                                     <p v-if="project.subtitle" class="mt-0.5 text-xs text-muted-foreground">{{ project.subtitle }}</p>
                                     <HtmlContent v-if="project.summary || project.solution"
@@ -180,7 +197,8 @@ function printCv() {
                             <h1 class="cv-classic-name">{{ profile?.full_name }}</h1>
                             <p v-if="profile?.headline" class="cv-classic-headline">{{ profile.headline }}</p>
                             <hr class="cv-classic-rule" />
-                            <CvContactLines :profile="profile" :github="github" variant="classic-inline" />
+                            <CvContactLines :profile="profile" :social-links="social_links"
+                                :show-social-links="showSocialOnCv" variant="classic-inline" />
                             <hr class="cv-classic-rule cv-classic-rule-strong" />
                         </header>
 
@@ -215,7 +233,7 @@ function printCv() {
                                 :class="['cv-classic-entry', index > 0 ? 'cv-classic-entry-divider' : '']">
                                 <div class="cv-classic-entry-row">
                                     <span class="font-semibold">{{ project.title }}</span>
-                                    <span class="cv-classic-date">{{ project.period }}</span>
+                                    <span v-if="showProjectPeriod && project.period" class="cv-classic-date">{{ project.period }}</span>
                                 </div>
                                 <p v-if="project.subtitle" class="cv-classic-subline italic">{{ project.subtitle }}</p>
                                 <HtmlContent v-if="project.summary || project.solution" class="cv-classic-prose-sm"
@@ -235,6 +253,13 @@ function printCv() {
                                 </template>
                             </p>
                         </section>
+
+                        <CvBulletListSection v-if="showCertifications" variant="classic" :title="ui.cv?.certifications"
+                            :items="certifications" />
+                        <CvBulletListSection v-if="showCareerTargets" variant="classic" :title="ui.cv?.career_targets"
+                            :items="career_targets" />
+                        <CvBulletListSection v-if="showStrengths" variant="classic" :title="ui.cv?.strengths"
+                            :items="strengths" />
 
                         <section v-if="settings.show_principles && principles?.length" class="cv-classic-section">
                             <h2 class="cv-classic-section-title">{{ ui.philosophy?.title }}</h2>
@@ -265,7 +290,8 @@ function printCv() {
                                     </div>
                                 </div>
                             </div>
-                            <CvContactLines :profile="profile" :github="github" variant="modern-grid" class="mt-5" />
+                            <CvContactLines :profile="profile" :social-links="social_links"
+                                :show-social-links="showSocialOnCv" variant="modern-grid" class="mt-5" />
                         </header>
 
                         <section v-if="settings.show_about && profile?.about" class="cv-modern-section">
@@ -314,7 +340,8 @@ function printCv() {
                                 <div v-for="project in projects" :key="project.title" class="cv-modern-timeline-item">
                                     <div class="flex flex-wrap items-baseline justify-between gap-2">
                                         <h3 class="text-base font-semibold text-foreground">{{ project.title }}</h3>
-                                        <span class="text-xs font-medium text-muted-foreground">{{ project.period }}</span>
+                                        <span v-if="showProjectPeriod && project.period"
+                                            class="text-xs font-medium text-muted-foreground">{{ project.period }}</span>
                                     </div>
                                     <p v-if="project.subtitle" class="text-sm text-primary/80">{{ project.subtitle }}</p>
                                     <HtmlContent v-if="project.summary || project.solution"
@@ -347,6 +374,13 @@ function printCv() {
                                 </div>
                             </div>
                         </section>
+
+                        <CvBulletListSection v-if="showCertifications" variant="modern" :title="ui.cv?.certifications"
+                            :items="certifications" />
+                        <CvBulletListSection v-if="showCareerTargets" variant="modern" :title="ui.cv?.career_targets"
+                            :items="career_targets" />
+                        <CvBulletListSection v-if="showStrengths" variant="modern" :title="ui.cv?.strengths"
+                            :items="strengths" />
 
                         <section v-if="settings.show_principles && principles?.length" class="cv-modern-section">
                             <h2 class="cv-modern-section-title">{{ ui.philosophy?.title }}</h2>

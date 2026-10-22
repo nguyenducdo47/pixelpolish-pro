@@ -88,6 +88,11 @@ class Portfolio extends Model
         return $this->hasMany(Principle::class)->orderBy('sort_order');
     }
 
+    public function cvListItems(): HasMany
+    {
+        return $this->hasMany(CvListItem::class)->orderBy('sort_order');
+    }
+
     public function cvSettings(): HasOne
     {
         return $this->hasOne(CvSetting::class);

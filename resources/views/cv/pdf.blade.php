@@ -63,9 +63,9 @@
                         'profile' => $profile,
                         'settings' => $settings,
                         'icons' => $sidebarIcons,
-                        'github' => $github,
                         'stripProtocol' => $stripProtocol,
                         'layout' => $layout,
+                        'social_links' => $portfolio['social_links'] ?? [],
                     ])
                     @include('cv.partials.main', [
                         'portfolio' => $portfolio,
@@ -88,6 +88,11 @@
                         'profile' => $profile,
                         'settings' => $settings,
                         'only' => 'languages',
+                        'sidebarSection' => true,
+                    ])
+                    @include('cv.partials.cv-lists', [
+                        'portfolio' => $portfolio,
+                        'settings' => $settings,
                         'sidebarSection' => true,
                     ])
                     @include('cv.partials.main', [
@@ -120,11 +125,25 @@
         </div>
     @else
         <div class="cv-sheet cv-{{ $layout }}">
-            @include('cv.partials.header', compact('profile', 'settings', 'icons', 'github', 'stripProtocol', 'layout'))
+            @include('cv.partials.header', [
+                'profile' => $profile,
+                'settings' => $settings,
+                'icons' => $icons,
+                'stripProtocol' => $stripProtocol,
+                'layout' => $layout,
+                'social_links' => $portfolio['social_links'] ?? [],
+            ])
 
             @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'about', 'classicEntries' => $layout === 'classic'])
             @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'education', 'classicEntries' => $layout === 'classic'])
-            @include('cv.partials.side', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'skills', 'classicEntries' => $layout === 'classic'])
+            @include('cv.partials.side', [
+                'portfolio' => $portfolio,
+                'profile' => $profile,
+                'settings' => $settings,
+                'only' => 'skills',
+                'classicEntries' => $layout === 'classic',
+                'modernEntries' => $layout === 'modern',
+            ])
             @include('cv.partials.main', [
                 'portfolio' => $portfolio,
                 'profile' => $profile,
@@ -135,7 +154,20 @@
                 'modernTimeline' => $layout === 'modern',
                 'classicEntries' => $layout === 'classic',
             ])
-            @include('cv.partials.side', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'languages', 'classicEntries' => $layout === 'classic'])
+            @include('cv.partials.side', [
+                'portfolio' => $portfolio,
+                'profile' => $profile,
+                'settings' => $settings,
+                'only' => 'languages',
+                'classicEntries' => $layout === 'classic',
+                'modernEntries' => $layout === 'modern',
+            ])
+            @include('cv.partials.cv-lists', [
+                'portfolio' => $portfolio,
+                'settings' => $settings,
+                'classicEntries' => $layout === 'classic',
+                'modernEntries' => $layout === 'modern',
+            ])
             @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'principles', 'classicEntries' => $layout === 'classic'])
         </div>
     @endif

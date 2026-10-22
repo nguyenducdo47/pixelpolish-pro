@@ -82,6 +82,21 @@ class ManageCvTest extends TestCase
         $this->assertTrue($payload['cv']['settings']['show_avatar']);
     }
 
+    public function test_cv_settings_include_project_period_and_social_toggles(): void
+    {
+        $user = User::factory()->create(['username' => 'cv-toggles']);
+
+        $user->portfolio->cvSettings->update([
+            'show_project_period' => false,
+            'show_social_links' => false,
+        ]);
+
+        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+
+        $this->assertFalse($payload['cv']['settings']['show_project_period']);
+        $this->assertFalse($payload['cv']['settings']['show_social_links']);
+    }
+
     public function test_empty_avatar_state_is_stored_as_null(): void
     {
         $user = User::factory()->create([

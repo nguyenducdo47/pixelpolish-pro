@@ -4,11 +4,22 @@ import CvContactIcon from './CvContactIcon.vue';
 
 const props = defineProps({
     profile: { type: Object, default: () => ({}) },
-    github: { type: Object, default: null },
+    socialLinks: { type: Array, default: () => [] },
+    showSocialLinks: { type: Boolean, default: true },
     inverted: { type: Boolean, default: false },
     /** default | modern-grid | classic-inline */
     variant: { type: String, default: 'default' },
 });
+
+function socialIconType(platform, url) {
+    const haystack = `${platform || ''} ${url || ''}`.toLowerCase();
+
+    return haystack.includes('git') ? 'github' : 'website';
+}
+
+function stripUrl(url) {
+    return (url || '').replace(/^https?:\/\//, '');
+}
 
 const contactItems = computed(() => {
     const items = [];
@@ -34,13 +45,18 @@ const contactItems = computed(() => {
             external: true,
         });
     }
-    if (props.github?.url) {
-        items.push({
-            type: 'github',
-            label: props.github.url.replace(/^https?:\/\//, ''),
-            href: props.github.url,
-            external: true,
-        });
+    if (props.showSocialLinks) {
+        for (const link of props.socialLinks || []) {
+            if (!link?.url) {
+                continue;
+            }
+            items.push({
+                type: socialIconType(link.platform, link.url),
+                label: stripUrl(link.url),
+                href: link.url,
+                external: true,
+            });
+        }
     }
 
     return items;
@@ -54,7 +70,7 @@ const lineClass = computed(() => {
     }
 
     if (props.variant === 'modern-grid') {
-        return 'flex items-center gap-2 break-all text-xs text-muted-foreground hover:text-foreground print:text-gray-600';
+        return 'flex w-full items-center gap-2 break-all text-xs text-muted-foreground hover:text-foreground print:text-gray-600';
     }
 
     if (props.variant === 'classic-inline') {
@@ -76,7 +92,7 @@ const lineClass = computed(() => {
         </template>
     </div>
 
-    <div v-else-if="variant === 'modern-grid'" class="cv-modern-contact-grid">
+    <div v-else-if="variant === 'modern-grid'" class="cv-modern-contact-grid flex flex-col gap-1.5">
         <component v-for="(item, index) in contactItems" :key="`${item.type}-${index}`"
             :is="item.href ? 'a' : 'span'" :href="item.href || undefined"
             :target="item.external ? '_blank' : undefined" :class="lineClass">

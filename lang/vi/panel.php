@@ -14,6 +14,7 @@ return [
         'languages' => 'Ngoại ngữ',
         'philosophy' => 'Triết lý',
         'social' => 'Mạng xã hội',
+        'cv_lists' => 'Mục CV (chứng chỉ, mục tiêu…)',
         'users' => 'Tài khoản & portfolio',
         'account_audit_logs' => 'Nhật ký tài khoản',
         'site_locales' => 'Ngôn ngữ hệ thống',
@@ -179,6 +180,13 @@ return [
         'show_about' => 'Hiển thị giới thiệu',
         'show_skills' => 'Hiển thị kỹ năng',
         'show_projects' => 'Hiển thị dự án',
+        'show_project_period' => 'Hiển thị thời gian dự án trên CV',
+        'show_social_links' => 'Hiển thị mạng xã hội trên CV',
+        'show_certifications' => 'Hiển thị chứng chỉ & giấy phép',
+        'show_career_targets' => 'Hiển thị vị trí định hướng',
+        'show_strengths' => 'Hiển thị điểm mạnh',
+        'cv_list_type' => 'Loại mục CV',
+        'cv_list_title' => 'Nội dung',
         'show_education' => 'Hiển thị học vấn',
         'show_languages' => 'Hiển thị ngoại ngữ',
         'show_principles' => 'Hiển thị triết lý',
@@ -415,7 +423,7 @@ return [
             'skills' => 'Lĩnh vực dạy',
         ],
         'business' => [
-            'projects' => 'Case study',
+            'projects' => 'Dự án điển hình',
             'skills' => 'Năng lực',
         ],
     ],
@@ -428,7 +436,7 @@ return [
         ],
         'creative' => [
             'projects' => 'Tác phẩm',
-            'projects_desc' => 'Dự án tiêu biểu và case study',
+            'projects_desc' => 'Dự án tiêu biểu và dự án điển hình',
         ],
         'education' => [
             'projects' => 'Khóa học & chương trình',
@@ -437,7 +445,7 @@ return [
             'skills_desc' => 'Môn học và phương pháp',
         ],
         'business' => [
-            'projects' => 'Case study',
+            'projects' => 'Dự án điển hình',
             'projects_desc' => 'Dự án khách hàng và kết quả đo lường được',
             'skills' => 'Năng lực',
             'skills_desc' => 'Thế mạnh cốt lõi trên thị trường',
@@ -450,7 +458,7 @@ return [
         ],
         'creative' => [
             'tech_stack' => 'Công cụ & phương tiện',
-            'demo_url' => 'Link case study',
+            'demo_url' => 'Liên kết dự án điển hình',
         ],
         'education' => [
             'learned' => 'Kết quả học viên',
@@ -574,5 +582,10 @@ return [
             'nothing_unread' => 'Không còn thư chưa đọc',
             'deleted_all' => 'Đã xóa hết hộp thư',
         ],
+    ],
+    'cv_list_types' => [
+        'certification' => 'Chứng chỉ & giấy phép',
+        'career_target' => 'Vị trí định hướng',
+        'strength' => 'Điểm mạnh',
     ],
 ];

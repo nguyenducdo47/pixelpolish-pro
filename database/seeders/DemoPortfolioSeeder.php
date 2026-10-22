@@ -33,11 +33,11 @@ class DemoPortfolioSeeder extends Seeder
 
         $portfolio->update([
             'slug' => 'nguyenducdo',
-            'content_profile' => ContentProfile::It,
+            'content_profile' => ContentProfile::Business,
             'is_published' => true,
             'default_locale' => 'vi',
             'default_theme' => 'system',
-            'seo_title' => 'Nguyễn Đức Độ | Backend & Chuyển đổi số Kho vận',
+            'seo_title' => 'Nguyễn Đức Độ | Kho vận & Nâng cấp hệ thống quản lý kho',
             'seo_description' => $cvOverlay['profile']['tagline']['vi'] ?? ($vi['hero']['description'] ?? null),
         ]);
 
@@ -60,7 +60,7 @@ class DemoPortfolioSeeder extends Seeder
                 'headline' => $cvOverlay['profile']['headline'],
                 'tagline' => $cvOverlay['profile']['tagline'],
                 'about' => $cvOverlay['profile']['about'],
-                'philosophy_quote' => [
+                'philosophy_quote' => $cvOverlay['profile']['philosophy_quote'] ?? [
                     'vi' => strip_tags(str_replace(['<highlight>', '</highlight>'], '', $vi['philosophy']['quote'] ?? '')),
                     'en' => strip_tags(str_replace(['<highlight>', '</highlight>'], '', $en['philosophy']['quote'] ?? '')),
                 ],
@@ -99,80 +99,91 @@ class DemoPortfolioSeeder extends Seeder
                 ]);
             }
         }
-        foreach ($vi['skills']['categories'] ?? [] as $index => $category) {
-            $enCategory = $en['skills']['categories'][$index] ?? $category;
-            $created = $portfolio->skillCategories()->create([
-                'name' => ['vi' => $category['title'], 'en' => $enCategory['title']],
-                'sort_order' => $index + $logisticsCategoryOffset,
-            ]);
-            foreach ($category['items'] ?? [] as $skillIndex => $skill) {
-                $enSkill = $enCategory['items'][$skillIndex] ?? $skill;
-                $created->skills()->create([
-                    'name' => $skill['name'],
-                    'description' => ['vi' => $skill['description'] ?? '', 'en' => $enSkill['description'] ?? ''],
-                    'level' => $skill['level'] ?? 50,
-                    'sort_order' => $skillIndex,
+        if (! ($cvOverlay['skip_legacy_skill_categories'] ?? false)) {
+            foreach ($vi['skills']['categories'] ?? [] as $index => $category) {
+                $enCategory = $en['skills']['categories'][$index] ?? $category;
+                $created = $portfolio->skillCategories()->create([
+                    'name' => ['vi' => $category['title'], 'en' => $enCategory['title']],
+                    'sort_order' => $index + $logisticsCategoryOffset,
                 ]);
+                foreach ($category['items'] ?? [] as $skillIndex => $skill) {
+                    $enSkill = $enCategory['items'][$skillIndex] ?? $skill;
+                    $created->skills()->create([
+                        'name' => $skill['name'],
+                        'description' => ['vi' => $skill['description'] ?? '', 'en' => $enSkill['description'] ?? ''],
+                        'level' => $skill['level'] ?? 50,
+                        'sort_order' => $skillIndex,
+                    ]);
+                }
             }
         }
 
         $portfolio->projects()->delete();
-        $projectPatches = $cvOverlay['project_patches'] ?? [];
-        $legacyProjects = $vi['projects']['items'] ?? [];
-        $prependProjects = $cvOverlay['prepend_projects'] ?? [];
-        $allProjects = array_merge($prependProjects, $legacyProjects);
-        foreach ($allProjects as $index => $project) {
-            $isPrepended = $index < count($prependProjects);
-            $legacyIndex = $index - count($prependProjects);
-            $enProject = $isPrepended
-                ? $project
-                : ($en['projects']['items'][$legacyIndex] ?? $project);
-
-            $titleVi = $isPrepended ? ($project['title']['vi'] ?? '') : ($project['title'] ?? '');
-            $patch = null;
-            foreach ($projectPatches as $needle => $patchData) {
-                if (str_contains($titleVi, $needle)) {
-                    $patch = $patchData;
-                    break;
-                }
+        $overlayProjects = ($cvOverlay['replace_legacy_projects'] ?? false)
+            ? ($cvOverlay['projects'] ?? [])
+            : null;
+        if ($overlayProjects !== null) {
+            foreach ($overlayProjects as $index => $project) {
+                $portfolio->projects()->create($this->mapOverlayProject($project, $index));
             }
+        } else {
+            $projectPatches = $cvOverlay['project_patches'] ?? [];
+            $legacyProjects = $vi['projects']['items'] ?? [];
+            $prependProjects = $cvOverlay['prepend_projects'] ?? [];
+            $allProjects = array_merge($prependProjects, $legacyProjects);
+            foreach ($allProjects as $index => $project) {
+                $isPrepended = $index < count($prependProjects);
+                $legacyIndex = $index - count($prependProjects);
+                $enProject = $isPrepended
+                    ? $project
+                    : ($en['projects']['items'][$legacyIndex] ?? $project);
 
-            $portfolio->projects()->create([
-                'title' => $isPrepended
-                    ? $project['title']
-                    : ['vi' => $project['title'], 'en' => $enProject['title']],
-                'subtitle' => $patch['subtitle'] ?? ($isPrepended
-                    ? ($project['subtitle'] ?? ['vi' => '', 'en' => ''])
-                    : ['vi' => $project['subtitle'] ?? '', 'en' => $enProject['subtitle'] ?? '']),
-                'complexity' => $isPrepended
-                    ? ['vi' => '', 'en' => '']
-                    : ['vi' => $project['complexity'] ?? '', 'en' => $enProject['complexity'] ?? ''],
-                'summary' => $patch['solution'] ?? ($isPrepended
-                    ? ($project['solution'] ?? ['vi' => '', 'en' => ''])
-                    : ['vi' => $project['solution'] ?? '', 'en' => $enProject['solution'] ?? '']),
-                'problem' => $isPrepended
-                    ? ['vi' => '', 'en' => '']
-                    : ['vi' => $project['problem'] ?? '', 'en' => $enProject['problem'] ?? ''],
-                'solution' => $patch['solution'] ?? ($isPrepended
-                    ? ($project['solution'] ?? ['vi' => '', 'en' => ''])
-                    : ['vi' => $project['solution'] ?? '', 'en' => $enProject['solution'] ?? '']),
-                'learned' => $isPrepended
-                    ? ['vi' => '', 'en' => '']
-                    : ['vi' => $project['learned'] ?? '', 'en' => $enProject['learned'] ?? ''],
-                'highlights' => $patch['highlights'] ?? ($isPrepended
-                    ? ($project['highlights'] ?? ['vi' => [], 'en' => []])
-                    : [
-                        'vi' => $project['responsibilities'] ?? [],
-                        'en' => $enProject['responsibilities'] ?? [],
-                    ]),
-                'tech_stack' => $patch['tech_stack'] ?? ($isPrepended
-                    ? ($project['tech_stack'] ?? [])
-                    : ($project['techStack'] ?? [])),
-                'period' => $project['period'] ?? null,
-                'demo_url' => $isPrepended ? null : ($project['demoUrl'] ?? null),
-                'demo_label' => $isPrepended ? null : ($project['demoLabel'] ?? null),
-                'sort_order' => $index,
-            ]);
+                $titleVi = $isPrepended ? ($project['title']['vi'] ?? '') : ($project['title'] ?? '');
+                $patch = null;
+                foreach ($projectPatches as $needle => $patchData) {
+                    if (str_contains($titleVi, $needle)) {
+                        $patch = $patchData;
+                        break;
+                    }
+                }
+
+                $portfolio->projects()->create([
+                    'title' => $isPrepended
+                        ? $project['title']
+                        : ['vi' => $project['title'], 'en' => $enProject['title']],
+                    'subtitle' => $patch['subtitle'] ?? ($isPrepended
+                        ? ($project['subtitle'] ?? ['vi' => '', 'en' => ''])
+                        : ['vi' => $project['subtitle'] ?? '', 'en' => $enProject['subtitle'] ?? '']),
+                    'complexity' => $isPrepended
+                        ? ['vi' => '', 'en' => '']
+                        : ['vi' => $project['complexity'] ?? '', 'en' => $enProject['complexity'] ?? ''],
+                    'summary' => $patch['solution'] ?? ($isPrepended
+                        ? ($project['solution'] ?? ['vi' => '', 'en' => ''])
+                        : ['vi' => $project['solution'] ?? '', 'en' => $enProject['solution'] ?? '']),
+                    'problem' => $isPrepended
+                        ? ['vi' => '', 'en' => '']
+                        : ['vi' => $project['problem'] ?? '', 'en' => $enProject['problem'] ?? ''],
+                    'solution' => $patch['solution'] ?? ($isPrepended
+                        ? ($project['solution'] ?? ['vi' => '', 'en' => ''])
+                        : ['vi' => $project['solution'] ?? '', 'en' => $enProject['solution'] ?? '']),
+                    'learned' => $isPrepended
+                        ? ['vi' => '', 'en' => '']
+                        : ['vi' => $project['learned'] ?? '', 'en' => $enProject['learned'] ?? ''],
+                    'highlights' => $patch['highlights'] ?? ($isPrepended
+                        ? ($project['highlights'] ?? ['vi' => [], 'en' => []])
+                        : [
+                            'vi' => $project['responsibilities'] ?? [],
+                            'en' => $enProject['responsibilities'] ?? [],
+                        ]),
+                    'tech_stack' => $patch['tech_stack'] ?? ($isPrepended
+                        ? ($project['tech_stack'] ?? [])
+                        : ($project['techStack'] ?? [])),
+                    'period' => $project['period'] ?? null,
+                    'demo_url' => $isPrepended ? null : ($project['demoUrl'] ?? null),
+                    'demo_label' => $isPrepended ? null : ($project['demoLabel'] ?? null),
+                    'sort_order' => $index,
+                ]);
+            }
         }
 
         $portfolio->education()->delete();
@@ -199,14 +210,16 @@ class DemoPortfolioSeeder extends Seeder
 
         $portfolio->principles()->delete();
         $principleIndex = 0;
-        foreach ($vi['philosophy']['principles'] ?? [] as $item) {
-            $enItem = $en['philosophy']['principles'][$principleIndex] ?? $item;
-            $portfolio->principles()->create([
-                'title' => ['vi' => $item['title'], 'en' => $enItem['title']],
-                'description' => ['vi' => $item['description'], 'en' => $enItem['description']],
-                'sort_order' => $principleIndex,
-            ]);
-            $principleIndex++;
+        if (! ($cvOverlay['skip_legacy_principles'] ?? false)) {
+            foreach ($vi['philosophy']['principles'] ?? [] as $item) {
+                $enItem = $en['philosophy']['principles'][$principleIndex] ?? $item;
+                $portfolio->principles()->create([
+                    'title' => ['vi' => $item['title'], 'en' => $enItem['title']],
+                    'description' => ['vi' => $item['description'], 'en' => $enItem['description']],
+                    'sort_order' => $principleIndex,
+                ]);
+                $principleIndex++;
+            }
         }
         foreach ($cvOverlay['extra_principles'] ?? [] as $item) {
             $portfolio->principles()->create([
@@ -217,6 +230,42 @@ class DemoPortfolioSeeder extends Seeder
             $principleIndex++;
         }
 
-        ContentProfileConfig::forProfile(ContentProfile::It)->applySuggestedThemeIfUnset($portfolio->fresh());
+        $portfolio->cvListItems()->delete();
+        foreach ($cvOverlay['cv_list_items'] ?? [] as $type => $items) {
+            foreach ($items as $index => $item) {
+                $portfolio->cvListItems()->create([
+                    'type' => $type,
+                    'title' => $item['title'],
+                    'sort_order' => $index,
+                ]);
+            }
+        }
+
+        ContentProfileConfig::forProfile(ContentProfile::Business)->applySuggestedThemeIfUnset($portfolio->fresh());
+    }
+
+    /**
+     * @param  array<string, mixed>  $project
+     * @return array<string, mixed>
+     */
+    private function mapOverlayProject(array $project, int $sortOrder): array
+    {
+        $solution = $project['solution'] ?? ['vi' => '', 'en' => ''];
+
+        return [
+            'title' => $project['title'],
+            'subtitle' => $project['subtitle'] ?? ['vi' => '', 'en' => ''],
+            'complexity' => ['vi' => '', 'en' => ''],
+            'summary' => $solution,
+            'problem' => ['vi' => '', 'en' => ''],
+            'solution' => $solution,
+            'learned' => ['vi' => '', 'en' => ''],
+            'highlights' => $project['highlights'] ?? ['vi' => [], 'en' => []],
+            'tech_stack' => $project['tech_stack'] ?? [],
+            'period' => $project['period'] ?? null,
+            'demo_url' => $project['demo_url'] ?? null,
+            'demo_label' => $project['demo_label'] ?? null,
+            'sort_order' => $sortOrder,
+        ];
     }
 }

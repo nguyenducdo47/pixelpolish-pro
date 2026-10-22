@@ -30,7 +30,7 @@ return [
         'landing' => [
             'badge' => 'Designer & sáng tạo',
             'title' => 'Trưng bày tác phẩm với portfolio và CV chuyên nghiệp',
-            'subtitle' => 'Nổi bật dự án, công cụ và case study bằng tiếng Việt và tiếng Anh.',
+            'subtitle' => 'Nổi bật dự án, công cụ và dự án điển hình bằng tiếng Việt và tiếng Anh.',
         ],
         'nav' => [
             'skills' => 'Kỹ năng',
@@ -75,23 +75,23 @@ return [
         'landing' => [
             'badge' => 'Kinh doanh & tư vấn',
             'title' => 'Portfolio và CV sẵn sàng cho khách hàng',
-            'subtitle' => 'Case study, kết quả và liên hệ — bố cục chuyên nghiệp, không thuật ngữ IT.',
+            'subtitle' => 'Dự án điển hình, kết quả và liên hệ — bố cục chuyên nghiệp, không thuật ngữ IT.',
         ],
         'nav' => [
             'skills' => 'Năng lực cốt lõi',
-            'projects' => 'Case study',
+            'projects' => 'Dự án điển hình',
         ],
         'skills' => [
             'title' => 'Năng lực cốt lõi',
         ],
         'projects' => [
-            'title' => 'Case study',
+            'title' => 'Dự án điển hình',
             'problem' => 'Thách thức',
             'solution' => 'Kết quả',
             'responsibilities' => 'Tác động',
         ],
         'cv' => [
-            'experience' => 'Case study',
+            'experience' => 'Dự án điển hình',
             'skills' => 'Năng lực',
         ],
     ],

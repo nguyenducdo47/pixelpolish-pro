@@ -47,6 +47,9 @@ return [
         'skills' => 'Skills',
         'education' => 'Education',
         'languages' => 'Languages',
+        'certifications' => 'Certifications & licenses',
+        'career_targets' => 'Target roles',
+        'strengths' => 'Strengths',
     ],
     'landing' => [
         'badge' => 'Build a portfolio',

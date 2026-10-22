@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\CvListType;
 use App\Models\Portfolio;
 use App\Enums\ContentProfile;
 use App\Support\ContentProfileConfig;
@@ -21,6 +22,7 @@ class PortfolioPresenter
             'education',
             'spokenLanguages',
             'principles',
+            'cvListItems',
             'cvSettings',
         ]);
 
@@ -108,6 +110,9 @@ class PortfolioPresenter
                 'title' => $item->localeText('title', $locale),
                 'description' => $item->localeHtml('description', $locale),
             ])->values(),
+            'certifications' => $this->mapCvListItems($portfolio, CvListType::Certification, $locale),
+            'career_targets' => $this->mapCvListItems($portfolio, CvListType::CareerTarget, $locale),
+            'strengths' => $this->mapCvListItems($portfolio, CvListType::Strength, $locale),
             'cv' => [
                 'url' => route('portfolio.cv', ['locale' => $locale, 'username' => $portfolio->slug]),
                 'pdf_url' => route('portfolio.cv.pdf', ['locale' => $locale, 'username' => $portfolio->slug]),
@@ -117,6 +122,11 @@ class PortfolioPresenter
                         'show_about',
                         'show_skills',
                         'show_projects',
+                        'show_project_period',
+                        'show_social_links',
+                        'show_certifications',
+                        'show_career_targets',
+                        'show_strengths',
                         'show_education',
                         'show_languages',
                         'show_principles',
@@ -135,5 +145,15 @@ class PortfolioPresenter
                 'cv_url' => route('portfolio.cv', ['locale' => $item->code, 'username' => $portfolio->slug]),
             ])->values(),
         ];
+    }
+
+    private function mapCvListItems(Portfolio $portfolio, CvListType $type, string $locale): \Illuminate\Support\Collection
+    {
+        return $portfolio->cvListItems
+            ->where('type', $type)
+            ->values()
+            ->map(fn ($item) => [
+                'title' => $item->localeText('title', $locale),
+            ]);
     }
 }

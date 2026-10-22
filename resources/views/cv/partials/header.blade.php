@@ -54,7 +54,13 @@
 
         <div class="contact-list sidebar-contact">
 
-            @include('cv.partials.contact-lines', compact('profile', 'icons', 'github', 'stripProtocol'))
+            @include('cv.partials.contact-lines', [
+                'profile' => $profile,
+                'icons' => $icons,
+                'stripProtocol' => $stripProtocol,
+                'settings' => $settings,
+                'social_links' => $social_links ?? [],
+            ])
 
         </div>
 
@@ -126,7 +132,13 @@
 
             <div class="contact-list {{ $isClassic ? 'classic-contact-list' : '' }}">
 
-                @include('cv.partials.contact-lines', compact('profile', 'icons', 'github', 'stripProtocol'))
+                @include('cv.partials.contact-lines', [
+                'profile' => $profile,
+                'icons' => $icons,
+                'stripProtocol' => $stripProtocol,
+                'settings' => $settings,
+                'social_links' => $social_links ?? [],
+            ])
 
             </div>
 

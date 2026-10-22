@@ -28,10 +28,14 @@
             <div class="project-head{{ $classicEntries ? ' cv-classic-entry-row' : '' }}">
                 @if($richProjects && $mainSection)
                     <h3 class="project-title">{{ $project['title'] }}</h3>
-                    <span class="project-period">{{ $project['period'] }}</span>
+                    @if(($settings['show_project_period'] ?? true) && !empty($project['period']))
+                        <span class="project-period">{{ $project['period'] }}</span>
+                    @endif
                 @else
                     <span class="project-title">{{ $project['title'] }}</span>
-                    <span class="project-period{{ $classicEntries ? ' cv-classic-date' : '' }}">{{ $project['period'] }}</span>
+                    @if(($settings['show_project_period'] ?? true) && !empty($project['period']))
+                        <span class="project-period{{ $classicEntries ? ' cv-classic-date' : '' }}">{{ $project['period'] }}</span>
+                    @endif
                 @endif
             </div>
             @if($richProjects && !empty($project['subtitle']))

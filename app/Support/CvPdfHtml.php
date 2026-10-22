@@ -18,6 +18,8 @@ class CvPdfHtml
         $html = preg_replace('/<\/tr>/iu', '</div>', $html) ?? $html;
         $html = preg_replace('/<t[dh][^>]*>/iu', '<span>', $html) ?? $html;
         $html = preg_replace('/<\/t[dh]>/iu', '</span> ', $html) ?? $html;
+        // Dompdf only ships DejaVu — strip editor fonts so Vietnamese diacritics render reliably.
+        $html = preg_replace('/\s*font-family\s*:\s*[^;"\']+;?/iu', '', $html) ?? $html;
 
         return $html;
     }

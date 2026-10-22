@@ -68,6 +68,17 @@ class ManageCv extends Page
                 Toggle::make('show_projects')
                     ->label(fn (): string => $config()->panelNavLabel('projects'))
                     ->visible(fn (): bool => $config()->sectionEnabled('projects')),
+                Toggle::make('show_project_period')
+                    ->label(__('panel.fields.show_project_period'))
+                    ->visible(fn (): bool => $config()->sectionEnabled('projects')),
+                Toggle::make('show_social_links')
+                    ->label(__('panel.fields.show_social_links')),
+                Toggle::make('show_certifications')
+                    ->label(__('panel.fields.show_certifications')),
+                Toggle::make('show_career_targets')
+                    ->label(__('panel.fields.show_career_targets')),
+                Toggle::make('show_strengths')
+                    ->label(__('panel.fields.show_strengths')),
                 Toggle::make('show_education')->label(__('panel.fields.show_education')),
                 Toggle::make('show_languages')->label(__('panel.fields.show_languages')),
                 Toggle::make('show_principles')

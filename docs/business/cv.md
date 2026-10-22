@@ -10,7 +10,7 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 - Same **publish/preview** rules as portfolio show.
 - **`cv_settings`** row (1:1 portfolio) controls:
   - `template`: `modern` \| `classic` \| `sidebar`
-  - Section toggles: about, skills, projects, education, languages, principles, avatar
+  - Section toggles: about, skills, projects, project period (dates), social links (header), education, languages, principles, avatar
 - **`show_principles` defaults false** at DB level; wizard defaults match.
 - Presenter sets **`show_avatar` false** when no avatar file exists even if toggle true.
 - PDF filename: `{slug-full-name}-cv-{locale}.pdf`.
@@ -20,7 +20,7 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 
 1. `PortfolioController` builds presenter payload (includes `cv.settings`, `cv.url`, `cv.pdf_url`).
 2. **Web CV**: `Portfolio/Cv.vue` picks layout from `appearance.cv_layout` **or** `settings.template`.
-3. **PDF**: `CvPdfExporter` renders `resources/views/cv/pdf.blade.php` via Dompdf (separate HTML/CSS from the Inertia page; tuned for print-like layout).
+3. **PDF**: `CvPdfExporter` renders `resources/views/cv/pdf.blade.php` via Dompdf (separate HTML/CSS from the Inertia page; tuned for print-like layout). Text uses bundled **DejaVu** fonts (not Inter/Sora from the web); `CvPdfHtml::prepare()` strips inline `font-family` from rich HTML so Vietnamese diacritics render reliably.
 
 ## Data
 

@@ -33,9 +33,17 @@
     </p>
 @endif
 
-@if(!empty($github['url']))
-    <p class="contact-line">
-        <img src="{{ $icons['github'] }}" width="10" height="10" class="contact-icon" alt="">
-        <span class="contact-value">{{ $stripProtocol($github['url']) }}</span>
-    </p>
+@if(($settings['show_social_links'] ?? true))
+    @foreach($social_links ?? [] as $link)
+        @if(!empty($link['url']))
+            @php
+                $socialHaystack = strtolower(($link['platform'] ?? '').' '.($link['url'] ?? ''));
+                $socialIcon = str_contains($socialHaystack, 'git') ? 'github' : 'website';
+            @endphp
+            <p class="contact-line">
+                <img src="{{ $icons[$socialIcon] }}" width="10" height="10" class="contact-icon" alt="">
+                <span class="contact-value">{{ $stripProtocol($link['url']) }}</span>
+            </p>
+        @endif
+    @endforeach
 @endif

@@ -33,7 +33,11 @@ class CvPdfExporter
             'forPdf' => true,
         ])
             ->setPaper('a4')
+            ->setOption('defaultFont', 'dejavu sans')
             ->setOption('isHtml5ParserEnabled', true)
+            ->setOption('isRemoteEnabled', false)
+            ->setOption('isFontSubsettingEnabled', true)
+            ->setOption('dpi', 96)
             ->download($filename);
     }
 

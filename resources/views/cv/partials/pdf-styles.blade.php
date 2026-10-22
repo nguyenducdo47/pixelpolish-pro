@@ -1,14 +1,32 @@
-@page { margin: 18mm; }
-html, body { margin: 20px; padding: 20px; }
+@page { margin: 14mm 12mm; }
+html, body {
+    margin: 20px;
+    padding: 20px;
+}
 body {
-    font-family: DejaVu Sans, sans-serif;
-    font-size: 12px;
+    font-family: 'dejavu sans', sans-serif;
+    font-size: 11px;
     color: {{ $text }};
-    line-height: 1.45;
+    line-height: 1.5;
     box-sizing: border-box;
 }
 body.cv-pdf-classic {
-    font-family: DejaVu Serif, serif;
+    font-family: 'dejavu serif', serif;
+}
+.cv-pdf-bullet-list {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 1.25rem;
+    color: {{ $muted }};
+    font-size: 11px;
+    line-height: 1.45;
+}
+.cv-pdf-bullet-list li {
+    display: list-item;
+    margin-bottom: 1.5mm;
+}
+.cv-modern-section {
+    margin-bottom: 5mm;
 }
 
 /* —— Sidebar: no full-page table (Dompdf blank pages). Float + margin main. —— */
@@ -224,11 +242,10 @@ body.cv-pdf-sidebar .cv-sidebar-rich ul {
 .cv-modern-avatar { float: left; margin-right: 4mm; }
 .cv-modern-avatar img { border-radius: 6px; }
 .modern-contact .contact-line {
-    display: inline-block;
-    width: 32%;
-    vertical-align: top;
+    display: block;
+    width: 100%;
     margin-bottom: 2px;
-    padding-right: 4px;
+    padding-right: 0;
     box-sizing: border-box;
 }
 body.cv-pdf-modern h2,
