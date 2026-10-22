@@ -98,53 +98,59 @@
 
 
 
-    <div class="header-row">
+    @if($isModern)
 
-        @if($isModern)
-
-            <div class="cv-modern-intro modern-intro">
-
+        <div class="cv-modern-header">
+            <div @class([
+                'cv-modern-header-columns',
+                'cv-modern-header-columns--no-avatar' => empty($settings['show_avatar']) || empty($profile['avatar']),
+            ])>
                 @if(!empty($settings['show_avatar']) && !empty($profile['avatar']))
-
-                    <div class="cv-modern-avatar modern-avatar">
-
-                        <img src="{{ $profile['avatar'] }}" width="72" height="72" loading="lazy">
-
+                    <div class="cv-modern-header-avatar">
+                        <div class="cv-modern-avatar modern-avatar">
+                            <img src="{{ $profile['avatar'] }}" width="136" height="136" loading="lazy" alt="">
+                        </div>
                     </div>
-
                 @endif
-
-                <div class="modern-identity">
-
-                    <h1>{{ $profile['full_name'] ?? '' }}</h1>
-
-                    <p class="cv-modern-headline modern-headline">{{ $profile['headline'] ?? '' }}</p>
-
+                <div class="cv-modern-header-main">
+                    <div class="modern-identity">
+                        <h1>{{ $profile['full_name'] ?? '' }}</h1>
+                        @if(!empty($profile['headline']))
+                            <p class="cv-modern-headline modern-headline">{{ $profile['headline'] }}</p>
+                        @endif
+                    </div>
+                    <div class="header-contact modern-contact">
+                        <div class="contact-list">
+                            @include('cv.partials.contact-lines', [
+                                'profile' => $profile,
+                                'icons' => $icons,
+                                'stripProtocol' => $stripProtocol,
+                                'settings' => $settings,
+                                'social_links' => $social_links ?? [],
+                            ])
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
-        @endif
-
-
-
-        <div class="header-contact {{ $isClassic ? 'classic-contact classic-contact-list' : 'modern-contact' }}">
-
-            <div class="contact-list {{ $isClassic ? 'classic-contact-list' : '' }}">
-
-                @include('cv.partials.contact-lines', [
-                'profile' => $profile,
-                'icons' => $icons,
-                'stripProtocol' => $stripProtocol,
-                'settings' => $settings,
-                'social_links' => $social_links ?? [],
-            ])
-
-            </div>
-
         </div>
 
-    </div>
+    @else
+
+        <div class="header-row">
+            <div class="header-contact classic-contact classic-contact-list">
+                <div class="contact-list classic-contact-list">
+                    @include('cv.partials.contact-lines', [
+                        'profile' => $profile,
+                        'icons' => $icons,
+                        'stripProtocol' => $stripProtocol,
+                        'settings' => $settings,
+                        'social_links' => $social_links ?? [],
+                    ])
+                </div>
+            </div>
+        </div>
+
+    @endif
 
 
 

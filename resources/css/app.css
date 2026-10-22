@@ -692,6 +692,102 @@ html[data-font='mono'] .section-title {
     align-items: center;
 }
 
+/* —— CV work experience entry —— */
+.cv-work-company {
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.cv-work-position {
+    font-weight: 500;
+    line-height: 1.4;
+    color: hsl(var(--muted-foreground));
+}
+
+.cv-sidebar-panel .cv-work-company {
+    font-size: 0.875rem;
+    color: #ffffff;
+}
+
+.cv-sidebar-panel .cv-work-position {
+    font-size: 0.75rem;
+    color: rgb(255 255 255 / 0.8);
+}
+
+.cv-modern-card .cv-work-company {
+    font-size: 0.9375rem;
+    color: hsl(var(--foreground));
+}
+
+.cv-modern-card .cv-work-position {
+    font-size: 0.8125rem;
+}
+
+/* —— CV resume summary (top row) —— */
+.cv-resume-summary {
+    display: flex;
+    width: 100%;
+    border: 1px solid hsl(var(--border));
+    border-bottom-width: 2px;
+    background: hsl(var(--muted) / 0.35);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+}
+
+.cv-resume-summary-label {
+    flex: 0 0 32%;
+    max-width: 9.5rem;
+    padding: 0.5rem 0.65rem;
+    border-right: 1px solid hsl(var(--border));
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    color: hsl(var(--foreground));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cv-resume-summary-body {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.75rem;
+    color: hsl(var(--foreground));
+    white-space: pre-wrap;
+}
+
+.cv-resume-summary--title-only {
+    font-size: 1rem;
+}
+
+.cv-resume-summary--title-only .cv-resume-summary-label {
+    flex: 1 1 auto;
+    max-width: none;
+    border-right: none;
+    text-align: center;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    padding: 0.65rem 1rem;
+}
+
+@media (max-width: 480px) {
+    .cv-resume-summary {
+        flex-direction: column;
+    }
+
+    .cv-resume-summary-label {
+        max-width: none;
+        border-right: none;
+        border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .cv-resume-summary--title-only .cv-resume-summary-label {
+        border-bottom: none;
+    }
+}
+
 /* —— CV Modern —— */
 .cv-modern-accent {
     height: 6px;

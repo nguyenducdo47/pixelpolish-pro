@@ -14,6 +14,7 @@ const props = defineProps({
     skill_categories: Array,
     projects: Array,
     education: Array,
+    work_experiences: Array,
     languages: Array,
     principles: Array,
     certifications: Array,
@@ -42,7 +43,13 @@ const showProjectPeriod = computed(() => settings.value.show_project_period !== 
 const showSocialOnCv = computed(() => settings.value.show_social_links !== false);
 const showCertifications = computed(() => settings.value.show_certifications !== false);
 const showCareerTargets = computed(() => settings.value.show_career_targets !== false);
+const showWorkExperience = computed(() => settings.value.show_work_experience !== false);
 const showStrengths = computed(() => settings.value.show_strengths !== false);
+const resumeSummaryTitle = computed(() => (props.cv?.resume_summary_title || '').trim());
+const resumeSummary = computed(() => (props.cv?.resume_summary || '').trim());
+const showResumeSummaryRow = computed(
+    () => settings.value.show_resume_summary !== false && (resumeSummaryTitle.value || resumeSummary.value),
+);
 
 function printCv() {
     window.print();
@@ -76,6 +83,13 @@ function printCv() {
             <article
                 class="cv-sheet mx-auto w-full max-w-[210mm] overflow-hidden bg-background shadow-xl print:shadow-none print:max-w-none"
                 :class="`cv-${cvLayout}`">
+                <div v-if="showResumeSummaryRow" class="cv-resume-summary print:border-gray-400"
+                    :class="{ 'cv-resume-summary--title-only': !resumeSummary }">
+                    <div class="cv-resume-summary-label">
+                        {{ resumeSummaryTitle || ui.cv?.resume_summary }}
+                    </div>
+                    <div v-if="resumeSummary" class="cv-resume-summary-body">{{ resumeSummary }}</div>
+                </div>
                 <!-- Sidebar layout: colored left rail + white main column -->
                 <div v-if="isSidebarLayout" class="cv-sidebar-layout print:flex-row">
                     <aside class="cv-sidebar-panel">
@@ -98,17 +112,6 @@ function printCv() {
                                 :show-social-links="showSocialOnCv" inverted />
                         </div>
 
-                        <section v-if="settings.show_education && education?.length" class="cv-sidebar-block">
-                            <h2 class="cv-sidebar-heading">{{ ui.cv?.education }}</h2>
-                            <div v-for="item in education" :key="item.degree" class="mb-3 last:mb-0">
-                                <p class="text-sm font-semibold leading-snug text-white">{{ item.degree }}</p>
-                                <p class="mt-0.5 text-xs text-white/75">{{ item.school }}</p>
-                                <p class="text-[11px] text-white/60">{{ item.period }}</p>
-                                <HtmlContent v-if="item.details" class="cv-sidebar-rich mt-1 text-xs text-white/80"
-                                    :html="item.details" />
-                            </div>
-                        </section>
-
                         <section v-if="settings.show_skills && skill_categories?.length" class="cv-sidebar-block">
                             <h2 class="cv-sidebar-heading">{{ ui.cv?.skills }}</h2>
                             <div class="space-y-2">
@@ -118,6 +121,28 @@ function printCv() {
                                         {{ category.skills.map((s) => s.name).join(' · ') }}
                                     </p>
                                 </div>
+                            </div>
+                        </section>
+
+                        <section v-if="showWorkExperience && work_experiences?.length" class="cv-sidebar-block">
+                            <h2 class="cv-sidebar-heading">{{ ui.cv?.work_experience }}</h2>
+                            <div v-for="item in work_experiences" :key="item.company + item.period" class="mb-3 last:mb-0">
+                                <p class="cv-work-company leading-snug">{{ item.company }}</p>
+                                <p class="cv-work-position mt-0.5">{{ item.position }}</p>
+                                <p class="text-[11px] text-white/60">{{ item.period }}</p>
+                                <HtmlContent v-if="item.details" class="cv-sidebar-rich mt-1 text-xs text-white/80"
+                                    :html="item.details" />
+                            </div>
+                        </section>
+
+                        <section v-if="settings.show_education && education?.length" class="cv-sidebar-block">
+                            <h2 class="cv-sidebar-heading">{{ ui.cv?.education }}</h2>
+                            <div v-for="item in education" :key="item.degree" class="mb-3 last:mb-0">
+                                <p class="text-sm font-semibold leading-snug text-white">{{ item.degree }}</p>
+                                <p class="mt-0.5 text-xs text-white/75">{{ item.school }}</p>
+                                <p class="text-[11px] text-white/60">{{ item.period }}</p>
+                                <HtmlContent v-if="item.details" class="cv-sidebar-rich mt-1 text-xs text-white/80"
+                                    :html="item.details" />
                             </div>
                         </section>
 
@@ -207,6 +232,26 @@ function printCv() {
                             <HtmlContent class="cv-classic-prose" :html="profile.about" />
                         </section>
 
+                        <section v-if="settings.show_skills && skill_categories?.length" class="cv-classic-section">
+                            <h2 class="cv-classic-section-title">{{ ui.cv?.skills }}</h2>
+                            <p v-for="category in skill_categories" :key="category.name" class="cv-classic-skill-line">
+                                <span class="font-semibold">{{ category.name }}:</span>
+                                {{ category.skills.map((s) => s.name).join(', ') }}
+                            </p>
+                        </section>
+
+                        <section v-if="showWorkExperience && work_experiences?.length" class="cv-classic-section">
+                            <h2 class="cv-classic-section-title">{{ ui.cv?.work_experience }}</h2>
+                            <div v-for="item in work_experiences" :key="item.company + item.period" class="cv-classic-entry">
+                                <div class="cv-classic-entry-row">
+                                    <span class="cv-work-company text-[15px]">{{ item.company }}</span>
+                                    <span class="cv-classic-date">{{ item.period }}</span>
+                                </div>
+                                <p class="cv-classic-subline cv-work-position">{{ item.position }}</p>
+                                <HtmlContent v-if="item.details" class="cv-classic-prose-sm" :html="item.details" />
+                            </div>
+                        </section>
+
                         <section v-if="settings.show_education && education?.length" class="cv-classic-section">
                             <h2 class="cv-classic-section-title">{{ ui.cv?.education }}</h2>
                             <div v-for="item in education" :key="item.degree" class="cv-classic-entry">
@@ -217,14 +262,6 @@ function printCv() {
                                 <p class="cv-classic-subline">{{ item.school }}</p>
                                 <HtmlContent v-if="item.details" class="cv-classic-prose-sm" :html="item.details" />
                             </div>
-                        </section>
-
-                        <section v-if="settings.show_skills && skill_categories?.length" class="cv-classic-section">
-                            <h2 class="cv-classic-section-title">{{ ui.cv?.skills }}</h2>
-                            <p v-for="category in skill_categories" :key="category.name" class="cv-classic-skill-line">
-                                <span class="font-semibold">{{ category.name }}:</span>
-                                {{ category.skills.map((s) => s.name).join(', ') }}
-                            </p>
                         </section>
 
                         <section v-if="settings.show_projects && projects?.length" class="cv-classic-section">
@@ -279,7 +316,7 @@ function printCv() {
                                 <div class="flex min-w-0 items-center gap-5">
                                     <img v-if="settings.show_avatar && profile?.avatar" :src="profile.avatar"
                                         :alt="profile.full_name" loading="lazy"
-                                        class="h-[4.5rem] w-[4.5rem] shrink-0 rounded-2xl object-cover shadow-sm ring-2 ring-primary/20 sm:h-24 sm:w-24" />
+                                        class="h-24 w-24 shrink-0 rounded-full object-cover shadow-sm ring-2 ring-primary/20 sm:h-36 sm:w-36 print:h-[9rem] print:w-[9rem]" />
                                     <div class="min-w-0">
                                         <h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl print:text-2xl">
                                             {{ profile?.full_name }}
@@ -300,23 +337,6 @@ function printCv() {
                                 :html="profile.about" />
                         </section>
 
-                        <section v-if="settings.show_education && education?.length" class="cv-modern-section">
-                            <h2 class="cv-modern-section-title">{{ ui.cv?.education }}</h2>
-                            <div class="space-y-3">
-                                <div v-for="item in education" :key="item.degree" class="cv-modern-card">
-                                    <div class="flex flex-wrap items-baseline justify-between gap-2">
-                                        <h3 class="font-semibold text-foreground">{{ item.degree }}</h3>
-                                        <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-                                            {{ item.period }}
-                                        </span>
-                                    </div>
-                                    <p class="mt-0.5 text-sm text-muted-foreground">{{ item.school }}</p>
-                                    <HtmlContent v-if="item.details" class="mt-1 text-sm text-muted-foreground"
-                                        :html="item.details" />
-                                </div>
-                            </div>
-                        </section>
-
                         <section v-if="settings.show_skills && skill_categories?.length" class="cv-modern-section">
                             <h2 class="cv-modern-section-title">{{ ui.cv?.skills }}</h2>
                             <div class="space-y-3">
@@ -330,6 +350,40 @@ function printCv() {
                                             {{ skill.name }}
                                         </span>
                                     </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section v-if="showWorkExperience && work_experiences?.length" class="cv-modern-section">
+                            <h2 class="cv-modern-section-title">{{ ui.cv?.work_experience }}</h2>
+                            <div class="space-y-3">
+                                <div v-for="item in work_experiences" :key="item.company + item.period" class="cv-modern-card">
+                                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                                        <h3 class="cv-work-company min-w-0 flex-1">{{ item.company }}</h3>
+                                        <span class="shrink-0 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                                            {{ item.period }}
+                                        </span>
+                                    </div>
+                                    <p class="cv-work-position mt-0.5">{{ item.position }}</p>
+                                    <HtmlContent v-if="item.details" class="mt-1 text-sm text-muted-foreground"
+                                        :html="item.details" />
+                                </div>
+                            </div>
+                        </section>
+
+                        <section v-if="settings.show_education && education?.length" class="cv-modern-section">
+                            <h2 class="cv-modern-section-title">{{ ui.cv?.education }}</h2>
+                            <div class="space-y-3">
+                                <div v-for="item in education" :key="item.degree" class="cv-modern-card">
+                                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                                        <h3 class="font-semibold text-foreground">{{ item.degree }}</h3>
+                                        <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                                            {{ item.period }}
+                                        </span>
+                                    </div>
+                                    <p class="mt-0.5 text-sm text-muted-foreground">{{ item.school }}</p>
+                                    <HtmlContent v-if="item.details" class="mt-1 text-sm text-muted-foreground"
+                                        :html="item.details" />
                                 </div>
                             </div>
                         </section>

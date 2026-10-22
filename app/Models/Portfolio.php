@@ -78,6 +78,11 @@ class Portfolio extends Model
         return $this->hasMany(Education::class)->orderBy('sort_order');
     }
 
+    public function workExperiences(): HasMany
+    {
+        return $this->hasMany(WorkExperience::class)->orderBy('sort_order');
+    }
+
     public function spokenLanguages(): HasMany
     {
         return $this->hasMany(SpokenLanguage::class)->orderBy('sort_order');

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * CV overlay: nghiệp vụ kho vận là trọng tâm; lập trình như năng lực để chuyển đổi / nâng cấp hệ thống kho.
+ * CV overlay: tay ngang (QTKD – tin học); kinh nghiệm kinh doanh online + tiếp xúc kho vận/WMS ở mức cơ bản; lập trình hỗ trợ số hóa.
  */
 return [
     'skip_legacy_skill_categories' => true,
@@ -10,176 +10,140 @@ return [
 
     'profile' => [
         'headline' => [
-            'vi' => 'Kho vận & Logistics | Nghiệp vụ kho + Lập trình nâng cấp hệ thống quản lý kho',
-            'en' => 'Warehouse & Logistics | Operations plus software for warehouse system upgrades',
+            'vi' => 'LẬP TRÌNH VIÊN HỆ THỐNG WEBSITE',
+            'en' => 'WEB DEVELOPER SYSTEM',
         ],
         'tagline' => [
-            'vi' => 'Vừa am hiểu vận hành kho (nhập – xuất – tồn, WMS), vừa có kinh nghiệm lập trình để triển khai, nâng cấp phần mềm kho — giúp chuyển đổi số bám sát thực tế hiện trường.',
-            'en' => 'Combines warehouse operations (inbound/outbound/inventory, WMS) with hands-on development to roll out and upgrade warehouse software aligned with the floor.',
+            'vi' => 'Quản trị – tin học; tham gia triển khai hệ thống TMĐT & Affiliate (Tập đoàn Liên Hoa) và kinh doanh online. Hỗ trợ nâng cấp phần mềm quản lý, hướng tới số hóa quy trình kinh doanh và vận hành.',
+            'en' => 'Business and IT background; Lien Hoa Group e-commerce/affiliate rollout and online sales. Supports system upgrades and management software—focused on digitizing business and operations processes.',
         ],
         'about' => [
-            'vi' => '<p>Có kinh nghiệm <strong>vận hành và quản lý kho bãi, logistics</strong>: kiểm soát nhập hàng, xuất hàng, lưu trữ, soạn hàng, đóng gói và giao hàng; theo dõi tồn kho, vị trí hàng và đối chiếu với số liệu trên hệ thống.</p>'
-                .'<p>Tham gia <strong>kiểm kê, xử lý thiếu/thừa hàng</strong>, phân tích nguyên nhân sai lệch và lập báo cáo vận hành, tồn kho theo yêu cầu. Phối hợp chặt giữa kho – vận tải – kế hoạch – khách hàng và các bộ phận liên quan.</p>'
-                .'<p>Bên cạnh nghiệp vụ tại kho, có kinh nghiệm <strong>triển khai và cải tiến hệ thống quản lý kho (WMS)</strong> cho doanh nghiệp (gồm dự án khách hàng Nhật Bản): chuẩn hóa thao tác trên hệ thống, hỗ trợ người dùng, đối chiếu dữ liệu thực tế với phần mềm và đề xuất cải tiến quy trình (SOP).</p>'
-                .'<p><strong>Điểm khác biệt:</strong> có nền tảng <strong>lập trình phần mềm</strong> (PHP, Laravel và hệ thống web quản lý) để tham gia <strong>chuyển đổi số / nâng cấp phần mềm kho</strong>: chuyển yêu cầu nghiệp vụ nhập – xuất – tồn thành chức năng trên hệ thống, bảo trì và mở rộng module WMS, xử lý sai lệch dữ liệu tồn, hỗ trợ báo cáo vận hành — không chỉ dừng ở thao tác key user.</p>'
-                .'<p>Mục tiêu: tối ưu quy trình kho vận, nâng độ chính xác tồn kho, năng suất và chất lượng giao nhận; làm cầu nối giữa <strong>đội vận hành – quy trình – đội phát triển hệ thống</strong>.</p>',
-            'en' => '<p>Experienced in <strong>warehouse and logistics operations</strong>: inbound and outbound control, storage, picking, packing, and dispatch; stock and location tracking with reconciliation against system records.</p>'
-                .'<p>Conducts <strong>cycle counts</strong>, investigates shortages and overages, analyzes root causes, and prepares operational and inventory reports. Coordinates warehouse, transport, planning, customers, and internal teams.</p>'
-                .'<p>Alongside floor work, contributed to <strong>WMS rollout and improvement</strong> (including a Japan-based client): standardizing system steps, user support, stock reconciliation, and SOP updates.</p>'
-                .'<p><strong>Differentiator:</strong> <strong>software development</strong> background (PHP, Laravel, management web apps) to support <strong>warehouse digital transformation and system upgrades</strong>—turning inbound/outbound/inventory needs into system features, maintaining and extending WMS modules, fixing stock data issues, and supporting operational reporting—not only key-user operation.</p>'
-                .'<p>Goal: better warehouse performance and inventory accuracy; bridge <strong>operations, process, and the team that builds the system</strong>.</p>',
+            'vi' => '<p>Tham gia <strong>triển khai và nâng cấp hệ thống</strong> phần mềm <strong>quản lý</strong> kho, đơn hàng: ghi nhận yêu cầu từ người dùng, hỗ trợ kiểm thử và chỉnh sửa chức năng — ưu tiên chuyển quy trình <strong>kinh doanh</strong>/vận hành thành giải pháp <strong>số hóa</strong> trên hệ thống.</p>',
+            'en' => '<p>Contributing to <strong>system rollout and upgrades</strong> for warehouse and order <strong>management</strong> software—capturing user needs, testing, and fixes; turning <strong>business</strong> and operations flows into <strong>digitized</strong> system solutions.</p>',
         ],
         'philosophy_quote' => [
-            'vi' => 'Hiểu kho thì mới nâng cấp phần mềm kho đúng; hiểu lập trình thì mới chuyển đổi số quy trình một cách bền vững.',
-            'en' => 'Warehouse knowledge shapes the right system upgrades; development skills make digital change sustainable.',
+            'vi' => 'Kinh nghiệm bán hàng giúp hiểu khách hàng; học kho và lập trình giúp làm việc bền vững hơn.',
+            'en' => 'Selling teaches the customer; learning warehouse work and code makes the rest sustainable.',
         ],
     ],
     'cv_settings' => [
+        'resume_summary_title' => [
+            'vi' => 'TÓM TẮT SƠ YẾU LÝ LỊCH',
+            'en' => 'RESUME SUMMARY',
+        ],
+        'resume_summary' => null,
+        'show_resume_summary' => true,
         'show_principles' => false,
         'show_certifications' => true,
         'show_career_targets' => true,
         'show_strengths' => true,
+        'show_work_experience' => true,
+    ],
+    'work_experiences' => [
+        [
+            'company' => [
+                'vi' => 'Công ty Cổ phần Tư vấn và Cung cấp Giải pháp Quản trị Chuẩn Việt Vang',
+                'en' => 'Viet Vang Standards Management Consulting and Solutions JSC',
+            ],
+            'position' => [
+                'vi' => 'Lập trình viên website',
+                'en' => 'Web developer',
+            ],
+            'period' => '2024 – 2026',
+            'details' => [
+                'vi' => '<p>Tham gia <strong>triển khai, nâng cấp và bảo trì hệ thống</strong> website cùng module <strong>quản lý</strong> theo dự án khách hàng; hỗ trợ <strong>số hóa</strong> luồng <strong>kinh doanh</strong> và vận hành.</p>',
+                'en' => '<p>Helped <strong>roll out, upgrade, and maintain systems</strong> and <strong>management</strong> modules for clients; supported <strong>digitizing</strong> <strong>business</strong> and operations.</p>',
+            ],
+        ],
     ],
     'skill_categories' => [
         [
-            'name' => ['vi' => 'Nghiệp vụ kho & tồn kho', 'en' => 'Warehouse & inventory operations'],
+            'name' => ['vi' => 'Kinh doanh online & affiliate', 'en' => 'Online sales & affiliate'],
             'sort_order' => 0,
             'skills' => [
                 [
-                    'name' => 'Nhập – xuất – tồn',
+                    'name' => 'TMĐT & Affiliate (hệ thống)',
                     'description' => [
-                        'vi' => 'Nhận hàng, cất hàng, soạn – đóng gói, xuất kho, theo dõi biến động tồn',
-                        'en' => 'Receiving, put-away, pick-pack, shipping, and stock movement control',
+                        'vi' => 'Triển khai hệ thống bán hàng online & affiliate; quản lý chính sách hoa hồng/chiến dịch theo mô hình kinh doanh',
+                        'en' => 'E-commerce/affiliate system rollout; campaign and commission management aligned with business model',
                     ],
-                    'level' => 78,
+                    'level' => 68,
+                ],
+                [
+                    'name' => 'Đơn hàng & tồn quy mô nhỏ',
+                    'description' => [
+                        'vi' => 'Quản lý đơn – tồn quy mô nhỏ; số hóa dần theo dõi kinh doanh trên Excel trước khi lên hệ thống',
+                        'en' => 'Small-scale order/stock management; gradual digitization of sales tracking before full systems',
+                    ],
+                    'level' => 65,
+                ],
+                [
+                    'name' => 'Nội dung & chăm sóc khách',
+                    'description' => [
+                        'vi' => 'Mô tả sản phẩm, tư vấn đơn giản, xử lý phản hồi và đổi trả cơ bản',
+                        'en' => 'Product copy, basic consulting, feedback and simple returns',
+                    ],
+                    'level' => 66,
+                ],
+            ],
+        ],
+        [
+            'name' => ['vi' => 'Kho vận (đang học)', 'en' => 'Warehouse (learning)'],
+            'sort_order' => 1,
+            'skills' => [
+                [
+                    'name' => 'Nhập – xuất – tồn cơ bản',
+                    'description' => [
+                        'vi' => 'Hỗ trợ nhận hàng, soạn – đóng gói, cập nhật tồn theo hướng dẫn',
+                        'en' => 'Assisted receiving, pick-pack, stock updates with guidance',
+                    ],
+                    'level' => 58,
                 ],
                 [
                     'name' => 'Kiểm kê & đối chiếu',
                     'description' => [
-                        'vi' => 'Kiểm kê định kỳ/đột xuất, xử lý chênh lệch, báo cáo tồn',
-                        'en' => 'Scheduled and ad-hoc counts, variance handling, stock reporting',
+                        'vi' => 'Tham gia kiểm kê, báo chênh lệch, học quy trình đối chiếu số liệu',
+                        'en' => 'Joined cycle counts, reported variances, learning reconciliation',
                     ],
-                    'level' => 75,
-                ],
-                [
-                    'name' => 'Quản lý vị trí & hàng hóa',
-                    'description' => [
-                        'vi' => 'Theo dõi mã hàng, vị trí lưu trữ, tình trạng hàng, hạn sử dụng (nếu có)',
-                        'en' => 'Item codes, storage locations, stock condition, expiry where applicable',
-                    ],
-                    'level' => 72,
+                    'level' => 55,
                 ],
             ],
         ],
         [
-            'name' => ['vi' => 'Vận tải & điều phối', 'en' => 'Transport & coordination'],
-            'sort_order' => 1,
-            'skills' => [
-                [
-                    'name' => 'Kế hoạch giao nhận',
-                    'description' => [
-                        'vi' => 'Sắp lịch xe, theo dõi tiến độ giao – nhận, xử lý trễ/sai thông tin',
-                        'en' => 'Vehicle scheduling, delivery progress, delays and data corrections',
-                    ],
-                    'level' => 70,
-                ],
-                [
-                    'name' => 'Phối hợp liên bộ phận',
-                    'description' => [
-                        'vi' => 'Làm việc với kế hoạch, kinh doanh, kho khác và đơn vị vận chuyển',
-                        'en' => 'Planning, sales, other sites, and carriers',
-                    ],
-                    'level' => 74,
-                ],
-            ],
-        ],
-        [
-            'name' => ['vi' => 'WMS & hệ thống doanh nghiệp', 'en' => 'WMS & enterprise systems'],
+            'name' => ['vi' => 'Lập trình & số hóa quy trình', 'en' => 'Development & process digitization'],
             'sort_order' => 2,
-            'skills' => [
-                [
-                    'name' => 'Vận hành WMS',
-                    'description' => [
-                        'vi' => 'Thao tác nhập – xuất – tồn trên hệ thống, điều chuyển, xử lý lỗi phát sinh',
-                        'en' => 'System-side inbound/outbound/inventory, transfers, exception handling',
-                    ],
-                    'level' => 72,
-                ],
-                [
-                    'name' => 'MYBS / Dynamics AX / D365',
-                    'description' => [
-                        'vi' => 'Tra cứu, đối chiếu dữ liệu nghiệp vụ và báo cáo theo phân quyền',
-                        'en' => 'Lookup, reconciliation, and reporting within role-based access',
-                    ],
-                    'level' => 60,
-                ],
-                [
-                    'name' => 'Key user & đào tạo',
-                    'description' => [
-                        'vi' => 'Hướng dẫn thao tác, hỗ trợ đồng nghiệp, phối hợp IT khi cần cải tiến',
-                        'en' => 'User guidance, peer training, IT coordination for improvements',
-                    ],
-                    'level' => 68,
-                ],
-            ],
-        ],
-        [
-            'name' => ['vi' => 'Lập trình phục vụ kho vận & chuyển đổi số', 'en' => 'Development for warehouse digitalization'],
-            'sort_order' => 3,
             'skills' => [
                 [
                     'name' => 'Nghiệp vụ → chức năng hệ thống',
                     'description' => [
-                        'vi' => 'Làm rõ quy trình kho với đội vận hành, mô tả yêu cầu để triển khai trên WMS/phần mềm quản lý',
-                        'en' => 'Clarify warehouse flows with operators and specify requirements for WMS/management software',
+                        'vi' => 'Chuyển nghiệp vụ kinh doanh/vận hành thành yêu cầu triển khai trên WMS và phần mềm quản lý',
+                        'en' => 'Turn business/ops flows into requirements for WMS and management system rollout',
                     ],
-                    'level' => 74,
+                    'level' => 66,
                 ],
                 [
                     'name' => 'Nâng cấp & bảo trì phần mềm kho',
                     'description' => [
-                        'vi' => 'Phát triển, chỉnh sửa module nhập – xuất – tồn; sửa lỗi vận hành; cải thiện tra cứu tồn và lịch sử giao dịch',
-                        'en' => 'Build and maintain inbound/outbound/inventory modules; fix production issues; improve stock and history lookup',
-                    ],
-                    'level' => 72,
-                ],
-                [
-                    'name' => 'PHP / Laravel (web quản lý)',
-                    'description' => [
-                        'vi' => 'Xây dựng và mở rộng ứng dụng web quản lý, đơn hàng, phân quyền bộ phận — áp dụng khi doanh nghiệp cần số hóa',
-                        'en' => 'Management web apps, orders, and department access—when the business needs digitization',
-                    ],
-                    'level' => 70,
-                ],
-                [
-                    'name' => 'Dữ liệu tồn kho & báo cáo',
-                    'description' => [
-                        'vi' => 'Thiết kế lưu trữ dữ liệu kho, đối chiếu số liệu, hỗ trợ báo cáo phục vụ giám sát vận hành',
-                        'en' => 'Warehouse data structure, reconciliation, and reporting for operational oversight',
+                        'vi' => 'Nâng cấp hệ thống quản lý kho: module nhập – xuất – tồn, tra cứu tồn và lịch sử giao dịch',
+                        'en' => 'Upgrade warehouse management systems—inbound/outbound/inventory modules and transaction history',
                     ],
                     'level' => 68,
                 ],
-            ],
-        ],
-        [
-            'name' => ['vi' => 'Quản lý vận hành & cải tiến', 'en' => 'Operations management & improvement'],
-            'sort_order' => 4,
-            'skills' => [
                 [
-                    'name' => 'SOP & chuẩn hóa quy trình',
+                    'name' => 'Lập trình đa ngôn ngữ',
                     'description' => [
-                        'vi' => 'Xây dựng, cập nhật quy trình thao tác chuẩn trong kho vận',
-                        'en' => 'Developing and updating standard warehouse procedures',
-                    ],
-                    'level' => 70,
-                ],
-                [
-                    'name' => 'Báo cáo & ra quyết định',
-                    'description' => [
-                        'vi' => 'Báo cáo vận hành, tồn kho; đề xuất giải pháp khi có sự cố',
-                        'en' => 'Operational and inventory reports; practical issue resolution',
+                        'vi' => 'Thông thạo nhiều ngôn ngữ lập trình; phát triển, bảo trì web và phần mềm quản lý — triển khai tính năng theo yêu cầu dự án và số hóa quy trình',
+                        'en' => 'Proficient across multiple programming languages; builds and maintains web and management software—features and digitization per project needs',
                     ],
                     'level' => 72,
+                ],
+                [
+                    'name' => 'Dữ liệu đơn hàng & báo cáo',
+                    'description' => [
+                        'vi' => 'Theo dõi đơn, đối soát doanh thu cơ bản; hỗ trợ báo cáo tồn/đơn trên hệ thống',
+                        'en' => 'Order tracking, basic revenue reconciliation; stock/order reporting support',
+                    ],
+                    'level' => 62,
                 ],
             ],
         ],
@@ -187,69 +151,93 @@ return [
     'projects' => [
         [
             'title' => [
-                'vi' => 'Vận hành kho bãi & Logistics',
-                'en' => 'Warehouse & logistics operations',
+                'vi' => 'Nền tảng TMĐT & Affiliate – Tập đoàn Liên Hoa',
+                'en' => 'E-commerce & Affiliate Platform – Lien Hoa Group',
             ],
             'subtitle' => [
-                'vi' => 'Kinh nghiệm nghiệp vụ tại kho – vận tải',
-                'en' => 'Floor and coordination experience',
+                'vi' => 'Triển khai hệ thống TMĐT + Affiliate | Số hóa kênh kinh doanh',
+                'en' => 'System rollout | Digitized sales channels',
             ],
-            'period' => '2018 – 2023',
+            'period' => '11/2025 – 05/2026',
+            'demo_url' => 'https://aloa.asia',
+            'demo_label' => 'aloa.asia',
             'solution' => [
-                'vi' => 'Trực tiếp tham gia điều hành hoạt động kho hàng ngày: kiểm soát nhập – xuất – lưu trữ, soạn hàng, giao nhận và theo dõi tồn kho theo thực tế và trên hệ thống.',
-                'en' => 'Daily warehouse execution: inbound/outbound/storage, picking, dispatch, and stock control on the floor and in the system.',
+                'vi' => 'Tham gia <strong>triển khai và nâng cấp hệ thống</strong> <strong>thương mại điện tử</strong> (Bagisto) cho <strong>Tập đoàn Liên Hoa</strong>, <strong>mở rộng quản lý Affiliate</strong> — <strong>số hóa</strong> kênh <strong>kinh doanh</strong> với chính sách hoa hồng, chiến dịch và quy tắc affiliate riêng trên một nền tảng thống nhất.',
+                'en' => 'Contributed to <strong>rolling out and upgrading</strong> <strong>Lien Hoa Group’s</strong> <strong>e-commerce system</strong> (Bagisto) and <strong>affiliate management</strong>—<strong>digitizing</strong> <strong>sales</strong> channels with custom commission and campaign rules on one platform.',
             ],
             'highlights' => [
                 'vi' => [
-                    'Quản lý và giám sát hoạt động kho; đảm bảo tiến độ xử lý đơn và xuất hàng',
-                    'Kiểm soát quy trình nhận hàng, cất hàng, soạn – đóng gói và bàn giao vận chuyển',
-                    'Theo dõi vị trí hàng, tình trạng tồn; đối chiếu số liệu thực tế với hệ thống',
-                    'Phối hợp điều phối xe, kế hoạch giao nhận; xử lý sự cố trễ hàng, sai thông tin',
-                    'Tổ chức kiểm kê, phân tích thiếu/thừa và lập báo cáo vận hành, tồn kho',
-                    'Tham gia xây dựng và cải tiến SOP thao tác chuẩn',
+                    'Triển khai chức năng Affiliate gắn luồng TMĐT — số hóa bán hàng và hoa hồng trên một hệ thống',
+                    'Xây dựng logic tính hoa hồng và quản lý chiến dịch affiliate theo chính sách kinh doanh nội bộ',
+                    'Cấu hình quy tắc affiliate (tỷ lệ, điều kiện, phạm vi sản phẩm) phù hợp mô hình phân phối của công ty',
+                    'Phát triển API và module mở rộng; tối ưu xử lý dữ liệu và hiệu năng hệ thống',
                 ],
                 'en' => [
-                    'Supervised daily warehouse activity and order/shipping timelines',
-                    'Controlled receiving, put-away, pick-pack, and handover to transport',
-                    'Tracked locations and stock; reconciled physical counts with system data',
-                    'Coordinated vehicles and delivery plans; handled delays and data errors',
-                    'Organized cycle counts, analyzed variances, and reported operations and stock',
-                    'Contributed to warehouse SOP development and updates',
+                    'Rolled out affiliate features on the e-commerce flow—digitized sales and commissions on one system',
+                    'Built commission logic and campaign management under internal business policies',
+                    'Configured affiliate rules (rates, conditions, product scope) for the company’s distribution model',
+                    'Developed APIs and extension modules; improved data processing and performance',
                 ],
             ],
-            'tech_stack' => ['Nhập – xuất – tồn', 'Kiểm kê', 'SOP'],
+            'tech_stack' => ['Laravel', 'Vue.js', 'MySQL'],
         ],
         [
             'title' => [
-                'vi' => 'Quản trị & vận hành WMS (Key user)',
-                'en' => 'WMS administration (key user)',
+                'vi' => 'Kinh doanh bán cà phê online',
+                'en' => 'Online coffee sales',
             ],
             'subtitle' => [
-                'vi' => 'Hệ thống quản lý kho doanh nghiệp',
-                'en' => 'Enterprise warehouse management system',
+                'vi' => 'Kinh doanh online | Quản lý đơn – tồn',
+                'en' => 'Online business | Order & stock management',
             ],
-            'period' => '2020 – Hiện tại',
+            'period' => '2023 – 2024',
             'solution' => [
-                'vi' => 'Đảm nhiệm vai trò key user WMS: quản lý thông tin hàng hóa và vị trí lưu trữ, vận hành nghiệp vụ nhập – xuất – tồn, điều chuyển hàng và kiểm soát dữ liệu tồn trên hệ thống.',
-                'en' => 'WMS key user: item and location master, inbound/outbound/inventory transactions, transfers, and system stock control.',
+                'vi' => 'Mô hình <strong>kinh doanh online</strong> cà phê: <strong>quản lý</strong> đơn – tồn, đóng gói và giao hàng — bước đầu <strong>số hóa</strong> theo dõi doanh thu và tồn trên Excel.',
+                'en' => 'Online <strong>coffee business</strong>: small-batch <strong>order and stock management</strong>, packing and delivery—early <strong>digitization</strong> of sales and inventory in Excel.',
             ],
             'highlights' => [
                 'vi' => [
-                    'Theo dõi nhập kho, cất hàng, soạn hàng, đóng gói và xuất kho trên WMS',
-                    'Quản lý điều chuyển giữa vị trí/kho; kiểm kê và đối chiếu tồn',
-                    'Kiểm tra chênh lệch giữa hàng thực tế và dữ liệu hệ thống',
-                    'Hỗ trợ, hướng dẫn và đào tạo thao tác WMS cho đội vận hành',
-                    'Phối hợp IT/nhà cung cấp khi phát sinh lỗi hoặc yêu cầu cải tiến quy trình',
+                    'Xây dựng bảng giá, combo và chính sách ship theo khu vực',
+                    'Theo dõi tồn nguyên liệu, hạn sử dụng và lô đóng gói thủ công',
+                    'Chăm sóc khách hàng sau bán (hướng dẫn pha, gợi ý mua lại)',
+                    'Đối soát doanh thu – chi phí ship – tồn cuối tuần',
                 ],
                 'en' => [
-                    'Managed inbound, put-away, picking, packing, and outbound in WMS',
-                    'Handled inter-location transfers; counts and stock reconciliation',
-                    'Verified variances between floor stock and system records',
-                    'Supported and trained operators on WMS procedures',
-                    'Worked with IT/vendors on defects and process improvement requests',
+                    'Set pricing, bundles, and shipping rules by area',
+                    'Tracked ingredients, shelf life, and manual batch packing',
+                    'Post-sale support (brewing tips, reorder suggestions)',
+                    'Weekly reconciliation of revenue, shipping cost, and stock',
                 ],
             ],
-            'tech_stack' => ['WMS', 'Tồn kho', 'Điều chuyển'],
+            'tech_stack' => ['Bán hàng online', 'Đóng gói', 'Excel'],
+        ],
+        [
+            'title' => [
+                'vi' => 'Tiếp xúc vận hành kho & logistics',
+                'en' => 'Warehouse & logistics exposure',
+            ],
+            'subtitle' => [
+                'vi' => 'Kinh nghiệm thực tế còn ngắn — đang học nghiệp vụ',
+                'en' => 'Limited floor time—building operations skills',
+            ],
+            'period' => '2023 – 2024',
+            'solution' => [
+                'vi' => 'Tham gia <strong>hỗ trợ</strong> công việc kho: nhận hàng, soạn – đóng gói, cập nhật tồn theo chỉ dẫn; chưa đảm nhiệm vai trò quản lý hay giám sát đội.',
+                'en' => '<strong>Assisted</strong> warehouse tasks: receiving, pick-pack, stock updates with guidance—not a supervisor or team lead role.',
+            ],
+            'highlights' => [
+                'vi' => [
+                    'Làm quen quy trình nhập – xuất – lưu hàng và bàn giao cho vận chuyển',
+                    'Tham gia kiểm kê đơn giản, báo chênh lệch cho người phụ trách',
+                    'Học cách đọc mã hàng, vị trí và cập nhật trên hệ thống cơ bản',
+                ],
+                'en' => [
+                    'Learned inbound/outbound/storage and handoff to carriers',
+                    'Joined simple cycle counts and reported variances to supervisors',
+                    'Practiced item codes, locations, and basic system updates',
+                ],
+            ],
+            'tech_stack' => ['Nhập – xuất – tồn', 'Hỗ trợ vận hành'],
         ],
         [
             'title' => [
@@ -262,23 +250,21 @@ return [
             ],
             'period' => '10/2025 – 04/2026',
             'solution' => [
-                'vi' => 'Tham gia <strong>bảo trì và nâng cấp phần mềm quản lý kho</strong> cho doanh nghiệp Nhật Bản, kết hợp hiểu biết nghiệp vụ nhập – xuất – tồn với triển khai chức năng trên hệ thống: lịch sử giao dịch kho, kiểm soát sai lệch tồn và quy trình vận hành thực tế.',
-                'en' => 'Maintained and <strong>upgraded warehouse management software</strong> for a Japanese company—pairing inbound/outbound/inventory know-how with system delivery: transaction history, stock variance control, and real floor practice.',
+                'vi' => 'Hỗ trợ <strong>triển khai và nâng cấp hệ thống quản lý kho (WMS)</strong> cho khách Nhật: ghi nhận yêu cầu nghiệp vụ, kiểm thử module quản lý nhập – xuất – tồn, hướng tới <strong>số hóa</strong> vận hành kho trên hệ thống.',
+                'en' => 'Supported <strong>WMS rollout and upgrades</strong> for a Japanese client—business requirements, testing inventory <strong>management</strong> modules, advancing warehouse <strong>digitization</strong>.',
             ],
             'highlights' => [
                 'vi' => [
-                    'Phân tích nghiệp vụ kho với PM/khách hàng; chuyển yêu cầu vận hành thành chỉnh sửa chức năng trên WMS',
-                    'Lập trình bổ sung/cải tiến module nhập kho, xuất kho, tồn kho và tra cứu lịch sử xuất nhập',
-                    'Xử lý lỗi phát sinh khi vận hành; tối ưu thao tác tra cứu tồn giúp đội kho làm việc nhanh hơn',
-                    'Kiểm thử kịch bản kiểm kê, điều chuyển hàng trước bàn giao — đảm bảo phần mềm khớp quy trình kho',
-                    'Phối hợp khách hàng Nhật: giải thích thao tác hệ thống bằng ngôn ngữ nghiệp vụ kho, không chỉ thuật ngữ kỹ thuật',
+                    'Học quy trình kho thực tế qua mô tả nghiệp vụ — chuẩn bị triển khai hệ thống quản lý',
+                    'Kiểm thử màn hình tra cứu tồn, điều chuyển và kiểm kê trước bàn giao hệ thống',
+                    'Hỗ trợ chỉnh sửa nhỏ module nhập/xuất dưới hướng dẫn senior',
+                    'Phối hợp trao đổi với khách hàng bằng ngôn ngữ nghiệp vụ, không chỉ thuật ngữ IT',
                 ],
                 'en' => [
-                    'Analyzed warehouse requirements with PM/client; turned operational needs into WMS changes',
-                    'Developed and improved inbound, outbound, inventory, and transaction-history features',
-                    'Fixed production issues; streamlined stock lookup for faster floor work',
-                    'Tested cycle-count and transfer scenarios before release—software matched warehouse steps',
-                    'Worked with Japanese stakeholders using warehouse language, not only technical jargon',
+                    'Learned floor flows from PM and user descriptions',
+                    'Tested stock lookup, transfers, and count scenarios before release',
+                    'Assisted with small inbound/outbound fixes under senior guidance',
+                    'Communicated with the client in operational terms',
                 ],
             ],
             'tech_stack' => ['WMS', 'Nâng cấp hệ thống', 'Nhập – xuất – tồn'],
@@ -294,8 +280,8 @@ return [
             ],
             'period' => '09/2025 – 11/2025',
             'solution' => [
-                'vi' => 'Tham gia <strong>nâng cấp phần mềm quản lý hóa đơn/đơn hàng</strong> theo mô hình công ty – chi nhánh: số hóa luồng xử lý, phân quyền theo bộ phận và hỗ trợ đối chiếu dữ liệu — giảm nhầm lẫn trong vận hành hàng ngày (liên quan xử lý đơn, kho và giao nhận).',
-                'en' => 'Helped <strong>upgrade order/invoice management software</strong> for company and branches: digitized workflows, department permissions, and reconciliation—fewer day-to-day mix-ups tied to orders, warehouse, and dispatch.',
+                'vi' => 'Tham gia <strong>nâng cấp hệ thống quản lý</strong> đơn/hóa đơn công ty – chi nhánh: <strong>số hóa</strong> luồng <strong>kinh doanh</strong>, phân quyền bộ phận và kiểm thử đối chiếu dữ liệu.',
+                'en' => 'Helped <strong>upgrade the order/invoice management system</strong> for HQ and branches—<strong>digitizing</strong> <strong>business</strong> workflows, permissions, and reconciliation testing.',
             ],
             'highlights' => [
                 'vi' => [
@@ -317,23 +303,23 @@ return [
         'certification' => [
             ['title' => ['vi' => 'Giấy phép lái xe ô tô B2', 'en' => 'Category B2 driving license']],
             ['title' => ['vi' => 'Chứng chỉ/Giấy phép vận hành xe nâng', 'en' => 'Forklift operation license/certificate']],
-            ['title' => ['vi' => 'Kinh nghiệm thực tế vận hành và quản trị hệ thống WMS', 'en' => 'Hands-on WMS operations and administration']],
+            ['title' => ['vi' => 'Đang học và hỗ trợ vận hành WMS (key user cơ bản)', 'en' => 'Learning and supporting WMS as a junior key user']],
             ['title' => ['vi' => 'Kinh nghiệm sử dụng MYBS, Microsoft Dynamics AX và Microsoft Dynamics 365', 'en' => 'Experience with MYBS, Microsoft Dynamics AX, and Dynamics 365']],
         ],
         'career_target' => [
-            ['title' => ['vi' => 'Warehouse Supervisor / Warehouse Manager', 'en' => 'Warehouse Supervisor / Warehouse Manager']],
-            ['title' => ['vi' => 'Logistics Supervisor / Logistics Operation Supervisor', 'en' => 'Logistics Supervisor / Logistics Operation Supervisor']],
-            ['title' => ['vi' => 'Transport Supervisor', 'en' => 'Transport Supervisor']],
-            ['title' => ['vi' => 'WMS Key User / WMS Supervisor', 'en' => 'WMS Key User / WMS Supervisor']],
-            ['title' => ['vi' => 'Logistics Operation Manager / Operation Supervisor', 'en' => 'Logistics Operation Manager / Operation Supervisor']],
+            ['title' => ['vi' => 'Nhân viên kinh doanh / Chăm sóc khách hàng (online)', 'en' => 'Sales / Online customer care']],
+            ['title' => ['vi' => 'Nhân viên vận hành kho / Logistics (junior)', 'en' => 'Junior warehouse / logistics staff']],
+            ['title' => ['vi' => 'WMS Key User / IT nghiệp vụ', 'en' => 'WMS key user / business IT support']],
+            ['title' => ['vi' => 'Thực tập / Fresher lập trình PHP – Laravel', 'en' => 'PHP–Laravel intern / junior developer']],
+            ['title' => ['vi' => 'Nhân viên phát triển kinh doanh online', 'en' => 'Online business development staff']],
         ],
         'strength' => [
-            ['title' => ['vi' => 'Nền tảng Quản trị kinh doanh – Tin học – Logistics; làm cầu nối giữa sàn kho và đội IT/phát triển', 'en' => 'Business, IT, and logistics background—bridges the warehouse floor and development/IT']],
-            ['title' => ['vi' => 'Phân tích nghiệp vụ nhập–xuất–tồn, chuyển thành yêu cầu chức năng trên WMS và phần mềm quản lý', 'en' => 'Turns inbound/outbound/inventory flows into WMS and management software requirements']],
-            ['title' => ['vi' => 'Phát triển & bảo trì ứng dụng web (PHP, Laravel): module kho, đơn hàng, tra cứu tồn và báo cáo vận hành', 'en' => 'Builds and maintains web apps (PHP, Laravel): warehouse modules, orders, stock lookup, and ops reporting']],
-            ['title' => ['vi' => 'Key user WMS/ERP (MYBS, Dynamics AX/365): hướng dẫn thao tác, xử lý lỗi vận hành, đối chiếu dữ liệu tồn', 'en' => 'WMS/ERP key user (MYBS, Dynamics AX/365): training, production issue handling, stock data reconciliation']],
-            ['title' => ['vi' => 'Tư duy số hóa quy trình: cải tiến SOP, giảm thao tác thủ công, khai thác dữ liệu hệ thống', 'en' => 'Digital process mindset: SOP improvements, less manual work, better use of system data']],
-            ['title' => ['vi' => 'Chủ động phát hiện sai lệch; phối hợp kho – kế hoạch – IT khi triển khai và nâng cấp hệ thống', 'en' => 'Proactive on variances; coordinates warehouse, planning, and IT during rollout and upgrades']],
+            ['title' => ['vi' => 'Triển khai hệ thống TMĐT & Affiliate (Tập đoàn Liên Hoa) và kinh doanh online — nắm luồng đơn hàng và quản lý kinh doanh thực tế', 'en' => 'Lien Hoa Group system rollout and online sales—real order flows and business management']],
+            ['title' => ['vi' => 'QTKD – tin học; chuyển nhanh quy trình kinh doanh/vận hành thành yêu cầu triển khai hệ thống', 'en' => 'Business/IT background; maps ops flows to system rollout requirements']],
+            ['title' => ['vi' => 'Hỗ trợ nâng cấp phần mềm quản lý: kiểm thử, sửa lỗi, ghi nhận yêu cầu — hướng số hóa quy trình', 'en' => 'Supports Laravel management upgrades—testing, fixes, requirements toward process digitization']],
+            ['title' => ['vi' => 'Theo dõi đơn, tồn, đối soát (Excel); sẵn sàng làm việc trên hệ thống WMS/ERP quản lý', 'en' => 'Order, stock, reconciliation (Excel); ready for WMS/ERP management systems']],
+            ['title' => ['vi' => 'Đang bổ sung nghiệp vụ kho; trung thực về kinh nghiệm, chủ động học quy trình trên hệ thống', 'en' => 'Building warehouse skills; honest experience level, proactive learning on systems']],
+            ['title' => ['vi' => 'Phối hợp đội vận hành và IT khi triển khai, nâng cấp hệ thống phần mềm quản lý', 'en' => 'Works with ops and IT on management system rollout and upgrades']],
         ],
     ],
 ];

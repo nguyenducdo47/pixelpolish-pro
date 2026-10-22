@@ -20,6 +20,7 @@ class PortfolioPresenter
             'skillCategories.skills',
             'projects',
             'education',
+            'workExperiences',
             'spokenLanguages',
             'principles',
             'cvListItems',
@@ -102,6 +103,12 @@ class PortfolioPresenter
                 'details' => $item->localeHtml('details', $locale),
                 'period' => $item->period,
             ])->values(),
+            'work_experiences' => $portfolio->workExperiences->map(fn ($item) => [
+                'company' => $item->localeText('company', $locale),
+                'position' => $item->localeText('position', $locale),
+                'details' => $item->localeHtml('details', $locale),
+                'period' => $item->period,
+            ])->values(),
             'languages' => $portfolio->spokenLanguages->map(fn ($item) => [
                 'name' => $item->localeText('name', $locale),
                 'level' => $item->localeText('level', $locale),
@@ -116,9 +123,16 @@ class PortfolioPresenter
             'cv' => [
                 'url' => route('portfolio.cv', ['locale' => $locale, 'username' => $portfolio->slug]),
                 'pdf_url' => route('portfolio.cv.pdf', ['locale' => $locale, 'username' => $portfolio->slug]),
+                'resume_summary_title' => ($cvSettings?->show_resume_summary ?? true)
+                    ? ($cvSettings?->localeText('resume_summary_title', $locale) ?: null)
+                    : null,
+                'resume_summary' => ($cvSettings?->show_resume_summary ?? true)
+                    ? ($cvSettings?->localeText('resume_summary', $locale) ?: null)
+                    : null,
                 'settings' => [
                     ...($cvSettings?->only([
                         'template',
+                        'show_resume_summary',
                         'show_about',
                         'show_skills',
                         'show_projects',
@@ -128,6 +142,7 @@ class PortfolioPresenter
                         'show_career_targets',
                         'show_strengths',
                         'show_education',
+                        'show_work_experience',
                         'show_languages',
                         'show_principles',
                     ]) ?? []),

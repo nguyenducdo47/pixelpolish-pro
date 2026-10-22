@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Concerns\TranslatesPage;
+use App\Filament\Forms\LocaleTabs;
 use App\Models\CvSetting;
 use App\Models\Portfolio;
 use App\Support\AppearanceTheme;
@@ -52,6 +53,24 @@ class ManageCv extends Page
         $config = fn (): ContentProfileConfig => ContentProfileConfig::for(auth()->user()?->portfolio);
 
         return $schema->components([
+            Section::make(__('panel.sections.cv_resume_summary'))->schema([
+                LocaleTabs::make([
+                    [
+                        'name' => 'resume_summary_title',
+                        'label' => __('panel.fields.resume_summary_title'),
+                        'type' => 'text',
+                        'required' => false,
+                    ],
+                    [
+                        'name' => 'resume_summary',
+                        'label' => __('panel.fields.resume_summary'),
+                        'type' => 'textarea',
+                        'rows' => 4,
+                    ],
+                ]),
+                Toggle::make('show_resume_summary')
+                    ->label(__('panel.fields.show_resume_summary')),
+            ]),
             Section::make(__('panel.sections.cv_template'))->schema([
                 Select::make('template')
                     ->label(__('panel.fields.template'))
@@ -80,6 +99,7 @@ class ManageCv extends Page
                 Toggle::make('show_strengths')
                     ->label(__('panel.fields.show_strengths')),
                 Toggle::make('show_education')->label(__('panel.fields.show_education')),
+                Toggle::make('show_work_experience')->label(__('panel.fields.show_work_experience')),
                 Toggle::make('show_languages')->label(__('panel.fields.show_languages')),
                 Toggle::make('show_principles')
                     ->label(__('panel.fields.show_principles'))

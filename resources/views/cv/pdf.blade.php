@@ -57,6 +57,7 @@
 <body class="{{ $pdfLayoutClass }}">
     @if($layout === 'sidebar')
         <div class="cv-sheet cv-sidebar">
+            @include('cv.partials.resume-summary', ['portfolio' => $portfolio])
             <div class="cv-sidebar-layout">
                 <div class="cv-sidebar-panel">
                     @include('cv.partials.header', [
@@ -67,20 +68,27 @@
                         'layout' => $layout,
                         'social_links' => $portfolio['social_links'] ?? [],
                     ])
-                    @include('cv.partials.main', [
-                        'portfolio' => $portfolio,
-                        'profile' => $profile,
-                        'settings' => $settings,
-                        'only' => 'education',
-                        'detailedEducation' => true,
-                        'sidebarSection' => true,
-                    ])
                     @include('cv.partials.side', [
                         'portfolio' => $portfolio,
                         'profile' => $profile,
                         'settings' => $settings,
                         'only' => 'skills',
                         'skillGlue' => ' · ',
+                        'sidebarSection' => true,
+                    ])
+                    @include('cv.partials.work-experience', [
+                        'portfolio' => $portfolio,
+                        'settings' => $settings,
+                        'only' => 'work_experience',
+                        'sidebarSection' => true,
+                        'forPdf' => true,
+                    ])
+                    @include('cv.partials.main', [
+                        'portfolio' => $portfolio,
+                        'profile' => $profile,
+                        'settings' => $settings,
+                        'only' => 'education',
+                        'detailedEducation' => true,
                         'sidebarSection' => true,
                     ])
                     @include('cv.partials.side', [
@@ -125,6 +133,7 @@
         </div>
     @else
         <div class="cv-sheet cv-{{ $layout }}">
+            @include('cv.partials.resume-summary', ['portfolio' => $portfolio])
             @include('cv.partials.header', [
                 'profile' => $profile,
                 'settings' => $settings,
@@ -135,7 +144,6 @@
             ])
 
             @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'about', 'classicEntries' => $layout === 'classic'])
-            @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'education', 'classicEntries' => $layout === 'classic'])
             @include('cv.partials.side', [
                 'portfolio' => $portfolio,
                 'profile' => $profile,
@@ -144,6 +152,15 @@
                 'classicEntries' => $layout === 'classic',
                 'modernEntries' => $layout === 'modern',
             ])
+            @include('cv.partials.work-experience', [
+                'portfolio' => $portfolio,
+                'settings' => $settings,
+                'only' => 'work_experience',
+                'classicEntries' => $layout === 'classic',
+                'modernEntries' => $layout === 'modern',
+                'forPdf' => true,
+            ])
+            @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'education', 'classicEntries' => $layout === 'classic'])
             @include('cv.partials.main', [
                 'portfolio' => $portfolio,
                 'profile' => $profile,

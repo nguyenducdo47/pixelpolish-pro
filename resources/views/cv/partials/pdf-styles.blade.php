@@ -28,6 +28,68 @@ body.cv-pdf-classic {
 .cv-modern-section {
     margin-bottom: 5mm;
 }
+.cv-work-company {
+    font-weight: 700;
+    font-size: 11.5px;
+    line-height: 1.35;
+    color: {{ $text }};
+}
+.cv-work-position {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.4;
+    color: {{ $muted }};
+}
+body.cv-pdf-sidebar .cv-work-company {
+    font-size: 10.5px;
+    color: #ffffff;
+}
+body.cv-pdf-sidebar .cv-work-position {
+    font-size: 9.5px;
+    color: rgb(255 255 255 / 0.85);
+}
+.cv-resume-summary {
+    display: table;
+    width: 100%;
+    margin-bottom: 4mm;
+    border: 1px solid {{ $muted }};
+    border-collapse: collapse;
+    font-size: 10px;
+    line-height: 1.45;
+}
+.cv-resume-summary-label {
+    display: table-cell;
+    width: 28%;
+    padding: 2.5mm 2mm;
+    border-right: 1px solid {{ $muted }};
+    font-weight: 700;
+    font-size: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    color: {{ $text }};
+}
+.cv-resume-summary-body {
+    display: table-cell;
+    padding: 2.5mm 3mm;
+    vertical-align: middle;
+    color: {{ $text }};
+    white-space: pre-wrap;
+}
+.cv-resume-summary--title-only {
+    font-size: 12px;
+}
+.cv-resume-summary--title-only .cv-resume-summary-label {
+    display: block;
+    width: 100%;
+    border-right: none;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    padding: 3.5mm 3mm;
+}
 
 /* —— Sidebar: no full-page table (Dompdf blank pages). Float + margin main. —— */
 body.cv-pdf-sidebar .cv-sheet {
@@ -238,9 +300,37 @@ body.cv-pdf-sidebar .cv-sidebar-rich ul {
     font-weight: 600;
     color: {{ $primary }};
 }
-.cv-modern-intro { margin-bottom: 3mm; }
-.cv-modern-avatar { float: left; margin-right: 4mm; }
-.cv-modern-avatar img { border-radius: 6px; }
+.cv-modern-header-columns {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.cv-modern-header-avatar {
+    display: table-cell;
+    width: 42mm;
+    vertical-align: top;
+    padding-right: 2mm;
+}
+.cv-modern-header-main {
+    display: table-cell;
+    vertical-align: top;
+}
+.cv-modern-header-columns--no-avatar .cv-modern-header-main {
+    display: block;
+    width: 100%;
+}
+.cv-modern-avatar img {
+    display: block;
+    width: 36mm;
+    height: 36mm;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid {{ $primary }};
+}
+.cv-modern-header-main .modern-contact {
+    margin-top: 3mm;
+}
 .modern-contact .contact-line {
     display: block;
     width: 100%;

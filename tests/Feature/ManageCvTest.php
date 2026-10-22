@@ -82,6 +82,41 @@ class ManageCvTest extends TestCase
         $this->assertTrue($payload['cv']['settings']['show_avatar']);
     }
 
+    public function test_cv_includes_work_experience_when_configured(): void
+    {
+        $user = User::factory()->create(['username' => 'cv-work']);
+
+        $user->portfolio->workExperiences()->create([
+            'company' => ['vi' => 'Công ty ABC', 'en' => 'ABC Co.'],
+            'position' => ['vi' => 'Lập trình viên', 'en' => 'Developer'],
+            'details' => ['vi' => '', 'en' => ''],
+            'period' => '2024 – 2026',
+            'sort_order' => 0,
+        ]);
+
+        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+
+        $this->assertCount(1, $payload['work_experiences']);
+        $this->assertSame('Công ty ABC', $payload['work_experiences'][0]['company']);
+    }
+
+    public function test_cv_includes_resume_summary_when_configured(): void
+    {
+        $user = User::factory()->create(['username' => 'cv-summary']);
+
+        $user->portfolio->cvSettings->update([
+            'resume_summary_title' => ['vi' => 'Tiêu đề CV', 'en' => 'CV heading'],
+            'resume_summary' => ['vi' => 'Tóm tắt thử', 'en' => 'Sample summary'],
+            'show_resume_summary' => true,
+        ]);
+
+        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+
+        $this->assertSame('Tiêu đề CV', $payload['cv']['resume_summary_title']);
+        $this->assertSame('Tóm tắt thử', $payload['cv']['resume_summary']);
+        $this->assertTrue($payload['cv']['settings']['show_resume_summary']);
+    }
+
     public function test_cv_settings_include_project_period_and_social_toggles(): void
     {
         $user = User::factory()->create(['username' => 'cv-toggles']);

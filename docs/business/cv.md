@@ -10,7 +10,9 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 - Same **publish/preview** rules as portfolio show.
 - **`cv_settings`** row (1:1 portfolio) controls:
   - `template`: `modern` \| `classic` \| `sidebar`
-  - Section toggles: about, skills, projects, project period (dates), social links (header), education, languages, principles, avatar
+  - Top row: owner-editable **`resume_summary_title`** (e.g. “Tóm tắt sơ yếu lý lịch”) and optional **`resume_summary`** body; **`show_resume_summary`** toggle. Falls back to `ui.cv.resume_summary` only if title is empty.
+  - **`work_experiences`** table (company, position, period, details) + **`show_work_experience`** toggle
+  - Section toggles: about, skills, projects, project period (dates), social links (header), education, work history, languages, principles, avatar
 - **`show_principles` defaults false** at DB level; wizard defaults match.
 - Presenter sets **`show_avatar` false** when no avatar file exists even if toggle true.
 - PDF filename: `{slug-full-name}-cv-{locale}.pdf`.

@@ -37,7 +37,7 @@ class DemoPortfolioSeeder extends Seeder
             'is_published' => true,
             'default_locale' => 'vi',
             'default_theme' => 'system',
-            'seo_title' => 'Nguyễn Đức Độ | Kho vận & Nâng cấp hệ thống quản lý kho',
+            'seo_title' => 'Nguyễn Đức Độ | Kinh doanh online & Phát triển kho vận – hệ thống',
             'seo_description' => $cvOverlay['profile']['tagline']['vi'] ?? ($vi['hero']['description'] ?? null),
         ]);
 
@@ -184,6 +184,17 @@ class DemoPortfolioSeeder extends Seeder
                     'sort_order' => $index,
                 ]);
             }
+        }
+
+        $portfolio->workExperiences()->delete();
+        foreach ($cvOverlay['work_experiences'] ?? [] as $index => $item) {
+            $portfolio->workExperiences()->create([
+                'company' => $item['company'],
+                'position' => $item['position'],
+                'details' => $item['details'] ?? ['vi' => '', 'en' => ''],
+                'period' => $item['period'] ?? null,
+                'sort_order' => $index,
+            ]);
         }
 
         $portfolio->education()->delete();
