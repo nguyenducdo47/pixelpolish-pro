@@ -54,6 +54,48 @@ return [
                 'vi' => '<p>Tham gia <strong>triển khai, nâng cấp và bảo trì hệ thống</strong> website cùng module <strong>quản lý</strong> theo dự án khách hàng; hỗ trợ <strong>số hóa</strong> luồng <strong>kinh doanh</strong> và vận hành.</p>',
                 'en' => '<p>Helped <strong>roll out, upgrade, and maintain systems</strong> and <strong>management</strong> modules for clients; supported <strong>digitizing</strong> <strong>business</strong> and operations.</p>',
             ],
+            'bullets' => [
+                'vi' => [
+                    'Triển khai, nâng cấp và bảo trì hệ thống website cùng module quản lý theo dự án khách hàng.',
+                    'Hỗ trợ số hóa luồng kinh doanh và vận hành trên hệ thống.',
+                    'Kiểm thử, chỉnh sửa chức năng và ghi nhận yêu cầu từ người dùng.',
+                ],
+                'en' => [
+                    'Rolled out, upgraded, and maintained client websites and management modules.',
+                    'Supported digitizing business and operations workflows on the system.',
+                    'Tested, fixed features, and captured user requirements.',
+                ],
+            ],
+        ],
+        [
+            'company' => [
+                'vi' => 'Công ty TNHH Bao bì Nước giải khát Crown Đồng Nai',
+                'en' => 'Crown Beverage Cans Dong Nai Co., Ltd.',
+            ],
+            'company_form' => [
+                'vi' => 'CÔNG TY TNHH BAO BÌ NƯỚC GIẢI KHÁT CROWN ĐỒNG NAI',
+            ],
+            'position' => [
+                'vi' => 'Nhân viên kho / Hỗ trợ vận hành kho',
+                'en' => 'Warehouse staff / operations support',
+            ],
+            'period' => '2023 – 2024',
+            'details' => [
+                'vi' => '<p>Tham gia <strong>nghiệp vụ kho</strong> tại nhà máy bao bì nước giải khát: nhập – xuất, soạn hàng, <strong>kiểm kê</strong> và cập nhật tồn theo quy trình; phối hợp bàn giao cho vận chuyển.</p>',
+                'en' => '<p><strong>Warehouse operations</strong> at a beverage-can plant—inbound/outbound, picking, <strong>cycle counts</strong>, stock updates per process; coordinated handoff to carriers.</p>',
+            ],
+            'bullets' => [
+                'vi' => [
+                    'Tham gia nhập – xuất kho nguyên liệu, bao bì và thành phẩm theo lệnh sản xuất và đơn giao hàng.',
+                    'Soạn hàng, kiểm đếm, cập nhật tồn và vị trí lưu trữ; hỗ trợ bốc xếp, bàn giao vận chuyển.',
+                    'Tham gia kiểm kê, báo chênh lệch và đối chiếu số liệu với người phụ trách kho.',
+                ],
+                'en' => [
+                    'Inbound/outbound for materials, packaging, and finished goods per production and delivery orders.',
+                    'Picking, counting, stock and location updates; loading support and carrier handoff.',
+                    'Joined cycle counts, reported variances, and reconciled figures with warehouse supervisors.',
+                ],
+            ],
         ],
     ],
     'skill_categories' => [
