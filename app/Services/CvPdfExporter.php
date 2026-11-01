@@ -12,7 +12,7 @@ class CvPdfExporter
     /**
      * @param  array<string, mixed>  $portfolioPayload  From PortfolioPresenter::publicPayload()
      */
-    public function download(array $portfolioPayload, string $username, string $locale): \Symfony\Component\HttpFoundation\Response
+    public function download(array $portfolioPayload, string $username, string $locale, ?\App\Models\Cv $cv = null): \Symfony\Component\HttpFoundation\Response
     {
         $profile = $portfolioPayload['profile'] ?? [];
 
@@ -26,7 +26,8 @@ class CvPdfExporter
         }
 
         $name = $profile['full_name'] ?? $username;
-        $filename = Str::slug($name).'-cv-'.$locale.'.pdf';
+        $slugSuffix = ($cv && ! $cv->is_default) ? '-'.$cv->slug : '';
+        $filename = Str::slug($name).'-cv'.$slugSuffix.'-'.$locale.'.pdf';
 
         return Pdf::loadView('cv.pdf', [
             'portfolio' => $portfolioPayload,

@@ -2,7 +2,9 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\CvListItem;
 use App\Models\User;
+use App\Models\WorkExperience;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -16,6 +18,15 @@ trait BelongsToPortfolio
                 if ($portfolio) {
                     $model->portfolio_id = $portfolio->id;
                 }
+            }
+
+            if (
+                ($model instanceof WorkExperience || $model instanceof CvListItem)
+                && ! $model->cv_id
+                && auth()->check()
+                && auth()->user()?->portfolio?->defaultCv
+            ) {
+                $model->cv_id = auth()->user()->portfolio->defaultCv->id;
             }
         });
 

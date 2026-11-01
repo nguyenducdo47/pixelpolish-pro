@@ -36,28 +36,51 @@ class PortfolioController extends Controller
 
     public function show(string $locale, string $username): InertiaResponse
     {
-        return Inertia::render('Portfolio/Show', $this->payload($username, $locale));
+        $portfolio = $this->findPortfolio($username);
+
+        return Inertia::render('Portfolio/Show', $this->payload($portfolio, $locale));
     }
 
     public function cv(string $locale, string $username): InertiaResponse
     {
-        return Inertia::render('Portfolio/Cv', $this->payload($username, $locale));
+        $portfolio = $this->findPortfolio($username);
+
+        return Inertia::render('Portfolio/Cv', $this->payload($portfolio, $locale, $portfolio->resolveCv()));
     }
 
-    public function cvPdf(string $locale, string $username): SymfonyResponse
+    public function cvShow(string $locale, string $username, string $cv): InertiaResponse
     {
-        $data = $this->payload($username, $locale);
+        $portfolio = $this->findPortfolio($username);
 
-        return $this->cvPdfExporter->download($data, $username, $locale);
+        return Inertia::render('Portfolio/Cv', $this->payload($portfolio, $locale, $portfolio->resolveCv($cv)));
     }
 
-    private function payload(string $username, string $locale): array
+    public function cvPdf(string $locale, string $username, ?string $cv = null): SymfonyResponse
+    {
+        $portfolio = $this->findPortfolio($username);
+        $document = $portfolio->resolveCv($cv);
+
+        $data = $this->payload($portfolio, $locale, $document);
+
+        return $this->cvPdfExporter->download($data, $username, $locale, $document);
+    }
+
+    private function findPortfolio(string $username): Portfolio
     {
         $portfolio = Portfolio::query()
             ->where('slug', $username)
             ->firstOrFail();
 
         abort_unless($portfolio->is_published || $this->canPreview($portfolio), 404);
+
+        return $portfolio;
+    }
+
+    private function payload(Portfolio $portfolio, string $locale, ?\App\Models\Cv $cvDocument = null): array
+    {
+        if ($cvDocument !== null) {
+            return $this->presenter->cvPayload($portfolio, $locale, $cvDocument);
+        }
 
         return $this->presenter->publicPayload($portfolio, $locale);
     }

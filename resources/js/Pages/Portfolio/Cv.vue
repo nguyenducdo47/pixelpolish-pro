@@ -33,7 +33,7 @@ const ui = computed(() => props.ui ?? page.props.ui ?? {});
 const showTechStack = computed(() => (props.display ?? {}).show_tech_stack !== false);
 const settings = computed(() => props.cv?.settings || {});
 const appearance = computed(() => page.props.appearance || {});
-const cvLayout = computed(() => appearance.value.cv_layout || settings.value.template || 'modern');
+const cvLayout = computed(() => settings.value.template || appearance.value.cv_layout || 'modern');
 const isSidebarLayout = computed(() => cvLayout.value === 'sidebar');
 const isClassicLayout = computed(() => cvLayout.value === 'classic');
 const portfolioUrl = computed(
@@ -264,6 +264,13 @@ function printCv() {
                             </div>
                         </section>
 
+                        <CvBulletListSection v-if="showCertifications" variant="classic" :title="ui.cv?.certifications"
+                            :items="certifications" />
+                        <CvBulletListSection v-if="showCareerTargets" variant="classic" :title="ui.cv?.career_targets"
+                            :items="career_targets" />
+                        <CvBulletListSection v-if="showStrengths" variant="classic" :title="ui.cv?.strengths"
+                            :items="strengths" />
+
                         <section v-if="settings.show_projects && projects?.length" class="cv-classic-section">
                             <h2 class="cv-classic-section-title">{{ ui.cv?.experience }}</h2>
                             <div v-for="(project, index) in projects" :key="project.title"
@@ -291,13 +298,6 @@ function printCv() {
                             </p>
                         </section>
 
-                        <CvBulletListSection v-if="showCertifications" variant="classic" :title="ui.cv?.certifications"
-                            :items="certifications" />
-                        <CvBulletListSection v-if="showCareerTargets" variant="classic" :title="ui.cv?.career_targets"
-                            :items="career_targets" />
-                        <CvBulletListSection v-if="showStrengths" variant="classic" :title="ui.cv?.strengths"
-                            :items="strengths" />
-
                         <section v-if="settings.show_principles && principles?.length" class="cv-classic-section">
                             <h2 class="cv-classic-section-title">{{ ui.philosophy?.title }}</h2>
                             <div v-for="item in principles" :key="item.title" class="cv-classic-entry">
@@ -312,23 +312,25 @@ function printCv() {
                         <div class="cv-modern-accent" aria-hidden="true" />
 
                         <header class="cv-modern-header">
-                            <div class="flex min-w-0 flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                                <div class="flex min-w-0 items-center gap-5">
-                                    <img v-if="settings.show_avatar && profile?.avatar" :src="profile.avatar"
+                            <div
+                                class="cv-modern-header-grid"
+                                :class="{ 'cv-modern-header-grid--no-avatar': !settings.show_avatar || !profile?.avatar }">
+                                <div v-if="settings.show_avatar && profile?.avatar" class="cv-modern-header-grid-avatar">
+                                    <img :src="profile.avatar"
                                         :alt="profile.full_name" loading="lazy"
-                                        class="h-24 w-24 shrink-0 rounded-full object-cover shadow-sm ring-2 ring-primary/20 sm:h-36 sm:w-36 print:h-[9rem] print:w-[9rem]" />
-                                    <div class="min-w-0">
-                                        <h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl print:text-2xl">
-                                            {{ profile?.full_name }}
-                                        </h1>
-                                        <p class="mt-1.5 text-lg font-medium text-primary sm:text-xl print:text-base">
-                                            {{ profile?.headline }}
-                                        </p>
-                                    </div>
+                                        class="h-24 w-24 rounded-full object-cover shadow-sm ring-2 ring-primary/20 sm:h-36 sm:w-36 print:h-[9rem] print:w-[9rem]" />
+                                </div>
+                                <div class="cv-modern-header-grid-main min-w-0">
+                                    <h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl print:text-2xl">
+                                        {{ profile?.full_name }}
+                                    </h1>
+                                    <p v-if="profile?.headline" class="mt-1.5 text-lg font-medium text-primary sm:text-xl print:text-base">
+                                        {{ profile.headline }}
+                                    </p>
+                                    <CvContactLines :profile="profile" :social-links="social_links"
+                                        :show-social-links="showSocialOnCv" variant="modern-grid" class="mt-4" />
                                 </div>
                             </div>
-                            <CvContactLines :profile="profile" :social-links="social_links"
-                                :show-social-links="showSocialOnCv" variant="modern-grid" class="mt-5" />
                         </header>
 
                         <section v-if="settings.show_about && profile?.about" class="cv-modern-section">
@@ -388,6 +390,13 @@ function printCv() {
                             </div>
                         </section>
 
+                        <CvBulletListSection v-if="showCertifications" variant="modern" :title="ui.cv?.certifications"
+                            :items="certifications" />
+                        <CvBulletListSection v-if="showCareerTargets" variant="modern" :title="ui.cv?.career_targets"
+                            :items="career_targets" />
+                        <CvBulletListSection v-if="showStrengths" variant="modern" :title="ui.cv?.strengths"
+                            :items="strengths" />
+
                         <section v-if="settings.show_projects && projects?.length" class="cv-modern-section">
                             <h2 class="cv-modern-section-title">{{ ui.cv?.experience }}</h2>
                             <div class="cv-modern-timeline">
@@ -420,7 +429,7 @@ function printCv() {
 
                         <section v-if="settings.show_languages && languages?.length" class="cv-modern-section">
                             <h2 class="cv-modern-section-title">{{ ui.cv?.languages }}</h2>
-                            <div class="grid gap-2 sm:grid-cols-2">
+                            <div class="grid gap-2 sm:grid-cols-1">
                                 <div v-for="item in languages" :key="item.name"
                                     class="flex items-center justify-between rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm">
                                     <span class="font-semibold">{{ item.name }}</span>
@@ -428,13 +437,6 @@ function printCv() {
                                 </div>
                             </div>
                         </section>
-
-                        <CvBulletListSection v-if="showCertifications" variant="modern" :title="ui.cv?.certifications"
-                            :items="certifications" />
-                        <CvBulletListSection v-if="showCareerTargets" variant="modern" :title="ui.cv?.career_targets"
-                            :items="career_targets" />
-                        <CvBulletListSection v-if="showStrengths" variant="modern" :title="ui.cv?.strengths"
-                            :items="strengths" />
 
                         <section v-if="settings.show_principles && principles?.length" class="cv-modern-section">
                             <h2 class="cv-modern-section-title">{{ ui.philosophy?.title }}</h2>

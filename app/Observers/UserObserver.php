@@ -46,7 +46,10 @@ class UserObserver
         ]);
 
         $portfolio->profile()->create([
-            'full_name' => $user->name,
+            'full_name' => [
+                'vi' => $user->name,
+                'en' => $user->name,
+            ],
             'email' => $user->email,
             'headline' => $empty,
             'tagline' => $empty,
@@ -54,7 +57,11 @@ class UserObserver
             'philosophy_quote' => $empty,
         ]);
 
-        $portfolio->cvSettings()->create();
+        $portfolio->cvs()->create([
+            'slug' => 'default',
+            'name' => ['vi' => 'CV mặc định', 'en' => 'Default CV'],
+            'is_default' => true,
+        ]);
 
         ContentProfileConfig::forProfile(ContentProfile::General)->applySuggestedThemeIfUnset($portfolio);
 

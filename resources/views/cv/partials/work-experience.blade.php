@@ -7,7 +7,7 @@
     $uiLabel = fn (string $dotKey, string $fallbackKey) => data_get($portfolio, 'ui.'.$dotKey) ?? __($fallbackKey);
 @endphp
 
-@if(($only === null || $only === 'work_experience') && ($settings['show_work_experience'] ?? true) && !empty($portfolio['work_experiences']))
+@if(($only === null || $only === 'work_experience') && ($settings['show_work_experience'] ?? true) && count($portfolio['work_experiences'] ?? []) > 0)
     @if($sidebarSection)<section class="cv-sidebar-block">@elseif($classicEntries)<section class="cv-classic-section">@elseif($modernEntries)<section class="cv-modern-section">@endif
     <h2 class="{{ $sidebarSection ? 'cv-sidebar-heading' : ($classicEntries ? 'cv-classic-section-title' : ($modernEntries ? 'cv-modern-section-title' : '')) }}">{{ $uiLabel('cv.work_experience', 'ui.cv.work_experience') }}</h2>
     @foreach($portfolio['work_experiences'] as $item)

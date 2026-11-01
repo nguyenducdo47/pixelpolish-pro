@@ -48,6 +48,8 @@ Route::prefix('{locale}')
     ->middleware(SetLocale::class)
     ->group(function () {
         Route::get('{username}', [PortfolioController::class, 'show'])->name('portfolio.show');
-        Route::get('{username}/cv', [PortfolioController::class, 'cv'])->name('portfolio.cv');
+        Route::get('{username}/cv/{cv}.pdf', [PortfolioController::class, 'cvPdf'])->name('portfolio.cv.pdf.show');
+        Route::get('{username}/cv/{cv}', [PortfolioController::class, 'cvShow'])->name('portfolio.cv.show');
         Route::get('{username}/cv.pdf', [PortfolioController::class, 'cvPdf'])->name('portfolio.cv.pdf');
+        Route::get('{username}/cv', [PortfolioController::class, 'cv'])->name('portfolio.cv');
     });

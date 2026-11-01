@@ -9,14 +9,14 @@
         $primary = $appearance['colors']['primary'] ?? '#1a9aa3';
         $muted = $appearance['colors']['muted'] ?? '#52525b';
         $text = $appearance['colors']['foreground'] ?? '#18181b';
-        $layout = $appearance['cv_layout'] ?? ($settings['template'] ?? 'modern');
+        $layout = $settings['template'] ?? ($appearance['cv_layout'] ?? 'modern');
         $richProjects = (bool) data_get($portfolio, 'display.rich_cv_projects', true);
         $showTechStack = (bool) data_get($portfolio, 'display.show_tech_stack', true);
 
         $github = collect($portfolio['social_links'] ?? [])
             ->first(fn ($link) => str_contains(strtolower($link['platform'] ?? ''), 'git'));
 
-        $stripProtocol = fn ($url) => preg_replace('#^https?://#', '', $url ?? '');
+        $stripProtocol = fn ($url) => $url ?? '';
 
         $makeIcons = function (string $strokeColor, string $fillMuted = '') use ($muted) {
             $svgIcon = function (string $pathD, bool $filled = false) use ($strokeColor, $fillMuted, $muted) {
@@ -76,8 +76,9 @@
                         'skillGlue' => ' · ',
                         'sidebarSection' => true,
                     ])
-                    @include('cv.partials.work-experience', [
+            @include('cv.partials.main', [
                         'portfolio' => $portfolio,
+                        'profile' => $profile,
                         'settings' => $settings,
                         'only' => 'work_experience',
                         'sidebarSection' => true,
@@ -98,9 +99,11 @@
                         'only' => 'languages',
                         'sidebarSection' => true,
                     ])
-                    @include('cv.partials.cv-lists', [
+                    @include('cv.partials.main', [
                         'portfolio' => $portfolio,
+                        'profile' => $profile,
                         'settings' => $settings,
+                        'only' => 'cv_lists',
                         'sidebarSection' => true,
                     ])
                     @include('cv.partials.main', [
@@ -152,8 +155,9 @@
                 'classicEntries' => $layout === 'classic',
                 'modernEntries' => $layout === 'modern',
             ])
-            @include('cv.partials.work-experience', [
+            @include('cv.partials.main', [
                 'portfolio' => $portfolio,
+                'profile' => $profile,
                 'settings' => $settings,
                 'only' => 'work_experience',
                 'classicEntries' => $layout === 'classic',
@@ -161,6 +165,14 @@
                 'forPdf' => true,
             ])
             @include('cv.partials.main', ['portfolio' => $portfolio, 'profile' => $profile, 'settings' => $settings, 'only' => 'education', 'classicEntries' => $layout === 'classic'])
+            @include('cv.partials.main', [
+                'portfolio' => $portfolio,
+                'profile' => $profile,
+                'settings' => $settings,
+                'only' => 'cv_lists',
+                'classicEntries' => $layout === 'classic',
+                'modernEntries' => $layout === 'modern',
+            ])
             @include('cv.partials.main', [
                 'portfolio' => $portfolio,
                 'profile' => $profile,
@@ -176,12 +188,6 @@
                 'profile' => $profile,
                 'settings' => $settings,
                 'only' => 'languages',
-                'classicEntries' => $layout === 'classic',
-                'modernEntries' => $layout === 'modern',
-            ])
-            @include('cv.partials.cv-lists', [
-                'portfolio' => $portfolio,
-                'settings' => $settings,
                 'classicEntries' => $layout === 'classic',
                 'modernEntries' => $layout === 'modern',
             ])

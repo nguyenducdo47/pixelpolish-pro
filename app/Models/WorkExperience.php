@@ -13,6 +13,7 @@ class WorkExperience extends Model
 
     protected $fillable = [
         'portfolio_id',
+        'cv_id',
         'company',
         'position',
         'details',
@@ -27,6 +28,11 @@ class WorkExperience extends Model
             'position' => 'array',
             'details' => 'array',
         ];
+    }
+
+    public function cv(): BelongsTo
+    {
+        return $this->belongsTo(Cv::class);
     }
 
     public function portfolio(): BelongsTo

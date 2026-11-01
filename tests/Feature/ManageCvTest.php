@@ -56,7 +56,9 @@ class ManageCvTest extends TestCase
         $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
 
         $this->assertNull($payload['profile']['avatar']);
-        $this->assertFalse($payload['cv']['settings']['show_avatar']);
+        $cv = $user->portfolio->defaultCv;
+        $cvPayload = app(PortfolioPresenter::class)->cvPayload($user->portfolio->fresh(), 'vi', $cv);
+        $this->assertFalse($cvPayload['cv']['settings']['show_avatar']);
     }
 
     public function test_cv_shows_avatar_when_file_exists(): void
@@ -68,7 +70,8 @@ class ManageCvTest extends TestCase
             'username' => 'has-avatar',
         ]);
         $user->portfolio->profile->update(['avatar_path' => 'avatars/me.jpg']);
-        $user->portfolio->cvSettings->update(['show_avatar' => true]);
+        $cv = $user->portfolio->defaultCv;
+        $cv->update(['show_avatar' => true]);
         $user->portfolio->update(['is_published' => true]);
 
         $this->actingAs($user)
@@ -76,7 +79,7 @@ class ManageCvTest extends TestCase
             ->assertOk()
             ->assertSeeText('Hiển thị ảnh đại diện');
 
-        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+        $payload = app(PortfolioPresenter::class)->cvPayload($user->portfolio->fresh(), 'vi', $cv);
 
         $this->assertSame('/storage/avatars/me.jpg', $payload['profile']['avatar']);
         $this->assertTrue($payload['cv']['settings']['show_avatar']);
@@ -86,7 +89,10 @@ class ManageCvTest extends TestCase
     {
         $user = User::factory()->create(['username' => 'cv-work']);
 
+        $cv = $user->portfolio->defaultCv;
+
         $user->portfolio->workExperiences()->create([
+            'cv_id' => $cv->id,
             'company' => ['vi' => 'Công ty ABC', 'en' => 'ABC Co.'],
             'position' => ['vi' => 'Lập trình viên', 'en' => 'Developer'],
             'details' => ['vi' => '', 'en' => ''],
@@ -94,23 +100,45 @@ class ManageCvTest extends TestCase
             'sort_order' => 0,
         ]);
 
-        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+        $payload = app(PortfolioPresenter::class)->cvPayload($user->portfolio->fresh(), 'vi', $cv);
 
         $this->assertCount(1, $payload['work_experiences']);
         $this->assertSame('Công ty ABC', $payload['work_experiences'][0]['company']);
+    }
+
+    public function test_default_cv_includes_work_experience_when_cv_id_is_null(): void
+    {
+        $user = User::factory()->create(['username' => 'cv-work-null']);
+
+        $cv = $user->portfolio->defaultCv;
+
+        $user->portfolio->workExperiences()->create([
+            'cv_id' => null,
+            'company' => ['vi' => 'Công ty XYZ', 'en' => 'XYZ Co.'],
+            'position' => ['vi' => 'Dev', 'en' => 'Dev'],
+            'details' => ['vi' => '', 'en' => ''],
+            'period' => '2024 – 2026',
+            'sort_order' => 0,
+        ]);
+
+        $payload = app(PortfolioPresenter::class)->cvPayload($user->portfolio->fresh(), 'vi', $cv);
+
+        $this->assertCount(1, $payload['work_experiences']);
+        $this->assertSame('Công ty XYZ', $payload['work_experiences'][0]['company']);
     }
 
     public function test_cv_includes_resume_summary_when_configured(): void
     {
         $user = User::factory()->create(['username' => 'cv-summary']);
 
-        $user->portfolio->cvSettings->update([
+        $cv = $user->portfolio->defaultCv;
+        $cv->update([
             'resume_summary_title' => ['vi' => 'Tiêu đề CV', 'en' => 'CV heading'],
             'resume_summary' => ['vi' => 'Tóm tắt thử', 'en' => 'Sample summary'],
             'show_resume_summary' => true,
         ]);
 
-        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+        $payload = app(PortfolioPresenter::class)->cvPayload($user->portfolio->fresh(), 'vi', $cv);
 
         $this->assertSame('Tiêu đề CV', $payload['cv']['resume_summary_title']);
         $this->assertSame('Tóm tắt thử', $payload['cv']['resume_summary']);
@@ -121,12 +149,13 @@ class ManageCvTest extends TestCase
     {
         $user = User::factory()->create(['username' => 'cv-toggles']);
 
-        $user->portfolio->cvSettings->update([
+        $cv = $user->portfolio->defaultCv;
+        $cv->update([
             'show_project_period' => false,
             'show_social_links' => false,
         ]);
 
-        $payload = app(PortfolioPresenter::class)->publicPayload($user->portfolio->fresh(), 'vi');
+        $payload = app(PortfolioPresenter::class)->cvPayload($user->portfolio->fresh(), 'vi', $cv);
 
         $this->assertFalse($payload['cv']['settings']['show_project_period']);
         $this->assertFalse($payload['cv']['settings']['show_social_links']);

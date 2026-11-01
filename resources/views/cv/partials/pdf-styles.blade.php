@@ -300,25 +300,24 @@ body.cv-pdf-sidebar .cv-sidebar-rich ul {
     font-weight: 600;
     color: {{ $primary }};
 }
-.cv-modern-header-columns {
-    display: table;
+/* Modern header: 2-column grid (avatar | identity + contact). Table markup for DomPDF. */
+table.cv-modern-header-grid {
     width: 100%;
-    table-layout: fixed;
+    border: 0;
     border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
 }
-.cv-modern-header-avatar {
-    display: table-cell;
-    width: 42mm;
+.cv-modern-header-grid-avatar {
+    width: 1%;
     vertical-align: top;
-    padding-right: 2mm;
+    padding: 0 4.5mm 0 0;
+    white-space: nowrap;
 }
-.cv-modern-header-main {
-    display: table-cell;
+.cv-modern-header-grid-main {
     vertical-align: top;
-}
-.cv-modern-header-columns--no-avatar .cv-modern-header-main {
-    display: block;
-    width: 100%;
+    padding: 0;
+    width: auto;
 }
 .cv-modern-avatar img {
     display: block;
@@ -328,7 +327,7 @@ body.cv-pdf-sidebar .cv-sidebar-rich ul {
     object-fit: cover;
     border: 2px solid {{ $primary }};
 }
-.cv-modern-header-main .modern-contact {
+.cv-modern-header-grid-main .modern-contact {
     margin-top: 3mm;
 }
 .modern-contact .contact-line {

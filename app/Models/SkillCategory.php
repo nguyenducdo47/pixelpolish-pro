@@ -14,6 +14,7 @@ class SkillCategory extends Model
 
     protected $fillable = [
         'portfolio_id',
+        'cv_id',
         'name',
         'sort_order',
     ];

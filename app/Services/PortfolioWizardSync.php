@@ -27,11 +27,11 @@ class PortfolioWizardSync
             'spokenLanguages',
             'socialLinks',
             'principles',
-            'cvSettings',
+            'defaultCv',
         ]);
 
         $profile = $portfolio->profile;
-        $cv = $portfolio->cvSettings;
+        $cv = $portfolio->defaultCv;
 
         return [
             '_locale' => UiLocale::current(),
@@ -160,7 +160,7 @@ class PortfolioWizardSync
 
         $cvTemplate = $data['cv_template'] ?? 'modern';
 
-        $portfolio->cvSettings?->update([
+        $portfolio->defaultCv?->update([
             'template' => $cvTemplate,
             'show_avatar' => (bool) ($data['show_avatar'] ?? true),
             'show_about' => (bool) ($data['show_about'] ?? true),
@@ -181,7 +181,7 @@ class PortfolioWizardSync
      */
     public function saveProfile(Portfolio $portfolio, array $data): void
     {
-        $data = $this->applyLocaleInputs($data, ['headline', 'tagline', 'about', 'philosophy_quote']);
+        $data = $this->applyLocaleInputs($data, ['full_name', 'headline', 'tagline', 'about', 'philosophy_quote']);
         $user = $portfolio->user;
 
         if ($user && filled($data['username'] ?? null)) {
@@ -191,7 +191,7 @@ class PortfolioWizardSync
 
             $user->update([
                 'username' => $data['username'],
-                'name' => $data['full_name'] ?? $user->name,
+                'name' => Profile::primaryNameForUser($data['full_name'] ?? null),
             ]);
         }
 

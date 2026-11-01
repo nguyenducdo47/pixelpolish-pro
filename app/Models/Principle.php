@@ -13,6 +13,7 @@ class Principle extends Model
 
     protected $fillable = [
         'portfolio_id',
+        'cv_id',
         'title',
         'description',
         'sort_order',
