@@ -74,7 +74,12 @@ trait HasLocaleText
 
         if (is_string($value)) {
             $decoded = json_decode($value, true);
-            $value = json_last_error() === JSON_ERROR_NONE ? $decoded : $value;
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $value = $decoded;
+            } elseif (filled($value)) {
+                return [LocaleCatalog::defaultCode() => $value];
+            }
         }
 
         return is_array($value) ? $value : [];

@@ -101,37 +101,36 @@
     @if($isModern)
 
         <div class="cv-modern-header">
-            <div @class([
-                'cv-modern-header-columns',
-                'cv-modern-header-columns--no-avatar' => empty($settings['show_avatar']) || empty($profile['avatar']),
-            ])>
-                @if(!empty($settings['show_avatar']) && !empty($profile['avatar']))
-                    <div class="cv-modern-header-avatar">
-                        <div class="cv-modern-avatar modern-avatar">
-                            <img src="{{ $profile['avatar'] }}" width="136" height="136" loading="lazy" alt="">
+            <table class="cv-modern-header-grid" role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                    @if(!empty($settings['show_avatar']) && !empty($profile['avatar']))
+                        <td class="cv-modern-header-grid-avatar">
+                            <div class="cv-modern-avatar modern-avatar">
+                                <img src="{{ $profile['avatar'] }}" width="136" height="136" loading="lazy" alt="">
+                            </div>
+                        </td>
+                    @endif
+                    <td class="cv-modern-header-grid-main">
+                        <div class="modern-identity">
+                            <h1>{{ $profile['full_name'] ?? '' }}</h1>
+                            @if(!empty($profile['headline']))
+                                <p class="cv-modern-headline modern-headline">{{ $profile['headline'] }}</p>
+                            @endif
                         </div>
-                    </div>
-                @endif
-                <div class="cv-modern-header-main">
-                    <div class="modern-identity">
-                        <h1>{{ $profile['full_name'] ?? '' }}</h1>
-                        @if(!empty($profile['headline']))
-                            <p class="cv-modern-headline modern-headline">{{ $profile['headline'] }}</p>
-                        @endif
-                    </div>
-                    <div class="header-contact modern-contact">
-                        <div class="contact-list">
-                            @include('cv.partials.contact-lines', [
-                                'profile' => $profile,
-                                'icons' => $icons,
-                                'stripProtocol' => $stripProtocol,
-                                'settings' => $settings,
-                                'social_links' => $social_links ?? [],
-                            ])
+                        <div class="header-contact modern-contact">
+                            <div class="contact-list">
+                                @include('cv.partials.contact-lines', [
+                                    'profile' => $profile,
+                                    'icons' => $icons,
+                                    'stripProtocol' => $stripProtocol,
+                                    'settings' => $settings,
+                                    'social_links' => $social_links ?? [],
+                                ])
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
     @else

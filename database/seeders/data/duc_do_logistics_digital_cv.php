@@ -1,12 +1,17 @@
 <?php
 
 /**
- * CV overlay: tay ngang (QTKD – tin học); kinh nghiệm kinh doanh online + tiếp xúc kho vận/WMS ở mức cơ bản; lập trình hỗ trợ số hóa.
+ * Business & logistics CV — seeded by `DemoPortfolioSeeder` onto slug `kinh-doanh-logistics`.
+ * After CV `default` (id=1), this row is usually `cvs.id = 2` on a fresh demo database.
+ * IT CV: `duc_do_it_cv.php` + `DemoItCvSeeder`.
  */
 return [
-    'skip_legacy_skill_categories' => true,
-    'replace_legacy_projects' => true,
-    'skip_legacy_principles' => true,
+    'slug' => 'kinh-doanh-logistics',
+    'name' => [
+        'vi' => 'CV kinh doanh & logistics',
+        'en' => 'Business & logistics CV',
+    ],
+    'is_default' => false,
 
     'profile' => [
         'headline' => [

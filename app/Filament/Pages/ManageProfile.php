@@ -57,7 +57,7 @@ class ManageProfile extends Page
             '_locale' => UiLocale::current(),
             'username' => $user->username,
             'marketing_opt_in' => $pref->wantsMarketingEmails(),
-            'full_name' => $profile->full_name,
+            'full_name' => $profile->full_name ?? [],
             'email' => $profile->email,
             'phone' => $profile->phone,
             'location' => $profile->location,
@@ -134,8 +134,16 @@ class ManageProfile extends Page
                         ->label(__('panel.fields.marketing_opt_in'))
                         ->helperText(__('panel.fields.marketing_opt_in_helper')),
                 ]),
-                Section::make(__('panel.sections.contact'))->schema([
-                    TextInput::make('full_name')->label(__('panel.fields.full_name'))->required(),
+                Section::make(__('panel.sections.contact'))
+                    ->description(__('panel.fields.full_name_locale_help'))
+                    ->schema([
+                    LocaleTabs::make([
+                        [
+                            'name' => 'full_name',
+                            'label' => __('panel.fields.full_name'),
+                            'required' => true,
+                        ],
+                    ]),
                     TextInput::make('email')->label(__('panel.fields.email'))->email(),
                     TextInput::make('phone')->label(__('panel.fields.phone')),
                     TextInput::make('location')->label(__('panel.fields.location')),
@@ -185,7 +193,7 @@ class ManageProfile extends Page
 
         $user->update([
             'username' => $data['username'],
-            'name' => $data['full_name'],
+            'name' => Profile::primaryNameForUser($data['full_name'] ?? null),
         ]);
 
         $pref = UserMailPreference::forUser($user);
@@ -208,7 +216,7 @@ class ManageProfile extends Page
         ]);
 
         $this->profile()->update([
-            'full_name' => $data['full_name'],
+            'full_name' => $data['full_name'] ?? [],
             'email' => $data['email'] ?? null,
             'phone' => $data['phone'] ?? null,
             'location' => $data['location'] ?? null,

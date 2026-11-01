@@ -210,7 +210,7 @@ class ContentProfileConfig
 
     public function syncCvSettingsForSections(Portfolio $portfolio): void
     {
-        $cv = $portfolio->cvSettings;
+        $cv = $portfolio->defaultCv;
 
         if (! $cv) {
             return;

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Support\HasLocaleText;
+use App\Support\LocaleCatalog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,7 @@ class Profile extends Model
     protected function casts(): array
     {
         return [
+            'full_name' => 'array',
             'date_of_birth' => 'date',
             'headline' => 'array',
             'tagline' => 'array',
@@ -58,6 +60,20 @@ class Profile extends Model
     public function hasAvatar(): bool
     {
         return $this->avatarUrl() !== null;
+    }
+
+    /**
+     * @param  array<string, string>|string|null  $fullName
+     */
+    public static function primaryNameForUser(mixed $fullName): string
+    {
+        if (is_array($fullName)) {
+            $code = LocaleCatalog::defaultCode();
+
+            return trim((string) ($fullName[$code] ?? $fullName['vi'] ?? $fullName['en'] ?? reset($fullName) ?: ''));
+        }
+
+        return trim((string) ($fullName ?? ''));
     }
 
     public static function storedAvatarPath(mixed $value): ?string

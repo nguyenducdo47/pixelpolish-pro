@@ -39,7 +39,7 @@ class PortfolioGuide
             'spokenLanguages',
             'socialLinks',
             'principles',
-            'cvSettings',
+            'defaultCv',
         ]);
 
         $config = ContentProfileConfig::for($portfolio);
@@ -51,7 +51,7 @@ class PortfolioGuide
 
         $steps = [
             self::step('profile', ManageProfile::getUrl(), [
-                self::item('full_name', ManageProfile::getUrl(), filled($profile?->full_name)),
+                self::item('full_name', ManageProfile::getUrl(), filled($profile?->localeText('full_name'))),
                 self::item('headline', ManageProfile::getUrl(), self::hasCopy($profile, 'headline')),
                 self::item('about', ManageProfile::getUrl(), $hasAbout),
                 self::item('avatar', ManageProfile::getUrl(), (bool) $profile?->hasAvatar()),

@@ -57,7 +57,7 @@ class SetupWizardTest extends TestCase
 
         Livewire::test(SetupWizard::class)
             ->set('data.username', 'wizard-save')
-            ->set('data.full_name', 'New Name')
+            ->set('data.full_name', ['vi' => 'New Name', 'en' => 'New Name'])
             ->set('data.email', 'new@example.com')
             ->set('data.headline', ['vi' => 'Dev Laravel'])
             ->set('data._locale', 'vi')
@@ -73,9 +73,26 @@ class SetupWizardTest extends TestCase
         $user->refresh();
 
         $this->assertSame('New Name', $user->name);
-        $this->assertSame('New Name', $user->portfolio->profile->full_name);
+        $this->assertSame('New Name', $user->portfolio->profile->localeText('full_name', 'vi'));
         $this->assertSame('Dev Laravel', $user->portfolio->profile->localeText('headline', 'vi'));
         $this->assertSame('Shop', $user->portfolio->projects()->first()?->localeText('title', 'vi'));
+    }
+
+    public function test_profile_full_name_follows_cv_locale(): void
+    {
+        $user = User::factory()->create(['username' => 'locale-name']);
+        $user->portfolio->profile->update([
+            'full_name' => ['vi' => 'Nguyễn Đức Độ', 'en' => 'Nguyen Duc Do'],
+        ]);
+
+        $presenter = app(PortfolioPresenter::class);
+        $cv = $user->portfolio->defaultCv;
+
+        $vi = $presenter->cvPayload($user->portfolio->fresh(), 'vi', $cv);
+        $en = $presenter->cvPayload($user->portfolio->fresh(), 'en', $cv);
+
+        $this->assertSame('Nguyễn Đức Độ', $vi['profile']['full_name']);
+        $this->assertSame('Nguyen Duc Do', $en['profile']['full_name']);
     }
 
     public function test_unpublished_portfolio_is_hidden_from_guests_but_visible_to_owner(): void
@@ -134,7 +151,7 @@ class SetupWizardTest extends TestCase
 
         app(PortfolioWizardSync::class)->saveAll($user->portfolio, [
             'username' => 'wizard-rich',
-            'full_name' => 'Rich User',
+            'full_name' => ['vi' => 'Rich User', 'en' => 'Rich User'],
             '_locale' => 'vi',
             '_current' => [
                 'about' => [
@@ -245,7 +262,7 @@ class SetupWizardTest extends TestCase
 
         Livewire::test(SetupWizard::class)
             ->set('data.username', 'wizard-keep-avatar')
-            ->set('data.full_name', $user->name)
+            ->set('data.full_name', ['vi' => $user->name, 'en' => $user->name])
             ->set('data.headline', ['vi' => 'Dev Laravel'])
             ->call('persistStep')
             ->assertHasNoErrors();
@@ -284,7 +301,7 @@ class SetupWizardTest extends TestCase
     {
         $wizard = Livewire::test(SetupWizard::class)->instance();
         $wizard->data['username'] = $user->username;
-        $wizard->data['full_name'] = $user->name;
+        $wizard->data['full_name'] = ['vi' => $user->name, 'en' => $user->name];
         $wizard->data['headline'] = ['vi' => 'Dev Laravel'];
         $wizard->data['avatar_path'] = $temp;
 

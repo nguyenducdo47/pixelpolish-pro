@@ -488,7 +488,7 @@ class AppearanceTheme
             ['theme_id' => $catalog->id],
             ['customization' => $custom === [] ? null : $custom],
         );
-        $portfolio->cvSettings?->update(['template' => $resolved['cv_layout']]);
+        $portfolio->defaultCv?->update(['template' => $resolved['cv_layout']]);
 
         return $resolved;
     }

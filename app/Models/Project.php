@@ -13,6 +13,7 @@ class Project extends Model
 
     protected $fillable = [
         'portfolio_id',
+        'cv_id',
         'title',
         'subtitle',
         'complexity',

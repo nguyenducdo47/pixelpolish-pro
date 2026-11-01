@@ -9,6 +9,30 @@
 @php($modernTimeline = $modernTimeline ?? false)
 @php($forPdf = $forPdf ?? false)
 
+@if(($only === null || $only === 'work_experience') && ($settings['show_work_experience'] ?? true) && count($portfolio['work_experiences'] ?? []) > 0)
+    @include('cv.partials.work-experience', [
+        'portfolio' => $portfolio,
+        'settings' => $settings,
+        'only' => 'work_experience',
+        'sidebarSection' => $sidebarSection ?? false,
+        'classicEntries' => $classicEntries ?? false,
+        'modernEntries' => ($modernTimeline ?? false) || ($modernEntries ?? false),
+        'forPdf' => $forPdf,
+    ])
+@endif
+
+@if(($only === null || $only === 'cv_lists'))
+    @include('cv.partials.cv-lists', [
+        'portfolio' => $portfolio,
+        'settings' => $settings,
+        'only' => $listsOnly ?? null,
+        'mainSection' => $mainSection ?? false,
+        'sidebarSection' => $sidebarSection ?? false,
+        'classicEntries' => $classicEntries ?? false,
+        'modernEntries' => ($modernTimeline ?? false) || ($modernEntries ?? false),
+    ])
+@endif
+
 @if(($only === null || $only === 'about') && ($settings['show_about'] ?? true) && !empty($profile['about']))
     @if($mainSection)<section class="cv-main-block">@elseif($classicEntries)<section class="cv-classic-section">@endif
     <h2 class="{{ $mainSection ? 'cv-main-heading' : ($classicEntries ? 'cv-classic-section-title' : '') }}">{{ $uiLabel('cv.summary', 'ui.cv.summary') }}</h2>

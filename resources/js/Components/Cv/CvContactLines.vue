@@ -40,7 +40,7 @@ const contactItems = computed(() => {
     if (p.website) {
         items.push({
             type: 'website',
-            label: p.website.replace(/^https?:\/\//, ''),
+            label: p.website,
             href: p.website,
             external: true,
         });

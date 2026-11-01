@@ -189,7 +189,13 @@ class SetupWizard extends Page
                     ->live(),
                 TextInput::make('seo_title')->label(__('panel.fields.seo_title')),
                 Textarea::make('seo_description')->label(__('panel.fields.seo_description'))->rows(2),
-                TextInput::make('full_name')->label(__('panel.fields.full_name'))->required(),
+                LocaleTabs::make([
+                    [
+                        'name' => 'full_name',
+                        'label' => __('panel.fields.full_name'),
+                        'required' => true,
+                    ],
+                ]),
                 TextInput::make('email')->label(__('panel.fields.email'))->email(),
                 TextInput::make('phone')->label(__('panel.fields.phone')),
                 TextInput::make('location')->label(__('panel.fields.location')),

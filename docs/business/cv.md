@@ -6,13 +6,15 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 
 ## Business Rules
 
-- Routes: `/{locale}/{username}/cv` (Inertia), `.../cv.pdf` (download).
+- Routes: `/{locale}/{username}/cv` (default CV), `/{locale}/{username}/cv/{slug}` (additional CV), matching `.pdf` downloads.
 - Same **publish/preview** rules as portfolio show.
-- **`cv_settings`** row (1:1 portfolio) controls:
-  - `template`: `modern` \| `classic` \| `sidebar`
-  - Top row: owner-editable **`resume_summary_title`** (e.g. “Tóm tắt sơ yếu lý lịch”) and optional **`resume_summary`** body; **`show_resume_summary`** toggle. Falls back to `ui.cv.resume_summary` only if title is empty.
-  - **`work_experiences`** table (company, position, period, details) + **`show_work_experience`** toggle
-  - Section toggles: about, skills, projects, project period (dates), social links (header), education, work history, languages, principles, avatar
+- **`cvs`** table: one portfolio has many CV documents (`slug`, optional profile overrides, section toggles, template). Exactly one **`is_default`** CV per portfolio (opens at `/cv` without slug).
+- Portfolio **show** page uses shared content (`cv_id` null on skills/projects/principles). Each CV document uses rows scoped with its `cv_id` (default CV falls back to shared `cv_id` null content for skills/projects/principles).
+- **`cv_settings`** is replaced by **`cvs`** (migrated automatically).
+  - `template`: `modern` \| `classic` \| `sidebar` (per CV row)
+  - Top row: **`resume_summary_title`** / optional **`resume_summary`**, **`show_resume_summary`**
+  - **`work_experiences`**, **`cv_list_items`**, scoped skills/projects/principles per `cv_id`
+  - Section toggles on each CV row (about, skills, projects, …)
 - **`show_principles` defaults false** at DB level; wizard defaults match.
 - Presenter sets **`show_avatar` false** when no avatar file exists even if toggle true.
 - PDF filename: `{slug-full-name}-cv-{locale}.pdf`.
@@ -28,7 +30,8 @@ Generate a printable curriculum vitae from the same portfolio data as the public
 
 | Field / table | Role |
 |---------------|------|
-| `cv_settings` | Toggles + template string |
+| `cvs` | Per-document toggles, template, profile overrides |
+| `cv_id` on skills/projects/… | Scopes content to a CV document |
 | `appearance.cv_layout` | Resolved theme field (should align with template after sync) |
 
 ## Source of Truth

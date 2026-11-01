@@ -7,11 +7,11 @@
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Web Developer",
+    "badge": "PHP Laravel · ~2 years",
     "headline1": "Hello, I'm",
     "headline2": "Duc Do Nguyen",
-    "headline3": "a Web Developer",
-    "description": "Junior Developer with PHP Laravel foundation, specializing in database architecture design and building APIs for complex management systems.",
+    "headline3": "Software Engineer · PHP/Laravel",
+    "description": "Software Engineer ~2 years: modular design, SOLID, tests & CI/CD; Laravel, APIs, Filament/Inertia — e-commerce, ride-hailing, WMS, Japan outsource.",
     "downloadCV": "Download CV",
     "contact": "Contact",
     "scrollMore": "Explore more"
@@ -19,7 +19,7 @@
   "resume": {
     "dob": "21/05/2001",
     "positionPeriod": "2024 – Present",
-    "summary": "Backend Developer with experience in developing and maintaining web systems using PHP and Laravel. Experienced in building RESTful APIs and GraphQL APIs for admin systems and Mobile applications. Participated in multiple real-world projects including outsourcing for Japanese clients (education association management, warehouse management) and domestic clients (e-commerce platforms, payment systems, order management).\n\nExperienced with MySQL, Redis and data query optimization, while applying software design principles such as MVC, Service Repository Pattern, OOP and SOLID in system development.",
+    "summary": "- Software Engineer / Backend: enterprise web software with PHP 8 (Laravel, CodeIgniter), TypeScript/GraphQL, JavaScript (Vue 3, Inertia). Modular mindset: requirements, data/API design, implementation, tests (PHPUnit/Pest), review, CI/CD, production operations.\n- - Notable work: Japan outsource (Minpokyo, TOLINEN); Bagisto affiliate e-commerce (Lien Hoa); Uni-Taxi (real-time, payments); multi-branch orders (3M); client modules (Viet Vang); Portfotilo (Laravel + Filament + Inertia/Vue, multi-CV).\n- - Software craft: SOLID, design patterns, clean code & refactoring, layered/service–repository; Agile/Scrum; security (validation, Sanctum, OWASP basics); Docker, Redis queues, GitHub Actions/GitLab CI.",
     "sections": {
       "summary": "Professional Summary",
       "skills": "Technical Skills",
@@ -31,9 +31,13 @@
       "hobbies": "Hobbies & Personality"
     },
     "experience": {
-      "position": "PHP Laravel Developer",
-      "company": "Freelance / Project-based",
-      "period": "2024 - Present",
+      "position": "Software Engineer",
+      "company": "Viet Vang Standards Management Consulting and Solutions JSC",
+      "period": "2024 – 2026",
+      "details": {
+        "vi": "<p>Triển khai, nâng cấp và bảo trì <strong>website</strong> cùng các module <strong>quản lý</strong> theo dự án khách hàng; hỗ trợ số hóa luồng kinh doanh và vận hành trên hệ thống web (Laravel, MySQL).</p><ul><li>Phát triển tính năng website và panel quản trị theo milestone; form, báo cáo và quy trình phê duyệt</li><li>Bảo trì production: sửa lỗi, nâng cấp dependency an toàn; query phức tạp và export dữ liệu</li><li>Phối hợp PM thu thập yêu cầu, estimate và bàn giao từng sprint</li></ul>",
+        "en": "<p>Delivered, upgraded, and maintained <strong>websites</strong> and <strong>admin</strong> modules for client projects; digitized business and operations flows on Laravel/MySQL stacks.</p><ul><li>Public site and admin features per milestone; forms, reports, and approval workflows</li><li>Production maintenance, safe dependency upgrades, complex queries and exports</li><li>Requirements, estimates, and handoffs with PM each sprint</li></ul>"
+      },
       "projects": [
         {
           "name": "Japanese Kindergarten Management System (Minpokyo)",
@@ -41,25 +45,31 @@
           "teamSize": "10 members (1 PM, 9 Developers – 3 sources)",
           "demoUrl": "https://minpo.or.jp",
           "demoLabel": "minpo.or.jp",
-          "description": "Comprehensive management system for Japanese kindergarten association, supporting member school management, training organization, career events and recruitment platform for students and kindergarten teachers.",
-          "modules": "3 main modules: Association & member school management (Laravel), Training & events system (Laravel), Job recruitment platform (Jobcube – PHP custom).",
+          "description": "Long-term outsource: comprehensive platform for Japan’s kindergarten association — members, training, career events, recruitment. Parallel work across repositories; coordination with PM and Japanese stakeholders via specs/tickets.",
+          "modules": "3 modules: Association & schools (Laravel), Training & events (Laravel), Recruitment (Jobcube – custom PHP).",
           "achievements": [
-            "Centralized management of legal entities, member schools, staff and operational data",
-            "Digitized seminar/training workflows (registration, approval, QR Code attendance, materials, surveys)",
-            "Supported large-scale recruitment events (Tokyo Hoikuen Fair) – booth management, candidates, interview scheduling",
-            "Built recruitment platform for schools to post jobs and candidates to apply online"
+            "Built and maintained Laravel modules: legal entities, schools, RBAC, operational reports",
+            "Digitized training: registration, approval, QR attendance, materials, post-event surveys",
+            "Tokyo Hoikuen Fair: booths, candidates, interviews, event data sync",
+            "Online recruitment: job posts, applications, processing statuses",
+            "MySQL migrations and heavy list/report query optimization",
+            "Internal APIs and cross-module integration; production hotfixes per client SLA",
+            "Code review, validation standards; CI/CD pipelines (build/test) on Laravel repos"
           ],
-          "techStack": ["PHP", "Laravel", "MySQL", "JavaScript"]
+          "techStack": ["PHP", "Laravel", "MySQL", "JavaScript", "Redis"]
         },
         {
           "name": "Order Management System – 3M Advertising Company",
           "period": "09/2025 – 11/2025",
           "teamSize": "2 members (1 PM, 1 Developer)",
-          "description": "Upgraded invoice management system into company and branch management system, enabling invoice management with department-based permission mechanisms.",
+          "description": "Upgraded invoice/order system into HQ–branch platform with department RBAC, reconciliation, and go-live support.",
           "achievements": [
-            "Developed and upgraded invoice management features",
-            "Built department-based permission system",
-            "Optimized data queries and business logic processing"
+            "Mapped order/invoice flows with business users before schema changes",
+            "Order/invoice modules, audit trail, status workflows",
+            "RBAC via policies/middleware for branches and departments",
+            "Query tuning (indexes, eager load), transactional writes",
+            "UAT, data reconciliation, rollout exception handling",
+            "Service-layer refactor away from fat controllers"
           ],
           "techStack": ["Laravel", "MySQL", "JavaScript"]
         },
@@ -69,40 +79,61 @@
           "teamSize": "4 members (1 PM, 3 Developers)",
           "demoUrl": "https://aloa.asia",
           "demoLabel": "aloa.asia",
-          "description": "E-commerce platform built on Bagisto open-source core, extended with Affiliate Marketing system per client requirements.",
+          "description": "Bagisto/Laravel e-commerce with custom affiliate: commissions, campaigns, APIs for distribution channels.",
           "achievements": [
-            "Developed Affiliate Marketing features",
-            "Built commission calculation logic and affiliate campaign management",
-            "Developed APIs and extension modules for the system",
-            "Optimized data processing and system performance"
+            "Affiliate module: enrollment, link tracking, commission rules and reporting",
+            "Campaign logic, product scope, payout reconciliation",
+            "Bagisto hooks/events, extension APIs, queued order/commission jobs",
+            "Vue storefront/admin extensions; checkout and stock fixes",
+            "Staging data migration and aloa.asia go-live support",
+            "Catalog performance and Redis caching for heavy config",
+            "GitHub Actions CI/CD: tests on merge, controlled staging/production deploys"
           ],
-          "techStack": ["Laravel", "Vue.js", "MySQL"]
+          "techStack": ["Laravel", "Vue.js", "MySQL", "Redis", "Bagisto"]
         },
         {
-          "name": "Payment API – Uni-Taxi (Unipower Company)",
+          "name": "Uni-Taxi – Ride-hailing platform API (Unipower Company)",
           "period": "01/2026 – 03/2026",
           "teamSize": "4 members (1 PM, 3 Developers)",
-          "description": "Payment system for ride-hailing application, supporting transaction processing and real-time data synchronization between Admin system and Mobile apps (User & Driver).",
+          "description": "Uni-Taxi backend: full GraphQL for admin web and rider/driver apps — real-time booking, online payments, partner/region fares.",
           "achievements": [
-            "Developed GraphQL API for Admin system managing users, drivers and system data",
-            "Built backend service for Mobile applications (User and Driver)",
-            "Designed GraphQL schema and resolvers",
-            "Handled business logic for payment features and data synchronization"
+            "GraphQL schema/resolvers for users, drivers, trips, payments, tariffs",
+            "Real-time flows: trip creation, matching, status lifecycle, admin sync",
+            "Payment gateway, webhooks, idempotency, transaction logs",
+            "Configurable fare engine by partner, region, time windows",
+            "Client-specific auth, validation, rate limits",
+            "API testing, race-condition fixes, mobile team coordination"
           ],
-          "techStack": ["TypeScript", "MySQL", "GraphQL"]
+          "techStack": ["TypeScript", "GraphQL", "MySQL", "Redis"]
         },
         {
           "name": "Warehouse Management System – TOLINEN (Japan)",
           "period": "10/2025 – 04/2026",
           "teamSize": "3 members (1 PM, 2 Developers)",
-          "description": "Warehouse management system supporting businesses in tracking and managing import, export and inventory processes. The system helps manage product data, warehouse transaction history and supports controlling import/export operations.",
+          "description": "Japanese WMS outsource: CodeIgniter maintenance, inbound/outbound/inventory upgrades, cycle count, transaction history.",
           "achievements": [
-            "Maintained and upgraded system based on client requirements",
-            "Developed and improved inventory management features for import, export and stock",
-            "Optimized data queries and business logic processing",
-            "Fixed bugs and improved system performance"
+            "JP/EN specs mapped to DB and UI changes",
+            "Inbound/outbound/transfers/stock by batch/location",
+            "Stock/history report optimization; indexes and N+1 removal",
+            "UAT with Japanese key users; count/variance sign-off",
+            "Production hotfixes with regression checks",
+            "Pairing on complex inbound/outbound modules"
           ],
-          "techStack": ["CodeIgniter", "MySQL", "JavaScript"]
+          "techStack": ["CodeIgniter", "MySQL", "JavaScript", "PHP"]
+        },
+        {
+          "name": "Portfotilo – Portfolio SaaS & multi-CV (side product)",
+          "period": "2025 – 2026",
+          "teamSize": "Personal / side project",
+          "description": "Web product to build portfolios and multiple CVs (PDF/web), content studio, i18n — modern Laravel stack.",
+          "achievements": [
+            "Laravel architecture: multi-CV, presenter, PDF export, public Inertia/Vue site",
+            "Filament admin: portfolio, CV, skills, projects, themes",
+            "Migrations/demo seeders, publish/preview policies, locale routing",
+            "CV templates (modern/classic), Dompdf, Vite asset pipeline",
+            "Test-friendly structure, business docs in repo, CI-ready layout"
+          ],
+          "techStack": ["Laravel", "Filament", "Inertia.js", "Vue.js", "MySQL", "Tailwind CSS"]
         }
       ]
     },
@@ -119,7 +150,7 @@
     "languages": [
       {
         "name": "English",
-        "level": "Reading - comprehension & Writing (Technical Documentation)"
+        "level": "Strong technical reading; email/spec writing; basic communication on outsource projects"
       }
     ],
     "hobbies": {
@@ -127,30 +158,35 @@
       "personality": "Friendly, cheerful, approachable"
     },
     "skillKeywords": {
-      "Programming Languages": "PHP, TypeScript, JavaScript",
-      "Backend Frameworks": "Laravel, CodeIgniter",
-      "Frontend": "Vue.js, HTML5, CSS3, SCSS, Bootstrap, Tailwind CSS",
-      "Databases": "MySQL, MariaDB, MongoDB",
-      "Caching": "Redis",
-      "API Development": "RESTful APIs, GraphQL",
-      "DevOps & Tools": "Git, Docker, Nginx, Composer, Postman, SourceTree, WinSCP",
-      "Cloud": "AWS (EC2, S3)",
-      "Platforms": "Linux",
-      "Architecture & Design Patterns": "MVC, Service Repository Pattern, OOP, SOLID Principles"
+      "Programming Languages": "PHP 8.x, TypeScript, JavaScript (ES6+)",
+      "Backend Frameworks": "Laravel 11+, Filament, Livewire, CodeIgniter, Bagisto",
+      "Frontend": "Vue 3, Inertia.js, Blade, Tailwind CSS, Bootstrap",
+      "Databases": "MySQL, MariaDB, MongoDB — schema design, migrations, indexing",
+      "Caching & Queues": "Redis (cache, session, Horizon/queue jobs)",
+      "API Development": "REST, GraphQL, Sanctum, webhooks, payment gateways, OpenAPI",
+      "Testing": "PHPUnit, Pest, Postman, API feature tests",
+      "CI/CD": "GitHub Actions, GitLab CI — build, test, staging/production deploy",
+      "DevOps & Tools": "Git (GitFlow), Docker, Nginx, Composer, Vite",
+      "Cloud": "AWS EC2, S3",
+      "Platforms": "Linux servers, local Laragon/dev stacks",
+      "Process": "Agile/Scrum, Jira/Redmine, code review, technical writing",
+      "SOLID & OOP": "SRP, OCP, LSP, ISP, DIP — dependency injection, interfaces, service layer",
+      "Software Engineering": "SDLC, modular design, design patterns, refactoring, debugging, profiling, secure coding",
+      "Architecture & Design Patterns": "Layered architecture, MVC, Service–Repository, DTO, Factory/Strategy/Observer"
     }
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Web Developer with a solid backend development foundation",
-    "intro1": "Hello! I'm a Web Developer with practical work experience. I focus on developing expertise in",
+    "subtitle": "Software Engineer — ~2 years building enterprise web software",
+    "intro1": "Hello! I'm a Software Engineer with about two years on production. I focus on",
     "laravelHighlight": "PHP Laravel",
-    "intro1End": ", with a passion for database design and building efficient APIs.",
-    "intro2": "In a short time, I've had the opportunity to participate in real projects from e-commerce to school management systems and order management. Each project helps me understand more deeply how to design scalable systems. I've also gained valuable experience working with Japanese clients.",
-    "intro3": "I believe that good code is not just code that runs, but code that is readable, maintainable, and can grow over time.",
+    "intro1End": " and software craft: modular design, APIs, tests, reviews — not just “make the page work”.",
+    "intro2": "I've shipped Minpokyo, TOLINEN, Lien Hoa, Uni-Taxi, 3M, Viet Vang, and Portfotilo. Comfortable across SDLC: requirements → design → code → test → deploy → maintain.",
+    "intro3": "I prioritize SOLID, design patterns, and clean code so teams can scale — safe refactors, testability, and business changes without breaking architecture.",
     "highlights": [
       {
-        "title": "Responsibility",
-        "description": "Committed to completing work with the highest quality"
+        "title": "Ownership & Delivery",
+        "description": "Proactive task completion, progress communication, and post-release incident handling"
       },
       {
         "title": "Fast Learner",
@@ -161,14 +197,26 @@
         "description": "Experience collaborating with Japanese stakeholders and international teams"
       },
       {
-        "title": "Outsource Experience",
-        "description": "Experienced working as outsource with domestic and Japanese clients"
+        "title": "API & integrations",
+        "description": "Clear REST/GraphQL design, versioning, mobile and payment gateway integration"
+      },
+      {
+        "title": "Software design",
+        "description": "Modules/layers, interfaces, lower coupling — SOLID and practical patterns"
+      },
+      {
+        "title": "Code quality",
+        "description": "Review, refactor, automated tests; maintainability over shortcuts"
+      },
+      {
+        "title": "Agile & communication",
+        "description": "Sprints, estimates, demos; working with PM/Japanese clients and local teams"
       }
     ]
   },
   "skills": {
-    "title": "Tech Stack",
-    "subtitle": "Technologies I've worked with in real projects",
+    "title": "Skills",
+    "subtitle": "Technologies and software engineering practices from real projects",
     "categories": [
       {
         "title": "Backend",
@@ -176,12 +224,12 @@
           {
             "name": "PHP",
             "description": "OOP, typed properties, attributes, performance tuning",
-            "level": 75
+            "level": 78
           },
           {
             "name": "Laravel",
-            "description": "Eloquent ORM, Queues, Events, API Resources, Testing",
-            "level": 80
+            "description": "Eloquent, migrations, queues, events, policies, API Resources, Sanctum, Pest/PHPUnit",
+            "level": 82
           },
           {
             "name": "CodeIgniter",
@@ -190,13 +238,33 @@
           },
           {
             "name": "TypeScript",
-            "description": "Type-safe development, interfaces, generics",
-            "level": 55
+            "description": "Node backends, GraphQL resolvers, type-safe DTOs and error handling",
+            "level": 62
           },
           {
             "name": "GraphQL",
-            "description": "API queries, mutations, schema design",
-            "level": 50
+            "description": "Schema design, queries/mutations, DataLoader patterns, auth context",
+            "level": 58
+          },
+          {
+            "name": "REST API",
+            "description": "Resource design, versioning, validation, pagination, OpenAPI/Postman",
+            "level": 75
+          },
+          {
+            "name": "Filament",
+            "description": "Admin panels, resources, relation managers, custom pages, policies",
+            "level": 65
+          },
+          {
+            "name": "Queues & Jobs",
+            "description": "Redis queues, batch jobs, failed jobs, async email/export",
+            "level": 68
+          },
+          {
+            "name": "SOLID & OOP",
+            "description": "SRP, OCP, LSP, ISP, DIP — service/repository, interfaces, Laravel container/DI",
+            "level": 72
           }
         ]
       },
@@ -205,13 +273,13 @@
         "items": [
           {
             "name": "MySQL",
-            "description": "Query optimization, indexing, transaction management",
-            "level": 70
+            "description": "Schema design, indexing, transactions, EXPLAIN, reporting queries",
+            "level": 75
           },
           {
             "name": "Redis",
-            "description": "Caching, session management, queue driver",
-            "level": 55
+            "description": "Cache, session, queues; invalidation patterns",
+            "level": 62
           },
           {
             "name": "MariaDB",
@@ -244,9 +312,14 @@
             "level": 70
           },
           {
-            "name": "Vue.js (Basic)",
-            "description": "Component-based UI, reactivity basics",
-            "level": 45
+            "name": "Vue.js",
+            "description": "Vue 3, components, composables, Laravel/Bagisto API integration",
+            "level": 60
+          },
+          {
+            "name": "Inertia.js",
+            "description": "SPA-like Laravel apps, forms, shared props, Vite",
+            "level": 62
           },
           {
             "name": "React.js (Basic)",
@@ -265,18 +338,83 @@
           },
           {
             "name": "Docker",
-            "description": "Containerization basics, local development",
-            "level": 50
+            "description": "docker-compose dev stacks, basic image builds",
+            "level": 58
+          },
+          {
+            "name": "CI/CD",
+            "description": "GitHub Actions / GitLab CI: build workflows, PHPUnit/Pest, artifacts, SSH/EC2 deploy",
+            "level": 55
           },
           {
             "name": "AWS (Basic)",
-            "description": "EC2 deployment, S3 storage awareness",
-            "level": 35
+            "description": "EC2 deploy, S3 assets/backups",
+            "level": 45
           },
           {
             "name": "Postman",
-            "description": "API testing",
+            "description": "API testing, collections, environments, basic automation",
             "level": 75
+          },
+          {
+            "name": "Pest / PHPUnit",
+            "description": "HTTP/API feature tests, factories, mocks, CI integration",
+            "level": 58
+          }
+        ]
+      },
+      {
+        "title": "Ways of working",
+        "items": [
+          {
+            "name": "Agile / Scrum",
+            "description": "Sprints, dailies, retros; story/task estimation",
+            "level": 70
+          },
+          {
+            "name": "Jira / Redmine",
+            "description": "Tickets, workflows, outsource traceability",
+            "level": 72
+          },
+          {
+            "name": "Technical writing",
+            "description": "README, API notes, handover; basic English specs",
+            "level": 65
+          }
+        ]
+      },
+      {
+        "title": "Software engineering",
+        "items": [
+          {
+            "name": "Clean Code & Refactoring",
+            "description": "Naming, small functions, remove duplication; incremental refactors with tests",
+            "level": 72
+          },
+          {
+            "name": "Design Patterns",
+            "description": "Repository, Strategy, Factory, Observer — in Laravel/service layers",
+            "level": 68
+          },
+          {
+            "name": "Modular architecture",
+            "description": "Layered design, bounded modules, DI, separate domain from infrastructure",
+            "level": 70
+          },
+          {
+            "name": "Data structures & algorithms",
+            "description": "Arrays, hash maps, queues/stacks; basic complexity; optimize loops/queries",
+            "level": 62
+          },
+          {
+            "name": "Debug & performance",
+            "description": "Logs, Xdebug/Telescope, SQL EXPLAIN, profiling requests/jobs",
+            "level": 68
+          },
+          {
+            "name": "Secure coding",
+            "description": "Validation, authz, SQLi/XSS/CSRF awareness, secret handling",
+            "level": 65
           }
         ]
       }
@@ -292,86 +430,135 @@
     "items": [
       {
         "title": "Japanese Kindergarten Management System (Minpokyo)",
-        "subtitle": "Kindergarten Association Management Platform",
+        "subtitle": "Long-term outsource • 3 codebases • Association platform",
         "complexity": "Complex • 10 members (1 PM, 9 Devs)",
         "period": "11/2024 – 05/2026",
         "demoUrl": "https://minpo.or.jp",
         "demoLabel": "minpo.or.jp",
-        "problem": "Japanese kindergarten association needed a comprehensive management system for member schools, training, career events and recruitment.",
-        "solution": "Developed 3 modules: Association & member school management (Laravel), Training & events system (Laravel), Job recruitment platform (Jobcube – PHP custom).",
-        "techStack": ["PHP", "Laravel", "MySQL", "JavaScript"],
+        "problem": "Japan’s kindergarten association needed one platform for members, training, career events, and hiring — fragmented data, manual processes, many stakeholders.",
+        "solution": "Three modules (2× Laravel + Jobcube PHP): association/schools, training & events (QR, surveys), recruitment; unified workflows and MySQL reporting.",
+        "techStack": ["PHP", "Laravel", "MySQL", "JavaScript", "Redis"],
         "responsibilities": [
-          "Centralized management of legal entities, member schools and staff data",
-          "Digitized training workflows (registration, approval, QR Code attendance, materials, surveys)",
-          "Supported large-scale recruitment events (Tokyo Hoikuen Fair)",
-          "Built online recruitment platform for schools and candidates"
+          "Laravel modules: legal entities, member schools, RBAC, operational reports",
+          "Training flows: registration, approval, QR attendance, materials, surveys",
+          "Tokyo Hoikuen Fair: booths, candidates, interviews, event sync",
+          "Online hiring: job posts, applications, processing for schools and candidates",
+          "MySQL migrations and optimization for large lists/reports",
+          "Production hotfixes, JP client tickets, code review and validation standards",
+          "CI/CD pipelines: automated build and tests on pull requests"
         ],
-        "learned": "Experience working as outsource with Japanese clients, managing multiple codebases in parallel and understanding Japanese education systems."
+        "learned": "Japanese outsourcing, multi-repo coordination, multilingual specs, and complex education-domain systems."
+      },
+      {
+        "title": "Website & management modules – Viet Vang Company",
+        "subtitle": "Web delivery • Admin panel • Client project",
+        "complexity": "Medium • 2–3 members",
+        "period": "2024 – 2026",
+        "problem": "Client needed evolving websites and admin modules by project phase without disrupting daily operations.",
+        "solution": "Laravel milestones: forms/reports/approvals, continuous production maintenance.",
+        "techStack": ["Laravel", "MySQL", "JavaScript", "Blade"],
+        "responsibilities": [
+          "Website and admin features per sprint specifications",
+          "Performance and business-user UX improvements",
+          "Bugfixes, dependency upgrades, pre-release backups",
+          "Complex queries, exports, post-handover support",
+          "PM coordination on estimates, demos, acceptance"
+        ],
+        "learned": "SME client delivery: requirement communication, small releases, ownership after go-live."
       },
       {
         "title": "Order Management System – 3M Advertising Company",
-        "subtitle": "Invoice & Branch Management System",
+        "subtitle": "Invoice/order ERP upgrade • Multi-branch",
         "complexity": "Medium • 2 members (1 PM, 1 Dev)",
         "period": "09/2025 – 11/2025",
-        "problem": "3M Advertising needed to upgrade their invoice system into a company and branch management system with department-based permissions.",
-        "solution": "Upgraded invoice management system with department-based permission mechanisms, optimized queries and business logic.",
+        "problem": "Legacy invoicing could not support HQ–branch ops, department permissions, or reconciliation at scale.",
+        "solution": "Laravel upgrade: RBAC, new order/invoice flows, safe transactions, query tuning.",
         "techStack": ["Laravel", "MySQL", "JavaScript"],
         "responsibilities": [
-          "Developed and upgraded invoice management features",
-          "Built department-based permission system",
-          "Optimized data queries and business logic processing"
+          "Business workshops before schema changes",
+          "Orders, invoices, audit trail, status workflows",
+          "Branch/department policies and middleware",
+          "Indexes, eager loading, transactional writes",
+          "UAT, migration reconciliation, rollout exceptions",
+          "Service-layer refactor reducing controller bloat"
         ],
-        "learned": "Deep understanding of real-world order management processes, database transactions and extending existing systems."
+        "learned": "Extending brownfield systems, real-world RBAC, transactional discipline on financial/order data."
       },
       {
         "title": "E-commerce & Affiliate Platform – Lien Hoa Company",
-        "subtitle": "E-commerce with Affiliate Marketing System",
+        "subtitle": "Bagisto • Affiliate • aloa.asia",
         "complexity": "Complex • 4 members (1 PM, 3 Devs)",
         "period": "11/2025 – 05/2026",
         "demoUrl": "https://aloa.asia",
         "demoLabel": "aloa.asia",
-        "problem": "Lien Hoa company needed an online sales platform combined with an affiliate system to expand distribution channels.",
-        "solution": "Built e-commerce platform on Bagisto open-source core, extended with Affiliate Marketing system per client requirements.",
-        "techStack": ["Laravel", "Vue.js", "MySQL"],
+        "problem": "Stable e-commerce plus affiliate channel — commissions, campaigns, aligned with order operations.",
+        "solution": "Bagisto/Laravel custom affiliate module, events/APIs, queued commissions; Vue extensions.",
+        "techStack": ["Laravel", "Vue.js", "MySQL", "Redis", "Bagisto"],
         "responsibilities": [
-          "Developed Affiliate Marketing features",
-          "Built commission calculation logic and affiliate campaign management",
-          "Developed APIs and extension modules for the system",
-          "Optimized data processing and system performance"
+          "Affiliate enrollment, link tracking, commission rules, reporting",
+          "Campaigns, product scope, payout reconciliation",
+          "Bagisto hooks, extension APIs, order/commission queues",
+          "Checkout/stock fixes; staging → production migration",
+          "Catalog query tuning; Redis for heavy configuration",
+          "Go-live and post-launch monitoring for aloa.asia",
+          "CI/CD: build/test before merge, controlled staging and production deploys"
         ],
-        "learned": "Clear understanding of affiliate marketing model, experience with Vue.js and building real-world e-commerce systems."
+        "learned": "Production e-commerce + affiliate, extending open-source cores, Vue collaboration."
       },
       {
-        "title": "Payment API – Uni-Taxi (Unipower Company)",
-        "subtitle": "Payment System for Ride-hailing App",
+        "title": "Uni-Taxi – Ride-hailing platform API (Unipower Company)",
+        "subtitle": "GraphQL • Real-time • Payments • Partner fares",
         "complexity": "Complex • 4 members (1 PM, 3 Devs)",
         "period": "01/2026 – 03/2026",
-        "problem": "Unipower needed a payment system for ride-hailing app with real-time transaction processing and data sync between Admin and Mobile apps.",
-        "solution": "Built payment API system using TypeScript and GraphQL with MySQL, real-time data sync between Admin and Mobile apps (User & Driver).",
-        "techStack": ["TypeScript", "MySQL", "GraphQL"],
+        "demoLabel": "uni-taxi",
+        "problem": "Ride-hailing product needed one backend for admin web, rider app, and driver app — real-time trips, payments, partner/region pricing.",
+        "solution": "Full TypeScript GraphQL: trip/payment/tariff schema, live sync, payment gateway, configurable fare engine.",
+        "techStack": ["TypeScript", "GraphQL", "MySQL", "Redis"],
         "responsibilities": [
-          "Developed GraphQL API for Admin managing users, drivers and system data",
-          "Built backend service for Mobile applications (User and Driver)",
-          "Designed GraphQL schema and resolvers",
-          "Handled business logic for payment features and data synchronization"
+          "GraphQL for admin web and rider/driver mobile apps",
+          "Real-time booking lifecycle and driver matching",
+          "Online payments, webhooks, idempotency, reconciliation",
+          "Admin-configurable tariffs by partner, region, time",
+          "Client auth separation, validation, rate limits",
+          "API testing, race fixes, mobile team coordination"
         ],
-        "learned": "Experience with TypeScript in production, GraphQL API design patterns, and understanding payment processing workflows and security requirements."
+        "learned": "Multi-client GraphQL, ride-hailing domain, payments, configurable pricing rules."
       },
       {
         "title": "Warehouse Management System – TOLINEN (Japan)",
-        "subtitle": "Inventory Import/Export Management System",
+        "subtitle": "Legacy WMS • Japan outsource • Inbound/outbound/stock",
         "complexity": "Medium • 3 members (1 PM, 2 Devs)",
         "period": "10/2025 – 04/2026",
-        "problem": "Japanese enterprise needed a warehouse system to track import, export and inventory control for goods management.",
-        "solution": "Maintained and upgraded existing warehouse management system, improved inventory features and optimized system performance.",
-        "techStack": ["CodeIgniter", "MySQL", "JavaScript"],
+        "problem": "Japanese enterprise required reliable WMS for inbound/outbound/stock and cycle counts without halting warehouse ops.",
+        "solution": "CodeIgniter maintenance, new warehouse features, report optimization, JP UAT/sign-off.",
+        "techStack": ["CodeIgniter", "PHP", "MySQL", "JavaScript"],
         "responsibilities": [
-          "Maintained and upgraded system based on Japanese client requirements",
-          "Developed inventory management features for import, export and stock",
-          "Optimized data queries and business logic processing",
-          "Fixed bugs and improved system performance"
+          "JP/EN specs to DB/UI changes",
+          "Inbound/outbound/transfers/stock and transaction history",
+          "Stock report tuning; indexes and N+1 fixes",
+          "Cycle-count UAT and release sign-off",
+          "Logged production hotfixes with regression checks",
+          "Pairing on complex inbound/outbound modules"
         ],
-        "learned": "Experience working as outsource with Japanese clients, maintaining legacy systems and optimizing warehouse management system performance."
+        "learned": "Legacy WMS, Japanese client communication, balancing speed with inventory data safety."
+      },
+      {
+        "title": "Portfotilo – Portfolio SaaS & multi-CV",
+        "subtitle": "Laravel 11 • Filament • Inertia/Vue • CV PDF",
+        "complexity": "Side project • Full-stack",
+        "period": "2025 – 2026",
+        "problem": "Developers need one place to manage a portfolio and multiple CV variants (IT, logistics, etc.) with public site + PDF without manual edits each time.",
+        "solution": "Laravel SaaS: Filament studio, public Inertia/Vue, multi-CV slugs, presenter payloads, PDF export, locales.",
+        "techStack": ["Laravel", "Filament", "Inertia.js", "Vue.js", "MySQL", "Tailwind CSS"],
+        "responsibilities": [
+          "Multi-CV domain, cv_id-scoped content, demo seed profiles",
+          "Filament resources: portfolio, CV, skills, projects, appearance",
+          "Public locale routes, publish/preview, CV templates",
+          "PDF exporter, storage/avatars, SEO and content profiles",
+          "Business docs, test-friendly conventions, CI-ready structure",
+          "Theme integration, setup wizard, vi/en i18n"
+        ],
+        "learned": "Product mindset, Filament admin UX, and modern full-stack Laravel employers expect around ~2 YOE."
       }
     ]
   },
@@ -430,7 +617,7 @@
       },
       "zalo": {
         "title": "Zalo",
-        "url": "https://zalo.me/0879292571"
+        "url": "https://zalo.me/0899068281"
       }
     }
   },

@@ -807,6 +807,32 @@ html[data-font='mono'] .section-title {
     border-bottom: 1px solid hsl(var(--border));
 }
 
+.cv-modern-header-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.25rem;
+    align-items: start;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .cv-modern-header-grid {
+        column-gap: 1.5rem;
+    }
+}
+
+.cv-modern-header-grid--no-avatar {
+    grid-template-columns: 1fr;
+}
+
+.cv-modern-header-grid-avatar {
+    line-height: 0;
+}
+
+.cv-modern-header-grid-main {
+    min-width: 0;
+}
+
 .cv-modern-contact-grid {
     display: flex;
     flex-direction: column;

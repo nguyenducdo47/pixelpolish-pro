@@ -100,7 +100,26 @@ class Portfolio extends Model
 
     public function cvSettings(): HasOne
     {
-        return $this->hasOne(CvSetting::class);
+        return $this->hasOne(Cv::class)->where('is_default', true);
+    }
+
+    public function cvs(): HasMany
+    {
+        return $this->hasMany(Cv::class)->orderByDesc('is_default')->orderBy('slug');
+    }
+
+    public function defaultCv(): HasOne
+    {
+        return $this->hasOne(Cv::class)->where('is_default', true);
+    }
+
+    public function resolveCv(?string $slug = null): Cv
+    {
+        if ($slug !== null && $slug !== '') {
+            return $this->cvs()->where('slug', $slug)->firstOrFail();
+        }
+
+        return $this->defaultCv()->firstOrFail();
     }
 
     public function theme(): BelongsTo
@@ -123,9 +142,18 @@ class Portfolio extends Model
         ]);
     }
 
-    public function cvUrl(?string $locale = null): string
+    public function cvUrl(?string $locale = null, ?Cv $cv = null): string
     {
         $locale ??= $this->default_locale;
+        $cv ??= $this->defaultCv;
+
+        if ($cv && ! $cv->is_default) {
+            return route('portfolio.cv.show', [
+                'locale' => $locale,
+                'username' => $this->slug,
+                'cv' => $cv->slug,
+            ]);
+        }
 
         return route('portfolio.cv', [
             'locale' => $locale,

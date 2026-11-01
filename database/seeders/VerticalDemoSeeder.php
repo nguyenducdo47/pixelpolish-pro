@@ -59,7 +59,10 @@ class VerticalDemoSeeder extends Seeder
         $portfolio->profile()->updateOrCreate(
             ['portfolio_id' => $portfolio->id],
             [
-                'full_name' => $userMeta['name'],
+                'full_name' => [
+                    'vi' => $userMeta['name'],
+                    'en' => $userMeta['name'],
+                ],
                 'email' => $userMeta['email'],
                 'headline' => $sample['headline'] ?? [],
                 'tagline' => $sample['tagline'] ?? [],
@@ -67,9 +70,11 @@ class VerticalDemoSeeder extends Seeder
             ]
         );
 
-        $portfolio->cvSettings()->updateOrCreate(
-            ['portfolio_id' => $portfolio->id],
+        $portfolio->cvs()->updateOrCreate(
+            ['portfolio_id' => $portfolio->id, 'slug' => 'default'],
             [
+                'name' => ['vi' => 'CV mặc định', 'en' => 'Default CV'],
+                'is_default' => true,
                 'template' => 'modern',
                 'show_principles' => ContentProfileConfig::forProfile($profile)->sectionEnabled('philosophy'),
             ]

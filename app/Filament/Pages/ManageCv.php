@@ -4,11 +4,12 @@ namespace App\Filament\Pages;
 
 use App\Filament\Concerns\TranslatesPage;
 use App\Filament\Forms\LocaleTabs;
-use App\Models\CvSetting;
+use App\Models\Cv;
 use App\Models\Portfolio;
 use App\Support\AppearanceTheme;
 use App\Support\ContentProfileConfig;
 use App\Support\LocaleCatalog;
+use App\Support\UiLocale;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\Select;
@@ -21,6 +22,7 @@ use Filament\Schemas\Components\Form;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Arr;
 
 class ManageCv extends Page
 {
@@ -38,14 +40,26 @@ class ManageCv extends Page
 
     public ?array $data = [];
 
+    public ?int $editingCvId = null;
+
     public function mount(): void
     {
-        $this->form->fill($this->settings()->toArray());
+        $portfolio = auth()->user()->portfolio;
+
+        $this->editingCvId = $portfolio->defaultCv?->id
+            ?? $portfolio->cvs()->orderByDesc('is_default')->value('id');
+
+        $this->form->fill($this->activeCv()->toArray());
+    }
+
+    public function updatedEditingCvId(): void
+    {
+        $this->form->fill($this->activeCv()->fresh()->toArray());
     }
 
     public function defaultForm(Schema $schema): Schema
     {
-        return $schema->statePath('data')->model($this->settings());
+        return $schema->statePath('data')->model($this->activeCv());
     }
 
     public function form(Schema $schema): Schema
@@ -53,6 +67,17 @@ class ManageCv extends Page
         $config = fn (): ContentProfileConfig => ContentProfileConfig::for(auth()->user()?->portfolio);
 
         return $schema->components([
+            Select::make('editingCvId')
+                ->label(__('panel.fields.cv_document_config'))
+                ->options(fn (): array => $this->cvDocumentOptions())
+                ->default(fn (): ?int => $this->editingCvId)
+                ->live()
+                ->native(false)
+                ->required()
+                ->visible(fn (): bool => auth()->user()->portfolio->cvs()->count() > 1)
+                ->helperText(__('panel.fields.cv_document_config_help'))
+                ->columnSpanFull()
+                ->statePath('editingCvId'),
             Section::make(__('panel.sections.cv_resume_summary'))->schema([
                 LocaleTabs::make([
                     [
@@ -71,7 +96,9 @@ class ManageCv extends Page
                 Toggle::make('show_resume_summary')
                     ->label(__('panel.fields.show_resume_summary')),
             ]),
-            Section::make(__('panel.sections.cv_template'))->schema([
+            Section::make(__('panel.sections.cv_template'))
+                ->description(__('panel.sections.cv_template_scope_help'))
+                ->schema([
                 Select::make('template')
                     ->label(__('panel.fields.template'))
                     ->options(fn (): array => AppearanceTheme::cvLayoutOptions())
@@ -121,17 +148,19 @@ class ManageCv extends Page
                         Action::make('save')->label(__('panel.actions.save'))->submit('save'),
                         $this->localeActionGroup(
                             $portfolio,
+                            fn (): Cv => $this->activeCv(),
                             'preview',
                             __('panel.actions.preview_menu'),
                             Heroicon::OutlinedEye,
-                            'portfolio.cv',
+                            false,
                         ),
                         $this->localeActionGroup(
                             $portfolio,
+                            fn (): Cv => $this->activeCv(),
                             'pdf',
                             __('panel.actions.pdf_menu'),
                             Heroicon::OutlinedArrowDownTray,
-                            'portfolio.cv.pdf',
+                            true,
                         ),
                     ]),
                 ]),
@@ -140,29 +169,92 @@ class ManageCv extends Page
 
     public function save(): void
     {
-        $state = $this->form->getState();
-        $this->settings()->update($state);
-        AppearanceTheme::syncCvLayout($this->settings()->portfolio, (string) ($state['template'] ?? 'modern'));
+        $cv = $this->activeCv();
+        $state = Arr::only($this->form->getState(), $cv->getFillable());
+        $cv->update($state);
+
+        if ($cv->is_default) {
+            AppearanceTheme::syncCvLayout($cv->portfolio, (string) ($state['template'] ?? 'modern'));
+        }
+
         Notification::make()->title(__('panel.notify.cv_saved'))->success()->send();
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    protected function cvDocumentOptions(): array
+    {
+        $locale = UiLocale::current();
+
+        return auth()->user()->portfolio->cvs()
+            ->orderByDesc('is_default')
+            ->orderBy('slug')
+            ->get()
+            ->mapWithKeys(function (Cv $cv) use ($locale): array {
+                $label = trim($cv->localeText('name', $locale)) ?: $cv->slug;
+                if ($cv->is_default) {
+                    $label .= ' · '.__('panel.fields.cv_is_default');
+                }
+
+                return [$cv->id => $label];
+            })
+            ->all();
+    }
+
+    protected function activeCv(): Cv
+    {
+        $portfolio = auth()->user()->portfolio;
+
+        if ($this->editingCvId) {
+            return $portfolio->cvs()->whereKey($this->editingCvId)->firstOrFail();
+        }
+
+        return $portfolio->defaultCv()->firstOrCreate(
+            ['portfolio_id' => $portfolio->id, 'is_default' => true],
+            [
+                'slug' => 'default',
+                'name' => ['vi' => 'CV mặc định', 'en' => 'Default CV'],
+            ],
+        );
     }
 
     protected function localeActionGroup(
         Portfolio $portfolio,
+        \Closure $cvResolver,
         string $name,
         string $label,
         Heroicon $icon,
-        string $route,
+        bool $pdf,
     ): ActionGroup {
         $locales = LocaleCatalog::enabled();
 
         return ActionGroup::make(
-            $locales->map(fn ($locale) => Action::make($name.'_'.$locale->code)
-                ->label($locale->native_name.' ('.strtoupper($locale->code).')')
-                ->url(route($route, [
+            $locales->map(function ($locale) use ($portfolio, $cvResolver, $name, $pdf) {
+                $cv = $cvResolver();
+
+                $params = [
                     'locale' => $locale->code,
                     'username' => $portfolio->slug,
-                ]))
-                ->openUrlInNewTab())->all()
+                ];
+
+                if ($pdf) {
+                    $route = $cv->is_default ? 'portfolio.cv.pdf' : 'portfolio.cv.pdf.show';
+                    if (! $cv->is_default) {
+                        $params['cv'] = $cv->slug;
+                    }
+                } else {
+                    $route = $cv->is_default ? 'portfolio.cv' : 'portfolio.cv.show';
+                    if (! $cv->is_default) {
+                        $params['cv'] = $cv->slug;
+                    }
+                }
+
+                return Action::make($name.'_'.$locale->code)
+                    ->label($locale->native_name.' ('.strtoupper($locale->code).')')
+                    ->url(route($route, $params))
+                    ->openUrlInNewTab();
+            })->all()
         )
             ->label($label)
             ->icon($icon)
@@ -170,10 +262,5 @@ class ManageCv extends Page
             ->color('gray')
             ->dropdownPlacement('top-start')
             ->hidden($locales->isEmpty());
-    }
-
-    protected function settings(): CvSetting
-    {
-        return auth()->user()->portfolio->cvSettings;
     }
 }

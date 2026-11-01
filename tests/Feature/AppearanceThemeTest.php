@@ -59,7 +59,7 @@ class AppearanceThemeTest extends TestCase
         $this->assertSame($midnight->id, $user->portfolio->theme_id);
         $this->assertSame('#ff0000', AppearanceTheme::resolve($user->portfolio)['colors']['primary']);
         $this->assertSame('#4f46e5', $midnight->colors['primary']);
-        $this->assertSame('modern', $user->portfolio->cvSettings->template);
+        $this->assertSame('modern', $user->portfolio->defaultCv->template);
     }
 
     public function test_disabled_theme_cannot_be_applied(): void
